@@ -1,0 +1,121 @@
+# Draft source grouping for comparative dashboard work.
+# This file is a working analytical grouping, not a final political label set.
+# Review before using it in public-facing charts.
+
+metadata:
+  status: draft
+  basis:
+    - channel_metadata table where available
+    - source names visible in the current news dataset
+  caution: "Some sources are not grouped yet. Treat uncategorized sources as review-needed."
+
+groups:
+  state_agencies:
+    label: "State agencies"
+    sources:
+      - tass_agency
+      - rian_ru
+
+  federal_tv_and_state_broadcasters:
+    label: "Federal TV and state broadcasters"
+    sources:
+      - news_1tv
+      - ntvnews
+      - rentv_news
+      - rt_russian
+      - tvc_ru
+      - tvrussia1
+      - vestiru24
+      - zvezdanews
+
+  pro_government_online:
+    label: "Pro-government online media"
+    sources:
+      - aifonline
+      - gazetaru
+      - izvestia
+      - lifenews
+      - readovkanews
+      - rgrunews
+      - riafan
+      - rusvesnasu
+      - solovievlive
+      - svpressaru
+      - truekpru
+      - tsargradtv
+      - uranews
+
+  mainstream_business_and_general:
+    label: "Mainstream business and general media"
+    sources:
+      - bfmnews
+      - breakingmash
+      - forbesrussia
+      - interfaxonline
+      - kommersant
+      - lentadnya
+      - mk_ru
+      - rbc_news
+      - vedomosti
+
+  independent_and_exile:
+    label: "Independent and exile media"
+    sources:
+      - bbcrussian
+      - dw_de_news
+      - fontankaspb
+      - istories_media
+      - kontext_channel
+      - mediazzzona
+      - meduzalive
+      - novaya_europe
+      - novaya_pishet
+      - radiosvoboda
+      - sotaproject
+      - thebell_io
+      - theinsider
+
+  war_and_military_channels:
+    label: "War and military channels"
+    sources:
+      - concordgroup_official
+      - prigozhin_hat
+      - rybar
+      - sashakots
+      - strelkovii
+      - vladlentatarsky
+      - voenacher
+      - vysokygovorit
+
+uncategorized_review_needed:
+  - bazabazon
+  - margaritasimonyan
+  - nackepelo
+  - nsk2020ru
+  - ochevidcy
+  - omsk_ogo
+  - orlec
+  - perm36
+  - podvigpress
+  - politica_media
+  - protokol_band
+  - protokol_samara
+  - protokol_tver
+  - pskovred
+  - rezonans_media
+  - rerussia_org
+  - sopka_media
+  - sorokinhvost
+  - svobodnieslova
+  - tmn_bgregion72
+  - tomskpolit
+  - tsibirevdmitry
+  - udmprotivcor
+  - ural56ru
+  - vashdozor
+  - ve4ved
+  - vornadzor
+  - vvgladkov
+  - wejournal
+  - znakcity
+  - ylatynina

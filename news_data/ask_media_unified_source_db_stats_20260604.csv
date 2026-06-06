@@ -1,0 +1,17 @@
+source_dbs,rows
+"summarized_messages_msi.db,summarized_messages_old.db",2234626
+summarized_messages_mac.db,1436562
+"summarized_messages_mac.db,collected_messages_msi.db,collected_messages2.db",43772
+"summarized_messages_msi.db,summarized_messages_old.db,collected_messages_msi.db,collected_messages2.db",43110
+"summarized_messages_msi.db,summarized_messages_old.db,collected_messages1.db",42419
+"summarized_messages_msi.db,summarized_messages_old.db,collected_messages_msi.db",19525
+collected_messages_msi.db,18899
+"collected_messages_msi.db,collected_messages2.db",8816
+"summarized_messages_mac.db,collected_messages_msi.db",7738
+"summarized_messages_msi.db,summarized_messages_old.db,collected_messages_msi.db,collected_messages1.db,collected_messages2.db",2942
+"summarized_messages_mac.db,collected_messages_msi.db,collected_messages1.db,collected_messages2.db",1992
+"collected_messages_msi.db,collected_messages1.db,collected_messages2.db",642
+collected_messages1.db,516
+"summarized_messages_msi.db,summarized_messages_old.db,collected_messages_msi.db,collected_messages1.db",47
+"collected_messages_msi.db,collected_messages1.db",7
+"summarized_messages_mac.db,collected_messages1.db",1

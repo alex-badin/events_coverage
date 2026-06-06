@@ -1,0 +1,23 @@
+# Central path notes for the current local project layout.
+# Keep raw inputs stable. Write derived files to data/interim or data/processed.
+
+inputs:
+  news_database: news_data/ask_media_unified_messages_20260604.db
+  news_readme: news_data/ask_media_unified_messages_20260604_README.md
+  news_basic_stats: news_data/ask_media_unified_basic_stats_20260604.md
+  news_source_stats: news_data/ask_media_unified_source_stats_20260604.csv
+  fom_events_clean: fom_events/processed_events/events_table.csv
+  fom_events_working: fom_events/events_table.csv
+  fom_reports_dir: fom_events/downloaded_reports
+
+derived:
+  interim_dir: data/interim
+  processed_dir: data/processed
+  cache_dir: outputs/cache
+  dashboard_exports_dir: outputs/dashboard_exports
+  reports_dir: reports
+
+defaults:
+  event_window_days_before: 3
+  event_window_days_after: 10
+  min_manual_audit_examples_per_event: 10
