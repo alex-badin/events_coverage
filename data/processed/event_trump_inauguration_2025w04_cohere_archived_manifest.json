@@ -47,9 +47,10 @@
     "keyword_pool_retention": 0.0
   },
   "outputs": {
-    "dataset_csv": "event_trump_inauguration_2025w04_dataset.csv",
-    "dataset_jsonl": "event_trump_inauguration_2025w04_dataset.jsonl",
-    "candidates_csv": "event_trump_inauguration_2025w04_candidates.csv",
-    "review_sample_csv": "event_trump_inauguration_2025w04_review_sample.csv"
-  }
+    "dataset_csv": "event_trump_inauguration_2025w04_cohere_archived_dataset.csv",
+    "dataset_jsonl": "event_trump_inauguration_2025w04_cohere_archived_dataset.jsonl",
+    "candidates_csv": "event_trump_inauguration_2025w04_cohere_archived_candidates.csv",
+    "review_sample_csv": "event_trump_inauguration_2025w04_cohere_archived_review_sample.csv"
+  },
+  "archived_note": "Built 2026-06-28 with the cohere retriever outside its Feb-Apr 2025 coverage window; the candidate pool had collapsed, so this dataset is known-incomplete. Rebuild with --retriever qwen3 before analysis. See docs/event_dataset_pipeline.md."
 }

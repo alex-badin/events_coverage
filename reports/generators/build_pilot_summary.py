@@ -59,15 +59,15 @@ SEMETKO = [
 ]
 
 EVENT_LABEL = {
-    "brics_kazan_2024w43": "BRICS Kazan",
+    "brics_kazan_2024w43_cohere_archived": "BRICS Kazan",
     "dc_aircrash_2025w05": "Washington air crash",
     "kursk_2025w11": "Kursk / Sudzha",
     "kursk_2025w11_qwen3": "Kursk / Sudzha (Qwen3 retrieval rerun)",
     "prices_2025w11": "Price rises",
-    "putin_direct_line_2024w51": "Putin Direct Line",
+    "putin_direct_line_2024w51_cohere_archived": "Putin Direct Line",
     "putin_trump_call_2025w08": "Putin-Trump call",
-    "sevastopol_beach_2024w26": "Sevastopol beach attack",
-    "trump_inauguration_2025w04": "Trump inauguration",
+    "sevastopol_beach_2024w26_cohere_archived": "Sevastopol beach attack",
+    "trump_inauguration_2025w04_cohere_archived": "Trump inauguration",
     "trump_zelensky_2025w10": "Trump-Zelensky",
     "us_russia_contacts_2025w09": "Russia-US contacts",
 }
@@ -161,6 +161,8 @@ def event_inventory(events: dict[str, list[dict]], manifests: dict[str, dict]) -
             status = "framed"
         elif slug.endswith("_qwen3"):
             status = "retrieval rerun only"
+        elif slug.endswith("_cohere_archived"):
+            status = "archived (incomplete cohere retrieval)"
         else:
             status = "dataset only"
         rows.append({
