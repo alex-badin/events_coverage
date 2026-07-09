@@ -1,0 +1,503 @@
+<title>The framing codebook</title>
+<meta name="description" content="The eleven fields the per-message framing extractor produces — each defined once, grouped by its source theory, with its allowed values and the distribution observed in the kursk_2025w11 pilot (N=669).">
+
+<style>
+  :root{
+    --ground:#E7EAEE; --card:#FCFDFE; --rule:#D3D8DF; --rule-soft:#E4E7EC;
+    --ink:#161A21; --ink-2:#4C5563; --ink-3:#828B97;
+    --accent:#2E3A66; --accent-2:#4A5891; --accent-tint:#E7EAF3;
+    --pos:#2C7A68; --neg:#B14E2C; --neu:#7E8693; --warn:#9C6B14; --warn-bg:#F5EDD8;
+    --pos-tint:#DEEDE8; --neg-tint:#F2E2DB; --neu-tint:#E6E9ED;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0}
+  .page{
+    background:var(--ground); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased; padding:0 clamp(16px,4vw,48px) 96px;
+  }
+  .eyebrow{font-family:var(--mono); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-2); font-weight:600}
+  a{color:inherit}
+  .tnum{font-variant-numeric:tabular-nums}
+  code{font-family:var(--mono); font-size:.84em; background:var(--neu-tint); padding:.08em .4em; border-radius:2px; color:var(--ink)}
+
+  /* ---------- header ---------- */
+  header.masthead{max-width:var(--maxw); margin:0 auto; padding:clamp(40px,7vw,76px) 0 28px}
+  .masthead h1{
+    font-family:var(--mono); font-weight:680; letter-spacing:-.02em; line-height:1.04;
+    font-size:clamp(2rem,5.2vw,3rem); margin:.5rem 0 0; text-wrap:balance; max-width:18ch;
+  }
+  .masthead .lede{font-size:1.05rem; color:var(--ink-2); max-width:64ch; margin:1.1rem 0 0}
+  .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:1.6rem}
+  .meta .m{
+    font-family:var(--mono); font-size:.76rem; background:var(--card); border:1px solid var(--rule);
+    padding:.34rem .6rem; border-radius:2px; color:var(--ink-2);
+  }
+  .meta .m b{color:var(--ink); font-weight:600}
+
+  /* ---------- the-record skeleton ---------- */
+  .record{max-width:var(--maxw); margin:1.2rem auto 0}
+  .record .rh{font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin:0 0 .55rem; display:flex; align-items:center; gap:.7rem}
+  .record .rh::after{content:""; flex:1; height:1px; background:var(--rule)}
+  pre.skel{background:var(--card); border:1px solid var(--rule); border-radius:6px; padding:1rem 1.15rem; margin:0; overflow-x:auto; font-family:var(--mono); font-size:.8rem; line-height:1.7; color:var(--ink-2)}
+  pre.skel .k{color:var(--accent)} pre.skel .c{color:var(--ink-3)} pre.skel .t{color:var(--neg)}
+
+  /* ---------- layout ---------- */
+  .shell{max-width:var(--maxw); margin:0 auto; display:grid; grid-template-columns:210px minmax(0,1fr); gap:clamp(24px,4vw,56px); align-items:start; margin-top:clamp(36px,5vw,56px)}
+  nav.index{position:sticky; top:24px; font-family:var(--mono); font-size:.8rem}
+  nav.index .nh{font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin:0 0 .7rem}
+  nav.index .grp{margin:0 0 1.05rem}
+  nav.index .gl{display:flex; gap:.55rem; align-items:baseline; color:var(--ink); font-weight:600; padding:.15rem .4rem .35rem}
+  nav.index .gl .k{color:var(--accent); width:1ch}
+  nav.index ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.05rem}
+  nav.index ol a{display:block; text-decoration:none; color:var(--ink-2); padding:.22rem .5rem .22rem 1.55rem; border-radius:3px; border-left:2px solid transparent; font-size:.76rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  nav.index ol a:hover{background:var(--card); color:var(--ink); border-left-color:var(--accent)}
+
+  main{min-width:0}
+  section.group{scroll-margin-top:18px; margin-top:clamp(44px,6vw,68px)}
+  section.group:first-child{margin-top:0}
+  .group-head{border-bottom:1.5px solid var(--ink); padding-bottom:.65rem; margin-bottom:.4rem}
+  .group-head .row{display:flex; align-items:baseline; gap:.8rem}
+  .group-head .gk{font-family:var(--mono); font-weight:680; color:var(--accent); font-size:1rem}
+  .group-head h2{font-family:var(--mono); font-size:1rem; letter-spacing:.05em; text-transform:uppercase; margin:0; font-weight:600}
+  .group-head .src{margin-left:auto; font-family:var(--mono); font-size:.74rem; color:var(--accent-2); text-align:right}
+  .group-intro{color:var(--ink-2); max-width:66ch; margin:.9rem 0 0; font-size:.93rem}
+
+  /* ---------- field entry (uniform template) ---------- */
+  .field{background:var(--card); border:1px solid var(--rule); border-radius:6px; padding:1.1rem 1.2rem; margin-top:1.1rem; scroll-margin-top:18px}
+  .field .top{display:flex; flex-wrap:wrap; align-items:center; gap:.55rem; margin-bottom:.85rem}
+  .field .fname{font-family:var(--mono); font-weight:600; font-size:1.02rem; color:var(--ink)}
+  .badge{font-family:var(--mono); font-size:.64rem; letter-spacing:.05em; text-transform:uppercase; padding:.2rem .45rem; border-radius:2px; font-weight:600; white-space:nowrap; border:1px solid transparent}
+  .b-type{background:var(--accent-tint); color:var(--accent)}
+  .b-fn{margin-left:auto; background:transparent; border-color:var(--rule); color:var(--ink-3); font-weight:500}
+
+  .spec{display:grid; grid-template-columns:7.5rem 1fr; gap:.42rem 1.1rem; font-size:.9rem; align-items:start}
+  .spec dt{font-family:var(--mono); font-size:.7rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); padding-top:.12rem}
+  .spec dd{margin:0; color:var(--ink-2)}
+  .spec dd b{color:var(--ink); font-weight:600}
+  .spec .obs{font-family:var(--mono); font-size:.82rem; color:var(--ink-2)}
+  .spec .obs b{color:var(--ink)}
+
+  /* sub-fields list */
+  .subf{display:grid; grid-template-columns:auto 1fr; gap:.18rem .9rem; font-size:.85rem}
+  .subf .sn{font-family:var(--mono); color:var(--accent-2); font-size:.82rem}
+  .subf .sd{color:var(--ink-2); margin:0}
+
+  /* value tokens */
+  .vals{display:flex; flex-wrap:wrap; gap:.3rem}
+  .tok{font-family:var(--mono); font-size:.76rem; padding:.18rem .5rem; border-radius:2px; background:var(--neu-tint); color:var(--ink); border:1px solid transparent}
+  .tok.pos{background:var(--pos-tint); color:#1f5a4d}
+  .tok.neg{background:var(--neg-tint); color:#8a3a20}
+  .tok.neu{background:var(--neu-tint); color:var(--ink-2)}
+
+  /* inline distribution table */
+  .freq{border:1px solid var(--rule); border-radius:5px; overflow:hidden; margin-top:.1rem}
+  .frow{display:grid; grid-template-columns:minmax(96px,1fr) minmax(0,1.8fr) auto; align-items:center; gap:.9rem; padding:.4rem .75rem; border-top:1px solid var(--rule-soft)}
+  .frow:first-child{border-top:none}
+  .frow .name{font-family:var(--mono); font-size:.8rem; display:flex; align-items:center; gap:.45rem}
+  .frow .name .dot{width:.55rem; height:.55rem; border-radius:50%; flex:none}
+  .frow .gloss{color:var(--ink-3); font-size:.74rem; font-family:var(--sans)}
+  .bar{height:.55rem; background:var(--neu-tint); border-radius:1px; overflow:hidden}
+  .bar > i{display:block; height:100%; transform-origin:left; animation:grow .6s cubic-bezier(.2,.7,.2,1) both}
+  .fig{font-family:var(--mono); font-size:.78rem; text-align:right; white-space:nowrap; min-width:8.5ch}
+  .fig .pc{color:var(--ink); font-weight:600}
+  .fig .ct{color:var(--ink-3); margin-left:.45rem}
+  .zero > i{background:repeating-linear-gradient(45deg,var(--rule),var(--rule) 3px,transparent 3px,transparent 6px)}
+  .c-pos{background:var(--pos)} .c-neg{background:var(--neg)} .c-neu{background:var(--neu)}
+  .c-acc{background:var(--accent)} .c-acc2{background:var(--accent-2)} .c-warn{background:var(--warn)}
+  .scaletbl{display:grid; grid-template-columns:1fr 1fr; gap:.9rem}
+
+  .note{display:flex; gap:.6rem; background:var(--warn-bg); border:1px solid #E4D2A6; border-radius:4px; padding:.6rem .8rem; margin-top:.7rem; font-size:.84rem; color:#5e4410}
+  .note .ic{font-family:var(--mono); font-weight:700; color:var(--warn); flex:none}
+  .note b{color:#43320c}
+  .legend{display:flex; flex-wrap:wrap; gap:.4rem 1.1rem; font-family:var(--mono); font-size:.73rem; color:var(--ink-2); margin:.55rem 0 0}
+  .legend .li{display:flex; align-items:center; gap:.4rem}
+  .legend .sw{width:.7rem; height:.7rem; border-radius:2px}
+
+  footer{max-width:var(--maxw); margin:64px auto 0; padding-top:20px; border-top:1px solid var(--rule); font-family:var(--mono); font-size:.76rem; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:.5rem 1.5rem}
+
+  @keyframes grow{from{transform:scaleX(.002)}to{transform:scaleX(1)}}
+  @media (max-width:860px){
+    .shell{grid-template-columns:1fr}
+    nav.index{position:static; margin-bottom:8px; border:1px solid var(--rule); background:var(--card); border-radius:6px; padding:.9rem 1rem}
+    .spec{grid-template-columns:1fr; gap:.15rem .9rem}
+    .spec dt{padding-top:.5rem}
+    .scaletbl{grid-template-columns:1fr}
+    .frow{grid-template-columns:minmax(84px,1fr) minmax(0,1.4fr) auto; gap:.55rem}
+    .frow .gloss{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){ .bar > i{animation:none} }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="eyebrow">events_coverage · framing extraction instrument</div>
+    <h1>The framing codebook</h1>
+    <p class="lede">Eleven fields fill one record per news message. Each is defined <b>once</b> here — under its own schema name, grouped by the theory it comes from, with its allowed values and the distribution observed in the <code>kursk_2025w11</code> pilot. One OpenAI <code>gpt-5.5</code> call produces one record under a strict, Pydantic-backed schema.</p>
+    <div class="meta">
+      <span class="m"><b>11</b> fields</span>
+      <span class="m"><b>6</b> source groups</span>
+      <span class="m"><b>18</b> roles · <b>5</b> epistemic · <b>5</b> Semetko</span>
+      <span class="m">model <b>gpt-5.5</b> · effort low</span>
+      <span class="m">observed: <b>N=669</b> messages</span>
+    </div>
+
+    <div class="record">
+      <p class="rh">The record &mdash; one per message</p>
+      <pre class="skel"><span class="c"># A · relevance gate</span>
+on_event            <span class="t">bool</span>   <span class="c">(+ evidence)</span>
+<span class="c"># B · shared substrate — who &amp; what (group-neutral)</span>
+entities[]          <span class="t">obj</span>    <span class="c">mention · canonical · type</span>
+actions[]           <span class="t">obj</span>    <span class="c">predicate · agent · target</span>
+<span class="c"># C · Entman (1993) — framing functions + salience</span>
+problem_definition  <span class="t">str</span>    <span class="c">(+ evidence)</span>
+causal_attribution  <span class="t">obj</span>    <span class="c">cause_entity · mechanism (+ evidence)</span>
+moral_evaluation[]  <span class="t">obj</span>    <span class="c">entity · role · polarity · intensity (+ evidence)</span>
+treatment           <span class="t">str?</span>
+emphasized[]        <span class="t">str</span>
+<span class="c"># D · Semetko &amp; Valkenburg (2000) — generic frames</span>
+semetko             <span class="t">5×bool</span> <span class="c">(+ evidence)</span>
+<span class="c"># E · lexical framing — word choice</span>
+action_labels[]     <span class="t">obj</span>    <span class="c">action · term · valence (+ evidence)</span>
+<span class="c"># F · evidentiality — epistemic stance</span>
+epistemic_status    <span class="t">enum</span>   <span class="c">(+ evidence)</span></pre>
+    </div>
+  </header>
+
+  <div class="shell">
+    <nav class="index" aria-label="Contents">
+      <p class="nh">Contents</p>
+      <div class="grp">
+        <div class="gl"><span class="k">A</span><span>Relevance gate</span></div>
+        <ol><li><a href="#on_event">on_event</a></li></ol>
+      </div>
+      <div class="grp">
+        <div class="gl"><span class="k">B</span><span>Substrate</span></div>
+        <ol>
+          <li><a href="#entities">entities</a></li>
+          <li><a href="#actions">actions</a></li>
+        </ol>
+      </div>
+      <div class="grp">
+        <div class="gl"><span class="k">C</span><span>Entman 1993</span></div>
+        <ol>
+          <li><a href="#problem_definition">problem_definition</a></li>
+          <li><a href="#causal_attribution">causal_attribution</a></li>
+          <li><a href="#moral_evaluation">moral_evaluation</a></li>
+          <li><a href="#treatment">treatment</a></li>
+          <li><a href="#emphasized">emphasized</a></li>
+        </ol>
+      </div>
+      <div class="grp">
+        <div class="gl"><span class="k">D</span><span>Semetko 2000</span></div>
+        <ol><li><a href="#semetko">semetko</a></li></ol>
+      </div>
+      <div class="grp">
+        <div class="gl"><span class="k">E</span><span>Word choice</span></div>
+        <ol><li><a href="#action_labels">action_labels</a></li></ol>
+      </div>
+      <div class="grp">
+        <div class="gl"><span class="k">F</span><span>Evidentiality</span></div>
+        <ol><li><a href="#epistemic_status">epistemic_status</a></li></ol>
+      </div>
+    </nav>
+
+    <main>
+
+      <!-- ============ A ============ -->
+      <section class="group" id="a">
+        <div class="group-head">
+          <div class="row"><span class="gk">A</span><h2>Relevance gate</h2><span class="src">operational · not a framing theory</span></div>
+        </div>
+        <p class="group-intro">One boolean that decides whether the message is even in scope. It is not part of any framing theory — it keeps off-topic items in digests from contaminating the rest of the record.</p>
+
+        <div class="field" id="on_event">
+          <div class="top"><span class="fname">on_event</span><span class="badge b-type">bool</span><span class="badge b-fn">relevance</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Operational gate — not a framing construct.</dd>
+            <dt>Captures</dt><dd>Whether this message is substantively <b>about the target event</b>.</dd>
+            <dt>Values</dt><dd><code>true</code> / <code>false</code>, with a verbatim Russian <code>evidence</code> span.</dd>
+            <dt>Coding</dt><dd>Mark <code>false</code> only when the text is really about something else — guards against digests that bundle unrelated items.</dd>
+            <dt>Observed</dt><dd class="obs">present <b>100%</b> · flagged <code>false</code> <b>0 / 669</b></dd>
+          </dl>
+          <div class="note"><span class="ic">!</span><span><b>Inert in this run.</b> Zero messages were flagged <code>false</code> despite 21 digests in the kept set — the gate is not yet doing its job.</span></div>
+        </div>
+      </section>
+
+      <!-- ============ B ============ -->
+      <section class="group" id="b">
+        <div class="group-head">
+          <div class="row"><span class="gk">B</span><h2>Shared substrate</h2><span class="src">named-entity &amp; event extraction</span></div>
+        </div>
+        <p class="group-intro">Who and what — recorded <b>before</b> any framing is read off, and deliberately kept group-neutral. This is the common ground every outlet is talking about; the framing in groups C–F is what gets laid on top of it.</p>
+
+        <div class="field" id="entities">
+          <div class="top"><span class="fname">entities[]</span><span class="badge b-type">list of obj</span><span class="badge b-fn">NER</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Named-entity recognition.</dd>
+            <dt>Captures</dt><dd>The cast of actors named in the message.</dd>
+            <dt>Fields</dt><dd>
+              <div class="subf">
+                <span class="sn">mention</span><p class="sd">verbatim Russian surface form (e.g. «наши бойцы»)</p>
+                <span class="sn">canonical</span><p class="sd">stable English name for merging across messages → <code>Russian Armed Forces</code></p>
+                <span class="sn">type</span><p class="sd">free-text category label (currently uncontrolled)</p>
+              </div></dd>
+            <dt>Values</dt><dd>Free text. <code>canonical</code> and <code>type</code> are not enums.</dd>
+            <dt>Coding</dt><dd>Name the actor, don't judge it — judgement belongs in <code>moral_evaluation</code>.</dd>
+            <dt>Observed</dt><dd class="obs">mean <b>8.5</b>/msg · <b>786</b> distinct canonical (merged 988→786)</dd>
+          </dl>
+          <div class="note"><span class="ic">!</span><span><b><code>type</code> is uncontrolled</b> and fragmented to 150+ strings with near-duplicates (<code>military_unit</code>, <code>military unit</code>, <code>military_force</code>…). Worth promoting to a small enum.</span></div>
+        </div>
+
+        <div class="field" id="actions">
+          <div class="top"><span class="fname">actions[]</span><span class="badge b-type">list of obj</span><span class="badge b-fn">event extraction</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Event / relation extraction.</dd>
+            <dt>Captures</dt><dd>What happened, stated group-neutrally.</dd>
+            <dt>Fields</dt><dd>
+              <div class="subf">
+                <span class="sn">predicate</span><p class="sd">group-neutral English verb (e.g. <code>took control of</code>)</p>
+                <span class="sn">agent</span><p class="sd">canonical entity name</p>
+                <span class="sn">target</span><p class="sd">canonical entity / place name</p>
+              </div></dd>
+            <dt>Values</dt><dd>Free English text.</dd>
+            <dt>Coding</dt><dd>A plain verb both sides would accept (<code>took control of</code>, not «liberated»). The loaded wording goes in <code>action_labels</code>.</dd>
+            <dt>Observed</dt><dd class="obs">mean <b>3.7</b>/msg · median 4 · max 11</dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ============ C ============ -->
+      <section class="group" id="c">
+        <div class="group-head">
+          <div class="row"><span class="gk">C</span><h2>Entman's framing functions</h2><span class="src">Entman 1993</span></div>
+        </div>
+        <p class="group-intro">Entman defines framing as <em>selecting some aspects of a perceived reality and making them more salient</em> so as to perform up to four functions. Five fields map directly onto that definition: the four functions, plus the salience mechanism itself (<code>emphasized</code>).</p>
+
+        <div class="field" id="problem_definition">
+          <div class="top"><span class="fname">problem_definition</span><span class="badge b-type">str</span><span class="badge b-fn">function 1 · define the problem</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Entman 1993 — Function 1: define the problem.</dd>
+            <dt>Captures</dt><dd>What the event <em>is</em> framed as.</dd>
+            <dt>Values</dt><dd>Short English gloss + verbatim Russian <code>evidence</code>.</dd>
+            <dt>Coding</dt><dd>The headline category («liberation of Russian territory» vs «Russian assault on a town»), not a summary.</dd>
+            <dt>Observed</dt><dd class="obs">present <b>100%</b> · evidence-grounded <b>88.5%</b></dd>
+          </dl>
+        </div>
+
+        <div class="field" id="causal_attribution">
+          <div class="top"><span class="fname">causal_attribution</span><span class="badge b-type">obj</span><span class="badge b-fn">function 2 · diagnose the cause</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Entman 1993 — Function 2: diagnose the cause.</dd>
+            <dt>Captures</dt><dd>Who or what the text presents as the cause / initiator.</dd>
+            <dt>Fields</dt><dd>
+              <div class="subf">
+                <span class="sn">cause_entity</span><p class="sd">canonical entity, or <code>null</code></p>
+                <span class="sn">mechanism</span><p class="sd">short English gloss of the causal story, or <code>null</code></p>
+                <span class="sn">evidence</span><p class="sd">verbatim Russian quote, or <code>null</code></p>
+              </div></dd>
+            <dt>Values</dt><dd>See fields; all three may be <code>null</code>.</dd>
+            <dt>Coding</dt><dd>Leans toward "the active agent," so read alongside <code>moral_evaluation</code> — not as blame on its own.</dd>
+            <dt>Observed</dt><dd class="obs"><code>cause_entity</code> present <b>80.7%</b> · null <b>19.3%</b></dd>
+          </dl>
+        </div>
+
+        <div class="field" id="moral_evaluation">
+          <div class="top"><span class="fname">moral_evaluation[]</span><span class="badge b-type">list of obj</span><span class="badge b-fn">function 3 · make a moral judgment</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Entman 1993 — Function 3: make a moral judgment.</dd>
+            <dt>Captures</dt><dd>The dramatic role each actor is cast in, plus signed stance toward it.</dd>
+            <dt>Fields</dt><dd>
+              <div class="subf">
+                <span class="sn">entity</span><p class="sd">canonical entity name</p>
+                <span class="sn">role</span><p class="sd">one of the 18-role inventory below</p>
+                <span class="sn">polarity</span><p class="sd">integer <code>−2 … +2</code> — stance toward the entity</p>
+                <span class="sn">intensity</span><p class="sd">integer <code>0 … 2</code> — strength of that stance</p>
+                <span class="sn">evidence</span><p class="sd">verbatim Russian quote</p>
+              </div></dd>
+            <dt>Coding</dt><dd>Read as <b>role × polarity, never role alone</b> — a «victim» may be a defeated enemy carrying negative polarity.</dd>
+            <dt>Observed</dt><dd class="obs">mean <b>2.7</b>/msg · total <b>1,785</b> assignments</dd>
+          </dl>
+
+          <p class="legend" style="margin-top:1rem"><b style="color:var(--ink)">role</b> &nbsp; allowed values (18) — bar = share of assignments, color = the role's encoded valence</p>
+          <div class="legend">
+            <span class="li"><span class="sw c-pos"></span>approving</span>
+            <span class="li"><span class="sw c-neg"></span>condemning</span>
+            <span class="li"><span class="sw c-warn"></span>ambiguous</span>
+            <span class="li"><span class="sw c-neu"></span>neutral</span>
+          </div>
+          <div class="freq" style="margin-top:.5rem">
+            <div class="frow"><span class="name"><span class="dot c-pos"></span>liberator</span><span class="bar"><i class="c-pos" style="width:100%"></i></span><span class="fig"><span class="pc">23.9%</span><span class="ct tnum">426</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-warn"></span>victim</span><span class="bar"><i class="c-warn" style="width:54%"></i></span><span class="fig"><span class="pc">12.9%</span><span class="ct tnum">230</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-pos"></span>hero</span><span class="bar"><i class="c-pos" style="width:53%"></i></span><span class="fig"><span class="pc">12.7%</span><span class="ct tnum">226</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neg"></span>occupier</span><span class="bar"><i class="c-neg" style="width:38%"></i></span><span class="fig"><span class="pc">9.1%</span><span class="ct tnum">163</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neg"></span>villain</span><span class="bar"><i class="c-neg" style="width:34%"></i></span><span class="fig"><span class="pc">8.2%</span><span class="ct tnum">146</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neg"></span>threat</span><span class="bar"><i class="c-neg" style="width:26%"></i></span><span class="fig"><span class="pc">6.2%</span><span class="ct tnum">111</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neu"></span>neutral_actor</span><span class="bar"><i class="c-neu" style="width:26%"></i></span><span class="fig"><span class="pc">6.2%</span><span class="ct tnum">111</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neg"></span>aggressor</span><span class="bar"><i class="c-neg" style="width:21%"></i></span><span class="fig"><span class="pc">5.1%</span><span class="ct tnum">91</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neg"></span>perpetrator</span><span class="bar"><i class="c-neg" style="width:18%"></i></span><span class="fig"><span class="pc">4.4%</span><span class="ct tnum">78</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-pos"></span>defender</span><span class="bar"><i class="c-pos" style="width:16%"></i></span><span class="fig"><span class="pc">3.9%</span><span class="ct tnum">70</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-pos"></span>protector</span><span class="bar"><i class="c-pos" style="width:14%"></i></span><span class="fig"><span class="pc">3.4%</span><span class="ct tnum">61</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-pos"></span>ally</span><span class="bar"><i class="c-pos" style="width:7%"></i></span><span class="fig"><span class="pc">1.6%</span><span class="ct tnum">29</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neg"></span>provocateur</span><span class="bar"><i class="c-neg" style="width:4%"></i></span><span class="fig"><span class="pc">1.0%</span><span class="ct tnum">17</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neu"></span>other</span><span class="bar"><i class="c-neu" style="width:3%"></i></span><span class="fig"><span class="pc">0.6%</span><span class="ct tnum">11</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-pos"></span>beneficiary</span><span class="bar"><i class="c-pos" style="width:2%"></i></span><span class="fig"><span class="pc">0.6%</span><span class="ct tnum">10</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-pos"></span>mediator</span><span class="bar"><i class="c-pos" style="width:1%"></i></span><span class="fig"><span class="pc">0.2%</span><span class="ct tnum">3</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neg"></span>traitor</span><span class="bar"><i class="c-neg" style="width:1%"></i></span><span class="fig"><span class="pc">0.1%</span><span class="ct tnum">2</span></span></div>
+            <div class="frow zero"><span class="name"><span class="dot c-neu"></span>bystander</span><span class="bar"><i style="width:100%"></i></span><span class="fig"><span class="pc">0.0%</span><span class="ct tnum">0</span></span></div>
+          </div>
+
+          <p class="legend" style="margin-top:1rem"><b style="color:var(--ink)">polarity</b> &nbsp; <code>−2 … +2</code> &nbsp;·&nbsp; <b style="color:var(--ink)">intensity</b> &nbsp; <code>0 … 2</code></p>
+          <div class="scaletbl">
+            <div class="freq">
+              <div class="frow"><span class="name">−2</span><span class="bar"><i class="c-neg" style="width:29%"></i></span><span class="fig"><span class="pc">11.8%</span><span class="ct tnum">211</span></span></div>
+              <div class="frow"><span class="name">−1</span><span class="bar"><i class="c-neg" style="width:76%"></i></span><span class="fig"><span class="pc">30.9%</span><span class="ct tnum">551</span></span></div>
+              <div class="frow"><span class="name">&nbsp;0</span><span class="bar"><i class="c-neu" style="width:15%"></i></span><span class="fig"><span class="pc">6.2%</span><span class="ct tnum">110</span></span></div>
+              <div class="frow"><span class="name">+1</span><span class="bar"><i class="c-pos" style="width:100%"></i></span><span class="fig"><span class="pc">40.4%</span><span class="ct tnum">721</span></span></div>
+              <div class="frow"><span class="name">+2</span><span class="bar"><i class="c-pos" style="width:23%"></i></span><span class="fig"><span class="pc">9.2%</span><span class="ct tnum">165</span></span></div>
+              <div class="frow"><span class="name" style="color:var(--warn)">out of ±2</span><span class="bar"><i class="c-warn" style="width:4%"></i></span><span class="fig"><span class="pc">1.5%</span><span class="ct tnum">27</span></span></div>
+            </div>
+            <div class="freq">
+              <div class="frow"><span class="name">0 <span class="gloss">weak</span></span><span class="bar"><i class="c-acc2" style="width:3%"></i></span><span class="fig"><span class="pc">1.3%</span><span class="ct tnum">23</span></span></div>
+              <div class="frow"><span class="name">1 <span class="gloss">medium</span></span><span class="bar"><i class="c-acc2" style="width:54%"></i></span><span class="fig"><span class="pc">26.4%</span><span class="ct tnum">471</span></span></div>
+              <div class="frow"><span class="name">2 <span class="gloss">strong</span></span><span class="bar"><i class="c-acc2" style="width:100%"></i></span><span class="fig"><span class="pc">49.2%</span><span class="ct tnum">879</span></span></div>
+              <div class="frow"><span class="name" style="color:var(--warn)">3–5 <span class="gloss">out of range</span></span><span class="bar"><i class="c-warn" style="width:47%"></i></span><span class="fig"><span class="pc">23.1%</span><span class="ct tnum">412</span></span></div>
+            </div>
+          </div>
+          <div class="note"><span class="ic">!</span><span><b>Two instrument defects live here.</b> (1) <code>victim</code> is valence-ambiguous — 58% of its uses are <em>negative</em> (a defeated enemy, not a sympathetic victim). (2) <code>intensity</code> is typed as a bare <code>int</code>, so <b>23%</b> of values exceed the documented max of 2; comparability breaks until the type is bounded. <code>bystander</code> never fires; <code>traitor</code>/<code>mediator</code>/<code>beneficiary</code> are near-dead vocabulary.</span></div>
+        </div>
+
+        <div class="field" id="treatment">
+          <div class="top"><span class="fname">treatment</span><span class="badge b-type">str?</span><span class="badge b-fn">function 4 · suggest a remedy</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Entman 1993 — Function 4: suggest a remedy.</dd>
+            <dt>Captures</dt><dd>The prescribed response or remedy (e.g. "continue the offensive").</dd>
+            <dt>Values</dt><dd>Short English text, or <code>null</code>.</dd>
+            <dt>Coding</dt><dd>Fill only if the text actually prescribes something; <code>null</code> is expected and common, as Entman's remedy function usually is.</dd>
+            <dt>Observed</dt><dd class="obs">present <b>43%</b> · null <b>57%</b></dd>
+          </dl>
+        </div>
+
+        <div class="field" id="emphasized">
+          <div class="top"><span class="fname">emphasized[]</span><span class="badge b-type">list of str</span><span class="badge b-fn">selection &amp; salience</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Entman 1993 — selection &amp; salience (the framing <em>mechanism</em>, prior to the four functions).</dd>
+            <dt>Captures</dt><dd>What the text foregrounds / makes salient.</dd>
+            <dt>Values</dt><dd>List of short English phrases (e.g. "heroism of the pipeline maneuver" vs "civilian suffering").</dd>
+            <dt>Coding</dt><dd>What is pushed to the front, not everything mentioned.</dd>
+            <dt>Observed</dt><dd class="obs">mean <b>4.0</b>/msg · median 4 · max 7</dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ============ D ============ -->
+      <section class="group" id="d">
+        <div class="group-head">
+          <div class="row"><span class="gk">D</span><h2>Generic news frames</h2><span class="src">Semetko &amp; Valkenburg 2000</span></div>
+        </div>
+        <p class="group-intro">Five recurring frames that journalism uses across any topic, validated by Semetko &amp; Valkenburg (2000). Multi-label: a message can carry several, or none.</p>
+
+        <div class="field" id="semetko">
+          <div class="top"><span class="fname">semetko</span><span class="badge b-type">5 × bool</span><span class="badge b-fn">generic frames</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Semetko &amp; Valkenburg 2000 — five generic news frames.</dd>
+            <dt>Captures</dt><dd>Which of the five frames the text actually performs.</dd>
+            <dt>Coding</dt><dd>Mark a frame present only if the <b>text does that framing</b> — not merely if the topic could be framed that way. Plus one <code>evidence</code> quote for the strongest frame.</dd>
+            <dt>Observed</dt><dd class="obs">mean <b>1.99</b> frames/msg · 66 messages carry none</dd>
+          </dl>
+          <p class="legend" style="margin-top:1rem"><b style="color:var(--ink)">the five frames</b> &nbsp; bar = share of messages where present</p>
+          <div class="freq" style="margin-top:.4rem">
+            <div class="frow"><span class="name"><span class="dot c-acc"></span>conflict</span><span class="bar"><i class="c-acc" style="width:100%"></i></span><span class="fig"><span class="pc">82.8%</span><span class="ct tnum">554</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-acc"></span>responsibility</span><span class="bar"><i class="c-acc" style="width:91%"></i></span><span class="fig"><span class="pc">75.6%</span><span class="ct tnum">506</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-acc2"></span>human_interest</span><span class="bar"><i class="c-acc2" style="width:27%"></i></span><span class="fig"><span class="pc">22.4%</span><span class="ct tnum">150</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-acc2"></span>morality</span><span class="bar"><i class="c-acc2" style="width:20%"></i></span><span class="fig"><span class="pc">16.3%</span><span class="ct tnum">109</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-acc2"></span>economic_consequences</span><span class="bar"><i class="c-acc2" style="width:2%"></i></span><span class="fig"><span class="pc">1.3%</span><span class="ct tnum">9</span></span></div>
+          </div>
+          <div class="subf" style="margin-top:.8rem; grid-template-columns:auto 1fr; gap:.32rem .9rem">
+            <span class="sn">conflict</span><p class="sd">disagreement/reproach between parties; two sides, winners vs losers</p>
+            <span class="sn">responsibility</span><p class="sd">attributes the cause or the solution to a government / group / individual</p>
+            <span class="sn">human_interest</span><p class="sd">personal/emotional angle: individual stories, eyewitnesses, suffering</p>
+            <span class="sn">morality</span><p class="sd">right vs wrong, moral prescriptions, faith, justice as virtue</p>
+            <span class="sn">economic_consequences</span><p class="sd">cost / gain / loss in money terms — prices, budgets, damage</p>
+          </div>
+          <div class="note"><span class="ic">!</span><span><b>Near-degenerate on war coverage.</b> conflict + responsibility blanket almost everything while economic_consequences is essentially silent — low discriminative power here, though it should separate outlets on economic events.</span></div>
+        </div>
+      </section>
+
+      <!-- ============ E ============ -->
+      <section class="group" id="e">
+        <div class="group-head">
+          <div class="row"><span class="gk">E</span><h2>Word choice</h2><span class="src">lexical framing</span></div>
+        </div>
+        <p class="group-intro">The single loaded word an outlet chooses for an action — «освобождение» vs «оккупация» for the same event — captured verbatim with its slant. This is lexical framing: the same referent, opposite vocabulary.</p>
+
+        <div class="field" id="action_labels">
+          <div class="top"><span class="fname">action_labels[]</span><span class="badge b-type">list of obj</span><span class="badge b-fn">lexical framing</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Lexical framing — the loaded keywords/phrases an outlet selects (cf. Entman's "keywords, stock phrases").</dd>
+            <dt>Captures</dt><dd>The loaded term used for an action, and the slant it carries.</dd>
+            <dt>Fields</dt><dd>
+              <div class="subf">
+                <span class="sn">action</span><p class="sd">which action, short English</p>
+                <span class="sn">term</span><p class="sd">the EXACT Russian word/phrase used (e.g. «освобождение»)</p>
+                <span class="sn">valence</span><p class="sd">how the outlet loads the term: positive / negative / neutral</p>
+                <span class="sn">evidence</span><p class="sd">verbatim Russian quote</p>
+              </div></dd>
+            <dt>Values</dt><dd><code>valence</code> ∈ <span class="vals" style="display:inline-flex"><span class="tok pos">positive</span><span class="tok neg">negative</span><span class="tok neu">neutral</span></span></dd>
+            <dt>Coding</dt><dd><code>term</code> stays verbatim Russian; <code>valence</code> is the loading toward the outlet's own side; keep the up-to-5 most salient.</dd>
+            <dt>Observed</dt><dd class="obs">mean <b>3.5</b>/msg (cap 5) · total <b>2,366</b> · <b>99.8%</b> grounded — the cleanest field</dd>
+          </dl>
+          <div class="freq" style="margin-top:.9rem">
+            <div class="frow"><span class="name"><span class="dot c-pos"></span>positive</span><span class="bar"><i class="c-pos" style="width:100%"></i></span><span class="fig"><span class="pc">59.1%</span><span class="ct tnum">1399</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neg"></span>negative</span><span class="bar"><i class="c-neg" style="width:48%"></i></span><span class="fig"><span class="pc">28.3%</span><span class="ct tnum">670</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-neu"></span>neutral</span><span class="bar"><i class="c-neu" style="width:21%"></i></span><span class="fig"><span class="pc">12.6%</span><span class="ct tnum">297</span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ F ============ -->
+      <section class="group" id="f">
+        <div class="group-head">
+          <div class="row"><span class="gk">F</span><h2>Epistemic stance</h2><span class="src">evidentiality</span></div>
+        </div>
+        <p class="group-intro">How the message presents its core claim — as established fact, as someone else's claim, or as doubtful. Borrowed from linguistic evidentiality; it is about <em>presentation</em>, never about whether the claim is true.</p>
+
+        <div class="field" id="epistemic_status">
+          <div class="top"><span class="fname">epistemic_status</span><span class="badge b-type">enum</span><span class="badge b-fn">evidentiality</span></div>
+          <dl class="spec">
+            <dt>Source</dt><dd>Evidentiality (linguistics) — the stance a text takes toward its own claim.</dd>
+            <dt>Captures</dt><dd>How the message presents its core claim.</dd>
+            <dt>Values</dt><dd>One of five (single-valued) + <code>evidence</code> quote.</dd>
+            <dt>Coding</dt><dd>Exactly one value per message; the strongest state-vs-independent differentiator observed.</dd>
+            <dt>Observed</dt><dd class="obs">present <b>100%</b> · evidence-grounded <b>77.6%</b> (the weakest-grounded field)</dd>
+          </dl>
+          <div class="freq" style="margin-top:.9rem">
+            <div class="frow"><span class="name"><span class="dot c-acc"></span>attributed</span><span class="bar"><i class="c-acc" style="width:100%"></i></span><span class="fig"><span class="pc">62.6%</span><span class="ct tnum">419</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-acc"></span>asserted</span><span class="bar"><i class="c-acc" style="width:55%"></i></span><span class="fig"><span class="pc">34.2%</span><span class="ct tnum">229</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-acc2"></span>hedged</span><span class="bar"><i class="c-acc2" style="width:5%"></i></span><span class="fig"><span class="pc">2.8%</span><span class="ct tnum">19</span></span></div>
+            <div class="frow"><span class="name"><span class="dot c-acc2"></span>questioned</span><span class="bar"><i class="c-acc2" style="width:1%"></i></span><span class="fig"><span class="pc">0.3%</span><span class="ct tnum">2</span></span></div>
+            <div class="frow zero"><span class="name"><span class="dot c-acc2"></span>denied</span><span class="bar"><i style="width:100%"></i></span><span class="fig"><span class="pc">0.0%</span><span class="ct tnum">0</span></span></div>
+          </div>
+          <div class="subf" style="margin-top:.8rem; grid-template-columns:auto 1fr; gap:.32rem .9rem">
+            <span class="sn">asserted</span><p class="sd">stated as established fact in the outlet's own voice</p>
+            <span class="sn">attributed</span><p class="sd">explicitly sourced — «по данным Минобороны»</p>
+            <span class="sn">hedged</span><p class="sd">qualified / uncertain — «предположительно»</p>
+            <span class="sn">denied</span><p class="sd">presents the claim as false</p>
+            <span class="sn">questioned</span><p class="sd">casts doubt / raises it as a question</p>
+          </div>
+          <div class="note"><span class="ic">!</span><span><b>Effectively binary here.</b> asserted + attributed = 97% combined; <code>denied</code> never fires and <code>questioned</code> twice — the skepticism signal is thinner than the 5-value enum implies.</span></div>
+        </div>
+      </section>
+
+      <footer>
+        <span>events_coverage · the framing codebook</span>
+        <span>schema: configs/framing_schema.yaml + src/events_coverage/framing.py</span>
+        <span>observed: event_kursk_2025w11_framing.jsonl (N=669)</span>
+      </footer>
+
+    </main>
+  </div>
+</div>

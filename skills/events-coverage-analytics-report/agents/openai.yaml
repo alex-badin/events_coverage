@@ -1,0 +1,4 @@
+interface:
+  display_name: "Events Coverage Analytics Report"
+  short_description: "Evidence-backed media coverage reports"
+  default_prompt: "Use $events-coverage-analytics-report to turn pilot media-coverage analysis into an evidence-backed report."

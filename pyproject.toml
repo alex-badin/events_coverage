@@ -5,7 +5,10 @@ description = "Historical comparison of how different media groups cover key pub
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "cohere>=5.11",
     "duckdb>=1.0",
+    "numpy>=1.26",
+    "openai>=1.40",
     "pandas>=2.2",
     "plotly>=5.22",
     "pyyaml>=6.0",

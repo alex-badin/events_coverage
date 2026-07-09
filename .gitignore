@@ -8,6 +8,7 @@ __pycache__/
 venv/
 .env
 .env.*
+!.env.example
 
 # Large local source data. These files stay on disk but should not be committed by accident.
 news_data/*.db
@@ -15,11 +16,19 @@ news_data/*.db-shm
 news_data/*.db-wal
 fom_events/downloaded_reports/*.pdf
 
-# Generated analysis outputs.
+# Generated analysis outputs — with exceptions we deliberately keep in git:
+#  - data/interim framing/narrative jsonl: model-labeled data, expensive to regenerate
+#  - data/processed manifests: tiny provenance records (models, params, counts)
+#  - reports/README.md + reports/generators/: the index and the code that renders reports
+# Everything else here is reproducible from the tracked files and stays untracked.
 data/interim/*
 !data/interim/.gitkeep
+!data/interim/event_*_framing.jsonl
+!data/interim/event_*_narratives.jsonl
+!data/interim/event_*_taxonomy.json
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/event_*_manifest.json
 outputs/*
 !outputs/.gitkeep
 !outputs/cache/
@@ -30,3 +39,5 @@ outputs/dashboard_exports/*
 !outputs/dashboard_exports/.gitkeep
 reports/*
 !reports/.gitkeep
+!reports/README.md
+!reports/generators/

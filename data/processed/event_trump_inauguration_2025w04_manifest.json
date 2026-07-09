@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-06-28T17:57:00.642308+00:00",
+  "event": {
+    "name": "Инаугурация Д. Трампа, его высказывания и действия",
+    "year": 2025,
+    "week": 4,
+    "fom_percentage": "17.0",
+    "quotes": [
+      "В Америке поменялась власть",
+      "инаугурация Трампа",
+      "вступление Трампа в должность президента США",
+      "Трамп объявил два пола: мужчина и женщина",
+      "высказывания Трампа, что мы помогли США выиграть Вторую мировую войну",
+      "действия Трампа на посту президента",
+      "Трамп хочет присоединить к Америке Гренландию"
+    ]
+  },
+  "window": {
+    "match_start": "2025-01-17",
+    "match_end_exclusive": "2025-02-06",
+    "iso_week": [
+      "2025-01-20",
+      "2025-01-26"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "embed_model": "embed-multilingual-v3.0",
+    "embed_input_type": "clustering",
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": 3000,
+    "cosine_floor": 0.3,
+    "n_probes": 9,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 8118,
+    "keyword_full_window": 1918,
+    "keyword_embedded_pool": 548,
+    "candidates": 3000,
+    "kept": 10,
+    "kept_keyword": 0,
+    "kept_semantic_only": 10,
+    "keyword_pool_retention": 0.0
+  },
+  "outputs": {
+    "dataset_csv": "event_trump_inauguration_2025w04_dataset.csv",
+    "dataset_jsonl": "event_trump_inauguration_2025w04_dataset.jsonl",
+    "candidates_csv": "event_trump_inauguration_2025w04_candidates.csv",
+    "review_sample_csv": "event_trump_inauguration_2025w04_review_sample.csv"
+  }
+}

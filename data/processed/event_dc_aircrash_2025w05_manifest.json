@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-06-28T17:56:43.446963+00:00",
+  "event": {
+    "name": "Авиакатастрофа в Вашингтоне",
+    "year": 2025,
+    "week": 5,
+    "fom_percentage": "7.0",
+    "quotes": [
+      "Авиакатастрофа в Америке",
+      "разбился авиалайнер в США",
+      "в Америке столкновение вертолёта и самолёта",
+      "в США разбился самолёт, были на борту российские фигуристы",
+      "погибли ребята-спортсмены на самолёте"
+    ]
+  },
+  "window": {
+    "match_start": "2025-01-24",
+    "match_end_exclusive": "2025-02-13",
+    "iso_week": [
+      "2025-01-27",
+      "2025-02-02"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "embed_model": "embed-multilingual-v3.0",
+    "embed_input_type": "clustering",
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": 3000,
+    "cosine_floor": 0.3,
+    "n_probes": 7,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 21321,
+    "keyword_full_window": 2083,
+    "keyword_embedded_pool": 1206,
+    "candidates": 3000,
+    "kept": 43,
+    "kept_keyword": 0,
+    "kept_semantic_only": 43,
+    "keyword_pool_retention": 0.0
+  },
+  "outputs": {
+    "dataset_csv": "event_dc_aircrash_2025w05_dataset.csv",
+    "dataset_jsonl": "event_dc_aircrash_2025w05_dataset.jsonl",
+    "candidates_csv": "event_dc_aircrash_2025w05_candidates.csv",
+    "review_sample_csv": "event_dc_aircrash_2025w05_review_sample.csv"
+  }
+}

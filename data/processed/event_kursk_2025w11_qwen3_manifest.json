@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-07-01T20:18:47.973999+00:00",
+  "event": {
+    "name": "Военные действия в Курской области",
+    "year": 2025,
+    "week": 11,
+    "fom_percentage": "11.0",
+    "quotes": [
+      "«Бои в Курской области, освобождение»",
+      "«операция спецназа в Курской области»",
+      "«в Курской области окружили украинцев, зайдя по трубе»",
+      "«взятие Суджи»",
+      "«наши освободили Суджу»"
+    ]
+  },
+  "window": {
+    "match_start": "2025-03-07",
+    "match_end_exclusive": "2025-03-27",
+    "iso_week": [
+      "2025-03-10",
+      "2025-03-16"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "retriever": "qwen3",
+    "embed_model": "qwen/qwen3-embedding-8b",
+    "embed_input_type": "instruct-query",
+    "embed_dim": 4096,
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": 3000,
+    "cosine_floor": 0.3,
+    "n_probes": 7,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 47380,
+    "keyword_full_window": 4876,
+    "keyword_embedded_pool": 4876,
+    "candidates": 3000,
+    "kept": 675,
+    "kept_keyword": 675,
+    "kept_semantic_only": 0,
+    "keyword_pool_retention": 0.13843314191960623
+  },
+  "outputs": {
+    "dataset_csv": "event_kursk_2025w11_qwen3_dataset.csv",
+    "dataset_jsonl": "event_kursk_2025w11_qwen3_dataset.jsonl",
+    "candidates_csv": "event_kursk_2025w11_qwen3_candidates.csv",
+    "review_sample_csv": "event_kursk_2025w11_qwen3_review_sample.csv"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-06-28T17:25:22.464838+00:00",
+  "event": {
+    "name": "Прямая линия с В. Путиным",
+    "year": 2024,
+    "week": 51,
+    "fom_percentage": "17.0",
+    "quotes": [
+      "Вчерашнее выступление Путина",
+      "итоги года с Путиным",
+      "Путин, диалог с людьми",
+      "телеэфир, прямая линия с Путиным",
+      "вчерашнее выступление президента по итогам года",
+      "из хорошего – пресс-конференция Путина",
+      "прямой эфир, разговор с Путиным",
+      "обращение Путина не оправдало ожиданий"
+    ]
+  },
+  "window": {
+    "match_start": "2024-12-13",
+    "match_end_exclusive": "2025-01-02",
+    "iso_week": [
+      "2024-12-16",
+      "2024-12-22"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "embed_model": "embed-multilingual-v3.0",
+    "embed_input_type": "clustering",
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": 3000,
+    "cosine_floor": 0.3,
+    "n_probes": 10,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 1335,
+    "keyword_full_window": 1899,
+    "keyword_embedded_pool": 89,
+    "candidates": 1335,
+    "kept": 16,
+    "kept_keyword": 1,
+    "kept_semantic_only": 15,
+    "keyword_pool_retention": 0.011235955056179775
+  },
+  "outputs": {
+    "dataset_csv": "event_putin_direct_line_2024w51_dataset.csv",
+    "dataset_jsonl": "event_putin_direct_line_2024w51_dataset.jsonl",
+    "candidates_csv": "event_putin_direct_line_2024w51_candidates.csv",
+    "review_sample_csv": "event_putin_direct_line_2024w51_review_sample.csv"
+  }
+}

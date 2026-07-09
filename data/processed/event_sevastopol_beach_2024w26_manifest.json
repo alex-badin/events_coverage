@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-06-28T17:24:29.871754+00:00",
+  "event": {
+    "name": "Обстрел пляжа в Севастополе",
+    "year": 2024,
+    "week": 26,
+    "fom_percentage": "15.0",
+    "quotes": [
+      "«Удар по пляжу»",
+      "«в Севастополе расстрел на пляже»",
+      "«в Севастополе погибли люди, погибло два ребёнка, двое взрослых, и сто пятьдесят пострадавших»",
+      "«про теракт в Севастополе»",
+      "«ракетная атака на Севастополь»"
+    ]
+  },
+  "window": {
+    "match_start": "2024-06-21",
+    "match_end_exclusive": "2024-07-11",
+    "iso_week": [
+      "2024-06-24",
+      "2024-06-30"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "embed_model": "embed-multilingual-v3.0",
+    "embed_input_type": "clustering",
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": 3000,
+    "cosine_floor": 0.3,
+    "n_probes": 7,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 1391,
+    "keyword_full_window": 468,
+    "keyword_embedded_pool": 11,
+    "candidates": 1391,
+    "kept": 31,
+    "kept_keyword": 1,
+    "kept_semantic_only": 30,
+    "keyword_pool_retention": 0.09090909090909091
+  },
+  "outputs": {
+    "dataset_csv": "event_sevastopol_beach_2024w26_dataset.csv",
+    "dataset_jsonl": "event_sevastopol_beach_2024w26_dataset.jsonl",
+    "candidates_csv": "event_sevastopol_beach_2024w26_candidates.csv",
+    "review_sample_csv": "event_sevastopol_beach_2024w26_review_sample.csv"
+  }
+}

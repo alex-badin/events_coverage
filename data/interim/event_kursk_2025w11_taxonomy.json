@@ -1,0 +1,34 @@
+{
+  "narratives": [
+    {
+      "id": "russian_liberation_of_kursk",
+      "name": "Russian liberation of Kursk settlements",
+      "description": "Russian forces are framed as liberating or retaking Kursk Oblast settlements from Ukrainian occupiers or fighters."
+    },
+    {
+      "id": "sudzha_liberated_from_occupation",
+      "name": "Sudzha liberated from Ukrainian occupation",
+      "description": "Sudzha is portrayed as a Russian city freed by Russian forces after Ukrainian occupation, often with residents cast as victims."
+    },
+    {
+      "id": "heroic_russian_offensive",
+      "name": "Heroic Russian offensive breakthrough",
+      "description": "The fighting is framed as a bold, successful Russian offensive that breaks Ukrainian defenses and routs or destroys enemy forces."
+    },
+    {
+      "id": "operation_potok_pipeline_raid",
+      "name": "Operation Potok pipeline raid",
+      "description": "Russian troops are cast as daring heroes for infiltrating Ukrainian rear positions around Sudzha through a gas pipeline."
+    },
+    {
+      "id": "ukrainian_collapse_encirclement",
+      "name": "Ukrainian collapse and encirclement",
+      "description": "Ukrainian forces in Kursk are framed as retreating, encircled, suffering losses, or nearing defeat under Russian pressure."
+    },
+    {
+      "id": "contested_neutral_advance",
+      "name": "Contested Russian advance",
+      "description": "Russian advances, assaults, or recaptures around Sudzha are described in more neutral or hedged terms, with competing claims noted."
+    }
+  ]
+}

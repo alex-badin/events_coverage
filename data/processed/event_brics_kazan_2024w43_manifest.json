@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-06-28T17:24:58.426180+00:00",
+  "event": {
+    "name": "Саммит БРИКС в Казани",
+    "year": 2024,
+    "week": 43,
+    "fom_percentage": "18.0",
+    "quotes": [
+      "«БРИКС был»",
+      "«БРИКС в Казани»",
+      "«собрание глав государств в Казани, саммит»",
+      "«страны БРИКС собирались на саммит»",
+      "«БРИКС, приятно»",
+      "«БРИКС, полмира собралось»"
+    ]
+  },
+  "window": {
+    "match_start": "2024-10-18",
+    "match_end_exclusive": "2024-11-07",
+    "iso_week": [
+      "2024-10-21",
+      "2024-10-27"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "embed_model": "embed-multilingual-v3.0",
+    "embed_input_type": "clustering",
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": 3000,
+    "cosine_floor": 0.3,
+    "n_probes": 8,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 1411,
+    "keyword_full_window": 2038,
+    "keyword_embedded_pool": 135,
+    "candidates": 1411,
+    "kept": 43,
+    "kept_keyword": 0,
+    "kept_semantic_only": 43,
+    "keyword_pool_retention": 0.0
+  },
+  "outputs": {
+    "dataset_csv": "event_brics_kazan_2024w43_dataset.csv",
+    "dataset_jsonl": "event_brics_kazan_2024w43_dataset.jsonl",
+    "candidates_csv": "event_brics_kazan_2024w43_candidates.csv",
+    "review_sample_csv": "event_brics_kazan_2024w43_review_sample.csv"
+  }
+}

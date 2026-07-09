@@ -1,0 +1,61 @@
+# Controlled vocabularies for per-message framing extraction.
+# Language-agnostic keys; Russian cue words are hints for the extractor, not an exhaustive list.
+# Reviewable by hand — this is the analytical instrument, edit it deliberately.
+
+# --- Semetko & Valkenburg (2000), five generic news frames (multi-label, 0/1) ---
+# Each message can carry several. A frame is present only if the TEXT does the framing,
+# not merely if the topic could be framed that way.
+semetko_frames:
+  conflict:
+    desc: "Emphasizes disagreement/reproach between parties, two sides, winners vs losers."
+    cues_ru: ["противостояние", "обвинил", "в ответ", "стороны", "конфликт", "проигрыш/победа"]
+  human_interest:
+    desc: "Personal/emotional angle: individual stories, eyewitnesses, suffering, empathy, outrage."
+    cues_ru: ["жители рассказали", "очевидец", "судьба", "трагедия", "эмоции", "люди"]
+  economic_consequences:
+    desc: "Frames the event in terms of cost/gain/loss, money, prices, budgets, economic impact."
+    cues_ru: ["ущерб", "стоимость", "бюджет", "экономические последствия", "потери (денежные)"]
+  morality:
+    desc: "Moral/religious framing: right vs wrong, moral prescriptions, God/faith, justice as virtue."
+    cues_ru: ["преступление против", "справедливость", "грех", "долг", "моральный", "вера"]
+  responsibility:
+    desc: "Attributes responsibility for the CAUSE or the SOLUTION to a government/group/individual."
+    cues_ru: ["виноват", "ответственность", "должны", "по вине", "власти обязаны"]
+
+# --- Entity role inventory (moral_evaluation.role) ---
+# Controlled but extensible: prefer one of these; the extractor may add a new role only if none fit.
+# These are the labels whose DISAGREEMENT across media groups is the headline signal
+# (e.g. the same entity as "liberator" in one group and "aggressor"/"occupier" in another).
+roles:
+  - aggressor
+  - defender
+  - liberator
+  - occupier
+  - victim
+  - perpetrator
+  - hero
+  - villain
+  - provocateur
+  - ally
+  - mediator
+  - protector
+  - threat
+  - beneficiary
+  - traitor
+  - neutral_actor
+  - bystander
+
+# --- Epistemic status of the message's core claim (how it is presented) ---
+# A major state-vs-independent differentiator: state media ASSERT, exile media ATTRIBUTE/HEDGE.
+epistemic_status:
+  - asserted        # stated as established fact in the outlet's own voice
+  - attributed      # explicitly sourced to someone ("по данным Минобороны", "пишут госмедиа")
+  - hedged          # qualified/uncertain ("предположительно", "по неподтверждённым данным")
+  - denied          # presents the claim as false
+  - questioned      # casts doubt / raises it as a question
+
+# --- Scales (documented so labels are comparable) ---
+scales:
+  polarity: "integer -2..2  (-2 very negative, 0 neutral, +2 very positive) — stance toward the entity"
+  intensity: "integer 0..2  (0 weak, 2 strong) — how strongly the stance is expressed"
+  action_label_valence: ["positive", "negative", "neutral"]

@@ -47,7 +47,8 @@ Start with transparent matching:
 
 Later matching can add:
 
-- embeddings, where available
+- embeddings — the full `summary` corpus (3,848,244 rows, all history) is embedded with Qwen3;
+  see [Embeddings](data_inventory.md#embeddings)
 - manually curated aliases
 - event-specific exclusion terms
 - model-assisted relevance labels
