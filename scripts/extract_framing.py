@@ -9,9 +9,9 @@ Resumable (skips message_ids already in the output) and budget-aware (pre-trims 
 a daily token budget, so a partial run + rerun continues cleanly).
 
 Usage:
-  python scripts/extract_framing.py --limit 10            # smoke test
-  python scripts/extract_framing.py                       # full run (resumes)
-  python scripts/extract_framing.py --canonicalize-only   # merge entity names in an existing jsonl
+  python scripts/extract_framing.py --slug <event_slug> --limit 10   # smoke test
+  python scripts/extract_framing.py --slug <event_slug>              # full run (resumes)
+  python scripts/extract_framing.py --slug <event_slug> --canonicalize-only
 """
 
 from __future__ import annotations
@@ -115,7 +115,7 @@ def canonicalize_only(out_path: Path) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--input", type=Path, default=None,
-                    help="dataset CSV (default: the Kursk event dataset)")
+                    help="dataset CSV (default: data/processed/event_<slug>_dataset.csv)")
     ap.add_argument("--slug", default=None, help="event slug (default: derived from --input)")
     ap.add_argument("--event-name", default=None, help="override event name for the prompt")
     ap.add_argument("--limit", type=int, default=None, help="process at most N messages")
@@ -127,7 +127,12 @@ def main() -> None:
                     help="only run the entity-name merge over an existing jsonl, then exit")
     args = ap.parse_args()
 
-    input_csv = args.input or (DATA_PROCESSED / "event_kursk_2025w11_dataset.csv")
+    if args.input:
+        input_csv = args.input
+    elif args.slug:
+        input_csv = DATA_PROCESSED / f"event_{args.slug}_dataset.csv"
+    else:
+        ap.error("provide --input or --slug (there is no default event)")
     slug = args.slug or slug_from_path(input_csv)
     out_path = DATA_INTERIM / f"event_{slug}_framing.jsonl"
     out_path.parent.mkdir(parents=True, exist_ok=True)

@@ -18,18 +18,21 @@ The intended output is a dashboard for analysts, researchers, bloggers, politica
 ## Project Map
 
 ```text
-news_data/              Local historical news-message dataset.
+news_data/              Local historical news-message dataset (SQLite, gitignored).
 fom_events/             FOM reports, extraction scripts, and event tables.
-configs/                Project settings, source groups, and path notes.
-docs/                   Method notes, data inventory, and planning docs.
-scripts/                Reusable command-line checks and analysis helpers.
-src/events_coverage/    Python package area for reusable project code.
-data/interim/           Temporary cleaned joins and intermediate tables.
-data/processed/         Stable derived tables ready for dashboard use.
-dashboard/              Dashboard app code or dashboard-specific notes.
+configs/                Source groups, framing instrument, and path defaults.
+docs/                   Pipeline docs, methodology, data inventory, caveats.
+scripts/                Pipeline entry points and command-line checks.
+scripts/remote/         Script shipped to the Neo LAN box for remote retrieval scoring.
+src/events_coverage/    Reusable project code (matching, framing, faithfulness).
+data/interim/           Per-message framing/narrative records (jsonl, tracked in git).
+data/processed/         Event datasets + manifests (manifests tracked in git).
 queries/                Reusable SQL query templates.
-outputs/                Local generated charts, caches, and exports.
-reports/                Written analysis outputs.
+outputs/                Generated comparison tables, heatmaps, chart exports.
+reports/                Rendered analyses; reports/generators/ holds the render scripts.
+skills/                 Agent skill for evidence-backed result reports.
+dashboard/              Dashboard app code or dashboard-specific notes (not started).
+tests/                  Test area (empty so far).
 ```
 
 ## First Check
@@ -40,54 +43,55 @@ Run this before analysis work:
 python3 scripts/check_inputs.py
 ```
 
-It checks that the main local data files are readable, opens the SQLite database, and prints basic counts for the FOM event table.
+It checks that the main local data files are readable, opens the SQLite database, and prints basic counts for the FOM event table. For a slower full SQLite health check, add `--full`.
 
-For a slower full SQLite health check, run:
+## Pipelines (implemented)
+
+**1. Build a single-event news dataset** — [docs/event_dataset_pipeline.md](docs/event_dataset_pipeline.md)
 
 ```sh
-python3 scripts/check_inputs.py --full
+.venv/bin/python scripts/build_event_dataset.py --event "<FOM event name>" --year 2025 --week 11 --slug my_event_2025w11
 ```
 
-## Suggested Workflow
+Qwen3 embedding retrieval over the full corpus (vectors live on the Neo LAN box, scored over SSH) plus Cohere rerank. Needs `OPENROUTER_API_KEY` and `COHERE_API_KEY` in `.env`, and SSH access to Neo. Outputs `event_<slug>_{dataset,candidates,review_sample,manifest}` in `data/processed/`.
 
-1. Start from `fom_events/processed_events/events_table.csv`.
-2. Normalize event names, week dates, FOM percentage, and quote examples into a stable table in `data/processed/`.
-3. Match event windows against `news_data/ask_media_unified_messages_20260604.db`.
-4. Store candidate matches in `data/interim/`, with enough fields to manually audit samples.
-5. Compute coverage metrics by source and source group.
-6. Build dashboard tables and charts from `data/processed/`.
+**2. Compare framing across media groups** — [docs/framing_pipeline.md](docs/framing_pipeline.md)
+
+```sh
+.venv/bin/python scripts/extract_framing.py --slug my_event_2025w11 --workers 4   # gpt-5.5, resumable
+.venv/bin/python scripts/induce_narratives.py --slug my_event_2025w11
+.venv/bin/python scripts/compare_framing.py --slug my_event_2025w11 --bootstrap 1000
+```
+
+Per-message structured framing records (`data/interim/`), induced narratives, and within-group comparison tables/heatmaps (`outputs/`, `reports/`). The instrument is defined in `configs/framing_schema.yaml` and documented in [docs/framing_methodology.md](docs/framing_methodology.md). Read [docs/framing_readout_caveats.md](docs/framing_readout_caveats.md) before quoting aggregate numbers.
+
+**3. Render reports** — `reports/generators/`, indexed in [reports/README.md](reports/README.md).
 
 ## Current Data Notes
 
 The news database is the main media source. Its main table is `unified_messages`.
 
-Useful columns include:
+Text fields differ sharply in coverage — choose deliberately:
 
-- `source`: media source or channel name.
-- `message_id`: source-level message id.
-- `date`: message date.
-- `summary`: normalized message summary, filled for most rows.
-- `original_message`: available for every row in the current database.
-- `raw_message` and `cleaned_message`: available only for the smaller collected/raw subset.
+- `summary`: filled for most rows (3,848,244), pre-flattened; used for embeddings/retrieval, not for framing.
+- `original_message`: available for every row; the standard field for framing extraction.
+- `raw_message` and `cleaned_message`: only on the smaller collected subset (190,426 rows).
 - `views` and `forwards`: engagement-style counters where available.
-- `stance`: available only on the collected/raw subset, so use `configs/media_groups.yaml` for stable group comparisons.
+- `stance`: sparse — use `configs/media_groups.yaml` for stable group comparisons (it is a draft grouping).
+- `embedding` (in-DB column): archived sparse Cohere store, not used; current embeddings are the full-corpus Qwen3 sidecar on Neo (see [docs/data_inventory.md](docs/data_inventory.md)).
 
-The cleaned FOM event table is `fom_events/processed_events/events_table.csv`. It currently has 3,687 event rows across 2020-2025.
+The cleaned FOM event table is `fom_events/processed_events/events_table.csv`: 3,687 event rows across 2020-2025.
 
 ## Setup
 
-This project is Python-oriented. If you use `uv`, install dependencies with:
+This project is Python-oriented. Install dependencies with:
 
 ```sh
 uv sync
 ```
 
-If you are only checking the current data inventory, no external Python packages are needed:
+Copy `.env.example` to `.env` and fill in the API keys (the example file explains which script needs which key). If you are only checking the current data inventory, no external Python packages are needed: `python3 scripts/check_inputs.py`.
 
-```sh
-python3 scripts/check_inputs.py
-```
+## Status (2026-07-09)
 
-## Next Useful Build Step
-
-The next concrete step is to create a normalized event table with one row per FOM event and explicit week start/end dates. After that, build a first matching pass for a small sample of events and inspect whether the matches are useful enough for dashboard metrics.
+The pilot ran end-to-end on real events: 11 event datasets built, framing extracted for 6 events (all in the 2025 news window), and two events analyzed in depth (Kursk/Sudzha 2025-W11, Trump–Zelensky 2025-W10). The evidence-backed snapshot of what exists and what it shows is `reports/pilot_analysis_summary.md`; rendered analyses are indexed in `reports/README.md`. The full corpus is embedded, so events from earlier years are buildable; four early dataset attempts made before the full-corpus embeddings are marked `_cohere_archived` in `data/processed/` and are known-incomplete.

@@ -38,22 +38,23 @@ A good default first pass is 3 days before the week and 10 days after the week. 
 
 ## Matching News to Events
 
-Start with transparent matching:
+The implemented matcher is embedding-first (`scripts/build_event_dataset.py`, documented in
+[event_dataset_pipeline.md](event_dataset_pipeline.md)):
 
-1. Use event names and FOM quote examples to build keywords.
-2. Search `summary` and, when useful, `original_message`.
-3. Keep the exact matched terms and matched text fields.
-4. Sample matches and misses before trusting counts.
+1. Embed the event name + FOM quote examples as multiple query probes (Qwen3); retrieve
+   top-K messages by cosine from the full-corpus sidecar (3,848,244 `summary` rows, all history;
+   see [Embeddings](data_inventory.md#embeddings)).
+2. Rerank the candidates with Cohere `rerank-v3.5` and keep rows above a threshold — the rerank
+   is the real precision gate; raw cosine is a weak discriminator in this space.
+3. Use keyword anchors only as a diagnostic (estimating retention/leakage), not as the matcher.
+   Caution: SQLite `lower()`/`LIKE` are ASCII-only and miss capitalized Cyrillic, so keyword
+   counting is done in Python (`src/events_coverage/matching.py`).
 
-Later matching can add:
+Manual audit stays mandatory: the pipeline writes an `event_<slug>_review_sample.csv` with top
+and near-threshold rows — sample matches and misses before trusting counts.
 
-- embeddings — the full `summary` corpus (3,848,244 rows, all history) is embedded with Qwen3;
-  see [Embeddings](data_inventory.md#embeddings)
-- manually curated aliases
-- event-specific exclusion terms
-- model-assisted relevance labels
-
-Do not present keyword matches as final truth without manual spot checks.
+Possible refinements when an event needs them: manually curated aliases, event-specific
+exclusion terms, model-assisted relevance labels.
 
 ## Core Metrics
 

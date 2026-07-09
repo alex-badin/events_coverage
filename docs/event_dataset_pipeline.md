@@ -13,8 +13,8 @@ input for comparing coverage across media groups. Implemented in
 **We use one first-stage retriever: `qwen3`.** It is the default and the only current path. A
 `cohere` retriever still exists in the code but is **archived** — kept for provenance/reproducibility
 only (see "Archived: Cohere retriever" below), not used. `qwen3` became the default 2026-07-02 after a
-bake-off on the two labeled event windows showed it matches or mildly beats Cohere; see
-`qwen3-cohere-bakeoff-results` memory / commit history for the numbers.
+bake-off on the two labeled event windows (unbiased rerank-union labels, `scripts/bakeoff_embeddings.py`):
+Qwen3 top-3000 recall **95.7% / 94.5%** vs Cohere **95.0% / 91.4%** — a mild but consistent Qwen3 edge.
 - **`qwen3`** (the retriever we use): `qwen/qwen3-embedding-8b` via OpenRouter, **native 4096-d**, embedded
   plain for documents and with an `Instruct: {task}\nQuery: {text}` prefix for queries. Document
   vectors live in a float16 sidecar (~29GB) on **Neo**, a LAN box (see `neo-embedding-box` memory) —
@@ -76,6 +76,20 @@ and Cohere calls have automatic 429/5xx backoff.
 
 Columns: `rank, source, media_group, message_id, date, is_digest, summary, original_message,
 views, forwards, cosine_max, cosine_probe, rerank_score, keyword_match`.
+
+## Dataset naming in `data/processed/` (which file is which)
+
+- **New events:** plain `event_<slug>_*`, built with the qwen3 retriever (the default).
+- **Kursk is special — two sets exist side by side.** `event_kursk_2025w11_*` (no suffix) is the
+  historical cohere-built set (670 kept, 2026-06-25); **all downstream framing artifacts for Kursk
+  were extracted from it**, so it keeps its name for provenance. `event_kursk_2025w11_qwen3_*`
+  (675 kept, 2026-07-01) is the qwen3 rerun of the same event, made for the retriever comparison.
+- **`event_*_cohere_archived_*` — known-incomplete, do not analyze.** Four datasets
+  (BRICS Kazan 2024-W43, Putin Direct Line 2024-W51, Sevastopol beach 2024-W26, Trump
+  inauguration 2025-W04) were built 2026-06-28 with the cohere retriever *outside* its
+  Feb–Apr 2025 coverage window, so their candidate pools had collapsed (e.g. BRICS: 43 kept
+  while ~2,000 keyword hits existed in the window; Direct Line: 16 kept). They are kept only
+  as a record of that mistake; rebuild with `--retriever qwen3` before using these events.
 
 ## This run — Kursk / Sudzha, FOM 2025 W11 («Военные действия в Курской области», FOM 11%)
 _(historical — built with `--retriever cohere`, before qwen3 became the default)_

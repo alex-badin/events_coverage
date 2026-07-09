@@ -18,11 +18,18 @@ raw `data/interim/event_*_framing.jsonl` (no model calls). Published copies live
 | **Raw framing records** | `generators/build_explorer.py` | Every per-message record (text_used + entities + Entman + evidence), filterable | https://claude.ai/code/artifact/99d1651c-5152-49dd-a90d-93a221fce9dc |
 | **Framing clusters** | `generators/{embed_framings,cluster_lib,build_cluster_report}.py` | KMeans clusters of `problem_definition`, `causal_attribution` & `treatment` (Kursk, Trump–Zelensky) + cross-media distribution + full members | https://claude.ai/code/artifact/1d9eafcb-7314-475a-bb8a-6525d8107488 |
 | **Association tests** | `generators/{stats_lib,build_association_report}.py` | Every aggregatable framing dimension × media group, with χ² + Cramér's V + Holm correction; leaderboard + contingency tables | https://claude.ai/code/artifact/fa12ec66-de2e-46f5-b11c-9a38e4f3f7cf |
+| **Pilot analysis summary** | `generators/build_pilot_summary.py` | Evidence-backed snapshot of the whole pilot: per-event status, group counts, main spreads with bases → `pilot_analysis_summary.md` + `pilot_analysis_charts.html` | — |
+| **Contrast tables (per event)** | `generators/build_contrast_report.py` | The framing fields the standard readout drops: clustered causal statements, emphasized facts, actor polarity × epistemic voice → `event_<slug>_contrast.md` + CSVs/heatmaps in `outputs/` | — |
 
 Helper analyses (stdout): `generators/within_event.py` (cross-media separators per event),
 `generators/scorecard.py` (cross-event generalization scorecard).
 
-## Events extracted so far (all 2025 — see `embedding-coverage` memory for why)
+## Events with framing extraction so far (all 2025)
+
+The pilot extracted framing only for events in the recent news window. This is no longer a
+technical constraint: the full corpus is embedded (Qwen3 sidecar, all history back to 2018), so
+earlier events are buildable — the old "2025-only" belief was an artifact of the sparse in-DB
+Cohere embedding column (see `docs/data_inventory.md`).
 
 `kursk_2025w11` (669) · `trump_zelensky_2025w10` (185) · `putin_trump_call_2025w08` (158) ·
 `us_russia_contacts_2025w09` (145) · `prices_2025w11` (50) · `dc_aircrash_2025w05` (43)
@@ -38,6 +45,8 @@ Helper analyses (stdout): `generators/within_event.py` (cross-media separators p
 cd reports/generators && python build_cluster_report.py   # writes reports/cluster_report.html + reports/clusters/*.csv
 cd reports/generators && python build_association_report.py  # writes reports/association_report.html (χ²/Cramér's V)
 cd reports/generators && python run_stats.py              # same tests, console output
+.venv/bin/python reports/generators/build_pilot_summary.py    # writes reports/pilot_analysis_summary.md + charts html
+.venv/bin/python reports/generators/build_contrast_report.py --slug kursk_2025w11  # per-event contrast tables
 ```
 
 The raw explorer currently embeds Trump–Zelensky + Kursk only (size); edit its `EVENTS` list to
@@ -45,9 +54,14 @@ include others. To publish, open the generated HTML as a claude.ai artifact.
 
 ## What persists vs what doesn't
 
-- **Durable (in repo):** raw model output (`data/interim/*.jsonl`), datasets (`data/processed/`),
-  these generators, the docs.
+- **Tracked in git:** the raw model output (`data/interim/event_*_{framing,narratives}.jsonl`,
+  `*_taxonomy.json`), dataset manifests (`data/processed/event_*_manifest.json`), these
+  generators, this README, and the docs. Note: the repo has no remote yet — git protects
+  against accidental edits and gives history, not against disk loss.
+- **On disk only (gitignored, reproducible):** dataset/candidate CSVs in `data/processed/`,
+  comparison tables in `outputs/`, embedding caches, and the rendered reports themselves —
+  regenerate them with the commands above.
 - **Durable (in ~/.claude memory):** findings & constraints — `framing-pipeline`,
-  `embedding-coverage-constraint`, `narrative-divergence-findings`.
+  `narrative-divergence-findings`, `framing-signal-loss-audit`.
 - **Not durable:** the published artifacts are hosted on claude.ai (links above); the live
   session scratchpad is wiped between sessions. That's why the generators are copied here.

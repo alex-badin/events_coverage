@@ -1,5 +1,11 @@
 -- Starter query template for inspecting candidate messages around an event.
 -- Replace the date range and keyword patterns before running.
+--
+-- CYRILLIC WARNING: SQLite lower() and LIKE are ASCII-only — lower('Курск') does NOT
+-- lowercase Cyrillic, so lower(summary) LIKE '%курск%' silently misses «Курск».
+-- For real keyword matching do it in Python (src/events_coverage/matching.py::keyword_match),
+-- or pass every case variant of the keyword as a separate parameter here.
+-- This template is for eyeballing samples, not for counting coverage.
 
 select
     source,

@@ -100,7 +100,9 @@ epistemic status, labels) are the stable substrate; treat them, not the narrativ
 
 ## 5. Scales and faithfulness
 - `polarity`: integer −2…+2 (−2 very negative, 0 neutral, +2 very positive) toward the entity.
-- `intensity`: integer 0…2 (0 weak … 2 strong).
+- `intensity`: integer 0…2 (0 weak … 2 strong). **Known instrument defect:** the extractor types
+  it as a bare `int` and ~23% of stored values exceed 0–2 — clip or bucket on read (see
+  [framing_readout_caveats.md](framing_readout_caveats.md)).
 - Faithfulness for Russian uses **evidence-span provenance + LLM-judge** (MiniCheck/AlignScore are
   English-trained). Kursk provenance: mean 0.951, 69% of records perfectly grounded.
 
