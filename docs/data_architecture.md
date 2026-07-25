@@ -76,13 +76,9 @@ event at top-K=3000 (calculated) — keep the event set curated.
 no heavy migration. Load the needed message columns + events + group map. Optional: a
 precomputed "posts per source per week" aggregate for denominators (small, computed once).
 
-*Which pilot events get loaded.* `data/processed/` holds 11 `event_*_dataset.jsonl` files covering
-10 distinct events. Six are loaded: `kursk_2025w11_qwen3`, `trump_zelensky_2025w10`,
-`putin_trump_call_2025w08`, `us_russia_contacts_2025w09`, `prices_2025w11`, `dc_aircrash_2025w05`
-— 3,423 matched messages. Excluded and not rebuilt: the four `_cohere_archived` files (built on the
-archived sparse embedding column, known-incomplete) and the older non-Qwen3 Kursk build, which the
-`_qwen3` file supersedes. These are pilot leftovers; the warehouse layer is what this phase builds,
-so the event set only has to be large enough to exercise it.
+*Event scope.* Only events with a complete, current matched set are loaded — today that is 6 events
+and 3,423 matched messages. The loader script holds the authoritative list; incomplete pilot
+leftovers are named in the `AGENTS.md` cautions.
 
 **[5] dbt transformations (in DuckDB).**
 - **staging:** `stg_messages`, `stg_events` (derive window dates `match_start` / `match_end`

@@ -76,5 +76,5 @@ The database has several text columns with very different coverage. Do not confu
 - Do not treat source groups as final political labels; `configs/media_groups.yaml` is a draft grouping with ~31 uncategorized sources.
 - The news data ends on 2025-04-02 in the current local snapshot. Do not describe results as current after that date.
 - Narrative labels from `induce_narratives.py` are a per-run lens (induction is stochastic); the per-message framing fields (roles, epistemic status, action labels) are the stable substrate.
-- Datasets in `data/processed/` whose names contain `_cohere_archived` were built on the archived sparse Cohere embeddings and are known-incomplete. Do not use them for conclusions, and do not load them into the warehouse. Decided 2026-07-25: they are pilot leftovers and will not be rebuilt. The same applies to `event_kursk_2025w11_dataset.jsonl`, superseded by `event_kursk_2025w11_qwen3_dataset.jsonl`.
+- Datasets in `data/processed/` whose names contain `_cohere_archived` were built on the archived sparse Cohere embeddings and are known-incomplete. Do not use them for conclusions. Same for `event_kursk_2025w11_dataset.jsonl`, superseded by the `_qwen3` build of the same event.
 - The project is for comparative media intelligence, not for judging factual truth of the covered events.
