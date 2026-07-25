@@ -21,7 +21,7 @@ The intended output is a dashboard for analysts, researchers, bloggers, politica
 news_data/              Local historical news-message dataset (SQLite, gitignored).
 fom_events/             FOM reports, extraction scripts, and event tables.
 configs/                Source groups, framing instrument, and path defaults.
-docs/                   Pipeline docs, methodology, data inventory, caveats.
+docs/                   Data architecture blueprint, pipeline docs, methodology, inventory.
 scripts/                Pipeline entry points and command-line checks.
 scripts/remote/         Script shipped to the Neo LAN box for remote retrieval scoring.
 src/events_coverage/    Reusable project code (matching, framing, faithfulness).
@@ -92,6 +92,21 @@ uv sync
 
 Copy `.env.example` to `.env` and fill in the API keys (the example file explains which script needs which key). If you are only checking the current data inventory, no external Python packages are needed: `python3 scripts/check_inputs.py`.
 
-## Status (2026-07-09)
+## Status (2026-07-25)
 
-The pilot ran end-to-end on real events: 11 event datasets built, framing extracted for 6 events (all in the 2025 news window), and two events analyzed in depth (Kursk/Sudzha 2025-W11, Trump–Zelensky 2025-W10). The evidence-backed snapshot of what exists and what it shows is `reports/pilot_analysis_summary.md`; rendered analyses are indexed in `reports/README.md`. The full corpus is embedded, so events from earlier years are buildable; four early dataset attempts made before the full-corpus embeddings are marked `_cohere_archived` in `data/processed/` and are known-incomplete.
+**The analytical pilot is done; the current phase builds the data layer around it.** Next up:
+load the matched messages into a local DuckDB database, transform them with dbt (models, tests,
+documentation), orchestrate the run with Dagster, and serve a Metabase dashboard that goes from an
+event × media-group summary down to the individual posts. The blueprint, including the measured
+sizing and the staged dbt scope, is [docs/data_architecture.md](docs/data_architecture.md). The
+product core is coverage metrics computed in plain SQL; framing and narrative extraction are out of
+scope for this phase — the pipeline and its outputs stay, but the instrument is not being extended.
+
+What the pilot produced: 11 event dataset files covering 10 distinct events (3,423 matched messages
+across the 6 events that are complete and current), framing extracted for those same 6 events (all
+in the 2025 news window), and two events analyzed in depth (Kursk/Sudzha 2025-W11, Trump–Zelensky
+2025-W10). The evidence-backed snapshot of what exists and what it shows is
+`reports/pilot_analysis_summary.md`; rendered analyses are indexed in `reports/README.md`. Four
+early dataset attempts made before the full-corpus embeddings are marked `_cohere_archived` in
+`data/processed/` and are known-incomplete; they are pilot leftovers, excluded from the warehouse
+and not being rebuilt.

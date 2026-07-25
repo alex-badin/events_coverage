@@ -24,9 +24,22 @@ When explaining work, analysis, or results:
 - Prefer small, reproducible scripts over one-off notebook-only work when a step will be reused.
 - If a step uses model-generated labels, keep the prompt, model name, date, and input/output path in the output notes.
 
-## Current State (last updated 2026-07-09)
+## Current State (last updated 2026-07-25)
 
-Two pipelines are implemented and were piloted on real events. Read their docs before touching them — they record verified findings and traps, not just usage:
+**Current direction — read this before proposing work.** The analytical pilot is finished and the
+active work is now the data-engineering layer around it: load the matched messages into a local
+DuckDB database, transform them with dbt (models, tests, docs), orchestrate with Dagster, and serve
+a Metabase dashboard. The blueprint is `docs/data_architecture.md`. The core product is **coverage
+metrics** (counts, share of voice, first mention, lag, views, forwards — plain SQL). **Framing and
+narrative extraction are out of scope for this phase**: the pipeline stays in the repo and its
+outputs stay valid, but do not extend the instrument, add framing fields, or start new framing
+runs. Three framing improvements proposed on 2026-07-08 (a second schema version, a two-pass
+event-specific instrument, and new datasets for the Navalny death and the 2022 war start) are
+parked, not pending. The research idea of a judge loop that tests narrative-difference algorithms
+is a later stage, not now.
+
+Two pipelines are implemented and were piloted on real events. Both are done — read their docs
+before touching them, because they record verified findings and traps, not just usage:
 
 1. **Event dataset (matching):** `scripts/build_event_dataset.py` finds the news messages covering one FOM event — Qwen3 embedding retrieval plus Cohere rerank. Doc: `docs/event_dataset_pipeline.md` (includes the dataset naming rules for `data/processed/`).
 2. **Framing comparison:** `scripts/extract_framing.py` → `scripts/induce_narratives.py` → `scripts/compare_framing.py` compares how media groups frame one matched event. Operational doc: `docs/framing_pipeline.md`; instrument reference: `docs/framing_methodology.md`; and read `docs/framing_readout_caveats.md` before quoting aggregate numbers.
@@ -63,5 +76,5 @@ The database has several text columns with very different coverage. Do not confu
 - Do not treat source groups as final political labels; `configs/media_groups.yaml` is a draft grouping with ~31 uncategorized sources.
 - The news data ends on 2025-04-02 in the current local snapshot. Do not describe results as current after that date.
 - Narrative labels from `induce_narratives.py` are a per-run lens (induction is stochastic); the per-message framing fields (roles, epistemic status, action labels) are the stable substrate.
-- Datasets in `data/processed/` whose names contain `_cohere_archived` were built on the archived sparse Cohere embeddings and are known-incomplete. Do not use them for conclusions; rebuild with the qwen3 retriever first.
+- Datasets in `data/processed/` whose names contain `_cohere_archived` were built on the archived sparse Cohere embeddings and are known-incomplete. Do not use them for conclusions, and do not load them into the warehouse. Decided 2026-07-25: they are pilot leftovers and will not be rebuilt. The same applies to `event_kursk_2025w11_dataset.jsonl`, superseded by `event_kursk_2025w11_qwen3_dataset.jsonl`.
 - The project is for comparative media intelligence, not for judging factual truth of the covered events.
