@@ -1,0 +1,13 @@
+# Connection settings. The name below must match `profile:` in dbt_project.yml.
+#
+# Kept inside the repository (not in ~/.dbt/) so the whole setup is visible and
+# version-controlled. It holds no secrets — the warehouse is a local file.
+# The path is relative to the working directory, so run dbt from inside dbt/.
+
+events_coverage:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../data/warehouse/events.duckdb
+      threads: 4

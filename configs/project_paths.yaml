@@ -16,6 +16,8 @@ derived:
   cache_dir: outputs/cache
   dashboard_exports_dir: outputs/dashboard_exports
   reports_dir: reports
+  warehouse_db: data/warehouse/events.duckdb
+  dbt_project_dir: dbt
 
 defaults:
   event_window_days_before: 3

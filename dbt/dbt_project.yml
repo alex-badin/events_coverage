@@ -1,0 +1,33 @@
+# dbt project settings for the Events Coverage warehouse.
+# Run dbt commands from inside this folder (cd dbt).
+
+name: events_coverage
+version: 0.1.0
+config-version: 2
+
+# Which set of connection settings to use, by name, from profiles.yml.
+profile: events_coverage
+
+# Where dbt looks for each kind of file.
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+
+# Folders `dbt clean` is allowed to delete.
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Defaults per model folder. A "view" is a saved query re-run on every read;
+# a "table" is written to disk once per dbt run. Cheap intermediate steps stay
+# views; the final tables the dashboard reads are materialised as tables.
+models:
+  events_coverage:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

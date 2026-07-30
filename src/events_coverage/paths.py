@@ -10,5 +10,8 @@ FOM_EVENTS_CLEAN = PROJECT_ROOT / "fom_events" / "processed_events" / "events_ta
 
 DATA_INTERIM = PROJECT_ROOT / "data" / "interim"
 DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"
+DATA_WAREHOUSE = PROJECT_ROOT / "data" / "warehouse"
+WAREHOUSE_DB = DATA_WAREHOUSE / "events.duckdb"
+DBT_PROJECT = PROJECT_ROOT / "dbt"
 OUTPUTS = PROJECT_ROOT / "outputs"
 REPORTS = PROJECT_ROOT / "reports"

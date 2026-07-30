@@ -41,3 +41,14 @@ reports/*
 !reports/.gitkeep
 !reports/README.md
 !reports/generators/
+
+# Local DuckDB warehouse file — rebuilt from raw inputs by scripts/load_warehouse.py.
+data/warehouse/*
+!data/warehouse/.gitkeep
+
+# dbt run artifacts (compiled SQL, run results, logs) — regenerated on every run.
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+# Anonymous local install id that dbt writes on first run — machine-specific.
+dbt/.user.yml
