@@ -66,7 +66,11 @@ QWEN_CLUSTER_INSTRUCTION = (
 # The sidecar (and the news_slim.db copy) live on Neo, not on this machine — the dataset
 # stays there by design; Neo runs scripts/remote/neo_qwen_retrieve.py to score windows.
 NEO_HOST = os.environ.get("NEO_HOST", "${NEO_HOST}")
-NEO_PYTHON = r"C:\emb_test\venv\Scripts\python.exe"
+# Not the older C:\emb_test\venv — Windows Smart App Control (enforced on Neo since
+# 2026-07-14) blocks that interpreter outright. numpy_env is a plain `python -m venv`
+# whose python.exe is a copy of the signed original, so it runs; numpy's own compiled
+# files load there too. See docs/neo_box.md.
+NEO_PYTHON = os.environ.get("NEO_PYTHON", r"C:\emb_test\numpy_env\Scripts\python.exe")
 NEO_REMOTE_DIR = "C:/emb_test/ec"
 NEO_REMOTE_SCRIPT = f"{NEO_REMOTE_DIR}/neo_qwen_retrieve.py"
 NEO_SSH_OPTS = ["-o", "ConnectTimeout=20"]
@@ -76,7 +80,11 @@ NEO_SSH_OPTS = ["-o", "ConnectTimeout=20"]
 # "курск" -> Курск/Курская/Курской/Курске; "судж" -> Суджа/Суджи/Суджу/Суджанский.
 KEYWORD_PATTERN = re.compile(r"курск|судж", re.IGNORECASE)
 
-UNCATEGORIZED_LABEL = "Uncategorized (review needed)"
+# Label for a source that is in neither the groups nor the archived list. Every source in
+# the news database is accounted for in configs/media_groups.yaml as of 2026-08-03, so this
+# should never appear. It exists so that an unknown source is loud rather than dropped —
+# the dbt `accepted_values` test on media_group rejects it and the build fails.
+UNKNOWN_GROUP_LABEL = "Ungrouped source (unexpected)"
 
 
 # --------------------------------------------------------------------------- config
@@ -88,7 +96,10 @@ def load_defaults() -> dict:
 
 
 def load_media_groups(path=MEDIA_GROUPS_YAML) -> dict[str, str]:
-    """Map source -> human-readable media-group label."""
+    """Map source -> human-readable media-group label, for in-scope sources only.
+
+    Archived sources are not in the returned map; use `load_archived_sources` for those.
+    """
     with open(path, encoding="utf-8") as f:
         cfg = yaml.safe_load(f) or {}
     mapping: dict[str, str] = {}
@@ -96,13 +107,26 @@ def load_media_groups(path=MEDIA_GROUPS_YAML) -> dict[str, str]:
         label = (grp or {}).get("label", key)
         for source in (grp or {}).get("sources", []) or []:
             mapping[source] = label
-    for source in cfg.get("uncategorized_review_needed", []) or []:
-        mapping.setdefault(source, UNCATEGORIZED_LABEL)
     return mapping
 
 
+def load_archived_sources(path=MEDIA_GROUPS_YAML) -> set[str]:
+    """Sources deliberately left out of the study (decided 2026-08-03).
+
+    Read from the `archived:` block of configs/media_groups.yaml, which groups them by
+    reason (`reason_regional`, `reason_not_media`). Every reason list is pooled here,
+    because every caller wants the same thing: the set of sources to drop.
+    """
+    with open(path, encoding="utf-8") as f:
+        cfg = yaml.safe_load(f) or {}
+    archived: set[str] = set()
+    for sources in (cfg.get("archived") or {}).values():
+        archived.update(sources or [])
+    return archived
+
+
 def media_group_for(source: str, mapping: dict[str, str]) -> str:
-    return mapping.get(source, UNCATEGORIZED_LABEL)
+    return mapping.get(source, UNKNOWN_GROUP_LABEL)
 
 
 # ----------------------------------------------------------------------------- event

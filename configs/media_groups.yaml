@@ -7,7 +7,11 @@ metadata:
   basis:
     - channel_metadata table where available
     - source names visible in the current news dataset
-  caution: "Some sources are not grouped yet. Treat uncategorized sources as review-needed."
+  caution: >-
+    Every source in the news database is now either in a group or in the `archived`
+    list below. Nothing is unassigned. Archived sources are out of scope and are
+    filtered out of the event datasets and the warehouse; they are kept here by name
+    so the exclusion stays visible and reversible.
 
 groups:
   state_agencies:
@@ -35,6 +39,7 @@ groups:
       - gazetaru
       - izvestia
       - lifenews
+      - margaritasimonyan
       - readovkanews
       - rgrunews
       - riafan
@@ -48,6 +53,7 @@ groups:
   mainstream_business_and_general:
     label: "Mainstream business and general media"
     sources:
+      - bazabazon
       - bfmnews
       - breakingmash
       - forbesrussia
@@ -72,6 +78,7 @@ groups:
       - novaya_pishet
       - radiosvoboda
       - sotaproject
+      - svobodnieslova
       - thebell_io
       - theinsider
 
@@ -87,35 +94,47 @@ groups:
       - voenacher
       - vysokygovorit
 
-uncategorized_review_needed:
-  - bazabazon
-  - margaritasimonyan
-  - nackepelo
-  - nsk2020ru
-  - ochevidcy
-  - omsk_ogo
-  - orlec
-  - perm36
-  - podvigpress
-  - politica_media
-  - protokol_band
-  - protokol_samara
-  - protokol_tver
-  - pskovred
-  - rezonans_media
-  - rerussia_org
-  - sopka_media
-  - sorokinhvost
-  - svobodnieslova
-  - tmn_bgregion72
-  - tomskpolit
-  - tsibirevdmitry
-  - udmprotivcor
-  - ural56ru
-  - vashdozor
-  - ve4ved
-  - vornadzor
-  - vvgladkov
-  - wejournal
-  - znakcity
-  - ylatynina
+# Sources deliberately left out of the study, decided 2026-08-03.
+#
+# These 28 channels were reviewed post by post (40 posts each, spread across their whole
+# history) before the decision. They are excluded for one of two reasons:
+#
+#   regional  — a city or oblast outlet. The study compares national media, so a channel
+#               whose whole beat is one region is not comparable with the rest.
+#   not_media — not a news outlet: a serving official's own channel, or a personal
+#               commentary channel with no newsroom behind it.
+#
+# The names stay here so the exclusion is visible and reversible. Loaders must drop these
+# sources from event datasets, coverage denominators and the warehouse — see
+# scripts/load_warehouse.py and scripts/build_event_dataset.py.
+archived:
+  reason_regional:
+    - nsk2020ru          # Коалиция Новосибирск 2020 — Novosibirsk Oblast
+    - ochevidcy          # Очевидцы — Tomsk TV2 team
+    - omsk_ogo           # Омское гражданское объединение — Omsk Oblast
+    - orlec              # Орлец — Orel Oblast
+    - perm36             # Пермь 36,6 — Perm Krai
+    - podvigpress        # Подвиг — Saint Petersburg
+    - protokol_band      # Протокол. Краснодар — Krasnodar Krai
+    - protokol_samara    # Протокол. Самара — Samara Oblast
+    - protokol_tver      # Протокол. Тверь — Tver Oblast
+    - pskovred           # Псковская Редакция — Pskov Oblast
+    - rezonans_media     # Резонанс — Vladimir Oblast
+    - sopka_media        # SOPKA.MEDIA — Khabarovsk Krai and Primorsky Krai
+    - sorokinhvost       # Сорокин хвост — Nizhny Novgorod Oblast
+    - tmn_bgregion72     # Тюмень — богатый регион! — Tyumen Oblast
+    - tomskpolit         # TOMSKPOLIT — Tomsk Oblast
+    - udmprotivcor       # Удмуртия против коррупции — Udmurt Republic
+    - ural56ru           # Урал56.Ру — Orenburg Oblast
+    - vashdozor          # Дозор в Волгограде — Volgograd Oblast
+    - ve4ved             # Вечерние ведомости — Sverdlovsk Oblast
+    - vornadzor          # Ворнадзор — Voronezh Oblast
+    - wejournal          # Kirov Oblast; public Telegram page no longer exists
+    - znakcity           # Твердый знак Тамбов — Tambov Oblast
+  reason_not_media:
+    - nackepelo          # Michael Nacke — personal commentary channel
+    - politica_media     # Популярная политика — political project, not a newsroom
+    - rerussia_org       # Re: Russia — policy analysis platform, not a newsroom
+    - tsibirevdmitry     # Dmitry Tsibirev — personal channel, Saratov
+    - vvgladkov          # Belgorod governor Vyacheslav Gladkov — official's own channel
+    - ylatynina          # Yulia Latynina — personal commentary channel
