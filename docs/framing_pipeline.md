@@ -117,7 +117,9 @@ sample. MiniCheck/AlignScore are English-trained, so this substitutes for Russia
 - Narrative induction is **stochastic** and taxonomy granularity shifts with sample size (the partial
   found 3 narratives, the full 669 found 5) — treat narrative labels as a per-run lens, not a fixed
   registry; the per-message framing fields (roles, epistemic, labels) are the stable substrate.
-- `configs/media_groups.yaml` is a **draft** grouping, not a final political label set (1 uncategorized
-  source is dropped).
+- `configs/media_groups.yaml` is a **draft** grouping, not a final political label set. Note that the
+  framing outputs in `reports/` predate the 2026-08-03 decision to archive 28 out-of-scope sources
+  (regional outlets and channels that are not news media), so they may still contain posts from
+  channels the current grouping excludes.
 - For *this* event the divergence is mostly **epistemic**, not Russian-role-reversal; other events may
   show different axes — do not assume role-reversal is always the headline.

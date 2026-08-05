@@ -40,7 +40,7 @@ the data-engineering layer, not new NLP.
 [3] RERANK + THRESHOLD — existing, Python, Cohere rerank-v3.5    (stays ML, not dbt)
       keep rerank >= 0.35  ->  "kept" matched message set per event
         |
-        v  (matched messages: 3,423 across the 6 usable pilot events — megabytes)
+        v  (matched messages: 4,108 across the 5 usable pilot events — megabytes)
 [4] LOAD -> DuckDB (phase 1, local)
         |
         v
@@ -76,8 +76,8 @@ event at top-K=3000 (calculated) — keep the event set curated.
 no heavy migration. Load the needed message columns + events + group map. Optional: a
 precomputed "posts per source per week" aggregate for denominators (small, computed once).
 
-*Event scope.* Only events with a complete, current matched set are loaded — today that is 6 events
-and 3,423 matched messages. The loader script holds the authoritative list; incomplete pilot
+*Event scope.* Only events with a complete, current matched set are loaded — today that is 5 events
+and 4,108 matched messages. The loader script holds the authoritative list; incomplete pilot
 leftovers are named in the `AGENTS.md` cautions.
 
 **[5] dbt transformations (in DuckDB).**
@@ -110,9 +110,9 @@ share, editorial ("от себя") share.
 ## Storage sizing (measured)
 
 - Core text `summary` + `original_message`: **~5.4 GB**; `summary` only: **~2.2 GB**.
-- Data actually serving the dashboard (marts + matched detail): **megabytes** — 3,423 matched
-  messages across the 6 usable pilot events (4,193 across all 11 dataset files, before excluding
-  the incomplete ones and the duplicate Kursk build). All of `data/processed/` is 94 MB on disk.
+- Data actually serving the dashboard (marts + matched detail): **megabytes** — 4,108 matched
+  messages across the 5 usable pilot events, out of 16 dataset files in all, the rest being
+  superseded or known-incomplete builds. All of `data/processed/` is 145 MB on disk.
 - Qwen3 vectors 29.36 GB stay on "Neo" for now.
 - Phase 1 (DuckDB local): size is a non-issue. Phase 2 (BigQuery): the text corpus fits under the 10 GB free tier. Qwen3 vectors - TBD.
 

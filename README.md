@@ -78,7 +78,7 @@ Text fields differ sharply in coverage — choose deliberately:
 - `raw_message` and `cleaned_message`: only on the smaller collected subset (190,426 rows).
 - `views` and `forwards`: engagement-style counters where available.
 - `stance`: sparse — use `configs/media_groups.yaml` for stable group comparisons (it is a draft grouping).
-- `embedding` (in-DB column): archived sparse Cohere store, not used; current embeddings are the full-corpus Qwen3 sidecar on Neo (see [docs/data_inventory.md](docs/data_inventory.md)).
+- `embedding` (in-DB column): archived sparse Cohere store, not used; current embeddings are the full-corpus Qwen3 sidecar on Neo (see [docs/data_inventory.md](docs/data_inventory.md), and [docs/neo_box.md](docs/neo_box.md) for how to run anything on that machine).
 
 The cleaned FOM event table is `fom_events/processed_events/events_table.csv`: 3,687 event rows across 2020-2025.
 
@@ -92,21 +92,41 @@ uv sync
 
 Copy `.env.example` to `.env` and fill in the API keys (the example file explains which script needs which key). If you are only checking the current data inventory, no external Python packages are needed: `python3 scripts/check_inputs.py`.
 
-## Status (2026-07-25)
+## Status (2026-08-02)
 
-**The analytical pilot is done; the current phase builds the data layer around it.** Next up:
-load the matched messages into a local DuckDB database, transform them with dbt (models, tests,
-documentation), orchestrate the run with Dagster, and serve a Metabase dashboard that goes from an
-event × media-group summary down to the individual posts. The blueprint, including the measured
-sizing and the staged dbt scope, is [docs/data_architecture.md](docs/data_architecture.md). The
-product core is coverage metrics computed in plain SQL; framing and narrative extraction are out of
-scope for this phase — the pipeline and its outputs stay, but the instrument is not being extended.
+**The analytical pilot is done and the data layer around it is largely built.** The blueprint,
+including the measured sizing and the staged dbt scope, is
+[docs/data_architecture.md](docs/data_architecture.md). The product core is coverage metrics
+computed in plain SQL; framing and narrative extraction are out of scope for this phase — the
+pipeline and its outputs stay, but the instrument is not being extended.
 
-What the pilot produced: 11 event dataset files covering 10 distinct events (3,423 matched messages
-across the 6 events that are complete and current), framing extracted for those same 6 events (all
-in the 2025 news window), and two events analyzed in depth (Kursk/Sudzha 2025-W11, Trump–Zelensky
+Built so far:
+
+- **DuckDB warehouse** — `scripts/load_warehouse.py` loads the matched post sets, the FOM event
+  table, the source-to-group map, and posts-per-source-per-day across the whole corpus (the
+  denominator that separates "said nothing about this" from "was not publishing").
+- **dbt project** — staging, intermediate and marts layers with generic and hand-written tests, a
+  stopword seed, a stemming macro, and column documentation. `cd dbt && ../.venv/bin/dbt build`.
+- **Prototype dashboard** — one self-contained HTML file built from the marts; see
+  [dashboard/README.md](dashboard/README.md).
+- **Metabase** — Docker setup plus a script that provisions the connection, the questions and the
+  dashboard through Metabase's own interface; see [metabase/README.md](metabase/README.md).
+
+Not built: Dagster orchestration.
+
+What the pilot produced: 16 event dataset files covering 10 distinct events, of which 5 are complete
+and current with 4,108 matched messages between them; framing extracted for six events (all in the
+2025 news window); and two events analyzed in depth (Kursk/Sudzha 2025-W11, Trump–Zelensky
 2025-W10). The evidence-backed snapshot of what exists and what it shows is
-`reports/pilot_analysis_summary.md`; rendered analyses are indexed in `reports/README.md`. Four
-early dataset attempts made before the full-corpus embeddings are marked `_cohere_archived` in
-`data/processed/` and are known-incomplete; they are pilot leftovers, excluded from the warehouse
-and not being rebuilt.
+`reports/pilot_analysis_summary.md`; rendered analyses are indexed in `reports/README.md`.
+
+Two groups of dataset files in `data/processed/` are known-incomplete and excluded from the
+warehouse. Four early attempts made before the full-corpus embeddings are marked
+`_cohere_archived` and are not being rebuilt. Five more, the ones without a `_qwen3` suffix, could
+only search part of each window; every one of them was rebuilt on 2026-08-03 against the Qwen3
+vectors, and the rebuilds are what the warehouse loads. The framing outputs are attached to the
+older builds and were not redone, because framing work is out of scope for this phase.
+
+One of those rebuilds, «Рост цен, тарифов», kept no posts at all at the standard relevance
+cut-off of 0.35 — the highest score among its 3,000 candidates was under 0.30 — so it is not
+loaded. Its earlier version only had rows because it used a cut-off of 0.10.
