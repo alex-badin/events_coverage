@@ -46,6 +46,21 @@ reports/*
 data/warehouse/*
 !data/warehouse/.gitkeep
 
+# Metabase: the downloaded driver, the copy of the warehouse it serves, and Metabase's own
+# application database (its saved questions and dashboards). All rebuilt by the scripts in
+# metabase/ — the scripts and notes are tracked, these are not.
+metabase/plugins/*.jar
+metabase/data/
+metabase/app-data/
+
+# Metabase runtime state — not source. All three are reproducible; see metabase/README.md.
+#  plugins/   the DuckDB driver jar, downloaded
+#  data/      the published copy of the warehouse Metabase reads
+#  app-data/  Metabase's own storage for its saved questions and dashboards
+metabase/plugins/
+metabase/data/
+metabase/app-data/
+
 # dbt run artifacts (compiled SQL, run results, logs) — regenerated on every run.
 dbt/target/
 dbt/dbt_packages/

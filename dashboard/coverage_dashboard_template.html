@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Events Coverage — prototype dashboard</title>
+<style>
+/* ---------------------------------------------------------------------------
+   Palette. Light and dark are both chosen sets, not one flipped into the other.
+   The seven series colours are fixed to media groups by position, so a group
+   keeps its colour in every chart on the page.
+   --------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+  --surface-1: #fcfcfb;
+  --page: #f9f9f7;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --hairline: rgba(11,11,11,0.10);
+  --raised: #ffffff;
+
+  --s1: #2a78d6;
+  --s2: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --s5: #e87ba4;
+  --s6: #008300;
+  --s7: #4a3aa7;
+
+  --seq-0: #efeee9;
+  --seq-1: #b7d3f6;
+  --seq-2: #6da7ec;
+  --seq-3: #2a78d6;
+  --seq-4: #1c5cab;
+  --seq-5: #104281;
+
+  /* Two-sided scale for "more than usual" against "less than usual". Cool and warm poles
+     with a plain grey middle, so the middle reads as "nothing unusual here". Deliberately
+     not green-and-red: more coverage is not good and less is not bad. */
+  --div-up-2: #1c5cab;
+  --div-up-1: #9ec5f4;
+  --div-mid:  #f0efec;
+  --div-dn-1: #f7c0a6;
+  --div-dn-2: #c9491a;
+  --div-none: #e6e5e0;
+
+  --good: #0ca30c;
+  --warning: #fab219;
+  --critical: #d03b3b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --hairline: rgba(255,255,255,0.10);
+    --raised: #232322;
+
+    --s1: #3987e5;
+    --s2: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    --s5: #d55181;
+    --s6: #008300;
+    --s7: #9085e9;
+
+    --seq-0: #262625;
+    --seq-1: #184f95;
+    --seq-2: #256abf;
+    --seq-3: #3987e5;
+    --seq-4: #6da7ec;
+    --seq-5: #9ec5f4;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-1: #1a1a19;
+  --page: #0d0d0d;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --ink-muted: #898781;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --hairline: rgba(255,255,255,0.10);
+  --raised: #232322;
+
+  --s1: #3987e5;
+  --s2: #d95926;
+  --s3: #199e70;
+  --s4: #c98500;
+  --s5: #d55181;
+  --s6: #008300;
+  --s7: #9085e9;
+
+  --seq-0: #262625;
+  --seq-1: #184f95;
+  --seq-2: #256abf;
+  --seq-3: #3987e5;
+  --seq-4: #6da7ec;
+  --seq-5: #9ec5f4;
+
+  --div-up-2: #6da7ec;
+  --div-up-1: #1c5cab;
+  --div-mid:  #383835;
+  --div-dn-1: #8a3712;
+  --div-dn-2: #e07845;
+  --div-none: #262625;
+}
+
+* { box-sizing: border-box; }
+
+/* One dedicated scroll container instead of scrolling the document itself, so
+   trackpad scrolling works when the page is shown inside a panel or frame. */
+html, body { height: 100%; margin: 0; overflow: hidden; }
+body {
+  background: var(--page);
+  color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+#scroll {
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 28px 22px 90px; }
+
+h1 { font-size: 26px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+h2 { font-size: 17px; margin: 0 0 3px; letter-spacing: -0.005em; }
+h3 { font-size: 14px; margin: 0 0 10px; color: var(--ink-2); font-weight: 600; }
+p { margin: 0 0 10px; }
+.sub { color: var(--ink-2); font-size: 13.5px; }
+.muted { color: var(--ink-muted); }
+.tiny { font-size: 12px; }
+
+header.top { border-bottom: 1px solid var(--hairline); padding-bottom: 18px; margin-bottom: 22px; }
+.provenance {
+  display: flex; flex-wrap: wrap; gap: 6px 18px;
+  margin-top: 12px; font-size: 12px; color: var(--ink-muted);
+}
+.provenance b { color: var(--ink-2); font-weight: 600; }
+
+section { margin: 34px 0 0; }
+.section-head { margin-bottom: 14px; }
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 18px 18px 16px;
+}
+.card + .card { margin-top: 14px; }
+
+/* Stat tiles ------------------------------------------------------------- */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.tile {
+  background: var(--surface-1); border: 1px solid var(--hairline);
+  border-radius: 10px; padding: 13px 14px;
+}
+.tile .label { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); }
+.tile .value { font-size: 27px; line-height: 1.15; margin-top: 3px; letter-spacing: -0.02em; }
+.tile .note { font-size: 12px; color: var(--ink-2); margin-top: 2px; }
+
+/* Controls --------------------------------------------------------------- */
+.controls {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin: 0 0 16px;
+}
+.controls .lbl { font-size: 12px; color: var(--ink-muted); margin-right: 2px; }
+button.chip {
+  font: inherit; font-size: 13px;
+  background: var(--surface-1); color: var(--ink-2);
+  border: 1px solid var(--hairline); border-radius: 999px;
+  padding: 6px 13px; cursor: pointer; min-height: 32px;
+}
+button.chip:hover { background: var(--raised); color: var(--ink); }
+button.chip[aria-pressed="true"] {
+  background: var(--ink); color: var(--surface-1); border-color: var(--ink);
+}
+button.chip.swatch { display: inline-flex; align-items: center; gap: 7px; }
+button.chip.swatch i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+
+/* Event picker table ----------------------------------------------------- */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: right; padding: 8px 9px; border-bottom: 1px solid var(--grid); }
+th { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-muted); font-weight: 600; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+td.num, th.num { font-variant-numeric: tabular-nums; }
+tbody tr.pick { cursor: pointer; }
+tbody tr.pick:hover td { background: var(--raised); }
+tbody tr.on td { background: var(--raised); }
+tbody tr.on td:first-child { box-shadow: inset 2px 0 0 var(--s1); }
+.ev-name { font-weight: 600; }
+.ev-name small { display: block; font-weight: 400; color: var(--ink-muted); font-size: 11.5px; }
+
+.tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; padding: 2px 8px; border-radius: 999px;
+  border: 1px solid var(--hairline); color: var(--ink-2); white-space: nowrap;
+}
+.tag i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+
+/* Charts ----------------------------------------------------------------- */
+.chart { width: 100%; display: block; overflow: visible; }
+.chart text { font: 12px system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--ink-muted); }
+.chart text.val { fill: var(--ink-2); font-variant-numeric: tabular-nums; }
+.chart text.cat { fill: var(--ink-2); }
+.chart .gridline { stroke: var(--grid); stroke-width: 1; }
+.chart .axisline { stroke: var(--axis); stroke-width: 1; }
+.chart .hit { fill: transparent; cursor: default; }
+.bar { transition: opacity .12s; }
+.dim { opacity: .32; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 2px 0 14px; font-size: 12px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+
+/* Heatmap ---------------------------------------------------------------- */
+.hm { display: grid; gap: 2px; font-size: 11px; overflow-x: auto; }
+.hm-row { display: grid; gap: 2px; align-items: center; }
+.hm-cell { height: 20px; border-radius: 3px; }
+.hm-lbl { font-size: 11.5px; color: var(--ink-2); padding-right: 8px; white-space: nowrap;
+          overflow: hidden; text-overflow: ellipsis; }
+.hm-day { font-size: 10px; color: var(--ink-muted); text-align: center; font-variant-numeric: tabular-nums; }
+.scale { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--ink-muted); margin-top: 12px; flex-wrap: wrap; }
+.scale i { width: 22px; height: 11px; border-radius: 2px; display: inline-block; }
+
+/* Post list -------------------------------------------------------------- */
+.post {
+  border-top: 1px solid var(--grid); padding: 13px 0 14px;
+}
+.post:first-child { border-top: 0; }
+.post .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 12px; color: var(--ink-muted); margin-bottom: 6px; }
+.post .meta .src { color: var(--ink); font-weight: 600; font-size: 13px; }
+.post .meta .grp { display: inline-flex; align-items: center; gap: 6px; }
+.post .meta .grp i { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+.post .meta .n { font-variant-numeric: tabular-nums; }
+.post .body { font-size: 13.5px; color: var(--ink-2); white-space: pre-wrap; word-break: break-word; }
+.post .body.clamped {
+  display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
+}
+.post .more {
+  font: inherit; font-size: 12px; background: none; border: 0; padding: 4px 0 0;
+  color: var(--s1); cursor: pointer;
+}
+
+/* Tooltip ---------------------------------------------------------------- */
+#tip {
+  position: fixed; z-index: 50; pointer-events: none; opacity: 0;
+  transition: opacity .1s;
+  background: var(--ink); color: var(--surface-1);
+  border-radius: 7px; padding: 8px 10px; font-size: 12px; line-height: 1.45;
+  max-width: 280px; box-shadow: 0 4px 14px rgba(0,0,0,.18);
+}
+#tip b { font-weight: 600; }
+/* The tooltip surface is the ink colour, so its label text is a wash of the
+   surface colour rather than a fixed grey — it stays readable in both themes. */
+#tip .k { color: color-mix(in srgb, var(--surface-1) 62%, transparent); }
+
+.note-box {
+  border-left: 2px solid var(--axis); padding: 2px 0 2px 12px;
+  font-size: 12.5px; color: var(--ink-2); margin: 12px 0 0;
+}
+/* A warning carries an icon and a written reason, never colour alone. */
+.warn-box {
+  display: flex; gap: 10px; align-items: flex-start;
+  border: 1px solid var(--hairline); border-left: 3px solid var(--warning);
+  border-radius: 8px; background: var(--surface-1);
+  padding: 12px 14px; margin: 14px 0 0; font-size: 13px; color: var(--ink-2);
+}
+.warn-box .ico { flex: none; color: var(--warning); font-size: 15px; line-height: 1.3; }
+.warn-box b { color: var(--ink); }
+.build-strip {
+  display: flex; flex-wrap: wrap; gap: 4px 16px;
+  margin-top: 12px; font-size: 12px; color: var(--ink-muted);
+}
+.build-strip b { color: var(--ink-2); font-weight: 600; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+footer { margin-top: 44px; border-top: 1px solid var(--hairline); padding-top: 18px; font-size: 12.5px; color: var(--ink-2); }
+footer ul { margin: 6px 0 0; padding-left: 20px; }
+footer li { margin-bottom: 5px; }
+.silent { color: var(--ink-muted); font-size: 12px; }
+
+/* Cross-event grid ------------------------------------------------------- */
+.reso { display: grid; gap: 3px; overflow-x: auto; padding-bottom: 4px; }
+.reso-row { display: grid; gap: 3px; align-items: stretch; }
+.reso-head { font-size: 11px; color: var(--ink-muted); line-height: 1.25; padding: 0 4px 4px;
+             text-align: center; align-self: end; }
+.reso-lbl { font-size: 12px; color: var(--ink-2); padding-right: 10px; white-space: nowrap;
+            overflow: hidden; text-overflow: ellipsis; align-self: center; }
+.reso-cell {
+  min-height: 40px; border-radius: 5px; display: flex; align-items: center;
+  justify-content: center; font-size: 12.5px; font-variant-numeric: tabular-nums;
+  cursor: pointer; padding: 2px;
+}
+.reso-cell.up { color: #fff; }
+:root[data-theme="dark"] .reso-cell.up { color: #0d0d0d; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .reso-cell.up { color: #0d0d0d; }
+}
+.reso-cell.mid { color: var(--ink-2); }
+.reso-cell.none { color: var(--ink-muted); font-size: 11px; }
+/* Too few posts for the ratio to mean anything. Marked rather than hidden, because the
+   coverage did happen — it is the ratio that cannot be trusted, not the count. */
+.reso-cell.thin { opacity: .45; outline: 1px dashed var(--axis); outline-offset: -2px; }
+
+/* Distinctive terms ------------------------------------------------------ */
+.terms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 12px; }
+.terms-col { border: 1px solid var(--hairline); border-radius: 9px; padding: 12px 13px; }
+.terms-col h4 {
+  margin: 0 0 9px; font-size: 12.5px; font-weight: 600; color: var(--ink);
+  display: flex; align-items: center; gap: 7px; line-height: 1.3;
+}
+.terms-col h4 i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+.term {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+  width: 100%; text-align: left; font: inherit; font-size: 12.5px;
+  background: none; border: 0; border-radius: 5px; padding: 4px 5px; cursor: pointer;
+  color: var(--ink-2);
+}
+.term:hover { background: var(--raised); color: var(--ink); }
+.term .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.term .n { font-variant-numeric: tabular-nums; color: var(--ink-muted); font-size: 11.5px; flex: none; }
+.term-empty { font-size: 12px; color: var(--ink-muted); padding: 4px 5px; }
+</style>
+</head>
+<body>
+<div id="scroll"><div class="wrap">
+
+<header class="top">
+  <h1>How Russian media groups covered the events people noticed</h1>
+  <p class="sub">
+    A prototype of the coverage dashboard. Every number on this page is computed in SQL from
+    the matched post sets already in the warehouse — nothing here is illustrative or filled in
+    by hand.
+  </p>
+  <div class="provenance" id="provenance"></div>
+</header>
+
+<section id="sec-events">
+  <div class="section-head">
+    <h2>Public attention against media coverage</h2>
+    <p class="sub">The survey share is how often people named the event unprompted; the post
+      count is how many posts matched it. How many events are loaded is in the tiles below.</p>
+  </div>
+  <div class="tiles" id="global-tiles"></div>
+  <div class="card" style="margin-top:14px">
+    <h3>Each event by survey share and by number of matched posts</h3>
+    <svg class="chart" id="chart-scatter" role="img"></svg>
+    <p class="note-box">The two axes are different kinds of measurement — a share of survey
+      answers and a count of posts — so read where an event sits on each one separately. The
+      distance between the axes means nothing. An event marked ⚠ was matched on different
+      settings, so its post count is not on the same footing as the others; the exact
+      settings are shown when you select it.</p>
+  </div>
+  <div class="card">
+    <h3>Which events landed with which kinds of media</h3>
+    <p class="sub tiny" id="reso-intro"></p>
+    <div class="controls" id="reso-controls">
+      <span class="lbl">Compare</span>
+    </div>
+    <div id="reso-grid"></div>
+    <div class="scale" id="reso-scale"></div>
+    <p class="note-box" id="reso-note"></p>
+    <details style="margin-top:12px">
+      <summary class="sub tiny" style="cursor:pointer">Show the numbers as a table</summary>
+      <div id="reso-table" style="overflow-x:auto; margin-top:10px"></div>
+    </details>
+  </div>
+
+  <div class="card">
+    <h3>Pick an event</h3>
+    <div id="event-table"></div>
+  </div>
+</section>
+
+<section id="sec-event">
+  <div class="section-head">
+    <h2 id="ev-title"></h2>
+    <p class="sub" id="ev-sub"></p>
+    <div class="build-strip" id="ev-build"></div>
+    <div id="ev-warning"></div>
+  </div>
+  <div class="card" id="ev-quotes-card">
+    <h3>What survey respondents said about it</h3>
+    <div id="ev-quotes" class="sub"></div>
+  </div>
+  <div class="tiles" id="event-tiles" style="margin-top:14px"></div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>Coverage by media group</h3>
+    <div class="controls" id="measure-controls">
+      <span class="lbl">Measure</span>
+    </div>
+    <svg class="chart" id="chart-groups" role="img"></svg>
+    <p class="note-box" id="groups-note"></p>
+  </div>
+
+  <div class="split" style="margin-top:14px">
+    <div class="card">
+      <h3>Who published first</h3>
+      <svg class="chart" id="chart-timing" role="img"></svg>
+      <p class="note-box" id="timing-note"></p>
+    </div>
+    <div class="card">
+      <h3>Coverage day by day</h3>
+      <div id="heatmap"></div>
+      <div class="scale" id="heat-scale"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>Every number for this event</h3>
+    <div id="group-table" style="overflow-x:auto"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>Words and phrases that separate the groups</h3>
+    <p class="sub tiny" id="terms-intro"></p>
+    <div class="controls" id="terms-controls">
+      <span class="lbl">Show</span>
+    </div>
+    <div id="terms-grid"></div>
+    <p class="note-box" id="terms-note"></p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>The posts behind the numbers</h3>
+    <div class="controls" id="post-controls">
+      <span class="lbl">Group</span>
+    </div>
+    <p class="sub tiny" id="post-count"></p>
+    <div id="post-list"></div>
+  </div>
+</section>
+
+<footer>
+  <b>How to read this, and what is not here yet.</b>
+  <ul id="caveats"></ul>
+</footer>
+
+</div></div>
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+const DATA = __DATA__;
+
+/* =========================================================================
+   Helpers
+   ========================================================================= */
+const SERIES = ['--s1','--s2','--s3','--s4','--s5','--s6','--s7'];
+const GROUPS = DATA.meta.group_order;
+const colorOf = g => `var(${SERIES[Math.max(0, GROUPS.indexOf(g)) % SERIES.length]})`;
+
+const fmt = n => n === null || n === undefined ? '—' : Math.round(n).toLocaleString('en-US');
+const fmt1 = n => n === null || n === undefined ? '—' : n.toLocaleString('en-US', {minimumFractionDigits:1, maximumFractionDigits:1});
+const fmt2 = n => n === null || n === undefined ? '—' : n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+const pct = n => n === null || n === undefined ? '—' : (n * 100).toFixed(0) + '%';
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dayLabel = iso => {
+  const d = new Date(iso + 'T00:00:00Z');
+  return d.toLocaleDateString('en-GB', {day:'numeric', month:'short', timeZone:'UTC'});
+};
+const el = (id) => document.getElementById(id);
+
+/* Short readable name for each event, keeping the published Russian name in the
+   detail views. Only used where a full name would not fit on a chart. */
+const SHORT = {
+  event_dc_aircrash_2025w05_qwen3: 'Washington air crash',
+  event_kursk_2025w11_qwen3: 'Fighting in Kursk region',
+  event_putin_trump_call_2025w08_qwen3: 'Putin–Trump call, Riyadh talks',
+  event_trump_zelensky_2025w10_qwen3: 'Trump–Zelensky meeting',
+  event_us_russia_contacts_2025w09_qwen3: 'Russia–US contacts resuming'
+};
+const shortName = slug => SHORT[slug] || slug;
+
+/* Two separate things can make an event's counts untrustworthy, and they pull in
+   opposite directions, so they are never merged into one vague "quality" flag.
+   Both are read straight off the marts. */
+function warningsFor(e) {
+  const out = [];
+  if (!e.standard_relevance_cutoff) out.push({
+    short: 'weaker matches let in',
+    long: `Posts were kept at a relevance score of ${e.rerank_threshold} instead of the
+      0.35 used for the other events, so weaker matches were counted. The median relevance
+      of its ${fmt(e.matched_posts)} matched posts is ${fmt2(e.median_relevance_score)};
+      compare that with the medians of the events built at 0.35, in the table above. Read
+      this event's post count as an over-count, and read some of its posts before quoting it.`
+  });
+  if (e.searchable_share_of_window < 0.9) out.push({
+    short: 'part of the window could not be searched',
+    long: `Only ${fmt(e.searchable_posts_in_window)} of the
+      ${fmt(e.posts_published_in_window)} posts published during this window had an
+      embedding vector, so ${pct(1 - e.searchable_share_of_window)} of the window was
+      invisible to the search. Its coverage counts are an under-count, and a group that
+      looks silent here may simply have had no searchable posts. This is the older
+      archived Cohere vector store, which covered only part of the corpus; rebuilding the
+      event with the current Qwen3 vectors would search all of it.`
+  });
+  return out;
+}
+
+/* Shared tooltip. Tooltips only repeat values that are also in a table on the
+   page, so nothing is reachable by hover alone. */
+const tip = el('tip');
+function showTip(evt, html) {
+  tip.innerHTML = html;
+  tip.style.opacity = '1';
+  const pad = 14, r = tip.getBoundingClientRect();
+  let x = evt.clientX + pad, y = evt.clientY + pad;
+  if (x + r.width > innerWidth - 8) x = evt.clientX - r.width - pad;
+  if (y + r.height > innerHeight - 8) y = evt.clientY - r.height - pad;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+function hideTip() { tip.style.opacity = '0'; }
+
+function svgEl(tag, attrs = {}, text) {
+  const n = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+function niceTicks(max, count = 5) {
+  if (max <= 0) return [0];
+  const raw = max / count;
+  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw) || 10 * mag;
+  const out = [];
+  for (let v = 0; v <= max + step * 0.001; v += step) out.push(v);
+  return out;
+}
+
+/* =========================================================================
+   Header provenance
+   ========================================================================= */
+(function provenance() {
+  const ev = DATA.events;
+  const posts = DATA.posts.length;
+  const built = ev.map(e => e.built_at).sort();
+  const flagged = ev.filter(e => warningsFor(e).length).length;
+  el('provenance').innerHTML = [
+    ['Events loaded', ev.length],
+    ['Matched posts', fmt(posts)],
+    ['Corpus', '3,861,614 posts · 84 sources · 2018-04-16 to 2025-04-02'],
+    ['Public agenda', 'FOM weekly survey, 3,687 events 2020–2025'],
+    ['Matching', 'embedding search, then Cohere rerank-v3.5 as the relevance gate'],
+    ['Events needing care', `${flagged} of ${ev.length} are marked ⚠ — their counts are not on the same footing as the rest, for a reason shown on each one`],
+    ['Matched sets built', built[0].slice(0, 10) + ' to ' + built[built.length - 1].slice(0, 10)]
+  ].map(([k, v]) => `<span><b>${esc(k)}:</b> ${esc(v)}</span>`).join('');
+})();
+
+/* =========================================================================
+   Global stat tiles
+   ========================================================================= */
+(function globalTiles() {
+  const ev = DATA.events;
+  const totalPosts = ev.reduce((s, e) => s + e.matched_posts, 0);
+  const totalViews = ev.reduce((s, e) => s + (e.views_total || 0), 0);
+  const srcCovering = new Set(DATA.posts.map(p => p.source_name)).size;
+  const tiles = [
+    ['Events with a matched post set', ev.length, 'out of 3,687 in the survey table'],
+    ['Matched posts', fmt(totalPosts), `across all ${ev.length} events`],
+    ['Sources that covered something', srcCovering, 'of 84 sources in the corpus'],
+    ['Media groups compared', GROUPS.length, 'draft grouping, six named + one unassigned'],
+    ['Views on matched posts', fmt(totalViews), 'summed view counters']
+  ];
+  el('global-tiles').innerHTML = tiles.map(([l, v, n]) =>
+    `<div class="tile"><div class="label">${esc(l)}</div><div class="value">${esc(String(v))}</div><div class="note">${esc(n)}</div></div>`
+  ).join('');
+})();
+
+/* =========================================================================
+   Scatter: survey share against matched post count
+   ========================================================================= */
+function renderScatter() {
+  const svg = el('chart-scatter');
+  svg.innerHTML = '';
+  const rows = DATA.events;
+  const W = svg.clientWidth || 900, H = 330;
+  // Top margin leaves a clear band for the y-axis label above the highest tick.
+  const m = {t: 30, r: 20, b: 46, l: 60};
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('height', H);
+
+  const maxX = Math.max(...rows.map(r => r.attention_percentage)) * 1.12;
+  const maxY = Math.max(...rows.map(r => r.matched_posts)) * 1.14;
+  const x = v => m.l + (v / maxX) * (W - m.l - m.r);
+  const y = v => H - m.b - (v / maxY) * (H - m.t - m.b);
+
+  niceTicks(maxY, 4).forEach(t => {
+    svg.appendChild(svgEl('line', {class: 'gridline', x1: m.l, x2: W - m.r, y1: y(t), y2: y(t)}));
+    svg.appendChild(svgEl('text', {x: m.l - 9, y: y(t) + 4, 'text-anchor': 'end', class: 'val'}, fmt(t)));
+  });
+  niceTicks(maxX, 5).forEach(t => {
+    svg.appendChild(svgEl('text', {x: x(t), y: H - m.b + 18, 'text-anchor': 'middle', class: 'val'}, t + '%'));
+  });
+  svg.appendChild(svgEl('line', {class: 'axisline', x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b}));
+  svg.appendChild(svgEl('text', {x: m.l, y: H - 8, class: 'cat'}, 'Share of survey respondents who named the event'));
+  svg.appendChild(svgEl('text', {x: 4, y: 12, class: 'cat'}, 'Matched posts'));
+
+  rows.forEach(r => {
+    const cx = x(r.attention_percentage), cy = y(r.matched_posts);
+    svg.appendChild(svgEl('circle', {cx, cy, r: 6.5, fill: 'var(--surface-1)'}));
+    svg.appendChild(svgEl('circle', {cx, cy, r: 5, fill: 'var(--s1)'}));
+    const right = cx < W * 0.62;
+    const label = svgEl('text', {
+      x: cx + (right ? 12 : -12), y: cy + 4,
+      'text-anchor': right ? 'start' : 'end', class: 'cat'
+    }, (warningsFor(r).length ? '⚠ ' : '') + shortName(r.event_slug));
+    svg.appendChild(label);
+    const hit = svgEl('circle', {cx, cy, r: 16, class: 'hit'});
+    hit.addEventListener('mousemove', e => showTip(e,
+      `<b>${esc(shortName(r.event_slug))}</b><br>
+       <span class="k">Survey share</span> ${fmt1(r.attention_percentage)}%<br>
+       <span class="k">Matched posts</span> ${fmt(r.matched_posts)}<br>
+       <span class="k">Sources covering</span> ${r.sources_covering} of ${r.sources_active} active`));
+    hit.addEventListener('mouseleave', hideTip);
+    hit.addEventListener('click', () => selectEvent(r.event_slug));
+    svg.appendChild(hit);
+  });
+}
+
+/* =========================================================================
+   Which events landed with which kinds of media
+   ------------------------------------------------------------------------
+   Every number here is a ratio against the same group's own average across the
+   loaded events, so 1.0 means "exactly as usual for this group". That is the only
+   way to compare a group that publishes 12,000 posts a week with one that
+   publishes 1,400: raw counts would just rank the groups by size on every event.
+   ========================================================================= */
+const RESO_MEASURES = [
+  {key: 'coverage_lift',
+   label: 'Slice of the event, against its usual slice',
+   note: 'Above 1: this group took a bigger share of this event’s coverage than it takes of coverage generally. This is the measure of which media an event pulled in. It moves when other groups go quiet, which is the point — it is about the shape of the coverage.'},
+  {key: 'effort_lift',
+   label: 'Share of its own output, against usual',
+   note: 'Above 1: a larger part of everything this group published was about this event than is normal for it. Unlike the first measure this one does not move when other groups go quiet, so it is the stricter read of how hard a group leaned in.'},
+  {key: 'audience_lift',
+   label: 'Views per post, against usual',
+   note: 'Above 1: posts about this event drew more views than this group’s matched posts usually draw. This is the audience side of the question — not whether the outlet cared, but whether its readers did. Blank where the group published nothing. View counters were read once at collection time, so treat them as rough.'}
+];
+let resoMeasure = 'coverage_lift';
+
+/* Below this many matched posts a ratio swings on a single post, so the cell is marked.
+   The clearest case in the data: war and military channels published one post about
+   Russia–US contacts resuming, and that one post drew 2.4 times their usual views — which
+   says nothing about anything. */
+const MIN_POSTS_FOR_RATIO = 5;
+
+/* Bands for the two-sided scale. "Stayed out of it" is its own flat colour so that a
+   real zero never looks like a small number. */
+const RESO_BANDS = [
+  {min: 2.0,  max: Infinity, color: 'var(--div-up-2)', cls: 'up',  label: '2× or more'},
+  {min: 1.25, max: 2.0,      color: 'var(--div-up-1)', cls: 'mid', label: '1.25–2×'},
+  {min: 0.8,  max: 1.25,     color: 'var(--div-mid)',  cls: 'mid', label: '0.8–1.25× (as usual)'},
+  {min: 0.5,  max: 0.8,      color: 'var(--div-dn-1)', cls: 'mid', label: '0.5–0.8×'},
+  {min: 0,    max: 0.5,      color: 'var(--div-dn-2)', cls: 'up',  label: 'under 0.5×'}
+];
+const resoBand = v => RESO_BANDS.find(b => v >= b.min && v < b.max) || RESO_BANDS[0];
+
+function resoRow(slug, group) {
+  return DATA.resonance.find(r => r.event_slug === slug && r.media_group === group);
+}
+
+function renderResonance() {
+  const measure = RESO_MEASURES.find(m => m.key === resoMeasure);
+  const events = [...DATA.events].sort((a, b) => a.match_start < b.match_start ? -1 : 1);
+
+  el('reso-intro').textContent =
+    'Rows are media groups, columns are events. Each cell compares that group’s behaviour on that ' +
+    `event with its own average across all ${events.length}, so 1.0 means "exactly as usual for this group".`;
+
+  el('reso-controls').innerHTML = '<span class="lbl">Compare</span>' + RESO_MEASURES.map(m =>
+    `<button class="chip" type="button" data-key="${m.key}" aria-pressed="${m.key === resoMeasure}">${esc(m.label)}</button>`
+  ).join('');
+  el('reso-controls').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    resoMeasure = b.dataset.key;
+    renderResonance();
+  }));
+
+  const cols = `184px repeat(${events.length}, minmax(96px, 1fr))`;
+  let html = `<div class="reso" style="min-width:${184 + events.length * 100}px">`;
+  html += `<div class="reso-row" style="grid-template-columns:${cols}"><div></div>` +
+    events.map(e => `<div class="reso-head">${warningsFor(e).length ? '⚠ ' : ''}${esc(shortName(e.event_slug))}</div>`).join('') +
+    '</div>';
+
+  GROUPS.forEach(group => {
+    html += `<div class="reso-row" style="grid-template-columns:${cols}">
+      <div class="reso-lbl" title="${esc(group)}">${esc(group.replace(' (review needed)', ''))}</div>`;
+    events.forEach(e => {
+      const row = resoRow(e.event_slug, group);
+      const v = row ? row[resoMeasure] : null;
+      if (row && row.matched_posts === 0) {
+        html += `<div class="reso-cell none" style="background:var(--div-none)"
+                   data-e="${esc(e.event_slug)}" data-g="${esc(group)}">stayed out</div>`;
+      } else if (v === null || v === undefined) {
+        html += `<div class="reso-cell none" style="background:var(--div-none)"
+                   data-e="${esc(e.event_slug)}" data-g="${esc(group)}">—</div>`;
+      } else {
+        const band = resoBand(v);
+        // A ratio built on a handful of posts swings wildly on one post either way, so it
+        // is shown but visibly marked as not worth reading.
+        const thin = row.matched_posts < MIN_POSTS_FOR_RATIO ? ' thin' : '';
+        html += `<div class="reso-cell ${band.cls}${thin}" style="background:${band.color}"
+                   title="${thin ? 'only ' + row.matched_posts + ' matched posts — too few for this ratio to mean much' : ''}"
+                   data-e="${esc(e.event_slug)}" data-g="${esc(group)}">${fmt2(v)}×</div>`;
+      }
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+  el('reso-grid').innerHTML = html;
+
+  el('reso-grid').querySelectorAll('.reso-cell').forEach(c => {
+    const row = resoRow(c.dataset.e, c.dataset.g);
+    c.addEventListener('mousemove', ev => showTip(ev, !row ? 'no data' :
+      `<b>${esc(c.dataset.g)}</b><br><span class="k">${esc(shortName(c.dataset.e))}</span><br>
+       <span class="k">Matched posts</span> ${fmt(row.matched_posts)}<br>
+       <span class="k">Slice of this event</span> ${pct(row.share_of_voice)} <span class="k">(usually ${pct(row.baseline_share_of_voice)})</span><br>
+       <span class="k">Per 1,000 own posts</span> ${fmt1(row.matched_posts_per_1000_published)} <span class="k">(usually ${fmt1(row.baseline_per_1000_published)})</span><br>
+       <span class="k">Views per post</span> ${fmt(row.views_per_matched_post)} <span class="k">(usually ${fmt(row.baseline_views_per_post)})</span><br>
+       <span class="k">Share of this event's views</span> ${pct(row.share_of_event_views)}`));
+    c.addEventListener('mouseleave', hideTip);
+    c.addEventListener('click', () => selectEvent(c.dataset.e));
+  });
+
+  el('reso-scale').innerHTML = '<span>Against this group’s usual</span>' +
+    RESO_BANDS.slice().reverse().map(b => `<span><i style="background:${b.color}"></i> ${esc(b.label)}</span>`).join('') +
+    `<span><i style="background:var(--div-none)"></i> published nothing</span>` +
+    `<span class="muted">faded and outlined = fewer than ${MIN_POSTS_FOR_RATIO} matched posts, ratio not worth reading</span>`;
+
+  el('reso-note').innerHTML = esc(measure.note) +
+    ` The average each cell is measured against is taken over these ${events.length} events only, so every event is part of its own baseline — with a set this small read the ratios as indications, not settled scores. Click a cell to open that event.`;
+
+  // Table view, so no value on this grid is reachable only by colour or hover.
+  const head = ['Media group', 'Event', 'Matched posts', 'Slice of event', 'Usual slice',
+    'Slice vs usual', 'Own output vs usual', 'Views per post vs usual', 'Share of event views'];
+  el('reso-table').innerHTML = '<table><thead><tr>' +
+    head.map((h, i) => `<th class="${i > 1 ? 'num' : ''}">${esc(h)}</th>`).join('') +
+    '</tr></thead><tbody>' +
+    GROUPS.flatMap(g => events.map(e => {
+      const r = resoRow(e.event_slug, g);
+      if (!r) return '';
+      return `<tr>
+        <td><span class="tag"><i style="background:${colorOf(g)}"></i>${esc(g)}</span></td>
+        <td>${esc(shortName(e.event_slug))}</td>
+        <td class="num">${fmt(r.matched_posts)}</td>
+        <td class="num">${pct(r.share_of_voice)}</td>
+        <td class="num">${pct(r.baseline_share_of_voice)}</td>
+        <td class="num">${r.matched_posts === 0 ? '—' : fmt2(r.coverage_lift) + '×'}</td>
+        <td class="num">${r.matched_posts === 0 ? '—' : fmt2(r.effort_lift) + '×'}</td>
+        <td class="num">${r.audience_lift === null ? '—' : fmt2(r.audience_lift) + '×'}</td>
+        <td class="num">${pct(r.share_of_event_views)}</td>
+      </tr>`;
+    })).join('') + '</tbody></table>';
+}
+
+/* =========================================================================
+   Event picker table
+   ========================================================================= */
+const GAP_COLOR = {
+  'noticed more than covered': 'var(--warning)',
+  'covered more than noticed': 'var(--s1)',
+  'attention and coverage in line': 'var(--axis)'
+};
+function renderEventTable() {
+  const rows = [...DATA.events].sort((a, b) => b.attention_percentage - a.attention_percentage);
+  const html = `<table><thead><tr>
+      <th>Event</th>
+      <th class="num">Survey share</th>
+      <th class="num">Matched posts</th>
+      <th class="num">Per 1,000 posts published</th>
+      <th class="num">Sources covering</th>
+      <th>Attention against coverage</th>
+    </tr></thead><tbody>` +
+    rows.map(r => `<tr class="pick" data-slug="${esc(r.event_slug)}">
+      <td><span class="ev-name">${warningsFor(r).length ?
+            `<span title="${esc(warningsFor(r).map(w => w.short).join('; '))}" style="color:var(--warning)">⚠ </span>` : ''}${esc(shortName(r.event_slug))}
+          <small>${esc(r.event_name)} · ${r.fom_year} week ${r.fom_week}${
+            warningsFor(r).length ? ' · ⚠ ' + esc(warningsFor(r).map(w => w.short).join('; ')) : ''}</small></span></td>
+      <td class="num">${fmt1(r.attention_percentage)}%</td>
+      <td class="num">${fmt(r.matched_posts)}</td>
+      <td class="num">${fmt1(r.matched_posts_per_1000_published)}</td>
+      <td class="num">${r.sources_covering} <span class="muted">of ${r.sources_active}</span></td>
+      <td><span class="tag"><i style="background:${GAP_COLOR[r.gap_direction] || 'var(--axis)'}"></i>${esc(r.gap_direction)}</span></td>
+    </tr>`).join('') + '</tbody></table>';
+  el('event-table').innerHTML = html;
+  el('event-table').querySelectorAll('tr.pick').forEach(tr =>
+    tr.addEventListener('click', () => selectEvent(tr.dataset.slug)));
+}
+
+/* =========================================================================
+   Event detail
+   ========================================================================= */
+let currentSlug = null;
+let currentMeasure = 'matched_posts';
+let currentGroupFilter = 'all';
+
+const MEASURES = [
+  {key: 'matched_posts', label: 'Matched posts',
+   fmt: fmt, axis: 'Posts matched to this event',
+   note: 'Raw volume. The largest publishers tend to lead this measure simply because they publish more of everything.'},
+  {key: 'matched_posts_per_1000_published', label: 'Per 1,000 posts the group published',
+   fmt: fmt1, axis: 'Matched posts per 1,000 posts published in the window',
+   note: 'The same coverage divided by everything the group published in the window, on any topic. This is the measure that shows which group was most focused on the event rather than simply largest.'},
+  {key: 'source_coverage_rate', label: 'Share of the group’s sources that covered it',
+   fmt: pct, axis: 'Sources with at least one matched post, out of sources publishing',
+   note: 'Breadth inside the group: whether the whole group turned to the event or only one or two of its channels.'},
+  {key: 'views_per_matched_post', label: 'Views per matched post',
+   fmt: fmt, axis: 'Average view counter across the group’s matched posts',
+   note: 'Reach rather than volume. View counters are present on every matched post, but they are collected at one moment in time and are not directly comparable between a television channel and a small channel.'}
+];
+
+function selectEvent(slug) {
+  currentSlug = slug;
+  currentGroupFilter = 'all';
+  currentTerm = null;
+  el('event-table').querySelectorAll('tr.pick').forEach(tr =>
+    tr.classList.toggle('on', tr.dataset.slug === slug));
+  renderEventDetail();
+  el('sec-event').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+function eventRow() { return DATA.events.find(e => e.event_slug === currentSlug); }
+function groupRows() {
+  const rows = DATA.groups.filter(g => g.event_slug === currentSlug);
+  return rows.sort((a, b) => GROUPS.indexOf(a.media_group) - GROUPS.indexOf(b.media_group));
+}
+
+function renderEventDetail() {
+  const e = eventRow();
+  el('ev-title').textContent = shortName(e.event_slug);
+  el('ev-sub').innerHTML =
+    `<b>${esc(e.event_name)}</b> — survey week ${e.fom_week} of ${e.fom_year}. ` +
+    `Posts were searched from ${dayLabel(e.match_start)} to ` +
+    `${dayLabel(new Date(new Date(e.match_end_exclusive).getTime() - 86400000).toISOString().slice(0,10))} ` +
+    `(${e.window_days} days: a few days before the survey week, then ten days after it).`;
+
+  el('ev-build').innerHTML = [
+    ['Retriever', e.retriever === 'qwen3'
+      ? 'Qwen3 embeddings, covering the whole corpus'
+      : 'older archived Cohere embeddings, covering only part of the corpus'],
+    ['Window that could be searched', pct(e.searchable_share_of_window) +
+      ` (${fmt(e.searchable_posts_in_window)} of ${fmt(e.posts_published_in_window)} posts had a vector)`],
+    ['Relevance cut-off', 'rerank score ≥ ' + e.rerank_threshold],
+    ['Candidates scored', fmt(e.candidates_reranked)],
+    ['Relevance of what was kept', 'median ' + fmt2(e.median_relevance_score) +
+      ', lowest ' + fmt2(e.min_relevance_score)],
+    ['Matched set built', String(e.built_at).slice(0, 10)]
+  ].map(([k, v]) => `<span><b>${esc(k)}:</b> ${esc(v)}</span>`).join('');
+
+  const warnings = warningsFor(e);
+  el('ev-warning').innerHTML = warnings.map(w => `
+    <div class="warn-box">
+      <span class="ico" aria-hidden="true">⚠</span>
+      <div><b>${esc(w.short.charAt(0).toUpperCase() + w.short.slice(1))}.</b> ${w.long}
+        <br><br>Comparisons <i>between media groups inside this event</i> are still on the
+        same footing, because every group was searched the same way. It is the comparison
+        with the other events that this warning is about.</div>
+    </div>`).join('');
+
+  let quotes = [];
+  try { quotes = JSON.parse(e.fom_quotes || '[]'); } catch (err) { quotes = []; }
+  el('ev-quotes-card').style.display = quotes.length ? '' : 'none';
+  el('ev-quotes').innerHTML = quotes.map(q => `<div>“${esc(String(q).replace(/^«|»$/g, ''))}”</div>`).join('');
+
+  renderEventTiles(e);
+  renderMeasureControls();
+  renderGroupChart();
+  renderTiming();
+  renderHeatmap();
+  renderGroupTable();
+  renderTerms();
+  renderPostControls();
+  renderPosts();
+}
+
+function renderEventTiles(e) {
+  const gr = groupRows();
+  const silent = gr.filter(g => g.matched_posts === 0);
+  const top = [...gr].sort((a, b) => b.matched_posts - a.matched_posts)[0];
+  const focused = [...gr].filter(g => g.matched_posts > 0)
+    .sort((a, b) => b.matched_posts_per_1000_published - a.matched_posts_per_1000_published)[0];
+  const first = gr.find(g => g.first_mention_rank === 1);
+
+  const tiles = [
+    ['Matched posts', fmt(e.matched_posts),
+     `${e.sources_covering} of ${e.sources_active} publishing sources`],
+    ['Most posts', top.media_group,
+     `${fmt(top.matched_posts)} posts · ${pct(top.share_of_voice)} of all coverage`],
+    ['Most focused on it', focused.media_group,
+     `${fmt1(focused.matched_posts_per_1000_published)} per 1,000 of its own posts`],
+    ['Published first', first ? first.media_group : '—',
+     first ? (first.coverage_lag_hours < 1
+       ? 'within the first hour of the window'
+       : `${fmt(first.coverage_lag_hours)} hours after the window opened`) : ''],
+    ['Busiest day', dayLabel(e.peak_coverage_date),
+     `${fmt(e.peak_coverage_posts)} posts · ${e.days_with_coverage} of ${e.window_days} days had coverage`],
+    ['Groups that published nothing', silent.length ? String(silent.length) : '0',
+     silent.length ? silent.map(s => s.media_group).join(', ') : 'every group covered it']
+  ];
+  el('event-tiles').innerHTML = tiles.map(([l, v, n]) =>
+    `<div class="tile"><div class="label">${esc(l)}</div>
+       <div class="value" style="font-size:${String(v).length > 14 ? '17px' : '27px'}">${esc(String(v))}</div>
+       <div class="note">${esc(n)}</div></div>`).join('');
+}
+
+function renderMeasureControls() {
+  const box = el('measure-controls');
+  box.innerHTML = '<span class="lbl">Measure</span>' + MEASURES.map(mm =>
+    `<button class="chip" type="button" data-key="${mm.key}" aria-pressed="${mm.key === currentMeasure}">${esc(mm.label)}</button>`
+  ).join('');
+  box.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    currentMeasure = b.dataset.key;
+    renderMeasureControls();
+    renderGroupChart();
+  }));
+}
+
+function renderGroupChart() {
+  const svg = el('chart-groups');
+  svg.innerHTML = '';
+  const measure = MEASURES.find(m => m.key === currentMeasure);
+  const rows = [...groupRows()].sort((a, b) => (b[measure.key] ?? -1) - (a[measure.key] ?? -1));
+
+  const rowH = 34, W = svg.clientWidth || 900;
+  const m = {t: 10, r: 96, b: 40, l: 232};
+  const H = m.t + rows.length * rowH + m.b;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('height', H);
+
+  const maxV = Math.max(...rows.map(r => r[measure.key] || 0)) || 1;
+  const plotW = W - m.l - m.r;
+  const x = v => (v / (maxV * 1.02)) * plotW;
+
+  niceTicks(maxV * 1.02, 4).forEach(t => {
+    svg.appendChild(svgEl('line', {class: 'gridline', x1: m.l + x(t), x2: m.l + x(t), y1: m.t, y2: m.t + rows.length * rowH}));
+    // Axis ticks use the same formatter as the values, so a count of posts never
+    // appears as "100.0" and a rate never appears as "0.5".
+    svg.appendChild(svgEl('text', {x: m.l + x(t), y: H - m.b + 18, 'text-anchor': 'middle', class: 'val'},
+      measure.fmt(t)));
+  });
+  svg.appendChild(svgEl('line', {class: 'axisline', x1: m.l, x2: m.l, y1: m.t, y2: m.t + rows.length * rowH}));
+  svg.appendChild(svgEl('text', {x: m.l, y: H - 6, class: 'cat'}, measure.axis));
+
+  rows.forEach((r, i) => {
+    const v = r[measure.key] || 0;
+    const yTop = m.t + i * rowH + 7;
+    const barH = rowH - 16;
+    // 4px rounded data-end, anchored to the baseline at x = m.l.
+    const w = Math.max(v > 0 ? 3 : 0, x(v));
+    svg.appendChild(svgEl('text', {x: m.l - 12, y: yTop + barH / 2 + 4, 'text-anchor': 'end', class: 'cat'},
+      r.media_group.replace(' (review needed)', '')));
+    if (v > 0) {
+      svg.appendChild(svgEl('rect', {
+        x: m.l, y: yTop, width: w, height: barH, rx: 4, class: 'bar',
+        fill: colorOf(r.media_group)
+      }));
+      svg.appendChild(svgEl('text', {x: m.l + w + 9, y: yTop + barH / 2 + 4, class: 'val'}, measure.fmt(v)));
+    } else {
+      svg.appendChild(svgEl('text', {x: m.l + 4, y: yTop + barH / 2 + 4, class: 'val'},
+        'nothing — but published ' + fmt(r.posts_published_in_window) + ' posts that week'));
+    }
+    const hit = svgEl('rect', {x: m.l - 230, y: m.t + i * rowH, width: W - m.l + 230, height: rowH, class: 'hit'});
+    hit.addEventListener('mousemove', ev => showTip(ev,
+      `<b>${esc(r.media_group)}</b><br>
+       <span class="k">Matched posts</span> ${fmt(r.matched_posts)}<br>
+       <span class="k">Share of all coverage</span> ${pct(r.share_of_voice)}<br>
+       <span class="k">Per 1,000 own posts</span> ${fmt1(r.matched_posts_per_1000_published)}<br>
+       <span class="k">Sources covering</span> ${r.sources_covering} of ${r.sources_active}<br>
+       <span class="k">Own posts in window</span> ${fmt(r.posts_published_in_window)}<br>
+       <span class="k">First post after</span> ${r.coverage_lag_hours === null ? '—' : fmt(r.coverage_lag_hours) + ' h'}`));
+    hit.addEventListener('mouseleave', hideTip);
+    hit.style.cursor = 'pointer';
+    hit.addEventListener('click', () => {
+      currentGroupFilter = r.media_group;
+      renderPostControls(); renderPosts();
+      el('post-list').scrollIntoView({behavior: 'smooth', block: 'center'});
+    });
+    svg.appendChild(hit);
+  });
+
+  el('groups-note').textContent = measure.note + ' Click a bar to read that group’s posts.';
+}
+
+function renderTiming() {
+  const svg = el('chart-timing');
+  svg.innerHTML = '';
+  const all = groupRows();
+  const rows = all.filter(r => r.coverage_lag_hours !== null)
+    .sort((a, b) => a.coverage_lag_hours - b.coverage_lag_hours);
+  const silent = all.filter(r => r.coverage_lag_hours === null);
+
+  const rowH = 30, W = svg.clientWidth || 440;
+  const m = {t: 10, r: 58, b: 42, l: 186};
+  const H = m.t + rows.length * rowH + m.b;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('height', H);
+  const maxV = Math.max(...rows.map(r => r.coverage_lag_hours), 1);
+  const plotW = W - m.l - m.r;
+  const x = v => m.l + (v / (maxV * 1.08)) * plotW;
+
+  niceTicks(maxV * 1.08, 4).forEach(t => {
+    svg.appendChild(svgEl('line', {class: 'gridline', x1: x(t), x2: x(t), y1: m.t, y2: m.t + rows.length * rowH}));
+    svg.appendChild(svgEl('text', {x: x(t), y: H - m.b + 18, 'text-anchor': 'middle', class: 'val'}, fmt(t)));
+  });
+  svg.appendChild(svgEl('line', {class: 'axisline', x1: m.l, x2: m.l, y1: m.t, y2: m.t + rows.length * rowH}));
+  svg.appendChild(svgEl('text', {x: Math.max(0, m.l - 150), y: H - 6, class: 'cat'},
+    'Hours from the window opening to the first matched post'));
+
+  rows.forEach((r, i) => {
+    const cy = m.t + i * rowH + rowH / 2;
+    svg.appendChild(svgEl('text', {x: m.l - 12, y: cy + 4, 'text-anchor': 'end', class: 'cat'},
+      r.media_group.replace(' (review needed)', '')));
+    svg.appendChild(svgEl('line', {x1: m.l, x2: x(r.coverage_lag_hours), y1: cy, y2: cy,
+      stroke: 'var(--grid)', 'stroke-width': 2}));
+    svg.appendChild(svgEl('circle', {cx: x(r.coverage_lag_hours), cy, r: 6.5, fill: 'var(--surface-1)'}));
+    svg.appendChild(svgEl('circle', {cx: x(r.coverage_lag_hours), cy, r: 5, fill: colorOf(r.media_group)}));
+    svg.appendChild(svgEl('text', {x: x(r.coverage_lag_hours) + 12, y: cy + 4, class: 'val'}, fmt(r.coverage_lag_hours)));
+    const hit = svgEl('rect', {x: 0, y: m.t + i * rowH, width: W, height: rowH, class: 'hit'});
+    hit.addEventListener('mousemove', ev => showTip(ev,
+      `<b>${esc(r.media_group)}</b><br>
+       <span class="k">First matched post</span> ${esc(String(r.first_matched_at).replace('T', ' ').slice(0, 16))} UTC<br>
+       <span class="k">Hours after window opened</span> ${fmt(r.coverage_lag_hours)}<br>
+       <span class="k">Order among groups</span> ${r.first_mention_rank} of ${rows.length}`));
+    hit.addEventListener('mouseleave', hideTip);
+    svg.appendChild(hit);
+  });
+
+  el('timing-note').innerHTML =
+    'The clock starts when the search window opens, which is the same moment for every group, so these are comparable. ' +
+    (silent.length ? '<br><span class="silent">No matched post at all: ' +
+      esc(silent.map(s => s.media_group).join(', ')) + '.</span>' : '');
+}
+
+/* Sequential bins for the day-by-day grid. Zero has its own neutral step so
+   "nothing published" never looks like "a little published". */
+const BINS = [
+  {min: 1, max: 2, color: 'var(--seq-1)', label: '1–2'},
+  {min: 3, max: 9, color: 'var(--seq-2)', label: '3–9'},
+  {min: 10, max: 24, color: 'var(--seq-3)', label: '10–24'},
+  {min: 25, max: 49, color: 'var(--seq-4)', label: '25–49'},
+  {min: 50, max: Infinity, color: 'var(--seq-5)', label: '50+'}
+];
+const binColor = v => v === 0 ? 'var(--seq-0)' : BINS.find(b => v >= b.min && v <= b.max).color;
+
+function renderHeatmap() {
+  const rows = DATA.daily.filter(d => d.event_slug === currentSlug);
+  const days = [...new Set(rows.map(r => r.coverage_date))].sort();
+  const groups = groupRows().map(g => g.media_group);
+  const byKey = new Map(rows.map(r => [r.media_group + '|' + r.coverage_date, r.matched_posts]));
+
+  const cols = `168px repeat(${days.length}, minmax(14px, 1fr))`;
+  let html = `<div class="hm" style="min-width:${168 + days.length * 18}px">`;
+  // Day-of-month numbers, with the month named on the first column and again wherever
+  // the window crosses into a new month — otherwise "28, 1, 2" reads as a gap.
+  html += `<div class="hm-row" style="grid-template-columns:${cols}"><div></div>` +
+    days.map((d, i) => {
+      const day = new Date(d + 'T00:00:00Z');
+      const newMonth = i === 0 || day.getUTCDate() === 1;
+      return `<div class="hm-day">${newMonth
+        ? day.toLocaleDateString('en-GB', {month: 'short', timeZone: 'UTC'})
+        : day.getUTCDate()}</div>`;
+    }).join('') + '</div>';
+  groups.forEach(g => {
+    html += `<div class="hm-row" style="grid-template-columns:${cols}">
+      <div class="hm-lbl" title="${esc(g)}">${esc(g.replace(' (review needed)', ''))}</div>` +
+      days.map(d => {
+        const v = byKey.get(g + '|' + d) ?? 0;
+        return `<div class="hm-cell" style="background:${binColor(v)}"
+                 data-g="${esc(g)}" data-d="${d}" data-v="${v}"></div>`;
+      }).join('') + '</div>';
+  });
+  html += '</div>';
+  el('heatmap').innerHTML = html;
+
+  el('heatmap').querySelectorAll('.hm-cell').forEach(c => {
+    c.addEventListener('mousemove', ev => showTip(ev,
+      `<b>${esc(c.dataset.g)}</b><br><span class="k">${dayLabel(c.dataset.d)}</span> ` +
+      (c.dataset.v === '0' ? 'no matched posts' : c.dataset.v + ' matched posts')));
+    c.addEventListener('mouseleave', hideTip);
+  });
+
+  el('heat-scale').innerHTML =
+    '<span>Matched posts per day</span>' +
+    `<span><i style="background:var(--seq-0)"></i> 0</span>` +
+    BINS.map(b => `<span><i style="background:${b.color}"></i> ${b.label}</span>`).join('') +
+    '<span class="muted">— the numbers are also in the table below</span>';
+}
+
+function renderGroupTable() {
+  const rows = [...groupRows()].sort((a, b) => b.matched_posts - a.matched_posts);
+  const head = ['Media group', 'Matched posts', 'Share of coverage', 'Per 1,000 own posts',
+    'Sources covering', 'Sources publishing', 'Own posts in window', 'Days with coverage',
+    'First post after (h)', 'Views', 'Views per post', 'Mean relevance score'];
+  el('group-table').innerHTML = `<table><thead><tr>` +
+    head.map((h, i) => `<th class="${i ? 'num' : ''}">${esc(h)}</th>`).join('') +
+    `</tr></thead><tbody>` + rows.map(r => `<tr>
+      <td><span class="tag"><i style="background:${colorOf(r.media_group)}"></i>${esc(r.media_group)}</span></td>
+      <td class="num">${fmt(r.matched_posts)}</td>
+      <td class="num">${pct(r.share_of_voice)}</td>
+      <td class="num">${fmt1(r.matched_posts_per_1000_published)}</td>
+      <td class="num">${r.sources_covering}</td>
+      <td class="num">${r.sources_active}</td>
+      <td class="num">${fmt(r.posts_published_in_window)}</td>
+      <td class="num">${r.days_with_coverage ?? 0}</td>
+      <td class="num">${r.coverage_lag_hours === null ? '—' : fmt(r.coverage_lag_hours)}</td>
+      <td class="num">${r.views_total === null ? '—' : fmt(r.views_total)}</td>
+      <td class="num">${fmt(r.views_per_matched_post)}</td>
+      <td class="num">${fmt2(r.mean_relevance_score)}</td>
+    </tr>`).join('') + '</tbody></table>';
+}
+
+/* =========================================================================
+   Words and phrases that separate the groups
+   ========================================================================= */
+let termType = 'word';
+let currentTerm = null;   // {key, label, group} while a term filters the post list
+
+function renderTerms() {
+  const rows = DATA.terms.filter(t => t.event_slug === currentSlug && t.term_type === termType);
+  const groups = groupRows().filter(g => g.matched_posts > 0).map(g => g.media_group);
+
+  el('terms-intro').innerHTML =
+    'Not the most common words — those are the same for everyone, because they are the name of ' +
+    'the event. These are the words a group used that the other groups covering the same event ' +
+    'did not. The number beside each one is how many of that group’s posts contain it, out of ' +
+    'how many it published.';
+
+  el('terms-controls').innerHTML = '<span class="lbl">Show</span>' +
+    [['word', 'Single words'], ['phrase', 'Two-word phrases']].map(([k, l]) =>
+      `<button class="chip" type="button" data-t="${k}" aria-pressed="${k === termType}">${l}</button>`
+    ).join('');
+  el('terms-controls').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    termType = b.dataset.t;
+    renderTerms();
+  }));
+
+  el('terms-grid').className = 'terms-grid';
+  el('terms-grid').innerHTML = groups.map(g => {
+    const mine = rows.filter(t => t.media_group === g).slice(0, 8);
+    return `<div class="terms-col">
+      <h4><i style="background:${colorOf(g)}"></i>${esc(g.replace(' (review needed)', ''))}</h4>
+      ${mine.length ? mine.map(t => `
+        <button class="term" type="button" data-idx="${DATA.terms.indexOf(t)}"
+                data-label="${esc(t.term_label)}" data-group="${esc(g)}"
+                title="in ${t.posts_with_term} of this group's ${t.group_posts} posts, against ${(100 * (t.share_elsewhere || 0)).toFixed(1)}% of everyone else's">
+          <span class="t">${esc(t.term_label)}</span>
+          <span class="n">${t.posts_with_term}/${t.group_posts}</span>
+        </button>`).join('')
+        : '<div class="term-empty">nothing stood out for this group</div>'}
+    </div>`;
+  }).join('');
+
+  el('terms-grid').querySelectorAll('button.term').forEach(b => b.addEventListener('click', () => {
+    const term = DATA.terms[Number(b.dataset.idx)];
+    currentTerm = {label: term.term_label, group: term.media_group, postKeys: term.post_keys};
+    currentGroupFilter = b.dataset.group;
+    renderPostControls();
+    renderPosts();
+    el('post-list').scrollIntoView({behavior: 'smooth', block: 'start'});
+  }));
+
+  el('terms-note').innerHTML =
+    'Click any word to read the posts it came from. A word is only listed if at least two ' +
+    'channels in the group used it, if no single channel accounts for more than 70% of the ' +
+    'posts carrying it, and if the group used it more in this event than in its coverage of the ' +
+    'other five — those three rules are what keep out sign-offs, subscription pitches and one ' +
+    'channel’s footer copied by its neighbours. Endings are trimmed so that different forms of ' +
+    'a word count together, which is why a listed word sometimes appears in a post in another ' +
+    'form. <b>This is word counting, not an assessment of tone or intent.</b>';
+}
+
+function renderPostControls() {
+  const rows = groupRows().filter(g => g.matched_posts > 0);
+  const box = el('post-controls');
+  box.innerHTML = '<span class="lbl">Group</span>' +
+    `<button class="chip" type="button" data-g="all" aria-pressed="${currentGroupFilter === 'all'}">All groups</button>` +
+    rows.map(r => `<button class="chip swatch" type="button" data-g="${esc(r.media_group)}"
+        aria-pressed="${currentGroupFilter === r.media_group}">
+        <i style="background:${colorOf(r.media_group)}"></i>${esc(r.media_group.replace(' (review needed)', ''))} (${r.matched_posts})</button>`).join('');
+  box.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    currentGroupFilter = b.dataset.g;
+    currentTerm = null;
+    renderPostControls(); renderPosts();
+  }));
+
+  if (currentTerm) {
+    const clear = document.createElement('button');
+    clear.className = 'chip';
+    clear.type = 'button';
+    clear.textContent = '× only posts with “' + currentTerm.label + '”';
+    clear.setAttribute('aria-pressed', 'true');
+    clear.addEventListener('click', () => {
+      currentTerm = null;
+      renderPostControls(); renderPosts();
+    });
+    box.appendChild(clear);
+  }
+}
+
+const POSTS_SHOWN = 25;
+function renderPosts() {
+  let rows = DATA.posts.filter(p => p.event_slug === currentSlug);
+  if (currentGroupFilter !== 'all') rows = rows.filter(p => p.media_group === currentGroupFilter);
+
+  // The exact posts the word count was computed from, carried out of the warehouse rather
+  // than re-derived here. Matching the text again in the browser would give a different
+  // set — for a phrase it would find the two words anywhere in the post instead of next to
+  // each other — and the reader would be shown posts the number was not based on.
+  if (currentTerm) {
+    const keys = new Set(currentTerm.postKeys);
+    rows = rows.filter(p => keys.has(p.source_name + ':' + p.message_id));
+  }
+
+  const total = rows.length;
+  rows = rows.slice(0, POSTS_SHOWN);
+
+  el('post-count').textContent =
+    `Showing the ${rows.length} most relevant of ${total} matched posts` +
+    (currentGroupFilter === 'all' ? '' : ' from ' + currentGroupFilter) +
+    (currentTerm ? ` containing “${currentTerm.label}”` : '') +
+    '. Sorted by the relevance score that let them into the matched set.';
+
+  el('post-list').innerHTML = rows.map((p, i) => `
+    <div class="post">
+      <div class="meta">
+        <span class="src">${esc(p.source_name)}</span>
+        <span class="grp"><i style="background:${colorOf(p.media_group)}"></i>${esc(p.media_group.replace(' (review needed)', ''))}</span>
+        <span class="n">${esc(String(p.published_at).replace('T', ' ').slice(0, 16))} UTC</span>
+        <span class="n">${fmt(p.views)} views</span>
+        <span class="n">${p.forwards === null ? 'forwards not recorded' : fmt(p.forwards) + ' forwards'}</span>
+        <span class="n">relevance ${fmt2(p.rerank_score)}</span>
+        ${p.is_digest ? '<span class="tag">roundup post</span>' : ''}
+        ${p.keyword_match ? '<span class="tag">contains the event keyword</span>' : ''}
+      </div>
+      <div class="body clamped" id="pb${i}">${esc(p.post_text)}</div>
+      <button class="more" type="button" data-i="${i}">Show full post</button>
+    </div>`).join('');
+
+  el('post-list').querySelectorAll('button.more').forEach(b => b.addEventListener('click', () => {
+    const body = el('pb' + b.dataset.i);
+    const clamped = body.classList.toggle('clamped');
+    b.textContent = clamped ? 'Show full post' : 'Show less';
+  }));
+}
+
+/* =========================================================================
+   Footer notes
+   ========================================================================= */
+/* Counts come from the data rather than the prose, so a rebuilt set cannot leave the
+   notes claiming a number that is no longer true. */
+const N_EVENTS = DATA.events.length;
+const N_OTHER_EVENTS = N_EVENTS - 1;
+const N_FLAGGED = DATA.events.filter(e => warningsFor(e).length > 0).length;
+const WORST_SEARCHED = Math.min(...DATA.events.map(e => e.searchable_share_of_window || 0));
+const MISSING_FORWARDS = DATA.posts.filter(p => p.forwards === null).length / DATA.posts.length;
+
+el('caveats').innerHTML = [
+  '<b>A post counts as coverage when a relevance model says so.</b> Candidates are found by embedding similarity over the post summaries, then scored by Cohere rerank-v3.5; anything at or above 0.35 is kept. The score is shown on every post so a reader can judge the weak ones. The average score per group is in the table above — a low average is a warning to read the posts before quoting the count.',
+  N_FLAGGED === 0
+    ? `<b>All ${N_EVENTS} events were built the same way, so their totals can be compared.</b> Each one kept posts at the same relevance score of 0.35, and for each one the search reached at least ${(Math.floor(WORST_SEARCHED * 1000) / 10).toFixed(1)}% of the posts published in its window; the handful left out are posts that carry no summary text to search. The page still checks both of those per event and puts a ⚠ on any event that fails, so a future event built on a different setting cannot slip into the comparison unmarked.`
+    : `<b>${N_FLAGGED} of the ${N_EVENTS} events carry a ⚠.</b> Either it kept posts at a lower relevance score than 0.35, so weaker matches were counted and its total is too high, or its search could not reach the whole window, so its total is too low. The numbers behind each warning are shown next to it. Comparisons between media groups <i>inside</i> a single event are unaffected, since every group was searched the same way.`,
+  '<b>Silence is measured, not assumed.</b> Every group that published anything at all during a window appears in the charts, including groups with zero matched posts. The count of what they did publish comes from the whole corpus, so "published nothing about this" is separated from "was not publishing".',
+  '<b>The media grouping is a draft, and 28 channels were left out on purpose.</b> It is a working analytical grouping, not a settled set of political labels. Of the 84 channels in the corpus, 56 are compared here; the other 28 were reviewed post by post and set aside on 3 August 2026 because they are regional outlets covering one city or oblast, or not news media at all (a serving official\'s own channel, or a personal commentary channel). They are named in configs/media_groups.yaml and are absent from every number on this page, including the denominators.',
+  `<b>${N_EVENTS} events is a small set.</b> The "attention against coverage" comparison ranks events against each other, so with ${N_EVENTS} events it is an ordering, not a stable score. It becomes meaningful as more events are matched.`,
+  '<b>The corpus ends on 2 April 2025.</b> Nothing here describes anything after that date, and every matched event here falls in the first three months of 2025.',
+  `<b>View and forward counters are a snapshot.</b> They were read once when the posts were collected, and the forward count is missing on ${(MISSING_FORWARDS * 100).toFixed(1)}% of the matched posts, so those posts are left out of forward totals rather than counted as zero.`,
+  `<b>Comparing events with each other is the shakiest part of this page.</b> Every ratio in "which events landed with which kinds of media" is measured against an average taken over these ${N_EVENTS} events, so each event helps set the baseline it is then compared against. With ${N_EVENTS} events read them as indications. They get sharper as more events are matched, and they need no new method to do so.`,
+  `<b>The word lists are counting, not interpretation.</b> A word appears only if at least two channels in the group used it, if no single channel accounts for more than 70% of the posts carrying it, and if the group used it more in this event than in its coverage of the other ${N_OTHER_EVENTS}. Those rules exist because the first version returned almost nothing but subscription pitches and channel sign-offs. Endings are trimmed with a rough rule, not a dictionary, so a word occasionally gets cut wrongly. Clicking a word shows exactly the posts its count was computed from.`,
+  '<b>Not in this prototype.</b> A live connection to the warehouse instead of an exported snapshot; the point-in-time-correct group map that would let a source change group across the years; and framing or narrative comparison, which is deliberately out of scope for this phase.'
+].map(t => `<li>${t}</li>`).join('');
+
+/* =========================================================================
+   Boot
+   ========================================================================= */
+renderScatter();
+renderResonance();
+renderEventTable();
+selectEventInitial();
+function selectEventInitial() {
+  currentSlug = [...DATA.events].sort((a, b) => b.matched_posts - a.matched_posts)[0].event_slug;
+  el('event-table').querySelectorAll('tr.pick').forEach(tr =>
+    tr.classList.toggle('on', tr.dataset.slug === currentSlug));
+  renderEventDetail();
+}
+
+let resizeTimer;
+addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    renderScatter(); renderGroupChart(); renderTiming();
+  }, 120);
+});
+</script>
+</body>
+</html>
