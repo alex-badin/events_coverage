@@ -35,13 +35,40 @@ Qwen3 top-3000 recall **95.7% / 94.5%** vs Cohere **95.0% / 91.4%** — a mild b
 ## Method (two steps)
 1. **Cosine retrieval.** Embed the event name + each quote + a combined string (a multi-probe query)
    with the selected retriever; score each pooled message by the **max cosine over probes**
-   (favours recall for short colloquial quotes); keep top-`K` above a cosine floor.
-2. **Rerank.** Cohere **`rerank-v3.5`** scores each candidate against an event query; keep
-   `rerank_score >= threshold`. Always Cohere, regardless of retriever (rerank is embedder-agnostic —
-   it scores query/document text, not the first-stage vectors). Then join media group, flag the
-   keyword anchor, and export.
+   (favours recall for short colloquial quotes); keep everything above a cosine floor. `--top-k`
+   can cap the count but defaults to no cap — see the note on the old cap of 3,000 below.
+2. **Rerank.** Cohere **`rerank-v3.5`** scores each candidate **once per probe**, and each post
+   keeps its best score; keep `rerank_score >= threshold`. Always Cohere, regardless of retriever
+   (rerank is embedder-agnostic — it scores query/document text, not the first-stage vectors).
+   `rerank_probe` records which probe won. Then join media group, flag the keyword anchor, export.
+
+   Until 2026-08-03 this step used **one** query, made by gluing the event name and all the
+   quotes into a single string (`--rerank-mode merged` still reproduces it). Measured over the
+   3,000 candidates of the six pilot events, that glued query scored a post lower than any of
+   its parts and reordered the list (Spearman 0.735–0.923 against the per-probe best). Worst
+   single case found: a post about Russian and US diplomats meeting in Istanbul scored 0.867
+   against the quote «встреча дипмиссий России и США» and 0.327 against the glued query, so it
+   was excluded from «Налаживание контактов между Россией и США». «Рост цен, тарифов» went from
+   0 kept posts to 27 on the same candidates.
 
 ## Findings / gotchas (important)
+- **The old candidate cap of 3,000 was binding, so the counts were reading the cap.** With
+  per-probe reranking, 2,235 of 3,000 candidates cleared the threshold on «Встреча Д. Трампа и
+  В. Зеленского». Removing the cap raised that event from 1,368 kept posts to 3,124. The cap is
+  now off by default; the cosine floor is the only limit.
+- **Per-probe reranking can only add posts, never remove them,** because the glued query is
+  itself one of the probes in near-identical form, so each post's best score cannot be lower
+  than before. Measured: zero posts were dropped on any of the six events. It follows that the
+  change cannot fix a false positive the old method had — it only raises recall.
+- **How much of the growth is real depends on how specific the respondent quotes are.** Read by
+  hand on 2026-08-03, 50 newly added posts per event (`data/interim/rerank_change_hand_labels.py`,
+  which records the labels and the sampling seed): 94% on topic for «Военные действия в Курской
+  области», 74–84% for the four diplomacy and prices events, and **32% for «Авиакатастрофа в
+  Вашингтоне»**. That event's quotes are generic descriptions — «Авиакатастрофа в Америке»,
+  «разбился авиалайнер в США» — and a different US air crash (a medical plane in Philadelphia)
+  happened two days later inside the same window, so most of what was added is a different event
+  of the same kind. Generic quotes plus a same-kind event in the window is the failure pattern
+  to watch for.
 - The `clustering` space has a **high cosine floor** (most unrelated pairs sit ~0.35–0.45), so cosine
   is a *weak* discriminator here — it mainly caps the candidate count, and the **rerank is the real
   precision gate**. Don't interpret raw cosine as relevance.
@@ -75,10 +102,24 @@ and Cohere calls have automatic 429/5xx backoff.
 | `event_<slug>_manifest.json` | event, window, model ids, params, counts (provenance) |
 
 Columns: `rank, source, media_group, message_id, date, is_digest, summary, original_message,
-views, forwards, cosine_max, cosine_probe, rerank_score, keyword_match`.
+views, forwards, cosine_max, cosine_probe, rerank_score, rerank_probe, keyword_match`.
+`cosine_probe` is the probe that found the post in step 1; `rerank_probe` is the probe whose
+score won in step 2. They are often different, and the pair is what makes a post's inclusion
+traceable to a specific respondent phrase.
+
+`scripts/audit_rerank_change.py` lines two builds of the same events up and prints the posts
+they disagree on, in both directions, for reading by hand.
 
 ## Dataset naming in `data/processed/` (which file is which)
 
+- **`event_*_qwen3_perphrase_*` — the current builds (2026-08-03).** Qwen3 retriever, no cap on
+  the candidate count, one rerank query per probe with each post's best score kept. These are the
+  only sets built with all three of those settings. Whether they should replace the earlier ones
+  in the warehouse has not been decided — see the hand-labelled sample above, which found only
+  32% of the newly added posts on topic for «Авиакатастрофа в Вашингтоне».
+- **`event_*_qwen3_*` (no `perphrase`) — built 2026-08-03 earlier the same day.** Qwen3
+  retriever, but still the 3,000-candidate cap and the single glued rerank query. This is what
+  `scripts/load_warehouse.py` currently loads.
 - **New events:** plain `event_<slug>_*`, built with the qwen3 retriever (the default).
 - **Kursk is special — two sets exist side by side.** `event_kursk_2025w11_*` (no suffix) is the
   historical cohere-built set (670 kept, 2026-06-25); **all downstream framing artifacts for Kursk
@@ -102,4 +143,8 @@ _(historical — built with `--retriever cohere`, before qwen3 became the defaul
 ## Caveats
 - Recall is bounded by the cosine top-`K`. Strongly on-event messages have high cosine (0.70+), but
   for guaranteed recall on a geo-named event you can instead rerank the entire keyword set.
-- `configs/media_groups.yaml` is a draft; one kept source is currently `uncategorized`.
+- `configs/media_groups.yaml` is a draft grouping, but no source is unassigned any more. Since
+  2026-08-03 all 84 sources are either in one of the six groups (56 sources) or in the `archived:`
+  block (28 sources, out of scope: regional outlets and channels that are not news media). The
+  builder drops archived sources from the candidate table after reranking and records how many it
+  dropped as `archived_candidates_dropped` in the manifest.

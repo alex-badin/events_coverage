@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-08-03T11:32:51.938295+00:00",
+  "event": {
+    "name": "Встреча Д. Трампа и В. Зеленского в Вашингтоне, её результаты",
+    "year": 2025,
+    "week": 10,
+    "fom_percentage": "12.0",
+    "quotes": [
+      "«Зеленский и Трамп встречались. Разговор не получился»",
+      "«Зеленского выставили из Белого дома»",
+      "«разговор в Овальном кабинете между Трампом и Зеленским»",
+      "«Трамп перестал поставлять оружие Украине и финансировать её»"
+    ]
+  },
+  "window": {
+    "match_start": "2025-02-28",
+    "match_end_exclusive": "2025-03-20",
+    "iso_week": [
+      "2025-03-03",
+      "2025-03-09"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "retriever": "qwen3",
+    "embed_model": "qwen/qwen3-embedding-8b",
+    "embed_input_type": "instruct-query",
+    "embed_dim": 4096,
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": null,
+    "cosine_floor": 0.3,
+    "n_probes": 6,
+    "rerank_mode": "per-probe",
+    "n_rerank_queries": 6,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 48879,
+    "keyword_full_window": 4328,
+    "keyword_embedded_pool": 4328,
+    "candidates": 29067,
+    "kept": 3124,
+    "kept_keyword": 76,
+    "kept_semantic_only": 3048,
+    "keyword_pool_retention": 0.01756007393715342
+  },
+  "outputs": {
+    "dataset_csv": "event_trump_zelensky_2025w10_qwen3_perphrase_dataset.csv",
+    "dataset_jsonl": "event_trump_zelensky_2025w10_qwen3_perphrase_dataset.jsonl",
+    "candidates_csv": "event_trump_zelensky_2025w10_qwen3_perphrase_candidates.csv",
+    "review_sample_csv": "event_trump_zelensky_2025w10_qwen3_perphrase_review_sample.csv"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-08-03T09:16:03.569234+00:00",
+  "event": {
+    "name": "Телефонный разговор В. Путина и Д. Трампа, встреча делегаций России и США в Эр-Рияде",
+    "year": 2025,
+    "week": 8,
+    "fom_percentage": "32.0",
+    "quotes": [
+      "Америка и Россия: переговоры",
+      "обсуждение Трампа и Путина: переговоры телефонные",
+      "будущая встреча Путина и Трампа",
+      "визит Лаврова для подготовки встречи Путина и Трампа",
+      "встреча в Арабских Эмиратах двух делегаций",
+      "дипломатические переговоры с американской группой, встреча Лаврова"
+    ]
+  },
+  "window": {
+    "match_start": "2025-02-14",
+    "match_end_exclusive": "2025-03-06",
+    "iso_week": [
+      "2025-02-17",
+      "2025-02-23"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "retriever": "qwen3",
+    "embed_model": "qwen/qwen3-embedding-8b",
+    "embed_input_type": "instruct-query",
+    "embed_dim": 4096,
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": 3000,
+    "cosine_floor": 0.3,
+    "n_probes": 8,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 46938,
+    "keyword_full_window": 1774,
+    "keyword_embedded_pool": 1774,
+    "candidates": 3000,
+    "kept": 897,
+    "kept_keyword": 14,
+    "kept_semantic_only": 883,
+    "keyword_pool_retention": 0.007891770011273957
+  },
+  "outputs": {
+    "dataset_csv": "event_putin_trump_call_2025w08_qwen3_dataset.csv",
+    "dataset_jsonl": "event_putin_trump_call_2025w08_qwen3_dataset.jsonl",
+    "candidates_csv": "event_putin_trump_call_2025w08_qwen3_candidates.csv",
+    "review_sample_csv": "event_putin_trump_call_2025w08_qwen3_review_sample.csv"
+  }
+}

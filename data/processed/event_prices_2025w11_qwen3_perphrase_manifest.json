@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-08-03T11:22:09.360722+00:00",
+  "event": {
+    "name": "Рост цен, тарифов",
+    "year": 2025,
+    "week": 11,
+    "fom_percentage": "1.0",
+    "quotes": [
+      "«Всё дорожает»",
+      "«повышение цен»",
+      "«рост цен»",
+      "«поднятие квартплаты»"
+    ]
+  },
+  "window": {
+    "match_start": "2025-03-07",
+    "match_end_exclusive": "2025-03-27",
+    "iso_week": [
+      "2025-03-10",
+      "2025-03-16"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "retriever": "qwen3",
+    "embed_model": "qwen/qwen3-embedding-8b",
+    "embed_input_type": "instruct-query",
+    "embed_dim": 4096,
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": null,
+    "cosine_floor": 0.3,
+    "n_probes": 6,
+    "rerank_mode": "per-probe",
+    "n_rerank_queries": 6,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 47380,
+    "keyword_full_window": 4876,
+    "keyword_embedded_pool": 4876,
+    "candidates": 3844,
+    "kept": 27,
+    "kept_keyword": 0,
+    "kept_semantic_only": 27,
+    "keyword_pool_retention": 0.0
+  },
+  "outputs": {
+    "dataset_csv": "event_prices_2025w11_qwen3_perphrase_dataset.csv",
+    "dataset_jsonl": "event_prices_2025w11_qwen3_perphrase_dataset.jsonl",
+    "candidates_csv": "event_prices_2025w11_qwen3_perphrase_candidates.csv",
+    "review_sample_csv": "event_prices_2025w11_qwen3_perphrase_review_sample.csv"
+  }
+}

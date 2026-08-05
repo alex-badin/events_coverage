@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-08-03T09:17:25.485136+00:00",
+  "event": {
+    "name": "Налаживание контактов между Россией и США",
+    "year": 2025,
+    "week": 9,
+    "fom_percentage": "18.0",
+    "quotes": [
+      "«Америка пошла нам навстречу»",
+      "«американо-российские переговоры»",
+      "«беседа между Путиным и Трампом»",
+      "«встреча дипмиссий России и США»",
+      "«встреча Лаврова в Саудовской Аравии»",
+      "«встреча Путина и Трампа планируется»"
+    ]
+  },
+  "window": {
+    "match_start": "2025-02-21",
+    "match_end_exclusive": "2025-03-13",
+    "iso_week": [
+      "2025-02-24",
+      "2025-03-02"
+    ],
+    "days_before": 3,
+    "days_after": 10
+  },
+  "models": {
+    "retriever": "qwen3",
+    "embed_model": "qwen/qwen3-embedding-8b",
+    "embed_input_type": "instruct-query",
+    "embed_dim": 4096,
+    "rerank_model": "rerank-v3.5"
+  },
+  "params": {
+    "top_k": 3000,
+    "cosine_floor": 0.3,
+    "n_probes": 8,
+    "rerank_threshold": 0.35
+  },
+  "counts": {
+    "embedded_pool": 47569,
+    "keyword_full_window": 2891,
+    "keyword_embedded_pool": 2891,
+    "candidates": 3000,
+    "kept": 454,
+    "kept_keyword": 12,
+    "kept_semantic_only": 442,
+    "keyword_pool_retention": 0.0041508128675198895
+  },
+  "outputs": {
+    "dataset_csv": "event_us_russia_contacts_2025w09_qwen3_dataset.csv",
+    "dataset_jsonl": "event_us_russia_contacts_2025w09_qwen3_dataset.jsonl",
+    "candidates_csv": "event_us_russia_contacts_2025w09_qwen3_candidates.csv",
+    "review_sample_csv": "event_us_russia_contacts_2025w09_qwen3_review_sample.csv"
+  }
+}

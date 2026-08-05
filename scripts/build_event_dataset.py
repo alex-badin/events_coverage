@@ -40,6 +40,7 @@ from events_coverage.matching import (  # noqa: E402
     get_cohere_client,
     iso_week_window,
     keyword_match,
+    load_archived_sources,
     load_defaults,
     load_event,
     load_media_groups,
@@ -291,7 +292,8 @@ def build_dataset(args: argparse.Namespace) -> None:
         order, max_sim, best_probe = cosine_topk(
             doc_matrix, query_matrix, top_k=args.top_k, floor=args.cosine_floor
         )
-    print(f"    candidates after top-k={args.top_k} / floor={args.cosine_floor}: {len(order):,}")
+    cap = f"top-k={args.top_k}" if args.top_k else "no cap on candidate count"
+    print(f"    candidates after {cap} / floor={args.cosine_floor}: {len(order):,}")
     print(f"    cosine (all pool) distribution:\n{hist(max_sim, lo=0.0, hi=0.8)}")
 
     # --- Text lookup: qwen3 sidecar records carry no text; the Cohere DB read does ----
@@ -311,12 +313,44 @@ def build_dataset(args: argparse.Namespace) -> None:
         )
 
     # --- Step 2: rerank (always Cohere rerank-v3.5, embedder-agnostic) ---------------
-    rerank_query = f"{event['name']}. " + "; ".join(q.strip('«»" ') for q in event["quotes"])
+    #
+    # One query per probe, keeping each post's best score — NOT one query made by gluing the
+    # event name and all the respondent quotes together. Measured on 2026-08-03 over the
+    # 3,000 candidates of the six pilot events: the glued query scores a post lower than any
+    # of its parts and reorders the list (Spearman 0.735-0.923 against the per-probe best),
+    # so posts unmistakably about the event were dropped. Worst single case: a post about
+    # Russian and US diplomats meeting in Istanbul scored 0.867 against the quote
+    # «встреча дипмиссий России и США» and 0.327 against the glued query, i.e. excluded.
+    # «Рост цен, тарифов» went from 0 kept posts to 27 on the same candidates.
+    #
+    # The cost is one rerank pass per probe instead of one in total, and a mechanically
+    # looser filter: a post now gets len(probes) chances to clear the threshold rather than
+    # one. rerank_best_probe records which probe won, so that looseness is auditable.
     docs = [(r["summary"] or r["original_message"] or "") for r in cand]
-    print(f"\n[3] Reranking {len(docs):,} candidates with {RERANK_MODEL} ...")
     from events_coverage.matching import rerank as cohere_rerank
 
-    rerank_scores = cohere_rerank(client, rerank_query, docs)
+    if args.rerank_mode == "merged":
+        rerank_query = f"{event['name']}. " + "; ".join(q.strip('«»" ') for q in event["quotes"])
+        print(f"\n[3] Reranking {len(docs):,} candidates with {RERANK_MODEL}, one glued query ...")
+        rerank_scores = cohere_rerank(client, rerank_query, docs)
+        rerank_best = np.zeros(len(docs), dtype=np.int64)
+        rerank_queries = [rerank_query]
+    else:
+        rerank_queries = probes
+        print(
+            f"\n[3] Reranking {len(docs):,} candidates with {RERANK_MODEL}, "
+            f"{len(rerank_queries)} separate queries, keeping each post's best ..."
+        )
+        per_query = np.zeros((len(rerank_queries), len(docs)), dtype=np.float32)
+        for i, query in enumerate(rerank_queries):
+            per_query[i] = cohere_rerank(client, query, docs)
+            n_over = int((per_query[i] >= args.rerank_threshold).sum())
+            print(
+                f"    query {i + 1}/{len(rerank_queries)}: max={per_query[i].max():.4f}  "
+                f"at or above {args.rerank_threshold}: {n_over:,}   {query[:60]}"
+            )
+        rerank_scores = per_query.max(axis=0)
+        rerank_best = per_query.argmax(axis=0)
     print(f"    rerank score distribution:\n{hist(rerank_scores, lo=0.0, hi=1.0)}")
 
     # --- Assemble candidate table -----------------------------------------------------
@@ -338,15 +372,27 @@ def build_dataset(args: argparse.Namespace) -> None:
                 "cosine_max": round(float(max_sim[idx]), 4),
                 "cosine_probe": probes[int(best_probe[idx])],
                 "rerank_score": round(float(rerank_scores[j]), 4),
+                "rerank_probe": rerank_queries[int(rerank_best[j])],
                 "keyword_match": bool(keyword_match(rec["summary"], rec["original_message"])),
             }
         )
     df = pd.DataFrame(rows)
 
+    # Drop the sources the study deliberately leaves out (configs/media_groups.yaml,
+    # `archived:` — regional outlets and channels that are not news media). Done here,
+    # after scoring, because retrieval runs remotely over the whole embedded corpus and
+    # cannot filter by source; doing it here keeps the saved dataset in scope.
+    archived = load_archived_sources()
+    n_archived = int(df["source"].isin(archived).sum())
+    if n_archived:
+        df = df[~df["source"].isin(archived)].reset_index(drop=True)
+        print(f"    dropped {n_archived:,} candidates from archived (out-of-scope) sources")
+
     base_counts = {
         "embedded_pool": len(records),
         "keyword_full_window": count_keyword_window(match_start, match_end),
         "keyword_embedded_pool": int(keyword_embedded_pool),
+        "archived_candidates_dropped": n_archived,
     }
     if args.retriever == "qwen3":
         models = {
@@ -363,7 +409,13 @@ def build_dataset(args: argparse.Namespace) -> None:
             "embed_input_type": input_type,
             "rerank_model": RERANK_MODEL,
         }
-    params = {"top_k": args.top_k, "cosine_floor": args.cosine_floor, "n_probes": len(probes)}
+    params = {
+        "top_k": args.top_k,
+        "cosine_floor": args.cosine_floor,
+        "n_probes": len(probes),
+        "rerank_mode": args.rerank_mode,
+        "n_rerank_queries": len(rerank_queries),
+    }
     print("\n[4] Metrics + outputs")
     write_outputs(df, event, win, models, params, base_counts, args)
 
@@ -380,6 +432,14 @@ def rethreshold_from_candidates(args: argparse.Namespace) -> None:
     else:
         df["keyword_match"] = df["keyword_match"].astype(bool)
 
+    # Candidate files saved before 2026-08-03 still contain the sources that are now
+    # archived, so filter here too rather than trusting the file.
+    archived = load_archived_sources()
+    n_archived = int(df["source"].isin(archived).sum())
+    if n_archived:
+        df = df[~df["source"].isin(archived)].reset_index(drop=True)
+        print(f"    dropped {n_archived:,} candidates from archived (out-of-scope) sources")
+
     event = load_event(args.year, args.week, args.event)
     win = resolve_window(args)
     models = {
@@ -387,11 +447,18 @@ def rethreshold_from_candidates(args: argparse.Namespace) -> None:
         "embed_input_type": EMBED_INPUT_TYPE,
         "rerank_model": RERANK_MODEL,
     }
-    params = {"top_k": args.top_k, "cosine_floor": args.cosine_floor, "n_probes": None}
+    params = {
+        "top_k": args.top_k,
+        "cosine_floor": args.cosine_floor,
+        "n_probes": None,
+        "rerank_mode": args.rerank_mode,
+        "n_rerank_queries": None,
+    }
     base_counts = {
         "embedded_pool": None,
         "keyword_full_window": None,
         "keyword_embedded_pool": int(df["keyword_match"].sum()),
+        "archived_candidates_dropped": n_archived,
     }
 
     # Reuse threshold-independent context from the prior manifest when available.
@@ -435,7 +502,21 @@ def main() -> None:
         "beats cohere; rerank stage is unchanged either way)",
     )
     ap.add_argument(
-        "--top-k", type=int, default=3000, help="candidates kept after cosine, fed to rerank"
+        "--top-k",
+        type=int,
+        default=None,
+        help="cap on candidates fed to rerank; default is no cap, only --cosine-floor. The "
+        "old cap of 3000 was binding: with per-probe reranking 2,235 of 3,000 candidates "
+        "cleared the threshold on «Встреча Д. Трампа и В. Зеленского» (measured 2026-08-03), "
+        "so the count was reading the cap rather than the coverage.",
+    )
+    ap.add_argument(
+        "--rerank-mode",
+        choices=["per-probe", "merged"],
+        default="per-probe",
+        help="per-probe: one rerank query per probe, keep each post's best score. merged: the "
+        "older behaviour, one query made by gluing the event name and all quotes together — "
+        "kept only for reproducing earlier builds, see the note at the rerank step.",
     )
     ap.add_argument(
         "--cosine-floor", type=float, default=0.30, help="drop cosine below this before rerank"
