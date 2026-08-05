@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: int_event_messages
+    description: >
+      One matched post seen in the context of one event: the post, the media group that
+      published it, and where it sits inside the event's search window.
+    columns:
+      - name: event_id
+        data_tests: [not_null]
+      - name: media_group
+        description: Group label, never left empty.
+        data_tests: [not_null]
+      - name: hours_from_window_start
+        description: >
+          Hours between the moment the search window opened and the post. The window
+          opens at the same instant for every group, so this is comparable across them.
+        data_tests: [not_null]
+
+  - name: int_event_source_window
+    description: >
+      One row per source per event, covering every source that published anything at all
+      during the event's window — not only the ones that covered the event. Sources with
+      no matched posts appear with a zero, which is what makes silence measurable.
+    columns:
+      - name: event_id
+        data_tests: [not_null]
+      - name: source_name
+        data_tests: [not_null]
+      - name: posts_published_in_window
+        description: All posts that source published in the window, on any topic.
+        data_tests: [not_null]
+      - name: matched_posts
+        description: Posts by that source matched to this event. Zero is a real answer.
+        data_tests: [not_null]
+      - name: covered_event
+        description: Whether the source published anything matched to this event.
+        data_tests: [not_null]
+
+  - name: int_event_tokens
+    description: >
+      One word of one matched post, in the order it appears. The raw material for comparing
+      the vocabulary of different media groups. Splitting the posts into words happens here
+      once, so single words and two-word phrases are built from the same word stream and
+      cannot disagree with each other.
+    columns:
+      - name: message_id
+        data_tests: [not_null]
+      - name: word_position
+        description: >
+          Where the word sits in the post. Needed because a phrase is two words that stood
+          next to each other, which cannot be recovered once the order is lost.
+        data_tests: [not_null]
+      - name: word
+        description: The word as written, lowercased.
+        data_tests: [not_null]
+      - name: word_stem
+        description: >
+          The word with its grammatical ending cut off, so that "Суджа", "Суджи" and "Судже"
+          count as one word. A rough cut, not a dictionary — see macros/russian_stem.sql.
+        data_tests: [not_null]
+      - name: is_stopword
+        description: >
+          Flagged rather than removed. Single-word counting drops these; phrase building
+          needs to know where they were.
+        data_tests: [not_null]

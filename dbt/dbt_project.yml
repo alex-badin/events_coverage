@@ -20,6 +20,13 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+# Project-wide settings that models read with var(). Defined once here so the
+# window is never a bare number buried in a query. These mirror the same two
+# values in configs/project_paths.yaml, which the Python scripts read.
+vars:
+  event_window_days_before: 3
+  event_window_days_after: 10
+
 # Defaults per model folder. A "view" is a saved query re-run on every read;
 # a "table" is written to disk once per dbt run. Cheap intermediate steps stay
 # views; the final tables the dashboard reads are materialised as tables.

@@ -1,0 +1,124 @@
+version: 2
+
+# Declaring the raw tables here lets models refer to them with source('raw', ...)
+# instead of a bare table name. dbt then knows where the chain begins, so the raw
+# tables appear in the documentation and in the dependency picture.
+
+sources:
+  - name: raw
+    schema: raw
+    description: >
+      Untouched copies of the project's source files, loaded by
+      scripts/load_warehouse.py. Nothing here is cleaned or reshaped.
+
+    tables:
+      - name: fom_events
+        description: >
+          The cleaned FOM weekly event table — one row per event per survey week.
+          Source file: fom_events/processed_events/events_table.csv.
+        columns:
+          - name: date
+            description: >
+              NOT a calendar date. It is the year and the week number joined by a
+              dash, for example "2025-11". Use the year and week columns instead.
+          - name: year
+            description: Survey year.
+          - name: week
+            description: ISO week number within the survey year.
+          - name: event
+            description: Event name as published by FOM.
+          - name: description
+            description: >
+              Example quotes from respondents, stored as a Python list written out
+              as text. Empty rows hold the two characters "[]".
+          - name: percentage
+            description: >
+              Share of respondents who named this event, in percent. Missing on a
+              small number of rows.
+
+      - name: event_matches
+        description: >
+          One row per news message matched to an event, stacked from the per-event
+          dataset files in data/processed/. Only the complete, current event datasets
+          are loaded; the list lives in scripts/load_warehouse.py.
+        columns:
+          - name: event_slug
+            description: Short name of the event dataset file, e.g. event_kursk_2025w11_qwen3.
+          - name: event_name
+            description: Event name as published by FOM, copied from the dataset manifest.
+          - name: source
+            description: Channel the message was published in, e.g. tass_agency.
+          - name: message_id
+            description: Message identifier inside its own source. Unique only per source.
+          - name: date
+            description: Publication time in UTC.
+          - name: is_digest
+            description: 1 when the post is a roundup of several stories rather than one story.
+          - name: summary
+            description: Pre-flattened summary of the post. Used for retrieval, not for tone.
+          - name: original_message
+            description: >
+              The post as published. War and military channels store it as a Telegram
+              JSON blob rather than plain text.
+          - name: views
+            description: View counter at collection time.
+          - name: forwards
+            description: Forward counter at collection time. Missing on some rows.
+          - name: cosine_max
+            description: Best similarity between the post and any of the event's query probes.
+          - name: rerank_score
+            description: >
+              Cohere rerank-v3.5 relevance score. This is the gate that decided whether
+              the post counts as coverage of the event.
+          - name: keyword_match
+            description: >
+              Whether the post also contains a plain keyword anchor for the event. A
+              diagnostic only — it was not used to select the matches.
+
+      - name: event_datasets
+        description: >
+          One row per loaded event dataset: how it was built and how many messages it
+          kept, read from the manifest file written by scripts/build_event_dataset.py.
+        columns:
+          - name: event_slug
+            description: Short name of the event dataset file.
+          - name: fom_percentage
+            description: FOM attention share for the event, as text in the manifest.
+          - name: fom_quotes
+            description: Respondent quote examples, as a JSON list.
+          - name: retriever
+            description: Which embedding retriever found the candidates (qwen3 or cohere).
+          - name: rerank_threshold
+            description: Minimum rerank score a candidate needed to be kept.
+          - name: candidates
+            description: How many candidate posts were reranked.
+          - name: kept
+            description: How many posts passed the threshold and became the matched set.
+
+      - name: media_groups
+        description: >
+          The source -> media group map, flattened from configs/media_groups.yaml.
+          A draft analytical grouping, not a final political label set.
+        columns:
+          - name: source
+            description: Channel name.
+            data_tests:
+              - unique
+              - not_null
+          - name: group_label
+            description: Human-readable group name shown in the dashboard.
+          - name: is_grouped
+            description: False for sources still waiting to be assigned to a group.
+
+      - name: source_day_activity
+        description: >
+          Posts per source per calendar day across the whole news corpus. Used as the
+          denominator for coverage: it tells whether a source was publishing at all
+          during an event window.
+        columns:
+          - name: source
+            description: Channel name.
+          - name: activity_date
+            description: Calendar day in UTC.
+          - name: post_count
+            description: Number of posts that source published that day.

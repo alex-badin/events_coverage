@@ -1,0 +1,275 @@
+version: 2
+
+models:
+  - name: event_overview
+    description: >
+      One row per event. Public attention, coverage volume and breadth, timing, reach,
+      and how the matched set was produced. This is the list the dashboard opens with.
+    columns:
+      - name: event_id
+        data_tests:
+          - unique
+          - not_null
+      - name: event_name
+        data_tests: [not_null]
+      - name: attention_percentage
+        description: Share of FOM survey respondents who named this event, in percent.
+      - name: matched_posts
+        description: Number of news posts matched to this event.
+        data_tests: [not_null]
+      - name: sources_covering
+        description: How many sources published at least one matched post.
+      - name: sources_active
+        description: >
+          How many sources published anything at all during the window. The denominator
+          for source_coverage_rate.
+      - name: posts_published_in_window
+        description: >
+          Everything the active sources published in the window, on any topic. The
+          denominator for matched_posts_per_1000_published.
+      - name: matched_posts_per_1000_published
+        description: >
+          Matched posts per thousand posts published in the window. A size-independent
+          measure of how much of the media's attention the event took.
+      - name: peak_coverage_date
+        description: Busiest single day of coverage.
+      - name: median_views_per_post
+        description: Middle value of the view counter across matched posts.
+      - name: posts_with_keyword_anchor
+        description: >
+          How many matched posts also contain a plain keyword for the event. A
+          diagnostic: it was not used to select the matches.
+      - name: rerank_threshold
+        description: Minimum relevance score a post needed to count as coverage.
+      - name: median_relevance_score
+        description: >
+          Middle relevance score across this event's matched posts. Read it next to the
+          cut-off: a median close to the cut-off means the matched set is mostly borderline.
+      - name: standard_relevance_cutoff
+        description: >
+          True when the event kept posts at the standard 0.35 relevance score. False means
+          a lower bar let weaker matches in, so the count is inflated next to the others.
+        data_tests: [not_null]
+      - name: searchable_posts_in_window
+        description: >
+          Posts in the window that had an embedding vector and could therefore be found
+          at all.
+      - name: searchable_share_of_window
+        description: >
+          searchable_posts_in_window divided by posts_published_in_window. Below 1 means
+          part of the window was invisible to the search, so the coverage counts are an
+          undercount and an apparently silent group may simply have been unsearchable.
+
+  - name: event_group_coverage
+    description: >
+      One row per media group per event, for every group that was publishing during the
+      window. Groups that covered nothing are present with zero matched posts.
+    columns:
+      - name: event_id
+        data_tests: [not_null]
+      - name: media_group
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'State agencies'
+                - 'Federal TV and state broadcasters'
+                - 'Pro-government online media'
+                - 'Mainstream business and general media'
+                - 'Independent and exile media'
+                - 'War and military channels'
+      - name: matched_posts
+        description: Posts by this group matched to this event.
+        data_tests: [not_null]
+      - name: covered_event
+        description: Whether this group published anything about the event.
+        data_tests: [not_null]
+      - name: share_of_voice
+        description: This group's matched posts divided by all matched posts for the event.
+      - name: sources_covering
+        description: Sources in this group that published at least one matched post.
+      - name: sources_active
+        description: Sources in this group publishing anything at all during the window.
+        data_tests: [not_null]
+      - name: source_coverage_rate
+        description: sources_covering divided by sources_active.
+      - name: matched_posts_per_1000_published
+        description: >
+          Matched posts per thousand posts this group published in the window. Keeps
+          large publishers from looking most interested just because they post more.
+      - name: coverage_lag_hours
+        description: >
+          Hours from the opening of the search window to this group's first matched post.
+          Null when the group published nothing about the event.
+      - name: first_mention_rank
+        description: 1 for the group that published about the event before all others.
+      - name: mean_relevance_score
+        description: >
+          Average relevance score of this group's matched posts. A low value is a warning
+          to read the posts before quoting the count.
+
+  - name: event_coverage_gaps
+    description: >
+      One row per event, comparing public attention with media coverage. Positions
+      within the loaded event set are compared, not the raw survey percentage against a
+      raw post count, because those are different units. Rough while the event set is
+      small.
+    columns:
+      - name: event_id
+        data_tests:
+          - unique
+          - not_null
+      - name: attention_position
+        description: Where the event sits among the loaded events by survey percentage, 0 to 1.
+      - name: volume_position
+        description: Where the event sits among the loaded events by matched post count, 0 to 1.
+      - name: attention_minus_volume
+        description: >
+          Positive when the public named the event more often than the coverage volume
+          would suggest; negative when coverage ran ahead of public notice.
+      - name: gap_direction
+        description: A readable label for the same comparison.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'noticed more than covered'
+                - 'covered more than noticed'
+                - 'attention and coverage in line'
+      - name: events_ranked
+        description: >
+          How many events the positions were computed over. With a handful of events a
+          position is an ordering, not a stable score.
+
+  - name: event_group_resonance
+    description: >
+      One row per media group per event, built for comparing events with each other rather
+      than looking inside one event. Each ratio compares a group against its own average
+      across all loaded events, so 1.0 means "exactly as usual for this group". Indicative
+      while the event set is small, because every event is part of the average it is
+      compared against.
+    columns:
+      - name: event_id
+        data_tests: [not_null]
+      - name: media_group
+        data_tests: [not_null]
+      - name: baseline_share_of_voice
+        description: The slice of coverage this group takes across all loaded events pooled.
+      - name: coverage_lift
+        description: >
+          This group's slice of this event's coverage, divided by the slice it usually
+          takes. Above 1 means it leaned into this event more than it leans into events
+          generally.
+      - name: effort_lift
+        description: >
+          The same comparison measured against the group's own output instead of against
+          the other groups: matched posts per thousand it published, divided by its usual
+          rate. Unlike coverage_lift this does not move when other groups go quiet.
+      - name: audience_lift
+        description: >
+          Views per matched post for this event, divided by the views this group's matched
+          posts usually get. Null where the group published nothing about the event.
+      - name: share_of_event_views
+        description: Share of all views this event's coverage collected that went to this group.
+      - name: coverage_lift_label
+        description: A readable band for coverage_lift, on the cuts the dashboard colours by.
+        data_tests:
+          - accepted_values:
+              values:
+                - 'much more than usual'
+                - 'more than usual'
+                - 'about as usual'
+                - 'less than usual'
+                - 'much less than usual'
+                - 'stayed out of it'
+
+  - name: event_group_daily
+    description: >
+      One row per media group per day of the event window. Days with no coverage are
+      present as zeros so a timeline does not draw a straight line across a silence.
+    columns:
+      - name: event_id
+        data_tests: [not_null]
+      - name: media_group
+        data_tests: [not_null]
+      - name: coverage_date
+        data_tests: [not_null]
+      - name: matched_posts
+        description: Matched posts by this group on this day. Zero is a real answer.
+        data_tests: [not_null]
+
+  - name: event_group_terms
+    description: >
+      One word or two-word phrase per media group per event, ranked by how much more often
+      this group's posts carry it than everyone else's posts about the same event. This is
+      word counting, not framing analysis: it reports which words appear where and makes no
+      claim about tone or intent. Channel furniture is filtered out — see the comment at the
+      top of the model for what gets removed and why.
+    columns:
+      - name: event_id
+        data_tests: [not_null]
+      - name: media_group
+        data_tests: [not_null]
+      - name: term_type
+        description: Whether the row is a single word or two words that stood next to each other.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['word', 'phrase']
+      - name: term_label
+        description: >
+          The spelling used in most posts. Counting is done on the shortened form in
+          term_key, but a real word is what gets displayed.
+        data_tests: [not_null]
+      - name: posts_with_term
+        description: >
+          How many of this group's posts about this event contain the term. Posts, not
+          uses, so one long post repeating a word cannot look like a group-wide habit.
+        data_tests: [not_null]
+      - name: sources_with_term
+        description: How many channels in the group used it. Never below two by construction.
+      - name: top_source_share_of_term
+        description: >
+          Share of the posts carrying the term that came from its single busiest channel.
+          Capped at 0.7 for groups with three or more covering channels, so one channel's
+          boilerplate spread by reposting cannot pass as a group habit.
+      - name: max_share_within_one_source
+        description: >
+          The largest share of any one channel's posts the term sits on. A diagnostic for
+          checking whether a surprising term is a group habit or one channel's tic.
+      - name: share_in_group
+        description: Share of this group's posts about this event that contain the term.
+        data_tests: [not_null]
+      - name: share_elsewhere
+        description: Share of everyone else's posts about the same event that contain it.
+      - name: distinctiveness
+        description: >
+          How much more often this group uses the term than everyone else, on a doubling
+          scale: 1 means twice as often, 2 means four times, -1 means half as often.
+        data_tests: [not_null]
+      - name: event_specificity
+        description: >
+          The same scale, comparing this event against the group's coverage of the other
+          events. Terms below 0.4 are dropped, which is what removes sign-offs and
+          subscription pitches — they appear at the same rate whatever the story is.
+      - name: distinctiveness_rank
+        description: Rank inside each event, group and term type. 1 is the most distinctive.
+        data_tests: [not_null]
+
+  - name: event_message_detail
+    description: >
+      One row per matched post — the bottom of the drill-down, so a chart can always be
+      read back to the posts behind it.
+    columns:
+      - name: event_id
+        data_tests: [not_null]
+      - name: source_name
+        data_tests: [not_null]
+      - name: rerank_score
+        description: Relevance score that let this post into the matched set.
+        data_tests: [not_null]
+      - name: post_text
+        description: >
+          The post as published. For war and military channels, unpacked out of the
+          Telegram record they store instead of plain text.
+      - name: days_from_window_start
+        description: Days between the window opening and the post.

@@ -1,0 +1,187 @@
+version: 2
+
+models:
+  - name: stg_events
+    description: >
+      One row per FOM weekly event, with the survey week turned into real calendar
+      dates and the search window worked out from them.
+    columns:
+      - name: event_id
+        description: >
+          Fingerprint of year, week and event name. The source table has no identifier
+          of its own, so this is the key every other model joins on.
+        data_tests:
+          - unique
+          - not_null
+      - name: event_name
+        description: Event name as published by FOM, with surrounding spaces removed.
+        data_tests:
+          - not_null
+      - name: fom_year
+        description: Survey year, copied from the source table.
+        data_tests:
+          - not_null
+      - name: fom_week
+        description: ISO week number within the survey year, copied from the source table.
+        data_tests:
+          - not_null
+      - name: attention_percentage
+        description: >
+          Share of survey respondents who named this event, in percent. Missing on four
+          of the 3,687 rows, so no not_null rule here — that would fail on real data.
+      - name: week_start
+        description: Monday of the FOM survey week.
+        data_tests:
+          - not_null
+      - name: match_start
+        description: First day of the search window, a few days before the survey week.
+        data_tests:
+          - not_null
+      - name: match_end_exclusive
+        description: First day after the search window. Not itself included.
+        data_tests:
+          - not_null
+      - name: event_kind
+        description: >
+          What the row actually names. "specific event" is a real event that can be
+          searched for. "survey non-response" is the answer category
+          "Затрудняюсь ответить, нет ответа". "catch-all category" covers the standing
+          buckets FOM reuses every week — "Другие события в России",
+          "Другие события в мире" and "Работа властных структур". The last two kinds are
+          labelled rather than deleted, because their percentages are part of the weekly
+          total and dropping them would silently change what the shares add up to.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['specific event', 'catch-all category', 'survey non-response']
+
+  - name: stg_event_datasets
+    description: >
+      One row per event that has a matched post set, with the settings used to build it:
+      which retriever, which relevance threshold, how many candidates were considered.
+    columns:
+      - name: event_id
+        description: Same key as stg_events.
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_events')
+              field: event_id
+      - name: event_slug
+        description: Short name of the event dataset file.
+        data_tests:
+          - unique
+          - not_null
+      - name: retriever
+        description: Which embedding retriever found the candidate posts.
+        data_tests:
+          - accepted_values:
+              values: ['qwen3', 'cohere']
+      - name: matched_posts_reported
+        description: >
+          Number of posts the build recorded as kept. Includes posts from sources that
+          are now archived, because every loaded dataset was built before the 2026-08-03
+          decision to leave those sources out.
+        data_tests:
+          - not_null
+      - name: archived_posts_excluded
+        description: >
+          Of those kept posts, how many came from a source in the `archived:` list of
+          configs/media_groups.yaml and were therefore dropped at load time.
+        data_tests:
+          - not_null
+      - name: matched_posts_expected
+        description: >
+          matched_posts_reported minus archived_posts_excluded — the count the marts
+          should reproduce. Used as an independent check on the SQL, since this number
+          comes from the Python pipeline's own manifest.
+        data_tests:
+          - not_null
+
+  - name: stg_event_matches
+    description: >
+      One row per news post matched to an event. The row count equals the number of
+      matched posts across all loaded events.
+    columns:
+      - name: event_id
+        description: The event this post was matched to.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_events')
+              field: event_id
+      - name: source_name
+        description: Channel the post was published in.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_media_groups')
+              field: source_name
+      - name: published_at
+        description: Publication time as a plain UTC timestamp.
+        data_tests:
+          - not_null
+      - name: views
+        description: View counter. Present on every matched post.
+        data_tests:
+          - not_null
+      - name: forwards
+        description: >
+          Forward counter. Missing on some posts, so it is left null rather than set to
+          zero, and every later total ignores those posts instead of counting them as
+          having no forwards.
+      - name: rerank_score
+        description: >
+          Relevance score from Cohere rerank-v3.5. This is what decided the post counts
+          as coverage of the event.
+        data_tests:
+          - not_null
+
+  - name: stg_media_groups
+    description: >
+      One row per in-scope news source with the media group it belongs to. A
+      hand-maintained grouping, not a final political label set. The 28 archived sources
+      (out of scope: regional outlets and channels that are not news media) never reach
+      the warehouse; see raw.archived_sources for what was excluded and why.
+    columns:
+      - name: source_name
+        description: Channel name.
+        data_tests:
+          - unique
+          - not_null
+      - name: media_group
+        description: Group label shown in the dashboard.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'State agencies'
+                - 'Federal TV and state broadcasters'
+                - 'Pro-government online media'
+                - 'Mainstream business and general media'
+                - 'Independent and exile media'
+                - 'War and military channels'
+      - name: is_grouped
+        description: >
+          Always true now that archived sources are filtered out before load. Kept as a
+          column so a regression that lets an ungrouped source through is visible.
+
+  - name: stg_source_activity
+    description: >
+      Posts per source per calendar day across the whole news corpus. The denominator
+      that tells apart a source staying silent about an event and a source not
+      publishing at all.
+    columns:
+      - name: source_name
+        description: Channel name.
+        data_tests:
+          - not_null
+      - name: activity_date
+        description: Calendar day in UTC.
+        data_tests:
+          - not_null
+      - name: post_count
+        description: Posts that source published that day.
+        data_tests:
+          - not_null
