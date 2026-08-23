@@ -133,18 +133,17 @@ features for their own sake.
 generic tests (unique / not-null / accepted_values / relationships), and the docs site with the
 model graph.
 
-**Near-term depth (accepted, still on DuckDB):** the parts that turn a practice-level dbt project
-into a real signal; each is tied to a genuine need here.
-- **Incremental models** (a model reprocesses only new rows instead of rebuilding the whole
+**dbt depth items (still on DuckDB):** the parts considered after the first working dbt build.
+- **Incremental models (planned)** (a model reprocesses only new rows instead of rebuilding the whole
   history). Justified by scale — 3.86M messages over 7 years, FOM events arriving week by week;
   coverage models should process only new events / windows.
-- **Snapshots (SCD Type 2)** (dbt keeps a dated history of how a row changed — a type-2 Slowly
-  Changing Dimension). Applied to the `source -> media group` map: `media_groups.yaml` is a draft
-  that will be revised, and real outlets shift alignment across 7 years, so "which group did this
-  source belong to at event time" needs point-in-time-correct grouping, not a current-state join.
-- **Unit tests** (run a model on small hand-made inputs and check the output; dbt >= 1.8).
-  Intended for the metric math (share_of_voice, coverage_lag, window bounds), but the application
-  here is still being designed — concrete example cases are deliberately NOT fixed yet.
+- **Point-in-time group history (deferred until needed).** No source is currently known to have
+  changed analytical group. Keep the present source-to-group map unless a future classification
+  change, or evidence of a historical change, creates a real need for dated records.
+- **Unit tests (implemented)** (run a model on small hand-made inputs and check the output; dbt >= 1.8).
+  Implemented for the event-window date arithmetic and the central group-coverage metrics:
+  share of voice, source coverage, matched posts per 1,000 published, coverage lag and
+  first-mention order. Run them with `cd dbt && ../.venv/bin/dbt test --select 'test_type:unit'`.
 
 **Next stage (planned, not MVP; still local unless noted):**
 - **Seeds** — small reference CSVs loaded as version-controlled tables (`events_table.csv`,

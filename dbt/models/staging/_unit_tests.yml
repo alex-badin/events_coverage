@@ -1,0 +1,29 @@
+version: 2
+
+unit_tests:
+  - name: stg_events_calculates_event_window_dates
+    description: >
+      An event in ISO week 1 of 2025 starts on Monday 2024-12-30. Check that
+      the survey week and the configured three-days-before/ten-days-after
+      matching window cross the calendar-year boundary correctly.
+    model: stg_events
+    given:
+      - input: source('raw', 'fom_events')
+        format: dict
+        rows:
+          - year: 2025
+            week: 1
+            event: Тестовое событие
+            description: Пример ответа
+            percentage: 12.5
+    expect:
+      format: dict
+      rows:
+        - fom_year: 2025
+          fom_week: 1
+          event_name: Тестовое событие
+          week_start: '2024-12-30'
+          week_end: '2025-01-05'
+          match_start: '2024-12-27'
+          match_end_exclusive: '2025-01-16'
+          event_kind: specific event
