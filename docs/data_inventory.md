@@ -54,7 +54,7 @@ exists but is **archived** — kept only for provenance, not used by the current
    - **Vectors:** native 4096-d, float16, L2-normalized.
    - **Format:** a float16 **sidecar**, not stored in the DB — `vectors.f16` (29.36 GB) +
      `index.tsv` + `manifest.json`.
-   - **Location:** on the **Neo** LAN box (`ssh ${NEO_HOST}`) at
+   - **Location:** on the **Neo** LAN box (`ssh $NEO_HOST`, set in `.env`) at
      `C:\emb_test\ec\data\processed\qwen3emb_8b\`. It stays there by design; scoring runs on Neo
      over SSH via [`scripts/remote/neo_qwen_retrieve.py`](../scripts/remote/neo_qwen_retrieve.py)
      (only the small query matrix out and per-doc scores back cross the network — never the 29 GB

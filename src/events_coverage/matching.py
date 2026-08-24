@@ -65,7 +65,7 @@ QWEN_CLUSTER_INSTRUCTION = (
 
 # The sidecar (and the news_slim.db copy) live on Neo, not on this machine — the dataset
 # stays there by design; Neo runs scripts/remote/neo_qwen_retrieve.py to score windows.
-NEO_HOST = os.environ.get("NEO_HOST", "${NEO_HOST}")
+# The ssh target itself is not hard-coded here — see get_neo_host() and .env.example.
 # Not the older C:\emb_test\venv — Windows Smart App Control (enforced on Neo since
 # 2026-07-14) blocks that interpreter outright. numpy_env is a plain `python -m venv`
 # whose python.exe is a copy of the signed original, so it runs; numpy's own compiled
@@ -329,11 +329,31 @@ def load_messages_by_keys(keys, db_path=NEWS_DB, chunk_size=500) -> dict:
     return records
 
 
+def get_neo_host(host: str | None = None) -> str:
+    """Return the ssh target for Neo, loading NEO_HOST from .env if needed.
+
+    Deliberately not hard-coded: the repo is public and this is a machine address.
+    """
+    try:
+        from dotenv import load_dotenv
+
+        load_dotenv(PROJECT_ROOT / ".env")
+    except ImportError:
+        pass
+    value = host or os.environ.get("NEO_HOST")
+    if not value:
+        raise RuntimeError(
+            "NEO_HOST is not set. Copy .env.example to .env and add the ssh target "
+            "(user@host) of the machine holding the Qwen3 sidecar. See docs/neo_box.md."
+        )
+    return value
+
+
 def qwen_retrieve_remote(
     start: date,
     end: date,
     query_matrix: np.ndarray,
-    host: str = NEO_HOST,
+    host: str | None = None,
     top_k=None,
     floor=None,
 ):
@@ -349,6 +369,8 @@ def qwen_retrieve_remote(
     load_messages_by_keys() for that).
     """
     import tempfile
+
+    host = get_neo_host(host)
 
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)

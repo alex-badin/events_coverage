@@ -1,7 +1,7 @@
 # The Neo box
 
-"Neo" is a Windows machine on the local network (`${NEO_HOST}`) that holds the two
-large files this project does not copy to the Mac:
+"Neo" is a Windows machine on the local network that holds the two large files this
+project does not copy to the Mac:
 
 | Path on Neo | Size (bytes, measured 2026-08-03) | What |
 |---|---|---|
@@ -13,6 +13,10 @@ Retrieval runs there rather than here: the Mac sends a handful of query vectors,
 multiplies them against the window and sends back one score per post.
 `src/events_coverage/matching.py` → `qwen_retrieve_remote()` drives it over SSH, running
 `scripts/remote/neo_qwen_retrieve.py` (the copy on Neo lives at `C:\emb_test\ec\`).
+
+The SSH target is `NEO_HOST` in `.env`, as `user@host` — not in the repo, since this one is
+public and that is a machine address. `matching.get_neo_host()` reads it and fails with a
+clear message if it is missing.
 
 ## Which Python to run there, and why it matters
 
@@ -70,7 +74,7 @@ Adding another package later means repeating that: fetch the matching
 ## Checking it still works
 
 ```sh
-ssh ${NEO_HOST} "C:\emb_test\numpy_env\Scripts\python.exe -c \"import numpy;print(numpy.__version__)\""
+ssh "$NEO_HOST" "C:\emb_test\numpy_env\Scripts\python.exe -c \"import numpy;print(numpy.__version__)\""
 ```
 
 If that prints a version, the retrieval path is fine. If it prints a Device Guard or
