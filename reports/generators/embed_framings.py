@@ -4,8 +4,8 @@ Cheap one-off so clustering experiments don't re-hit the API."""
 import json, sys, hashlib
 import numpy as np
 from pathlib import Path
-ROOT=Path("/Users/alexbadin/GitHub/_projects/events_coverage")
-SP=Path("/Users/alexbadin/GitHub/_projects/events_coverage/data/interim/framing_embeddings")
+ROOT=Path(__file__).resolve().parents[2]
+SP=ROOT/"data"/"interim"/"framing_embeddings"
 sys.path.insert(0,str(ROOT))
 from src.events_coverage.framing import get_openai_client
 MODEL="text-embedding-3-large"

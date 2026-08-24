@@ -3,7 +3,7 @@
 For each event: per-group rates, the spread across groups, and a plain verdict."""
 import json, collections, statistics
 from pathlib import Path
-ROOT=Path("/Users/alexbadin/GitHub/_projects/events_coverage")
+ROOT=Path(__file__).resolve().parents[2]
 EVENTS=[("KURSK — war","kursk_2025w11"),
         ("TRUMP–ZELENSKY — diplomacy","trump_zelensky_2025w10"),
         ("PRICE RISES — economic","prices_2025w11")]

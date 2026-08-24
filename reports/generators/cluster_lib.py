@@ -3,7 +3,8 @@ import numpy as np, re, collections
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.metrics import silhouette_score
 from pathlib import Path
-SP=Path("/Users/alexbadin/GitHub/_projects/events_coverage/data/interim/framing_embeddings")
+ROOT=Path(__file__).resolve().parents[2]
+SP=ROOT/"data"/"interim"/"framing_embeddings"
 
 STOP=set("the a an of to in and is are as be by for on with at from that this it its into after over than then so they them their he his her we you your i not no will would can may has have had been being other another more most very also which who whom whose what when where while about between during against within without toward towards amid due both either neither each any all some such only just but or if because presented framing framed event message text reported claims attributed emphasizes emphasizing emphasized side sides".split())
 

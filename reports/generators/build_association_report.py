@@ -3,7 +3,8 @@
 import numpy as np, html
 from pathlib import Path
 import stats_lib as S
-OUT=Path("/Users/alexbadin/GitHub/_projects/events_coverage/reports/association_report.html")
+ROOT=Path(__file__).resolve().parents[2]
+OUT=ROOT/"reports"/"association_report.html"
 EVENT_LBL={"kursk_2025w11":"Kursk / Sudzha","trump_zelensky_2025w10":"Trump–Zelensky in Washington"}
 
 def sig_stars(p): return "***" if p<.001 else "**" if p<.01 else "*" if p<.05 else "ns"

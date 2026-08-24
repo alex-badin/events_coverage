@@ -89,10 +89,10 @@ Embedding value from the final Mac summary database or from collected-message da
 
 ## Quick Checks
 
-Open the dataset:
+Open the dataset (from the project root):
 
 ```sh
-sqlite3 /Users/alexbadin/Documents/Codex/2026-06-04/users-alexbadin-github-projects-ask-media/outputs/ask_media_unified_messages_20260604.db
+sqlite3 news_data/ask_media_unified_messages_20260604.db
 ```
 
 Count rows:

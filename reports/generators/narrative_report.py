@@ -4,8 +4,8 @@ Surfaces Entman's content fields (roles->actors, problem_definition, causal_attr
 treatment) per media group, per event — the complement to the presentational grid."""
 import json, collections, statistics, html
 from pathlib import Path
-ROOT=Path("/Users/alexbadin/GitHub/_projects/events_coverage")
-OUT=Path("/Users/alexbadin/GitHub/_projects/events_coverage/reports/narrative_report.html")
+ROOT=Path(__file__).resolve().parents[2]
+OUT=ROOT/"reports"/"narrative_report.html"
 
 EVENTS=[("Kursk / Sudzha","war · contested","kursk_2025w11"),
         ("Trump–Zelensky in Washington","diplomacy · clash","trump_zelensky_2025w10"),

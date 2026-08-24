@@ -3,8 +3,8 @@
 import numpy as np, collections, html, csv
 from pathlib import Path
 import cluster_lib as C
-ROOT=Path("/Users/alexbadin/GitHub/_projects/events_coverage")
-SP=Path("/Users/alexbadin/GitHub/_projects/events_coverage/data/interim/framing_embeddings")
+ROOT=Path(__file__).resolve().parents[2]
+SP=ROOT/"data"/"interim"/"framing_embeddings"
 OUT=ROOT/"reports"/"cluster_report.html"
 CSVDIR=ROOT/"reports"/"clusters"; CSVDIR.mkdir(parents=True,exist_ok=True)
 SHORT={"Federal TV and state broadcasters":"fedTV","Independent and exile media":"indep","Mainstream business and general media":"biz","War and military channels":"war","State agencies":"state","Pro-government online media":"progov"}

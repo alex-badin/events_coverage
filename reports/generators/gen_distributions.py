@@ -2,8 +2,8 @@
 """Generate an HTML artifact: every framing field's value distribution, by media group, per event."""
 import json, collections, statistics, html
 from pathlib import Path
-ROOT=Path("/Users/alexbadin/GitHub/_projects/events_coverage")
-OUT=Path("/Users/alexbadin/GitHub/_projects/events_coverage/reports/field_distributions.html")
+ROOT=Path(__file__).resolve().parents[2]
+OUT=ROOT/"reports"/"field_distributions.html"
 
 EVENTS=[("Kursk / Sudzha","war","kursk_2025w11"),
         ("Trump–Zelensky in Washington","diplomacy · clash","trump_zelensky_2025w10"),

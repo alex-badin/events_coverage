@@ -3,7 +3,7 @@
 Identical metrics over each event's framing.jsonl — does the schema cover new domains?"""
 import json, collections, sys
 from pathlib import Path
-ROOT=Path("/Users/alexbadin/GitHub/_projects/events_coverage")
+ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT))
 from src.events_coverage import faithfulness as FA
 

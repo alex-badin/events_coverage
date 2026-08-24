@@ -1,7 +1,10 @@
 """Contingency + chi-square/Cramer's V engine for framing dimensions vs media group."""
 import json, collections, numpy as np
+from pathlib import Path
 from scipy.stats import chi2_contingency
 import cluster_lib as C
+
+ROOT=Path(__file__).resolve().parents[2]
 
 SHORT={"Federal TV and state broadcasters":"fedTV","Independent and exile media":"indep","Mainstream business and general media":"biz","War and military channels":"war","State agencies":"state","Pro-government online media":"progov"}
 GORDER=["state","progov","fedTV","biz","war","indep"]
@@ -10,7 +13,7 @@ CONDEMN={"aggressor","occupier","villain","threat","perpetrator","provocateur","
 def rcat(r): return "favourable" if r in APPROVE else "unfavourable" if r in CONDEMN else "victim" if r=="victim" else "neutral"
 
 def load(slug):
-    return [r for r in (json.loads(l) for l in open(f"/Users/alexbadin/GitHub/_projects/events_coverage/data/interim/event_{slug}_framing.jsonl",encoding="utf-8")) if r.get("on_event",True)]
+    return [r for r in (json.loads(l) for l in open(ROOT/f"data/interim/event_{slug}_framing.jsonl",encoding="utf-8")) if r.get("on_event",True)]
 
 def cluster_labels(slug, field):
     """message_id -> cluster id, plus k."""

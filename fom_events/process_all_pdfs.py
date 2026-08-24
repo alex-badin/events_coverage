@@ -9,6 +9,9 @@ import httpx
 import time
 from tqdm import tqdm
 
+# This script and all the files it reads and writes live in fom_events/.
+HERE = Path(__file__).resolve().parent
+
 def process_pdf_link(pdf_url, client, prompt, model):
     """Process a single PDF link and return the extracted content"""
     try:
@@ -55,7 +58,7 @@ def main():
     google_key = os.environ.get("GEMINI_API_KEY")
     
     # Load prompt from YAML file
-    config_path = Path("/Users/alexbadin/GitHub/_projects/topics_extraction/fom_events/config.yaml")
+    config_path = HERE / "config.yaml"
     if config_path.exists():
         with open(config_path, 'r', encoding='utf-8') as f:
             config = yaml.safe_load(f)
@@ -83,10 +86,10 @@ def main():
     client = genai.Client(api_key=google_key)
     
     # Path to the file with PDF links
-    links_file = Path("/Users/alexbadin/GitHub/_projects/topics_extraction/fom_events/downloaded_reports/valid_pdf_links.txt")
+    links_file = HERE / "downloaded_reports" / "valid_pdf_links.txt"
     
     # Path for the output JSON file
-    output_file = Path("/Users/alexbadin/GitHub/_projects/topics_extraction/fom_events/processed_events/processed_events.json")
+    output_file = HERE / "processed_events" / "processed_events.json"
     
     # Check if links file exists
     if not links_file.exists():

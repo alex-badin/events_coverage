@@ -1,6 +1,6 @@
 ---
 name: events-coverage-analytics-report
-description: Evidence-backed analytical reporting workflow for the events_coverage project. Use when Codex is working in /Users/alexbadin/GitHub/_projects/events_coverage and the user asks to summarize, present, compare, report, or revise results from media-coverage, event-matching, framing, narrative, source-group, dashboard, chart, or pilot analysis. Forces Data Analytics build-report, visualize-data, and validate-data rather than prose-only summaries, and prohibits unsupported comparative language.
+description: Evidence-backed analytical reporting workflow for the events_coverage project. Use when working in the events_coverage project and the user asks to summarize, present, compare, report, or revise results from media-coverage, event-matching, framing, narrative, source-group, dashboard, chart, or pilot analysis. Forces Data Analytics build-report, visualize-data, and validate-data rather than prose-only summaries, and prohibits unsupported comparative language.
 ---
 
 # Events Coverage Analytics Report

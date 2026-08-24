@@ -3,8 +3,8 @@
 Shows text_used + entities + full Entman decomposition + evidence, filterable."""
 import json, html
 from pathlib import Path
-ROOT=Path("/Users/alexbadin/GitHub/_projects/events_coverage")
-OUT=Path("/Users/alexbadin/GitHub/_projects/events_coverage/reports/raw_records.html")
+ROOT=Path(__file__).resolve().parents[2]
+OUT=ROOT/"reports"/"raw_records.html"
 SHORT={"Pro-government online media":"Pro-gov","Federal TV and state broadcasters":"Federal TV",
        "Mainstream business and general media":"Business","State agencies":"State agencies",
        "Independent and exile media":"Independent/exile","War and military channels":"War channels"}
