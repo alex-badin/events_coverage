@@ -33,8 +33,8 @@ settings that make its count non-comparable — see the note below.
 
 ## What it shows
 
-Five events, 4,108 matched posts, seven media groups (six named plus one bucket of sources
-that are not assigned to a group yet).
+Five events, 4,075 matched posts from in-scope sources (the 4,108 matched in total, minus 33
+from archived sources), six media groups.
 
 Across all events: survey share against matched post count, and which events the public
 named more often than the media covered.
