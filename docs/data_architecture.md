@@ -1,6 +1,6 @@
 # Data Architecture — Events Coverage
 
-Last updated: 2026-07-25
+Last updated: 2026-08-27
 
 ## Purpose
 
@@ -95,9 +95,12 @@ leftovers are named in the `AGENTS.md` cautions.
 media group's bar on the summary -> a detail view lists that group's individual matched messages
 for the event (date, source, text, views/forwards), optionally a link to the original post.
 
-**Orchestration (Dagster).** Wires [4]->[5]->[6] into one visible asset graph, where nodes
-(Dagster "assets") are the tables and dbt models in a shared dependency graph. Caveat: [2]/[3]
-depend on "Neo" over SSH — those nodes are local and not cloud-portable.
+**Orchestration (Dagster).** The first manual `static_refresh` job now wires [4]->[5]->[6]
+into one visible asset graph. Dagster-native assets represent input validation, the six raw
+tables, and the Metabase snapshot; dbt models and tests are imported from dbt's manifest. The
+dashboard JSON and standalone HTML remain manual working artifacts, outside Dagster. There
+is no schedule or automated acquisition yet. When [2]/[3] enter the graph, they will depend
+on "Neo" over SSH and remain local rather than cloud-portable.
 
 ## Core metrics (MVP)
 
@@ -118,11 +121,14 @@ share, editorial ("от себя") share.
 
 ## Built vs to build
 
-- **Built:** retrieval, rerank, framing, per-event outputs, metrics (currently scattered CSVs in
-  `outputs/`).
-- **To build:** DuckDB load, dbt project (models + tests + docs), Dagster, Metabase dashboard.
-- This is packaging an existing pilot into a tested, orchestrated shell — realistic in 1–2 weeks
-  (closer to 2–3 with Dagster).
+- **Built:** retrieval, rerank, framing, per-event outputs, DuckDB load, dbt project (models,
+  tests and docs), a Metabase dashboard, and the first manual Dagster graph for the static
+  refresh.
+- **To build:** automated post and event acquisition, partitioned text/embedding/matching work,
+  incremental models where scale justifies them, quality gates for fresh batches, and the
+  weekly schedule.
+- The current milestone packages the static pilot into a tested, manually orchestrated shell.
+  The automated pipeline will replace its upstream inputs one boundary at a time.
 
 ## dbt scope & staging
 

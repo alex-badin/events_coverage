@@ -71,13 +71,14 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values:
-                - 'State agencies'
-                - 'Federal TV and state broadcasters'
-                - 'Pro-government online media'
-                - 'Mainstream business and general media'
-                - 'Independent and exile media'
-                - 'War and military channels'
+              arguments:
+                values:
+                  - 'State agencies'
+                  - 'Federal TV and state broadcasters'
+                  - 'Pro-government online media'
+                  - 'Mainstream business and general media'
+                  - 'Independent and exile media'
+                  - 'War and military channels'
       - name: matched_posts
         description: Posts by this group matched to this event.
         data_tests: [not_null]
@@ -131,10 +132,11 @@ models:
         description: A readable label for the same comparison.
         data_tests:
           - accepted_values:
-              values:
-                - 'noticed more than covered'
-                - 'covered more than noticed'
-                - 'attention and coverage in line'
+              arguments:
+                values:
+                  - 'noticed more than covered'
+                  - 'covered more than noticed'
+                  - 'attention and coverage in line'
       - name: events_ranked
         description: >
           How many events the positions were computed over. With a handful of events a
@@ -174,13 +176,14 @@ models:
         description: A readable band for coverage_lift, on the cuts the dashboard colours by.
         data_tests:
           - accepted_values:
-              values:
-                - 'much more than usual'
-                - 'more than usual'
-                - 'about as usual'
-                - 'less than usual'
-                - 'much less than usual'
-                - 'stayed out of it'
+              arguments:
+                values:
+                  - 'much more than usual'
+                  - 'more than usual'
+                  - 'about as usual'
+                  - 'less than usual'
+                  - 'much less than usual'
+                  - 'stayed out of it'
 
   - name: event_group_daily
     description: >
@@ -214,7 +217,8 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['word', 'phrase']
+              arguments:
+                values: ['word', 'phrase']
       - name: term_label
         description: >
           The spelling used in most posts. Counting is done on the shortened form in

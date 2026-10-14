@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+.dagster/
 .venv/
 venv/
 .env
@@ -40,6 +41,8 @@ outputs/dashboard_exports/*
 reports/*
 !reports/.gitkeep
 !reports/README.md
+!reports/backfill_cost_estimate_2026-08-27.md
+!reports/backfill_cost_estimate_2026-08-27.csv
 !reports/generators/
 
 # Local DuckDB warehouse file — rebuilt from raw inputs by scripts/load_warehouse.py.

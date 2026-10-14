@@ -24,7 +24,7 @@ configs/                Source groups, framing instrument, and path defaults.
 docs/                   Data architecture blueprint, pipeline docs, methodology, inventory.
 scripts/                Pipeline entry points and command-line checks.
 scripts/remote/         Script shipped to the Neo LAN box for remote retrieval scoring.
-src/events_coverage/    Reusable project code (matching, framing, faithfulness).
+src/events_coverage/    Reusable project code plus the Dagster definitions.
 data/interim/           Per-message framing/narrative records (jsonl, tracked in git).
 data/processed/         Event datasets + manifests (manifests tracked in git).
 queries/                Reusable SQL query templates.
@@ -32,7 +32,7 @@ outputs/                Generated comparison tables, heatmaps, chart exports.
 reports/                Rendered analyses; reports/generators/ holds the render scripts.
 skills/                 Agent skill for evidence-backed result reports.
 dashboard/              Dashboard app code or dashboard-specific notes (not started).
-tests/                  Test area (empty so far).
+tests/                  Fast code and orchestration-graph tests.
 ```
 
 ## First Check
@@ -92,7 +92,18 @@ uv sync
 
 Copy `.env.example` to `.env` and fill in the API keys (the example file explains which script needs which key). If you are only checking the current data inventory, no external Python packages are needed: `python3 scripts/check_inputs.py`.
 
-## Status (2026-08-02)
+To inspect and manually run the current pipeline in Dagster:
+
+```sh
+mkdir -p .dagster
+DAGSTER_HOME="$PWD/.dagster" uv run dagster dev -m events_coverage.definitions -d src
+```
+
+The local interface shows the Python and dbt work as one asset graph. Read
+[docs/dagster.md](docs/dagster.md) before the first materialization; it explains the concepts,
+the current job, and the path toward weekly updates.
+
+## Status (2026-08-27)
 
 **The analytical pilot is done and the data layer around it is largely built.** The blueprint,
 including the measured sizing and the staged dbt scope, is
@@ -111,8 +122,12 @@ Built so far:
   [dashboard/README.md](dashboard/README.md).
 - **Metabase** — Docker setup plus a script that provisions the connection, the questions and the
   dashboard through Metabase's own interface; see [metabase/README.md](metabase/README.md).
+- **Dagster, first milestone** — a manual `static_refresh` asset graph validates the static
+  inputs, loads DuckDB, runs dbt, and publishes the Metabase snapshot. The dashboard JSON and
+  standalone HTML remain manual working artifacts; see [docs/dagster.md](docs/dagster.md).
 
-Not built: Dagster orchestration.
+Not built: automated post and event downloads, time-partitioned processing, a weekly Dagster
+schedule, or incremental dbt models.
 
 What the pilot produced: 16 event dataset files covering 10 distinct events, of which 5 are complete
 and current with 4,108 matched messages between them; framing extracted for six events (all in the

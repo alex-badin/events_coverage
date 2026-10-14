@@ -9,11 +9,16 @@ features — resisting scope growth is the point, not a constraint. And Alex is 
 and Dagster here: explain what a step does and why before doing it, and hand over the short
 commands to run rather than running everything.
 
+Before adding any dependency, build system, framework, or configuration, first explain what
+it is, why the current task needs it, what the simpler alternative is, and whether it can be
+postponed. Do not add it before giving that explanation.
+
 ## Current phase — coverage metrics through a local warehouse
 
-Built: DuckDB warehouse, dbt (15 models, 90 data tests, 2 unit tests), Metabase, and a
-standalone HTML dashboard. Not built: Dagster and incremental models. A dated history of
-the source-to-group map is deferred — no source is known to have changed group.
+Built: DuckDB warehouse, dbt (15 models, 90 data tests, 2 unit tests), Metabase, a standalone
+HTML dashboard, and the first manual Dagster graph from static inputs through dbt to the
+Metabase snapshot. Not built: automated ingestion, a weekly schedule, or incremental models.
+A dated history of the source-to-group map is deferred — no source is known to have changed group.
 Blueprint: `docs/data_architecture.md`.
 
 Framing and narrative extraction are **out of scope for this phase**. The pipeline and its
@@ -34,6 +39,10 @@ API keys go in `.env`; `.env.example` says which script needs which.
 
 DuckDB allows one writer at a time — close any open connection to the warehouse file before
 running dbt, or the run fails on a lock.
+
+`prepare_if_dev()` refreshes `dbt/target/manifest.json` only under `dagster dev`. After
+editing dbt files, run `dbt parse` before `uv run pytest` or `dagster job execute`, or they
+read the old manifest.
 
 ## Layout
 

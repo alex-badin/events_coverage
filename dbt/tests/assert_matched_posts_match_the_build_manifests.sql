@@ -11,6 +11,9 @@
 -- count still includes their posts; the loader counts those posts per event and the
 -- difference must land on the nose.
 
+-- The test reads two models, so Dagster needs to be told which one to attach it to.
+{{ config(meta={'dagster': {'ref': {'name': 'event_overview'}}}) }}
+
 with reported as (
 
     select event_id, matched_posts_expected
