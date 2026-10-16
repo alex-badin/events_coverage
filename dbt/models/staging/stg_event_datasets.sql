@@ -44,6 +44,9 @@ select
     -- Posts in the window that had an embedding vector, and so could be found at all.
     -- The current Qwen3 vectors cover every post; the older archived Cohere vectors
     -- covered only part of the corpus, which is why this number matters.
-    embedded_pool                           as searchable_posts_in_window
+    embedded_pool                           as searchable_posts_in_window,
+    -- Everything published in the window by every source in the corpus, archived ones
+    -- included — the same sources the search pool above was drawn from.
+    posts_in_window_all_sources
 
 from source

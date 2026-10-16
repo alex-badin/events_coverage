@@ -19,6 +19,10 @@ raw.event_matches      One row per news message matched to an event, for the eve
 raw.event_datasets     One row per loaded event dataset: the run settings and counts
                        recorded in its manifest file (which retriever, which
                        thresholds, how many messages were kept).
+raw.empty_event_searches  One row per event that was searched on the current settings
+                       but kept no post (EMPTY_EVENT_SLUGS below). Without it the
+                       dashboard could only call such an event "not measured", which
+                       would be false: it was searched, and nothing passed the cut-off.
 raw.media_groups       The source -> media group map from configs/media_groups.yaml.
                        In-scope sources only: the 56 that belong to a group.
 raw.archived_sources   The sources deliberately left out of the study, with the reason.
@@ -79,6 +83,13 @@ EVENT_SLUGS = [
     "event_putin_trump_call_2025w08_qwen3",
     "event_trump_zelensky_2025w10_qwen3",
     "event_us_russia_contacts_2025w09_qwen3",
+]
+
+# Events searched on the current settings whose matched set is empty: no candidate reached
+# the 0.35 relevance cut-off. They have no posts to load, only the record that the search
+# ran, which the dashboard needs to tell "searched, nothing found" from "never searched".
+EMPTY_EVENT_SLUGS = [
+    "event_prices_2025w11_qwen3",
 ]
 
 # Columns kept from each event dataset CSV. The heavy text stays: it is only a few
@@ -180,6 +191,27 @@ def load_event_matches(con: duckdb.DuckDBPyConnection) -> None:
     print(f"    archived sources excluded: {dropped:,} matched posts")
 
 
+def corpus_posts_per_day(con: duckdb.DuckDBPyConnection) -> None:
+    """Posts per day across the whole corpus, archived sources included, as a temp table.
+
+    The matching run's search pool (`embedded_pool` in each manifest) covers every source in
+    the corpus, the archived ones too. Its denominator must count the same sources, or the
+    searchable share of a window comes out above 1.
+    """
+    require_readable(NEWS_SQLITE)
+    con.execute("install sqlite")
+    con.execute("load sqlite")
+    con.execute(
+        f"""
+        create or replace temp table corpus_day_posts as
+        select try_cast(substr(date, 1, 10) as date) as day, count(*) as posts
+        from sqlite_scan('{NEWS_SQLITE.as_posix()}', 'unified_messages')
+        where date is not null
+        group by 1
+        """
+    )
+
+
 def load_event_datasets(con: duckdb.DuckDBPyConnection) -> None:
     """Record how each event dataset was built, one row per event.
 
@@ -188,6 +220,7 @@ def load_event_datasets(con: duckdb.DuckDBPyConnection) -> None:
     candidate pool was. Keeping them in the warehouse means the dashboard can show
     the provenance of a number instead of asking the reader to trust it.
     """
+    corpus_posts_per_day(con)
     rows = []
     for slug in EVENT_SLUGS:
         manifest = json.loads(
@@ -204,6 +237,10 @@ def load_event_datasets(con: duckdb.DuckDBPyConnection) -> None:
         ).fetchone()[0]
         event = manifest["event"]
         window = manifest["window"]
+        posts_in_window_all_sources = con.execute(
+            "select sum(posts) from corpus_day_posts where day >= ? and day < ?",
+            [window["match_start"], window["match_end_exclusive"]],
+        ).fetchone()[0]
         models = manifest["models"]
         params = manifest["params"]
         counts = manifest["counts"]
@@ -231,6 +268,9 @@ def load_event_datasets(con: duckdb.DuckDBPyConnection) -> None:
                 # number of posts actually published in the window, the coverage counts
                 # are an undercount and a silent group may just be an unsearchable one.
                 "embedded_pool": counts.get("embedded_pool"),
+                # Everything published in the window by every source in the corpus,
+                # archived ones included: the same set of sources the pool above counts.
+                "posts_in_window_all_sources": posts_in_window_all_sources,
             }
         )
 
@@ -240,6 +280,39 @@ def load_event_datasets(con: duckdb.DuckDBPyConnection) -> None:
         f"select * from event_datasets_df"
     )
     con.unregister("event_datasets_df")
+
+
+def load_empty_event_searches(con: duckdb.DuckDBPyConnection) -> None:
+    """Record the searches that ran on the current settings and kept no post."""
+    rows = []
+    for slug in EMPTY_EVENT_SLUGS:
+        manifest_json = PROCESSED_DIR / f"{slug}_manifest.json"
+        require_readable(manifest_json)
+        manifest = json.loads(manifest_json.read_text(encoding="utf-8"))
+        counts = manifest["counts"]
+        if counts.get("kept"):
+            raise ValueError(f"{slug} kept {counts['kept']} posts; load it through EVENT_SLUGS instead.")
+        rows.append(
+            {
+                "event_slug": slug,
+                "event_name": manifest["event"]["name"],
+                "fom_year": manifest["event"]["year"],
+                "fom_week": manifest["event"]["week"],
+                "built_at": manifest.get("generated_at"),
+                "retriever": manifest["models"].get("retriever"),
+                "rerank_model": manifest["models"].get("rerank_model"),
+                "rerank_threshold": manifest["params"].get("rerank_threshold"),
+                "candidates": counts.get("candidates"),
+                "kept": counts.get("kept"),
+            }
+        )
+
+    con.register("empty_event_searches_df", _as_relation(con, rows))
+    con.execute(
+        f"create or replace table {RAW_SCHEMA}.empty_event_searches as "
+        f"select * from empty_event_searches_df"
+    )
+    con.unregister("empty_event_searches_df")
 
 
 def load_media_groups(con: duckdb.DuckDBPyConnection) -> None:
@@ -373,6 +446,7 @@ def main() -> None:
             load_fom_events(con)
             load_event_matches(con)
             load_event_datasets(con)
+            load_empty_event_searches(con)
             load_media_groups(con)
             load_archived_sources_table(con)
             load_source_day_activity(con)

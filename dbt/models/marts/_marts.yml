@@ -56,9 +56,12 @@ models:
           at all.
       - name: searchable_share_of_window
         description: >
-          searchable_posts_in_window divided by posts_published_in_window. Below 1 means
-          part of the window was invisible to the search, so the coverage counts are an
-          undercount and an apparently silent group may simply have been unsearchable.
+          searchable_posts_in_window divided by everything published in the window by every
+          source in the corpus, archived ones included, since the search pool was drawn from
+          all of them. Below 1 means part of the window was invisible to the search, so the
+          coverage counts are an undercount and an apparently silent group may simply have
+          been unsearchable.
+        data_tests: [not_null]
 
   - name: event_group_coverage
     description: >
@@ -277,3 +280,76 @@ models:
           Telegram record they store instead of plain text.
       - name: days_from_window_start
         description: Days between the window opening and the post.
+
+  - name: week_events
+    description: >
+      One row per line of a FOM weekly survey list — all of them, including catch-all
+      categories and the non-response line — with the event's theme and whether its
+      coverage has been measured. The week view and the theme tables read this.
+    columns:
+      - name: event_id
+        data_tests: [unique, not_null]
+      - name: rank_in_week
+        description: Position among that week's specific events by share. Empty for other rows.
+      - name: coverage_status
+        description: >
+          'measured' (a matched post set with posts), 'no post passed the cut-off' (searched,
+          but nothing reached the relevance bar — a search result, not silence) or
+          'not measured' (no matched set built yet; most events).
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['measured', 'not measured', 'no post passed the cut-off']
+      - name: event_label_en
+        description: Short English name, hand-written in seeds/event_labels_en.csv for measured events.
+
+  - name: survey_weeks
+    description: >
+      One row per calendar week from the first survey week to the last — the dashboard's
+      time axis. has_survey is false for the weeks FOM published no list, which the page
+      shows as gaps rather than as weeks in which nothing happened.
+    columns:
+      - name: week_start
+        description: Monday of the week.
+        data_tests: [unique, not_null]
+      - name: has_survey
+        data_tests: [not_null]
+      - name: n_measured_events
+        description: Events of that week with measured coverage.
+        data_tests: [not_null]
+
+  - name: theme_week_attention
+    description: >
+      One row per theme per survey week in which the theme had at least one event.
+      attention_sum adds the shares of the theme's events that week. It is not a share of
+      people — a respondent who names two events of one theme is counted twice — so the
+      page calls it "mentions per 100 respondents".
+    columns:
+      - name: theme_id
+        data_tests: [not_null]
+      - name: attention_sum
+        data_tests: [not_null]
+
+  - name: theme_group_coverage
+    description: >
+      Coverage of a whole theme, area of news ("umbrella") or of everything, per media
+      group, over every measured event in it. A post matched to two events counts once,
+      and the denominator is what the group published over the union of the events' window
+      days, each day once — so a scope with a single measured event gives exactly that
+      event's numbers. Only scopes with at least one measured event appear.
+    columns:
+      - name: scope_type
+        description: "'theme', 'umbrella' or 'all'."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['theme', 'umbrella', 'all']
+      - name: distinct_matched_posts
+        description: Matched posts in the scope from this group, each post once.
+        data_tests: [not_null]
+      - name: posts_published_in_union_window
+        description: Everything the group published on the days the scope's windows cover.
+      - name: matched_posts_per_1000_published
+        description: distinct_matched_posts per 1,000 posts_published_in_union_window.

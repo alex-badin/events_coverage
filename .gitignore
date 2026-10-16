@@ -43,6 +43,7 @@ reports/*
 !reports/README.md
 !reports/backfill_cost_estimate_2026-08-27.md
 !reports/backfill_cost_estimate_2026-08-27.csv
+!reports/theme_assembly_check_2026-10-15.md
 !reports/generators/
 
 # Local DuckDB warehouse file — rebuilt from raw inputs by scripts/load_warehouse.py.

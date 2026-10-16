@@ -64,3 +64,26 @@ models:
           Flagged rather than removed. Single-word counting drops these; phrase building
           needs to know where they were.
         data_tests: [not_null]
+
+  - name: int_events_with_themes
+    description: >
+      Every FOM survey row with the cross-week theme of its event, from the two theme
+      seeds. Specific events get a theme; catch-all categories and the non-response line
+      do not, because they are not subjects.
+    columns:
+      - name: event_id
+        data_tests: [unique, not_null]
+      - name: theme_id
+        description: >
+          The subject the event is mainly about. Empty for rows that are not specific
+          events, and for a specific event whose wording has not been labelled yet.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('fom_themes')
+                field: theme_id
+          - not_null:
+              name: every_specific_event_has_a_theme
+              config:
+                where: "event_kind = 'specific event'"
+                severity: warn

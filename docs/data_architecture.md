@@ -87,6 +87,10 @@ leftovers are named in the `AGENTS.md` cautions.
   event" (message x event x media group x views/forwards).
 - **marts:** `event_group_coverage` (grain: event x media group), `event_coverage_gaps`
   (grain: event — FOM attention % vs coverage volume), opt. `event_group_framing_shares`.
+  For the many-weeks views: `week_events` (every survey row with its theme and coverage status),
+  `survey_weeks` (the calendar), `theme_week_attention` (theme x week) and `theme_group_coverage`
+  (theme or area x media group, each post counted once). Themes come from seeds; see
+  `dbt/seeds/README.md`.
 - **tests:** unique (event, source, message_id); not-null on keys; `accepted_values` on media
   group (only labels from `media_groups.yaml`); `relationships` (event_id exists in `stg_events`).
 - **docs:** model dependency graph (dbt lineage) + column descriptions.
@@ -96,7 +100,7 @@ media group's bar on the summary -> a detail view lists that group's individual 
 for the event (date, source, text, views/forwards), optionally a link to the original post.
 
 **Orchestration (Dagster).** The first manual `static_refresh` job now wires [4]->[5]->[6]
-into one visible asset graph. Dagster-native assets represent input validation, the six raw
+into one visible asset graph. Dagster-native assets represent input validation, the raw
 tables, and the Metabase snapshot; dbt models and tests are imported from dbt's manifest. The
 dashboard JSON and standalone HTML remain manual working artifacts, outside Dagster. There
 is no schedule or automated acquisition yet. When [2]/[3] enter the graph, they will depend
@@ -122,8 +126,9 @@ share, editorial ("от себя") share.
 ## Built vs to build
 
 - **Built:** retrieval, rerank, framing, per-event outputs, DuckDB load, dbt project (models,
-  tests and docs), a Metabase dashboard, and the first manual Dagster graph for the static
-  refresh.
+  tests and docs), cross-week themes for every FOM event, a Metabase dashboard, a standalone
+  dashboard with an all-weeks overview and a per-week view, and the first manual Dagster graph
+  for the static refresh.
 - **To build:** automated post and event acquisition, partitioned text/embedding/matching work,
   incremental models where scale justifies them, quality gates for fresh batches, and the
   weekly schedule.

@@ -1,0 +1,972 @@
+{
+ "umbrellas": [
+  {
+   "umbrella_id": "war",
+   "label_en": "War in Ukraine",
+   "label_ru": "Война на Украине",
+   "definition": "The Russia–Ukraine conflict from the Donbas tension before 24 Feb 2022 through the full-scale war: fighting in Ukraine, attacks and incursions on Russian territory, mobilisation, the annexed regions, Western weapons for Ukraine and the Wagner mutiny. As an umbrella-level series it runs without a break: 236 of the 248 survey weeks."
+  },
+  {
+   "umbrella_id": "world",
+   "label_en": "Russia and the world",
+   "label_ru": "Россия и мир",
+   "definition": "Russia's relations with other states and news from abroad outside the Ukraine war: relations and talks with the US and the West, sanctions, nuclear threat and weapons, US politics, the Middle East, ex-Soviet neighbours, summits and non-Western partners, and one-off world news."
+  },
+  {
+   "umbrella_id": "politics",
+   "label_en": "Russian domestic politics",
+   "label_ru": "Внутренняя политика",
+   "definition": "Power and politics inside Russia: Putin's public activity and set pieces, elections, the 2020 constitution vote and the government, corruption cases, Navalny, protests and political arrests, internet blocking."
+  },
+  {
+   "umbrella_id": "economy",
+   "label_en": "Economy and living standards",
+   "label_ru": "Экономика и уровень жизни",
+   "definition": "Money in people's lives and the state's main income: prices, inflation, the ruble and the key rate; pensions, wages and benefits; oil, gas and pipelines."
+  },
+  {
+   "umbrella_id": "health",
+   "label_en": "COVID-19 and health",
+   "label_ru": "Коронавирус и здоровье",
+   "definition": "The COVID-19 epidemic 2020–2022 (spread, healthcare, vaccines, lockdowns and restrictions) and the few other health stories."
+  },
+  {
+   "umbrella_id": "incidents",
+   "label_en": "Disasters, accidents and crime",
+   "label_ru": "Происшествия, катастрофы, преступность",
+   "definition": "Unplanned harmful events: natural disasters and accidents in Russia, disasters abroad, crime, attacks on schools, terror attacks and targeted killings. War strikes on Russia are not here; they sit under war."
+  },
+  {
+   "umbrella_id": "society",
+   "label_en": "Society, culture and sport",
+   "label_ru": "Общество, культура, спорт",
+   "definition": "Everyday public life: holidays, Victory Day and WWII memory, sport, deaths of famous people, schools, migrants, and other social or cultural news."
+  }
+ ],
+ "themes": [
+  {
+   "theme_id": "ukraine_before_2022",
+   "umbrella_id": "war",
+   "label_en": "Ukraine and Donbas before the full-scale war",
+   "label_ru": "Украина и Донбасс до 24 февраля 2022",
+   "definition": "Events in and around Ukraine up to 2022-W07: FOM's standing rubric «События на Украине» and its variants, the Donbas conflict, Ukrainian politics and Zelensky, the 2021 and winter-2021/22 military build-up and fear of a Russia–Ukraine war, the Feb-2022 evacuation of DNR/LNR residents to Russia.",
+   "boundary_notes": "Ends at 2022-W07; from 2022-W09 fighting goes to war_frontline. Recognition of DNR/LNR («Признание Россией независимости ДНР и ЛНР», 2022-W09) goes to annexed_territories. The Jan–Feb 2022 Russia–NATO–US security talks go to west_relations although they were about Ukraine. A name led by «События на Украине» that adds a detail stays here (Kharkiv military plane crash «События на Украине, катастрофа самолета под Харьковом»; Zelensky's 2021 US visit «События на Украине, визит В. Зеленского в США»). Russia's ECHR claim against Ukraine («Подача Россией иска против Украины в Европейский суд по правам человека») goes here. If «События на Украине» appears after 2022-W08 in new data, it goes to war_frontline.",
+   "active_period": "2020-W02..2022-W07 (9 names, 91 event-weeks; 89 of the 101 pre-invasion survey weeks)",
+   "example_names": [
+    "События на Украине",
+    "События на Украине, катастрофа самолета под Харьковом",
+    "Обострение обстановки на Украине",
+    "События на Украине, обострение военной напряженности",
+    "События на Украине, визит В. Зеленского в США",
+    "События на Украине, угроза российско-украинского военного конфликта",
+    "События на Украине, опасения российско-украинского военного конфликта",
+    "Беженцы из ДНР и ЛНР в России"
+   ]
+  },
+  {
+   "theme_id": "war_frontline",
+   "umbrella_id": "war",
+   "label_en": "Fighting in Ukraine and the war overall",
+   "label_ru": "Ход СВО и боевые действия на Украине",
+   "definition": "FOM's standing rubric on the war as a whole in every wording («Военная операция России на Украине» … «СВО в целом, успехи российской армии»), named battles, advances and retreats (cruiser Moskva, Kharkiv region, Kherson, Artemovsk/Bakhmut, the 2023 counteroffensive, Avdeevka, Ugledar), Russian strikes on Ukraine (incl. the Oreshnik strike on Yuzhmash), the Zaporizhzhia NPP and the Kakhovka dam, changes in the SVO command, war deaths, prisoners of war (abuse, executions, exchanges, the Azov commanders' return, the Il-76 crash carrying Ukrainian POWs) and war reporters killed at the front.",
+   "boundary_notes": "Attacks that hit Russian territory incl. Crimea and the Crimean bridge → strikes_on_russia. Ground raids into Russian regions incl. Kursk → border_incursions. Call-up → mobilization. Western weapons and aid → western_arms. Prigozhin/Wagner → wagner_prigozhin. Swaps of civilians with the West (Bout «Возвращение В. Бута в Россию», the Aug-2024 exchange «Обмен заключёнными между Россией и Западом») → west_relations. Peace talks → west_relations. The Oreshnik strike («Нанесение удара по «Южмашу» в Днепропетровске российской баллистической ракетой «Орешник»») stays here because the named event is a strike in Ukraine, not nuclear_military. The Il-76 crash («Катастрофа российского самолёта с украинскими пленными под Белгородом») stays here because the POWs are the story, not accidents_russia. War reporter Maksudov («Гибель Б. Максудова») stays here, not famous_deaths. A name led by «СВО в целом» stays here whatever it appends («успехи российской армии», «наступление российских войск»). In 48 of its 147 weeks two or more FOM rows fall here.",
+   "active_period": "2022-W09..2025-W11 (39 names, 215 event-weeks; all 147 survey weeks since the invasion)",
+   "example_names": [
+    "Военная операция России на Украине",
+    "Военная спецоперация России на Украине",
+    "Спецоперация, военные действия в целом",
+    "Уход российских войск из Херсона",
+    "Освобождение Артёмовска",
+    "Разрушение Каховской ГЭС",
+    "Катастрофа российского самолёта с украинскими пленными под Белгородом",
+    "Взятие Авдеевки российскими вооружёнными силами",
+    "СВО в целом, успехи российской армии",
+    "Нанесение удара по «Южмашу» в Днепропетровске российской баллистической ракетой «Орешник»"
+   ]
+  },
+  {
+   "theme_id": "strikes_on_russia",
+   "umbrella_id": "war",
+   "label_en": "Shelling and drone strikes on Russian territory",
+   "label_ru": "Обстрелы и атаки дронов на территорию России",
+   "definition": "Ukrainian shelling, missile and drone attacks, explosions and sabotage on Russian regions including Crimea: the Belgorod oil depot, Saki airfield and other blasts in Crimea, the Crimean bridge (Oct 2022, Jul 2023), the Sevastopol beach, drones on Moscow, Kazan and Taganrog; FOM's rubric «Обстрел(ы) российских территорий» in every wording and its 2023 rubric «Атаки дронов, взрывы (теракты, диверсии) на территории России».",
+   "boundary_notes": "Armed groups crossing the border → border_incursions. Killings and bombings carried out by individuals on the ground (Dugina, Tatarsky, Kiva, Kirillov, car bombs, Alye Parusa, Crocus) → terrorism, even when linked to Ukraine; but names led by shelling or drones that append «теракты» («Обстрел российских территорий со стороны Украины, теракты на них», «Атаки дронов, взрывы, теракты на территории России», «Атаки дронов, взрывы, теракты и диверсии на территории России») stay here. «Взрывы, теракты в России» («Взрывы, теракты в России», 2024-W51) → terrorism. The accidental Russian bomb on Belgorod («Падение российской бомбы в Белгороде») stays here. «Обстрелы российских территорий, в том числе дальнобойным оружием» stays here (strikes named first), while the Western debate about allowing long-range strikes → western_arms. The leaked German officers' talk about striking the Crimean bridge («Обнародована запись переговоров военных ФРГ о возможности атаки на Крымский мост») → western_arms: no strike happened.",
+   "active_period": "2022-W13..2025-W11 (27 names, 115 event-weeks in 103 survey weeks)",
+   "example_names": [
+    "Взрыв нефтехранилища в Белгороде",
+    "Обстрелы Украиной российской территории",
+    "Взрыв Крымского моста",
+    "Обстрел российских территорий",
+    "Атаки дронов, взрывы, теракты на территории России",
+    "Атака на Крымский мост",
+    "Обстрел Белгорода, других российских территорий",
+    "Обстрелы российских территорий",
+    "Обстрел пляжа в Севастополе",
+    "Обстрелы российских территорий, атака беспилотников на Москву"
+   ]
+  },
+  {
+   "theme_id": "border_incursions",
+   "umbrella_id": "war",
+   "label_en": "Kursk incursion and other ground raids into Russia",
+   "label_ru": "Вторжения в приграничные регионы, Курская область",
+   "definition": "Armed groups crossing from Ukraine into Russian regions and the fighting that follows: the Bryansk sabotage group (Mar 2023), the Belgorod raids (May 2023, Mar 2024), the Ukrainian incursion into Kursk region from Aug 2024 and the fighting there through 2025, including Russia's counter-offensive.",
+   "boundary_notes": "Shelling or drones without ground troops → strikes_on_russia. «Нападения на Белгородскую область, обстрел российских территорий» (2024-W12) goes here because the raids are named first. Kursk alone is «Нападение на Курскую область», «Нападение ВСУ на Курскую область», «Военные действия в Курской области» (30 event-weeks), a clean subset if the dashboard wants Kursk on its own.",
+   "active_period": "2023-W09..2025-W11 (6 names, 38 event-weeks; Kursk 2024-W32..2025-W11)",
+   "example_names": [
+    "Проникновение диверсионной группы в Брянскую область",
+    "Вторжение боевиков из Украины в Белгородскую область",
+    "Нападения на Белгородскую область, обстрел российских территорий",
+    "Нападение на Курскую область",
+    "Нападение ВСУ на Курскую область",
+    "Военные действия в Курской области"
+   ]
+  },
+  {
+   "theme_id": "mobilization",
+   "umbrella_id": "war",
+   "label_en": "Mobilisation and call-up",
+   "label_ru": "Мобилизация",
+   "definition": "The September-2022 partial mobilisation, its end, fears of a second wave, the 2023 electronic-summons law, reservist training call-ups.",
+   "boundary_notes": "Deaths of mobilised soldiers → war_frontline. Military exercises unrelated to the call-up → nuclear_military. Contract-recruitment campaigns would go here if they appear. Tied to one episode by nature; it cannot be compared across years.",
+   "active_period": "2022-W38..2023-W22 (6 names, 25 event-weeks, one continuous episode)",
+   "example_names": [
+    "Частичная мобилизация",
+    "Частичная мобилизация, ее завершение",
+    "Завершение частичной мобилизации, возможность второй волны мобилизации",
+    "Мобилизация, возможность второй волны мобилизации",
+    "Закон об электронных повестках",
+    "Военные сборы, мобилизация"
+   ]
+  },
+  {
+   "theme_id": "annexed_territories",
+   "umbrella_id": "war",
+   "label_en": "Crimea and the annexed regions",
+   "label_ru": "Крым и новые территории",
+   "definition": "Russia's incorporation of territory and its anniversaries: Crimea Reunification Day and anniversaries (incl. the 2022 Luzhniki concert where Putin spoke), the Tavrida highway and 'events in Crimea' (2020), recognition of DNR/LNR, the Sept-2022 referendums, accession of four regions and martial law there, the accession anniversary.",
+   "boundary_notes": "Fighting inside these regions → war_frontline. Strikes on Crimea or the Crimean bridge → strikes_on_russia. Crimea and accession anniversaries go here, not to holidays. The Luzhniki concert with Putin («Концерт-митинг в «Лужниках», посвященный Дню воссоединения Крыма с Россией, выступление на нем В. Путина») goes here, not putin. The Tavrida highway («Открытие трассы «Таврида», события в Крыму») goes here, not economy__other.",
+   "active_period": "2020-W35..2023-W39 (11 names, 12 event-weeks in 6 separate episodes)",
+   "example_names": [
+    "Открытие трассы «Таврида», события в Крыму",
+    "Празднование Дня воссоединения Крыма с Россией",
+    "Признание Россией независимости ДНР и ЛНР",
+    "Концерт-митинг в «Лужниках», посвященный Дню воссоединения Крыма с Россией, выступление на нем В. Путина",
+    "Референдумы на Украине о присоединении к России",
+    "Результаты референдумов о присоединении к России, вхождение в Россию новых территорий",
+    "Годовщина присоединения Крыма",
+    "Годовщина присоединения новых территорий к России"
+   ]
+  },
+  {
+   "theme_id": "western_arms",
+   "umbrella_id": "war",
+   "label_en": "Western weapons and aid to Ukraine",
+   "label_ru": "Западное оружие и помощь Украине",
+   "definition": "Western arms supplies and aid packages for Ukraine (Ramstein, US aid), the debate on and permission for long-range strikes into Russia with Western weapons, Macron's talk of sending NATO troops, the leaked German officers' Taurus talk, Zelensky's wartime US visits and Biden's visit to Kyiv.",
+   "boundary_notes": "The 2023 relations rubric «Напряженные отношения между Россией и странами Запада, поставки оружия Украине» names relations first and its quotes are as much about sanctions and hostility as about arms, so it → west_relations. Names led by arms that append 'confrontation' («Поставки Западом оружия Украине, усиление конфронтации между Россией и Западом») stay here. Actual strikes on Russian territory → strikes_on_russia. Zelensky's 2021 US visit → ukraine_before_2022. Peace talks and the 2025 Trump–Zelensky meeting → west_relations.",
+   "active_period": "2022-W51..2024-W48",
+   "example_names": [
+    "Визит В. Зеленского в США",
+    "Напряженные отношения между Россией и странами Запада, поставки оружия Украине",
+    "Визит Д. Байдена на Украину, в Польшу",
+    "Поставки оружия Украине",
+    "Высказывания Э. Макрона об отправке войск НАТО на Украину",
+    "Обнародована запись переговоров военных ФРГ о возможности атаки на Крымский мост",
+    "Поставки оружия на Украину, выделение помощи США, странами Запада Украине",
+    "Дискуссия на Западе о разрешении Украине применять западное дальнобойное оружие",
+    "Разрешение Украине дальнобойных ударов по территории России западным оружием"
+   ]
+  },
+  {
+   "theme_id": "wagner_prigozhin",
+   "umbrella_id": "war",
+   "label_en": "Prigozhin and the Wagner mutiny",
+   "label_ru": "Пригожин и мятеж ЧВК «Вагнер»",
+   "definition": "Prigozhin's complaints about ammunition (May 2023), the June-2023 mutiny and his death in the August-2023 plane crash.",
+   "boundary_notes": "The Bakhmut/Artemovsk fighting itself → war_frontline. «Другое» (2023-W20) goes here only because all its quotes are about Prigozhin's video. Wagner fighters detained in Belarus in 2020 («Арест российских граждан в Белоруссии») → ex_soviet. «ЧВК Рёдан» («Драки, беспорядки с участием «ЧВК Рёдан»») is a teenage gang → crime. Prigozhin's plane crash goes here, not accidents_russia. The only single-year subject theme, kept because the story spans 13 survey weeks and is central to the war.",
+   "active_period": "2023-W19..2023-W38 only (6 names, 13 event-weeks)",
+   "example_names": [
+    "Заявление Е. Пригожина о нехватке боеприпасов для ЧВК «Вагнер»",
+    "Другое",
+    "Мятеж, организованный Евгением Пригожиным, события вокруг ЧВК «Вагнер»",
+    "Мятеж, организованный Е. Пригожиным, события вокруг ЧВК «Вагнер»",
+    "Крушение самолета в Тверской области, гибель Е. Пригожина",
+    "Гибель Е. Пригожина"
+   ]
+  },
+  {
+   "theme_id": "war__other",
+   "umbrella_id": "war",
+   "label_en": "Other war-related events",
+   "label_ru": "Другие события, связанные с войной",
+   "definition": "War-related stories that do not recur: missiles falling in Poland (2022), the Kyiv-Pechersk Lavra dispute (2023), Russia leaving the grain deal (2023), Zelensky's statements (2024).",
+   "boundary_notes": "Use only after checking every war theme above. Move a subject out once it recurs in 3 or more separate survey weeks.",
+   "active_period": "2022-W46..2024-W42 (4 names, 5 event-weeks)",
+   "example_names": [
+    "Падение ракет в Польше",
+    "События в Киево-Печерской лавре",
+    "Выход России из зерновой сделки",
+    "Заявления, высказывания В. Зеленского"
+   ]
+  },
+  {
+   "theme_id": "west_relations",
+   "umbrella_id": "world",
+   "label_en": "Relations and talks with the US and the West",
+   "label_ru": "Отношения и переговоры с США и Западом",
+   "definition": "FOM's standing rubric on tense relations with the US, EU and NATO in every wording, including variants that append «санкции», arms supplies, NATO ships or drills; leader contacts and talks (Putin–Biden calls and the 2021 Geneva summit, Biden's 'killer' remark and Putin's reply, the Jan-2022 Russia–NATO–US security talks, the 2024 G7 and Swiss peace conference and talk of peace negotiations, the 2025 Putin–Trump call, the Riyadh talks, the Trump–Zelensky meeting and Russia–US contacts on a ceasefire); expulsions of diplomats; visits of Western politicians (Merkel, Nuland, Orban); Lavrov's meetings with Borrell and Blinken and his Carlson interview; NATO summits and OSCE meetings; military incidents with NATO near Russian borders (US and UK destroyers, US/NATO activity in the Black Sea, the US drone downed in 2023); the ICC warrant for Putin; prisoner swaps with the West (Bout 2022, Aug 2024).",
+   "boundary_notes": "Default for a two-part name is its first-named subject. Names led by sanctions → sanctions; led by arms supplies → western_arms; the 2023 relations rubric that appends «поставки оружия Украине» stays here. The 2021 «Напряженные отношения ..., санкции» names stay here (relations named first; their quotes are about relations in general). Any name that mentions the threat of nuclear war («угроза ядерной войны») → nuclear_military, whichever subject it names first, so the 2022 and 2024 nuclear scares sit in one theme. A Putin–Biden call that mentions START («Телефонный разговор В. Путина с Д. Байденом, продление договора СНВ-3») stays here; START named alone → nuclear_military. Putin's replies to Biden («Выступления, действия В. Путина, его ответ Д. Байдену», «Ответ В. Путина Д. Байдену») come here from the Putin rubric. Peace-talk names without a Russia–US contact («Саммит G7 в Италии, конференция по Украине в Швейцарии», «Возможность мирных переговоров по Украине», «Встреча Д. Трампа и В. Зеленского в Вашингтоне», «Встреча Д. Трампа и В. Зеленского в Вашингтоне, её результаты») stay here. US domestic politics incl. Trump's general statements («Высказывания и действия Д. Трампа») → us_politics. BRICS, SCO, CSTO, G20, UN and non-Western partners → summits_partners.",
+   "active_period": "2020-W07..2025-W11 (65 names, 111 event-weeks in 81 survey weeks; peaks 2021, Jan 2022, 2025)",
+   "example_names": [
+    "Отношения между Россией и США",
+    "Обвинения Д. Байдена в адрес В. Путина",
+    "Встреча В. Путина и Д. Байдена",
+    "Нарушение государственной границы России британским эсминцем",
+    "Переговоры России с НАТО и США, напряженные отношения России и США",
+    "Напряженные отношения между Россией и странами Запада",
+    "Выдача ордера на арест В. Путина",
+    "Обмен заключёнными между Россией и Западом",
+    "Телефонный разговор В. Путина и Д. Трампа, встреча делегаций России и США в Эр-Рияде",
+    "Налаживание контактов между Россией и США, обсуждение темы перемирия на Украине"
+   ]
+  },
+  {
+   "theme_id": "sanctions",
+   "umbrella_id": "world",
+   "label_en": "Western sanctions and exit of foreign companies",
+   "label_ru": "Санкции и уход иностранных компаний",
+   "definition": "Names led by sanctions against Russia: the 2022 waves, counter-sanctions, foreign companies leaving, partial lifting, the oil price cap (2022), US sanctions on the Moscow Exchange (2024).",
+   "boundary_notes": "Only names led by sanctions. The relations rubric with «санкции» appended → west_relations. «Санкции ..., их последствия, ситуация с газом в Европе» stays here. The oil price cap («Установление потолка цен на российскую нефть») stays here as a sanction, not energy_exports. Gas-for-rubles and pipeline disputes → energy_exports. Price rises named as such → prices_inflation. Barely spans years: 23 of its 24 weeks are in 2022.",
+   "active_period": "2022-W09..2024-W24 (10 names, 24 event-weeks)",
+   "example_names": [
+    "Новые санкции по отношению к России",
+    "Новые санкции по отношению к России, уход из России зарубежных компаний",
+    "Санкции по отношению к России, ответные санкции",
+    "Санкции по отношению к России, их последствия, ситуация с газом в Европе",
+    "Санкции по отношению к России, уход из России зарубежных компаний",
+    "Санкции по отношению к России, их частичное снятие",
+    "Установление потолка цен на российскую нефть",
+    "Санкции США против Мосбиржи, их последствия"
+   ]
+  },
+  {
+   "theme_id": "nuclear_military",
+   "umbrella_id": "world",
+   "label_en": "Nuclear threat, weapons tests and military exercises",
+   "label_ru": "Ядерная угроза, испытания оружия, учения",
+   "definition": "Russia's strategic military power and nuclear risk outside the front: missile and weapons tests (Tsirkon, Sarmat), the 2021 anti-satellite test, military exercises and 'strengthening defence capability', the New START treaty (extension 2021, suspension 2023), tactical nuclear weapons in Belarus, the 'dirty bomb' claims, Russian warships sent to Cuba, the threat of nuclear war and changes to the nuclear doctrine (incl. Putin's doctrine speech).",
+   "boundary_notes": "NATO ships, planes or drones near Russian borders → west_relations. Use of a weapon against Ukraine (Oreshnik, «Нанесение удара по «Южмашу» в Днепропетровске российской баллистической ракетой «Орешник»») → war_frontline. A Putin speech whose named topic is the doctrine («Выступление В. Путина о ядерной доктрине, другие его выступления, встречи») comes here (topic beats the Putin rubric). Every name that mentions the threat of nuclear war comes here, including the relations rubric that names the West first and appends it (autumn 2022). Tactical nukes in Belarus («Размещение российского тактического ядерного оружия в Белоруссии, выступление А. Лукашенко», «Размещение российского тактического ядерного оружия в Белоруссии») come here, not ex_soviet.",
+   "active_period": "2020-W02..2024-W50 (18 names, 25 event-weeks in 8 separate episodes, every year 2020–2024)",
+   "example_names": [
+    "Учения Северного и Черноморского флотов в акватории Черного моря",
+    "Испытание ракеты «Циркон»",
+    "Продление договора СНВ-3",
+    "Уничтожение Россией советского спутника",
+    "Испытание ракеты «Сармат»",
+    "Информация о работах по созданию «грязной бомбы» на Украине",
+    "Приостановка участия России в договоре СНВ-3",
+    "Размещение российского тактического ядерного оружия в Белоруссии",
+    "Изменения в ядерной доктрине России",
+    "Напряжённая международная обстановка, угроза ядерной войны"
+   ]
+  },
+  {
+   "theme_id": "us_politics",
+   "umbrella_id": "world",
+   "label_en": "US politics and elections",
+   "label_ru": "Политика и выборы в США",
+   "definition": "US domestic politics and US presidents as the subject: the 2020 racial unrest, the 2020 election and its aftermath, Biden's inauguration, the impeachment attempt, Biden's health, the 2022 midterms, the Texas border stand-off, the 2024 campaign (debates, the attempt on Trump, Biden's withdrawal), Trump's election, inauguration, statements and actions in 2025, Biden's Middle East trip (2022).",
+   "boundary_notes": "Russia–US contacts and talks → west_relations; US aid to Ukraine → western_arms; US strikes in Iran or Syria → middle_east; US disasters (hurricane, California fires, the Washington air crash, the Ohio chemical train) → disasters_abroad; Trump's WWII remark («Высказывание Д. Трампа о победе во Второй мировой войне») → victory_day_ww2; US bank failures («Банкротство американских банков») → world__other. «Высказывания и действия Д. Трампа» («Высказывания и действия Д. Трампа», 2025) stays here although some statements were about Ukraine; a named Putin–Trump call or meeting → west_relations.",
+   "active_period": "2020-W22..2025-W11 (25 names, 68 event-weeks; none in 2023)",
+   "example_names": [
+    "Волнения в США после убийства афроамериканца полицейским",
+    "События в США",
+    "Президентские выборы в США",
+    "События в США после президентских выборов, инаугурация Д. Байдена",
+    "Выборы в США",
+    "Покушение на Д. Трампа",
+    "Избирательная кампания в США, отказ Дж. Байдена от участия в выборах",
+    "Избрание Д. Трампа президентом США",
+    "Инаугурация Д. Трампа, его высказывания и действия",
+    "Высказывания и действия Д. Трампа"
+   ]
+  },
+  {
+   "theme_id": "middle_east",
+   "umbrella_id": "world",
+   "label_en": "Middle East wars and Afghanistan",
+   "label_ru": "Ближний Восток и Афганистан",
+   "definition": "Wars and crises in the Middle East plus Afghanistan: the Jan-2020 US–Iran exchange of strikes incl. the Ukrainian airliner shot down over Tehran, Syria and Libya in 2020 incl. the Russia–Turkey friction over Idlib, Russian aid to Syria, the 2021 US strike on Syria, the 2021 Israel–Gaza fighting, the US withdrawal and Taliban takeover in Afghanistan (2021), the Hamas attack and the Gaza war 2023–25, strikes on Yemen, Iran–Israel clashes, the Lebanon pager blasts, Raisi's death, the fall of Assad and the Gaza ceasefire.",
+   "boundary_notes": "Earthquakes and other disasters in the region (Turkey–Syria 2023, the Beirut port blast) → disasters_abroad. Visits by regional leaders and Putin's trips to Iran, the UAE and Saudi Arabia → summits_partners. Putin–Erdogan meetings → summits_partners, except when the name names Syria or belongs to the Feb–Mar 2020 Idlib friction («Обострение отношений между Россией и Турцией», «Обострение отношений между Россией и Турцией из-за ситуации в Сирии», «Российско-турецкие отношения, встреча В. Путина с В. Эрдоганом по вопросу о ситуации в Сирии», «Военные действия в Сирии, встреча В. Путина с Р. Эрдоганом по вопросу о ситуации в Сирии» → here). Turkey's own politics → world__other. The Makhachkala airport riot («События в Махачкале») → protests_unrest. The airliner over Iran («Гибель украинского самолета над Ираном») comes here, not disasters_abroad: it was shot down during the US–Iran crisis. Afghanistan is a single 2021 episode, placed here rather than in world__other so its 10 weeks stay visible under a label.",
+   "active_period": "2020-W02..2025-W05 (32 names, 77 event-weeks; none in 2022)",
+   "example_names": [
+    "Гибель украинского самолета над Ираном",
+    "Обмен ударами между США и Ираном, сложная ситуация на Ближнем Востоке",
+    "Военные действия в Сирии",
+    "Обострение палестино-израильского конфликта",
+    "События в Афганистане",
+    "Вторжение ХАМАС в Израиль, ответные действия Израиля",
+    "Обострение палестино-израильского конфликта, война в зоне конфликта",
+    "Напряженная обстановка на Ближнем Востоке, ирано-израильский конфликт, военные действия в секторе Газа",
+    "Падение режима Б. Асада в Сирии",
+    "Перемирие в секторе Газа"
+   ]
+  },
+  {
+   "theme_id": "ex_soviet",
+   "umbrella_id": "world",
+   "label_en": "Belarus and other ex-Soviet neighbours",
+   "label_ru": "Белоруссия и другие страны бывшего СССР",
+   "definition": "Crises, elections and relations with Russia in ex-Soviet states other than Ukraine. Belarus: the 2020 election and protests, Russians (Wagner) detained in 2020, the 2021 forced landing of a plane, the 2021 migrant crisis on the Polish border, Putin–Lukashenko meetings, Lukashenko's statements, the 2025 election. Also the 2020 Karabakh war and Russian peacekeepers, the 2022–23 Karabakh flare-ups, Armenia's politics, unrest in Kyrgyzstan (2020) and Kazakhstan (Jan 2022, CSTO), Moldova's elections, Transnistria, Georgia's protests.",
+   "boundary_notes": "Ukraine → war umbrella. Tactical nuclear weapons in Belarus → nuclear_military. CSTO, SCO and CICA summits → summits_partners. The 2024 air crash in Kazakhstan → disasters_abroad. The Bishimbayev murder trial in Kazakhstan → crime. Migrants inside Russia → migrants. Putin–Lukashenko meetings («Встреча В. Путина и А. Лукашенко в Сочи», «Российско-белорусские отношения, переговоры В. Путина и А. Лукашенко», «Встреча В. Путина и А. Лукашенко») come here, not summits_partners. Both spellings «Белоруссия» and «Беларусь» belong here.",
+   "active_period": "2020-W06..2025-W11 (36 names, 70 event-weeks, every year)",
+   "example_names": [
+    "Президентские выборы в Белоруссии, акции протеста против фальсификации результатов выборов",
+    "События в Белоруссии после президентских выборов",
+    "Вооруженный армяно-азербайджанский конфликт",
+    "Волнения в Киргизии",
+    "Прекращение армяно-азербайджанского вооруженного конфликта, ввод российских миротворцев в Нагорный Карабах",
+    "Экстренная посадка самолета в Белоруссии, задержание двух пассажиров, последствия этих событий",
+    "Ситуация с мигрантами на белорусско-польской границе",
+    "События в Казахстане, действия сил ОДКБ по восстановлению порядка в стране",
+    "Армяно-азербайджанский конфликт, отношения России и Армении",
+    "Выборы президента в Беларуси"
+   ]
+  },
+  {
+   "theme_id": "summits_partners",
+   "umbrella_id": "world",
+   "label_en": "Summits and Russia's non-Western partners",
+   "label_ru": "Саммиты и незападные партнёры России",
+   "definition": "Multilateral summits and assemblies other than NATO, G7, EU and OSCE: BRICS, SCO, CSTO, CICA (Astana 2022), G20, the UN General Assembly (incl. Putin's 2020 speech), Russia–Africa; state visits both ways with China, India, North Korea, Iran, Turkey, the Gulf states and Vietnam; Putin's foreign trips named as such; Lavrov's trips to Africa, Latin America and elsewhere; Russia–China contacts.",
+   "boundary_notes": "NATO, G7, EU and OSCE meetings and Western leaders' visits → west_relations. Putin's home forums (SPIEF, EEF, Valdai, Russian Energy Week) → putin. Putin–Lukashenko → ex_soviet. BRICS Games → sport. Great-power diplomacy without Russia (Pelosi in Taiwan, Xi in the US, Macron and von der Leyen in Beijing) → world__other. «Зарубежные визиты В. Путина, другие поездки, выступления» («Зарубежные визиты В. Путина, другие поездки, выступления») comes here because foreign visits are named first; «Выступления В. Путина на ПМЭФ, в МИД, его зарубежные поездки» («Выступления В. Путина на ПМЭФ, В МИД, его зарубежные поездки») → putin because the SPIEF speech is named first.",
+   "active_period": "2020-W39..2025-W03 (31 names, 52 event-weeks; mostly 2022–24)",
+   "example_names": [
+    "Выступление В. Путина на Генеральной ассамблее ООН",
+    "Генеральная Ассамблея ООН",
+    "Саммит БРИКС",
+    "Визит Си Цзиньпина в Россию",
+    "Саммит Россия – Африка в Санкт-Петербурге",
+    "Визит Ким Чен Ына в Россию",
+    "Визит В. Путина в Китай",
+    "Визиты В. Путина в КНДР, Вьетнам, другие поездки",
+    "Саммит БРИКС в Казани",
+    "Визит президента Ирана в Россию"
+   ]
+  },
+  {
+   "theme_id": "world__other",
+   "umbrella_id": "world",
+   "label_en": "Other world events",
+   "label_ru": "Другие события в мире",
+   "definition": "Foreign stories that happen once and do not recur: Brexit, Hagia Sophia's status, the Suez Canal blockage, the Haiti president's murder, Abe's killing, Johnson's resignation, Pelosi in Taiwan, US bank failures, protests and riots in France, Macron and von der Leyen in Beijing, Turkey's elections and 'events in Turkey', the Niger coup, Xi–Biden talks, the attempt on Fico, the EU/UK/French elections, South Korea's martial law.",
+   "boundary_notes": "Check the regional themes first. Terror attacks abroad → terrorism; disasters and crashes abroad → disasters_abroad.",
+   "active_period": "2020-W05..2024-W49 (19 names, 25 event-weeks)",
+   "example_names": [
+    "Брексит",
+    "Изменение статуса собора Святой Софии в Стамбуле",
+    "Закрытие танкером прохода через Суэцкий канал",
+    "Убийство Синдзо Абэ",
+    "Визит Н. Пелоси на Тайвань, конфликт из-за этого между США и Китаем",
+    "Банкротство американских банков",
+    "Выборы в Турции",
+    "Переворот в Нигере",
+    "Покушение на премьер-министра Словакии Р. Фицо",
+    "События в Южной Корее"
+   ]
+  },
+  {
+   "theme_id": "putin",
+   "umbrella_id": "politics",
+   "label_en": "Putin: speeches, trips, Direct Line and forums",
+   "label_ru": "Путин: выступления, поездки, прямая линия, форумы",
+   "definition": "FOM's standing rubric on Putin's meetings, trips, speeches, statements and actions in all its orderings, plus his set pieces: the Direct Line and big press conference, the Address to the Federal Assembly, SPIEF, the Eastern Economic Forum, Valdai, Russian Energy Week, the Tucker Carlson interview, his birthday, the New Year address, his visit to the SVO zone, his rest in Tuva.",
+   "boundary_notes": "A Putin name whose named topic has its own theme goes to that theme: COVID addresses («Обращение В. Путина к гражданам в связи с пандемией коронавируса», «Обращение В. Путина к гражданам в связи с эпидемией коронавируса», «Обращения В. Путина к гражданам в связи с эпидемией коронавируса», «Выступления и распоряжения В. Путина в связи с эпидемией коронавируса») → covid_epidemic; foreign visits and summits → summits_partners; talks or exchanges with Biden or Trump («Выступления, действия В. Путина, его ответ Д. Байдену», «Ответ В. Путина Д. Байдену») → west_relations; the nuclear doctrine («Выступление В. Путина о ядерной доктрине, другие его выступления, встречи») → nuclear_military; candidacy, election and inauguration → elections_government; Lukashenko → ex_soviet; the Crimea concert («Концерт-митинг в «Лужниках», посвященный Дню воссоединения Крыма с Россией, выступление на нем В. Путина») → annexed_territories; the ICC warrant → west_relations. The routine rubric with a set piece appended («..., речь на сессии клуба «Валдай»», «..., ожидание прямой линии») and the SPIEF-speech names («Выступление В. Путина на ПМЭФ, другие выступления, поездки президента», «Выступления В. Путина на ПМЭФ, В МИД, его зарубежные поездки») stay here. Putin's June-2020 WWII article appears inside the speeches rubric («Выступления и распоряжения В. Путина, интервью и публикация статьи о начале войны», «Выступления В. Путина, интервью и публикация статьи о начале войны») and stays here.",
+   "active_period": "2020-W02..2025-W11 (66 names, 183 event-weeks in 160 survey weeks, every year)",
+   "example_names": [
+    "Послание В. Путина Федеральному собранию",
+    "Встречи, поездки, выступления В. Путина",
+    "Поездки, выступления В. Путина",
+    "Прямая линия с В. Путиным",
+    "Выступления, действия В. Путина",
+    "Петербургский международный экономический форум, выступление на нем В. Путина",
+    "Встречи, выступления В. Путина, речь на сессии клуба «Валдай»",
+    "Интервью Владимира Путина Такеру Карлсону",
+    "Послание президента Федеральному собранию",
+    "Новогоднее поздравление В. Путина"
+   ]
+  },
+  {
+   "theme_id": "elections_government",
+   "umbrella_id": "politics",
+   "label_en": "Elections, the 2020 constitution vote and the government",
+   "label_ru": "Выборы, поправки в Конституцию, правительство",
+   "definition": "How federal power is formed and run: the 2020 constitutional amendments from announcement to the July-2020 vote (incl. the Tereshkova term-reset amendment), September regional elections and single voting days, the 2021 Duma election, the 2024 presidential election from Putin's announcement to his inauguration; the federal government: the Jan-2020 resignation and Mishustin's appointment, Mishustin's illness and regional trips, Chubais's new post, the May-2024 cabinet (Shoigu replaced by Belousov); FOM's «Работа властных структур, ...» rows that append a concrete subject («Работа властных структур, подготовка к выборам», «Работа властных структур, перестановки во власти»).",
+   "boundary_notes": "Foreign elections → their country's theme (us_politics, ex_soviet, world__other). Officials arrested for corruption → corruption. Governor Furgal's arrest with the Khabarovsk protests → protests_unrest. Mishustin's illness («Заболевание премьер-министра М. Мишустина», COVID) comes here, not covid_epidemic. The 2020 amendments are about a third of its event-weeks and can be split off as their own theme if the dashboard wants it.",
+   "active_period": "2020-W03..2024-W37 (38 names, 89 event-weeks; peaks 2020 and 2024)",
+   "example_names": [
+    "Отставка правительства, назначение М. Мишустина новым премьер-министром",
+    "Поправка Терешковой о президентских сроках",
+    "Голосование по поправкам в Конституцию, подведение итогов голосования",
+    "Выборы в Госдуму",
+    "Работа властных структур, перестановки во власти",
+    "Выборы",
+    "Единый день голосования",
+    "Подготовка к выборам президента России",
+    "Выборы президента России",
+    "Изменения в составе правительства"
+   ]
+  },
+  {
+   "theme_id": "corruption",
+   "umbrella_id": "politics",
+   "label_en": "Corruption cases and arrests of officials",
+   "label_ru": "Коррупция и аресты чиновников",
+   "definition": "FOM's 2020–21 corruption rubric (corruption, anti-corruption measures, arrests), the arrest of the Stavropol traffic-police chief (2021), the 2024 Defence Ministry scandals (deputy minister Ivanov and others).",
+   "boundary_notes": "Names led by ordinary crime («Криминальные события, коррупция» «Криминальные события, коррупция»; «..., коррупционные скандалы, терроризм» «Криминальные события, коррупционные скандалы, терроризм») → crime. Cabinet reshuffles → elections_government.",
+   "active_period": "2020-W47..2024-W36 (8 names, 23 event-weeks; 2020–21 and 2024)",
+   "example_names": [
+    "Коррупция, борьба с ней",
+    "Меры по борьбе с коррупцией, аресты",
+    "Коррупция, меры по борьбе с ней, аресты",
+    "Задержание главы ГИБДД по Ставропольскому краю",
+    "Арест генерала Т. Иванова",
+    "Коррупционные скандалы в Министерстве обороны",
+    "Коррупционные скандалы"
+   ]
+  },
+  {
+   "theme_id": "navalny",
+   "umbrella_id": "politics",
+   "label_en": "Navalny: poisoning, prison and death",
+   "label_ru": "Навальный",
+   "definition": "Navalny's 2020 poisoning and its investigation, his Jan-2021 return and arrest, trial and the rallies in his support, prison, health and hunger strike, his death and funeral in 2024.",
+   "boundary_notes": "The name must name Navalny, with one listed exception: «Митинги, последствия для их участников» (2021-W18, the aftermath of the April-2021 pro-Navalny rallies) comes here. Other protests and prosecutions of activists or journalists → protests_unrest.",
+   "active_period": "2020-W34..2024-W10 (20 names, 33 event-weeks; nothing in 2022–23)",
+   "example_names": [
+    "Отравление А. Навального",
+    "События, связанные с А. Навальным, его отравлением",
+    "Возвращение А. Навального в Россию, его задержание, митинги в поддержку А. Навального",
+    "Митинги в поддержку А. Навального",
+    "Заключение под стражу А. Навального, суд над А. Навальным, митинги в его защиту",
+    "А. Навальный в колонии, ухудшение его здоровья, голодовка",
+    "Смерть А. Навального",
+    "Смерть А. Навального, связанные с этим события, похороны"
+   ]
+  },
+  {
+   "theme_id": "protests_unrest",
+   "umbrella_id": "politics",
+   "label_en": "Protests, unrest and political arrests",
+   "label_ru": "Протесты, беспорядки, политические преследования",
+   "definition": "Street protests and unrest in Russia not tied to Navalny, and prosecutions of activists and journalists: governor Furgal's arrest and the 2020 Khabarovsk protests, the Kushtau protests, the July-2020 Moscow and St Petersburg rallies, the 'Network' (Set') trial, the 2020 arrests of journalists and activists, Slavina's self-immolation, Chechnya and Kadyrov in 2022 (the Yangulbaev case), the 2023 Makhachkala airport riot, the 2024 Baymak unrest in Bashkiria.",
+   "boundary_notes": "Navalny → navalny. Terror attacks in Dagestan → terrorism. Internet blocking → internet_restrictions. Conflicts with migrants → migrants. Protests abroad → their country's theme. Vague 'events in a region' rows go here when the quotes are about unrest («События в Махачкале» Makhachkala, «События в Башкирии» and «События в Башкирии, Якутии» Bashkiria).",
+   "active_period": "2020-W08..2024-W04 (20 names, 36 event-weeks in 26 survey weeks, 20 of them in 2020)",
+   "example_names": [
+    "Суд по делу «Сети»",
+    "Арест губернатора Хабаровского края С. Фургала, митинги в его защиту",
+    "Митинги в защиту горы Куштау в Башкортостане",
+    "Митинги в Хабаровске в защиту арестованного губернатора С. Фургала",
+    "Самосожжение журналистки И. Славиной",
+    "События в Чечне, высказывания и действия Р. Кадырова",
+    "События в Махачкале",
+    "События в Башкирии"
+   ]
+  },
+  {
+   "theme_id": "internet_restrictions",
+   "umbrella_id": "politics",
+   "label_en": "Blocking of social networks and platforms",
+   "label_ru": "Блокировки соцсетей и интернет-платформ",
+   "definition": "Blocking or slowing of platforms: Instagram and other networks (2022), the YouTube slowdown and block and Discord (2024), and the detention of Telegram's founder Durov in France (2024).",
+   "boundary_notes": "Durov («Задержание во Франции П. Дурова») comes here because the story was Telegram's fate, not world__other. The LGBT 'extremist' ruling → politics__other. All four YouTube spellings («Ютуба», «YouTube») belong here.",
+   "active_period": "2022-W10..2024-W42 (7 names, 11 event-weeks in 2 episodes)",
+   "example_names": [
+    "Блокировка Инстаграма, других соцсетей",
+    "Снижение скорости загрузки Ютуба и решение о запрете доступа к нему в России",
+    "Задержание во Франции П. Дурова",
+    "Снижение скорости загрузки YouTube, его возможная блокировка в России",
+    "Блокировка Discord, YouTube"
+   ]
+  },
+  {
+   "theme_id": "politics__other",
+   "umbrella_id": "politics",
+   "label_en": "Other domestic politics",
+   "label_ru": "Другие события внутренней политики",
+   "definition": "One-off domestic political stories: MP Rashkin's illegal elk hunt (2021), the Supreme Court ruling that the LGBT movement is 'extremist' (2023), and FOM's leftover catch-all row «Другие события» («Другие события», 2023-W15, mixed quotes).",
+   "boundary_notes": "Use only when no politics theme fits and the subject did not recur. «Другие события» is a FOM catch-all that got past the exclusion filter; it is better excluded like the other catch-alls.",
+   "active_period": "2021-W46..2023-W48 (3 names, 4 event-weeks)",
+   "example_names": [
+    "Незаконная охота депутата Госдумы В. Рашкина на лося",
+    "Другие события",
+    "Признание движения ЛГБТ экстремистским"
+   ]
+  },
+  {
+   "theme_id": "prices_inflation",
+   "umbrella_id": "economy",
+   "label_en": "Prices, inflation, the ruble and the key rate",
+   "label_ru": "Цены, инфляция, рубль, ключевая ставка",
+   "definition": "FOM's standing price rubric in every wording (prices, tariffs, utility tariffs, inflation, falling living standards), the ruble exchange rate (falls in 2020, 2022, 2023; the spring-2022 strengthening), shortages and panic buying (2020, 2022), price-control measures, Central Bank key-rate decisions and Nabiullina's reappointment, mortgage rates, 'the state of the economy', and the vague 2020 'social (and economic) problems' rows whose quotes are about prices, pensions and the ruble («Социальные проблемы россиян», «Социальные проблемы», «Социально-экономические проблемы»).",
+   "boundary_notes": "Any name about the ruble rate comes here, whichever part comes first. Pensions, wages and benefits → pensions_benefits («Повышение выплат, уровня жизни» «Повышение выплат, уровня жизни» goes there; «Рост цен..., снижение уровня жизни» stays here). World oil and gas prices, OPEC+ and the 2020 oil crash (incl. «..., обвал фондовых рынков», «Падение цен на нефть, обвал фондовых рынков») → energy_exports. Names led by sanctions → sanctions. Business support, the deposit tax and factory openings → economy__other.",
+   "active_period": "2020-W02..2025-W11 (45 names, 208 event-weeks in 186 survey weeks, every year)",
+   "example_names": [
+    "Рост цен, тарифов",
+    "Рост цен, снижение курса рубля",
+    "Ситуация в экономике, рост цен",
+    "Рост цен",
+    "Дефицит продуктов, ажиотажный спрос на них",
+    "Укрепление рубля, снижение курса доллара",
+    "Инфляция, рост цен, снижение курса рубля",
+    "Повышение ключевой ставки ЦБ",
+    "Рост цен и тарифов",
+    "Повышение ключевой ставки"
+   ]
+  },
+  {
+   "theme_id": "pensions_benefits",
+   "umbrella_id": "economy",
+   "label_en": "Pensions, wages and social payments",
+   "label_ru": "Пенсии, зарплаты, пособия",
+   "definition": "FOM's standing rubric on rises in pensions, wages, child and family benefits and the minimum wage in all its permutations; payments to vulnerable groups (incl. the 2020 COVID support payments named without COVID, «Выплаты, льготы социально незащищенным группам населения»); announced social-policy changes (maternity capital, «Предстоящие изменения в социальной политике»); indexation for working pensioners.",
+   "boundary_notes": "Payments to medics for COVID work («Назначение выплат медикам, работающим с коронавирусом, скандал в связи с их невыплатами», «Выплаты медикам, нарушения, связанные с выплатами», «Выплаты медикам», «Выплаты медикам, проблемы с их выдачей») → covid_epidemic. Living-standard rows led by prices → prices_inflation. The tourism cashback law («Принятие закона о компенсации за отдых в России») → economy__other.",
+   "active_period": "2020-W02..2025-W06 (60 names, 162 event-weeks in 148 survey weeks; 47 weeks in 2020, 4 in 2024)",
+   "example_names": [
+    "Повышение пенсий",
+    "Выплаты, льготы социально незащищенным группам населения",
+    "Выплаты, льготы отдельным группам населения",
+    "Выплаты, пособия, повышение пенсий",
+    "Отказ индексировать пенсии работающим пенсионерам",
+    "Выплаты детям, рост пособий, повышение пенсий",
+    "Повышение зарплат, пенсий, пособий",
+    "Повышение зарплат, пенсий и пособий",
+    "Индексация пенсии работающим пенсионерам",
+    "Повышение пенсий, социальных выплат"
+   ]
+  },
+  {
+   "theme_id": "energy_exports",
+   "umbrella_id": "economy",
+   "label_en": "Oil and gas: prices, exports, Nord Stream",
+   "label_ru": "Нефть и газ: цены, экспорт, «Северный поток»",
+   "definition": "The 2020 oil-price crash and the OPEC+ deal (incl. the stock-market fall named with it), TurkStream, the Nord Stream 2 saga (construction, the US–German deal), Europe's 2021 gas crisis, gas-for-rubles (2022), energy supplies to Europe, the 2022 Nord Stream explosions and the investigations into them incl. Hersh's (2023).",
+   "boundary_notes": "The oil price cap and «Санкции ..., ситуация с газом в Европе» → sanctions. Domestic fuel and utility prices → prices_inflation. The Nord Stream explosions stay here, not in war or terrorism themes.",
+   "active_period": "2020-W02..2023-W11 (22 names, 36 event-weeks)",
+   "example_names": [
+    "Открытие «Турецкого потока»",
+    "Падение цен на нефть",
+    "Падение цен на нефть, договоренность России со странами ОПЕК+ о выходе из этой ситуации",
+    "События вокруг «Северного потока – 2»",
+    "Рост цен на газ в Европе, газовый кризис",
+    "Решение о продаже российских газа и нефти за рубли",
+    "Взрыв на газопроводах «Северный поток»",
+    "Расследование С. Херша о роли США во взрывах на «Северных потоках»"
+   ]
+  },
+  {
+   "theme_id": "economy__other",
+   "umbrella_id": "economy",
+   "label_en": "Other economic news",
+   "label_ru": "Другие экономические новости",
+   "definition": "One-off economic and infrastructure stories: the tax on bank deposits and support for small business during the 2020 lockdown, the tourism cashback law, the timber export ban, factory openings, road development (2023).",
+   "boundary_notes": "Check prices_inflation and pensions_benefits first. Heating and power outages → accidents_russia; the grain deal → war__other; the Tavrida highway → annexed_territories.",
+   "active_period": "2020-W13..2023-W51 (7 names, 8 event-weeks)",
+   "example_names": [
+    "Введение налога на банковские вклады",
+    "Поддержка малого и среднего бизнеса",
+    "Принятие закона о компенсации за отдых в России",
+    "Запрет на продажу и вывоз леса",
+    "Открытие промышленных предприятий",
+    "Развитие дорог, транспортного сообщения в России"
+   ]
+  },
+  {
+   "theme_id": "covid_epidemic",
+   "umbrella_id": "health",
+   "label_en": "COVID-19: the epidemic, vaccines and restrictions",
+   "label_ru": "COVID-19: эпидемия, вакцины и ограничения",
+   "definition": "Everything about the coronavirus in every wording: FOM's standing rubric (from «Эпидемия коронавируса в Китае» to «Рост заболеваемости коронавирусом»), case growth and new variants, Putin's COVID addresses, hospitals, payments to medics, Russian aid abroad, the Russian vaccine and the vaccination campaign, and the restrictions: the 2020 quarantine and non-working days and their lifting, flight halts, QR codes and mandatory vaccination, and the hardship and discontent restrictions caused.",
+   "boundary_notes": "All coronavirus names come here, whether they lead with the epidemic, vaccination or the restrictions: FOM gave restrictions a row of their own in some waves and folded them into the epidemic row in others, so one theme keeps the subject whole. Distance learning → education. COVID support payments to families → pensions_benefits. The postponed 2020 Victory Day parade → victory_day_ww2. Mishustin's illness → elections_government. Business support during lockdown → economy__other. Names led by flu → flu.",
+   "active_period": "2020-W04..2022-W37 (68 names, 144 event-weeks in 106 survey weeks)",
+   "example_names": [
+    "Эпидемия коронавируса в Китае",
+    "Пандемия коронавируса, реакция людей на нее",
+    "Назначение выплат медикам, работающим с коронавирусом, скандал в связи с их невыплатами",
+    "Начало вакцинации россиян",
+    "Эпидемия коронавируса, вакцинация",
+    "Рост эпидемии коронавируса, защитные меры, отношение к прививкам",
+    "Пандемия коронавируса, появление новой разновидности коронавируса",
+    "Рост заболеваемости коронавирусом, распространение новой его разновидности",
+    "Рост заболеваемости коронавирусом в России, возвращение противоковидных мер"
+   ]
+  },
+  {
+   "theme_id": "flu",
+   "umbrella_id": "health",
+   "label_en": "Flu and seasonal epidemics",
+   "label_ru": "Грипп и ОРВИ",
+   "definition": "Flu and ARVI outbreaks (winter 2020, December 2022), including school quarantines for flu.",
+   "boundary_notes": "Names led by flu or ARVI come here even when coronavirus is appended («Эпидемия гриппа, ОРВИ, ОРЗ, коронавируса»). Coronavirus named first → covid_epidemic.",
+   "active_period": "2020-W06..2022-W51 (two winters)",
+   "example_names": [
+    "Вспышка гриппа и ОРВИ в России, закрытие школ на карантин",
+    "Эпидемия гриппа, ОРВИ, ОРЗ, профилактические меры",
+    "Эпидемия гриппа, ОРВИ, ОРЗ, коронавируса"
+   ]
+  },
+  {
+   "theme_id": "health__other",
+   "umbrella_id": "health",
+   "label_en": "Other health news",
+   "label_ru": "Другие новости здравоохранения",
+   "definition": "Health news that does not recur, such as the problems of Russian healthcare (2020).",
+   "boundary_notes": "Flu and ARVI → flu. Coronavirus → covid_epidemic.",
+   "active_period": "2020-W06..2022-W51 (4 names, 6 event-weeks)",
+   "example_names": [
+    "Вспышка гриппа и ОРВИ в России, закрытие школ на карантин",
+    "Проблемы российского здравоохранения",
+    "Эпидемия гриппа, ОРВИ, ОРЗ, профилактические меры",
+    "Эпидемия гриппа, ОРВИ, ОРЗ, коронавируса"
+   ]
+  },
+  {
+   "theme_id": "natural_disasters_russia",
+   "umbrella_id": "incidents",
+   "label_en": "Natural disasters and weather in Russia",
+   "label_ru": "Природные катаклизмы в России",
+   "definition": "FOM's standing rubric «Природные катаклизмы в России» and its many seasonal variants (fires and floods, abnormal weather, natural anomalies, «Стихийные бедствия» with no place named), forest fires, Far East disasters, spring high water, the 2024 floods incl. the Orsk dam breach.",
+   "boundary_notes": "Disasters abroad → disasters_abroad. Man-made fires, explosions and spills → accidents_russia. «Катастрофы, природные катаклизмы в России» («Катастрофы, природные катаклизмы в России») comes here as a variant of this rubric. «Стихийные бедствия» comes here: in its 2020 weeks the quotes are about Russian fires and floods (its 2024-W42 week is overridden to disasters_abroad).",
+   "active_period": "2020-W08..2024-W42 (41 names, 152 event-weeks in 150 survey weeks, mostly summer)",
+   "example_names": [
+    "Лесные пожары в России",
+    "Природные катаклизмы в России",
+    "Погода в России",
+    "Наводнения, пожары в России, другие погодные катаклизмы",
+    "Пожары, наводнения в России, другие природные катаклизмы",
+    "Пожары, наводнения, природные катаклизмы в России",
+    "Природные аномалии, катаклизмы в России",
+    "Природные катаклизмы и аномалии в России",
+    "Прорыв дамбы на реке Урал в Орске, наводнение в Оренбургской области",
+    "Масштабные паводки в России"
+   ]
+  },
+  {
+   "theme_id": "accidents_russia",
+   "umbrella_id": "incidents",
+   "label_en": "Accidents, fires and man-made disasters in Russia",
+   "label_ru": "Аварии, пожары, техногенные катастрофы в России",
+   "definition": "FOM's standing accidents rubric in every wording (аварии, пожары, взрывы, ДТП, несчастные случаи, отравления детей) and named accidents in Russia: the Ryazan arms-depot blasts, household gas explosions, the Listvyazhnaya mine, the Yeysk plane crash, train and bus crashes, the Wildberries warehouse fire, the Nizhny Tagil and Makhachkala blasts; man-made ecological disasters (the Norilsk fuel spill and Kamchatka pollution in 2020, the Kerch Strait tanker wrecks and fuel-oil spill 2024–25); the 2024 heating and power outages; single accidental deaths (the Epiphany drowning, a child killed by stray dogs, the hospital fire in Blagoveshchensk).",
+   "boundary_notes": "Weather and natural disasters → natural_disasters_russia. Accidents abroad, incl. Russian planes crashing abroad → disasters_abroad. Deliberate blasts → strikes_on_russia or terrorism. Mixed rubrics follow the first-named part: «Аварии, пожары, криминальные события» stays here, «Преступления, несчастные случаи» → crime. Crashes that belong to another story go there: Prigozhin's plane → wagner_prigozhin, the Il-76 with POWs → war_frontline, the airliner over Iran → middle_east. The emergencies minister Zinichev's death («Гибель главы МЧС Е. Зиничева») → famous_deaths.",
+   "active_period": "2020-W02..2025-W07 (42 names, 181 event-weeks in 163 survey weeks, every year)",
+   "example_names": [
+    "Аварии, несчастные случаи",
+    "Экологическая катастрофа в Норильске",
+    "Аварии, катастрофы, несчастные случаи",
+    "Авария на угольной шахте «Листвяжная» в Кемеровской области",
+    "Падение самолета в Ейске",
+    "Взрывы, аварии, несчастные случаи",
+    "Пожар на складе Wildberries в Санкт-Петербурге",
+    "Крушение пассажирского поезда под Волгоградом",
+    "Последствия крушения танкеров в Керченском проливе, разлив мазута"
+   ]
+  },
+  {
+   "theme_id": "disasters_abroad",
+   "umbrella_id": "incidents",
+   "label_en": "Disasters and crashes abroad",
+   "label_ru": "Катастрофы и стихийные бедствия за рубежом",
+   "definition": "Natural and man-made disasters outside Russia: the Australian fires (2020), Turkish earthquakes (2020, and 2023 with Syria), the Beirut port blast, floods in Europe (2021) and Spain (2024), Turkish wildfires, volcanoes, the US hurricane, the California fires; plane crashes abroad (India, Indonesia, Turkey incl. a Russian plane, Kazakhstan 2024, Washington 2025), the Ohio chemical train, the Titan submersible.",
+   "boundary_notes": "FOM itself words these apart from the Russian rubric («Стихийные бедствия в мире», «Природные аномалии, катаклизмы за рубежом»). The Ukrainian airliner shot down over Iran («Гибель украинского самолета над Ираном») → middle_east. The Suez Canal blockage («Закрытие танкером прохода через Суэцкий канал») → world__other.",
+   "active_period": "2020-W02..2025-W06 (21 names, 37 event-weeks; none in 2022)",
+   "example_names": [
+    "Пожары в Австралии",
+    "Землетрясение в Турции",
+    "Взрыв в Бейруте",
+    "Наводнение в Европе",
+    "Крушение российского самолета в Турции",
+    "Землетрясение в Турции и Сирии",
+    "Ураган в США",
+    "Наводнение в Испании",
+    "Пожары в Калифорнии",
+    "Авиакатастрофа в Вашингтоне"
+   ]
+  },
+  {
+   "theme_id": "crime",
+   "umbrella_id": "incidents",
+   "label_en": "Crime and criminal cases",
+   "label_ru": "Криминал и уголовные дела",
+   "definition": "FOM's standing crime rubric («Криминальные события», «Преступления, криминальные события», «Преступления, несчастные случаи(, аварии)») and named crimes and trials: actor Efremov's fatal crash and trial, the Sankin verdict, the Mytishchi shootout, the Moscow MFC shooting, metro fights and beatings, the Kostroma and Korkino murders, the 'ChVK Redan' teenage gang, hoax bomb threats against schools, the Wildberries office shooting, the Bishimbayev murder trial in Kazakhstan.",
+   "boundary_notes": "Armed attacks on schools, universities and kindergartens → school_shootings. Terror attacks and political killings → terrorism. Corruption cases → corruption. Crimes framed as a migrant issue → migrants. Arrests of opposition figures → navalny or protests_unrest. Mixed rubrics led by crime («Криминальные события, коррупция», «..., терроризм») stay here. Efremov's crash stays here, not accidents, because the trial dominates.",
+   "active_period": "2020-W04..2025-W10 (24 names, 103 event-weeks, every year)",
+   "example_names": [
+    "Криминальные события",
+    "ДТП с участием М. Ефремова, отклики на это событие",
+    "Суд над М. Ефремовым",
+    "Осуждение В. Санкина за убийство педофила",
+    "Стрельба в московском МФЦ",
+    "Изнасилование и убийство пятилетней девочки в Костроме",
+    "Драки, беспорядки с участием «ЧВК Рёдан»",
+    "Суд в Казахстане над К. Бишинбаевым",
+    "Стрельба у центрального офиса Wildberries",
+    "Убийство женщины в Коркино"
+   ]
+  },
+  {
+   "theme_id": "school_shootings",
+   "umbrella_id": "incidents",
+   "label_en": "Shootings and attacks at schools",
+   "label_ru": "Нападения на школы и вузы",
+   "definition": "Armed attacks on schools, universities and kindergartens: the Kazan school (May 2021), Perm university (Sept 2021), FOM's 'shootings in educational institutions' row (Oct 2021), the Ulyanovsk-region kindergarten (2022), the Izhevsk school (Sept 2022, named «Трагедия в Ижевске»), the Bryansk gymnasium (2023).",
+   "boundary_notes": "Shootings elsewhere (the Moscow MFC, Mytishchi, the Wildberries office) → crime. Hoax bomb threats against schools → crime. Terror attacks such as Crocus → terrorism.",
+   "active_period": "2021-W19..2023-W50 (6 names, 14 event-weeks in 5 separate episodes)",
+   "example_names": [
+    "Массовое убийство школьников в казанской школе",
+    "Расстрел студентов в Перми",
+    "Стрельба в учебных заведениях",
+    "Вооруженное нападение в детском саду под Ульяновском",
+    "Трагедия в Ижевске",
+    "Стрельба в брянской гимназии"
+   ]
+  },
+  {
+   "theme_id": "terrorism",
+   "umbrella_id": "incidents",
+   "label_en": "Terror attacks and targeted killings",
+   "label_ru": "Теракты и заказные убийства",
+   "definition": "Terrorist attacks and assassinations. In Russia: the killings of Dugina (2022), Tatarsky (2023), Kiva (2023) and General Kirillov (2024), the car bomb against an SVO veteran (2024), the Alye Parusa blast (2025), Crocus City Hall (2024), the Dagestan attacks and the Volgograd prison-colony hostage-taking (2024), FOM's «Взрывы, теракты в России» and «Теракты, криминальные события». Abroad: France and Austria (2020), Turkey (2022).",
+   "boundary_notes": "Drone and missile strikes, incl. the 2023 rubric «Атаки дронов, взрывы, теракты...» and «Обстрел..., теракты на них», → strikes_on_russia. School shootings → school_shootings. Attempts on foreign politicians (Trump → us_politics; Fico, Abe, the Haiti president → world__other).",
+   "active_period": "2020-W44..2025-W06 (14 names, 25 event-weeks; 16 of 24 survey weeks in 2024)",
+   "example_names": [
+    "Убийство учителя во Франции, последствия этого",
+    "Убийство Дарьи Дугиной",
+    "Теракт в Санкт-Петербурге, убийство В. Татарского",
+    "Теракт в «Крокус Сити Холле»",
+    "Теракты в Дагестане",
+    "Захват заложников в исправительной колонии в Волгоградской области",
+    "Убийство генерал-лейтенанта И. Кириллова",
+    "Теракт в ЖК «Алые паруса»"
+   ]
+  },
+  {
+   "theme_id": "incidents__other",
+   "umbrella_id": "incidents",
+   "label_en": "Other incidents",
+   "label_ru": "Другие происшествия",
+   "definition": "Odd one-off incidents that are neither accidents, crimes nor disasters: the shark attack on a tourist in Egypt (2023), a man rescued after drifting in the Sea of Okhotsk (2024).",
+   "boundary_notes": "Check accidents_russia, crime and disasters_abroad first. Only two names exist.",
+   "active_period": "2023-W23..2024-W42 (2 names, 2 event-weeks)",
+   "example_names": [
+    "Нападение акулы на туриста в Египте",
+    "Спасение человека в Охотском море"
+   ]
+  },
+  {
+   "theme_id": "holidays",
+   "umbrella_id": "society",
+   "label_en": "Holidays and festivals",
+   "label_ru": "Праздники и памятные даты",
+   "definition": "FOM's standing holiday rubric («Праздники», «Праздники, памятные даты», «Годовщины, праздники, традиционные события/даты», «Праздники, культурные/зрелищные мероприятия», «Праздники, дни памяти/поминовения») and named holidays: New Year and Christmas, Navy Day and its parade, 8 March, extra days off, festivals and concerts, the 2024 World Youth Festival.",
+   "boundary_notes": "Victory Day or 9 May named anywhere in the name → victory_day_ww2 («Праздники, подготовка к празднованию Дня Победы»). Day of Knowledge, last bell and graduation → education, also when «другие праздники» follows. Crimea and accession anniversaries → annexed_territories. Putin's birthday and New Year address → putin. Mourning dates (Beslan) inside the generic rubric stay here.",
+   "active_period": "2020-W02..2025-W02 (31 names, 69 event-weeks, every year)",
+   "example_names": [
+    "Празднование Нового года, Рождества",
+    "Праздники",
+    "Подготовка и празднование Дня военно-морского флота",
+    "Праздники, фестивали",
+    "Праздники, зрелищные и культурные мероприятия",
+    "8 Марта",
+    "Всемирный фестиваль молодёжи в Сочи",
+    "Праздники, дни поминовения"
+   ]
+  },
+  {
+   "theme_id": "victory_day_ww2",
+   "umbrella_id": "society",
+   "label_en": "Victory Day and WWII memory",
+   "label_ru": "День Победы и память о войне",
+   "definition": "Victory Day celebrations and parades (incl. the 2020 postponement to 24 June and the Immortal Regiment), Holocaust and victims-of-fascism remembrance, the Rzhev memorial, the Armed Forces cathedral built for the 75th anniversary (2020), the 2024 trophy exhibition, disputes over WWII memory (Trump's 2020 remark, the Nazi veteran honoured in Canada's parliament in 2023).",
+   "boundary_notes": "Other holidays → holidays. Commemorations of the current war → war themes. Putin's 2020 WWII article appears inside the Putin rubric («Выступления и распоряжения В. Путина, интервью и публикация статьи о начале войны», «Выступления В. Путина, интервью и публикация статьи о начале войны») → putin.",
+   "active_period": "2020-W04..2024-W20 (every May; Victory Day 2021 sits inside the generic holiday rubric and is moved here by a week-level override)",
+   "example_names": [
+    "Мероприятия, посвященные памяти жертвам фашизма",
+    "Высказывание Д. Трампа о победе во Второй мировой войне",
+    "Освящение главного храма Вооруженных сил России в подмосковном военно-патриотическом парке «Патриот»",
+    "Парад Победы 24 июня",
+    "Открытие мемориала под Ржевом",
+    "Празднование Дня Победы",
+    "Празднование Дня Победы, парад на Красной площади",
+    "Чествование нациста в парламенте Канады",
+    "Празднование 9 Мая"
+   ]
+  },
+  {
+   "theme_id": "sport",
+   "umbrella_id": "society",
+   "label_en": "Sport and the Olympics",
+   "label_ru": "Спорт и Олимпийские игры",
+   "definition": "FOM's standing sport rubric («Спортивные события», «События в области спорта»), the Olympics (Tokyo 2021, Beijing 2022, Paris 2024), the 2022 World Cup and Euro 2024, Russia's Games of the Future and BRICS Games (Kazan 2024).",
+   "boundary_notes": "Deaths of athletes (Maradona) → famous_deaths.",
+   "active_period": "2020-W02..2024-W32 (16 names, 78 event-weeks; none in 2023)",
+   "example_names": [
+    "Спортивные события",
+    "События в области спорта",
+    "Летние Олимпийские игры в Токио",
+    "Зимние Олимпийские игры в Пекине",
+    "Чемпионат мира по футболу",
+    "Игры Будущего в Казани",
+    "Чемпионат Европы по футболу",
+    "Олимпийские игры в Париже"
+   ]
+  },
+  {
+   "theme_id": "famous_deaths",
+   "umbrella_id": "society",
+   "label_en": "Deaths of famous people",
+   "label_ru": "Смерти известных людей",
+   "definition": "Deaths of actors, entertainers, athletes, public figures and royals: Zhvanetsky, Maradona, Lanovoy, Prince Philip, Menshov, Zhirinovsky (incl. his illness and death rumours), Gorbachev, Elizabeth II, Shatunov, Zavorotnyuk, Maslyakov; also the emergencies minister Zinichev (2021).",
+   "boundary_notes": "Deaths that belong to another story go there: Navalny → navalny, Prigozhin → wagner_prigozhin, Raisi → middle_east, Dugina and Kirillov → terrorism, the war reporter Maksudov → war_frontline.",
+   "active_period": "2020-W36..2024-W40 (28 names, 36 event-weeks in 8 separate episodes)",
+   "example_names": [
+    "Смерть М. Жванецкого",
+    "Смерть принца Филиппа",
+    "Смерть В. Меньшова",
+    "Смерть В. Жириновского",
+    "Смерть М. Горбачева",
+    "Смерть королевы Елизаветы II",
+    "Смерть В. Васильевой, И. Мирошниченко",
+    "Смерть. А. Заворотнюк",
+    "Смерть А. Маслякова"
+   ]
+  },
+  {
+   "theme_id": "education",
+   "umbrella_id": "society",
+   "label_en": "Schools and education",
+   "label_ru": "Школа и образование",
+   "definition": "Schooling and exams: distance learning in 2020–21, exams, school holidays, the start of the school year and the Day of Knowledge, the last bell, graduation.",
+   "boundary_notes": "Distance learning stays here even when FOM appends «в связи с карантином» or «эпидемией коронавируса». «День знаний, другие праздники» comes here. School shootings → school_shootings; hoax bomb threats → crime; flu with school quarantine → flu.",
+   "active_period": "2020-W15..2024-W21 (19 names, 33 event-weeks; 26 of them in 2020)",
+   "example_names": [
+    "Проблемы образования, дистанционного обучения в связи с карантином",
+    "Новости, посвященные образованию",
+    "Перевод школьников и студентов на дистанционное обучение",
+    "Выпускной день в школах, праздники",
+    "Дистанционное обучение",
+    "День знаний, другие праздники",
+    "1 сентября - День знаний",
+    "Последний звонок в школах"
+   ]
+  },
+  {
+   "theme_id": "migrants",
+   "umbrella_id": "society",
+   "label_en": "Migrants in Russia",
+   "label_ru": "Мигранты в России",
+   "definition": "Labour migrants in Russia as a public issue: 'the migrant problem', conflicts with migrants and crimes by migrants (2023–24, sharper after Crocus).",
+   "boundary_notes": "The 2021 migrant crisis on the Belarus–Poland border → ex_soviet. The Texas border stand-off → us_politics. A single crime → crime unless the name frames it as a migrant issue. Only two names exist, but they recur in 7 survey weeks over 8 months.",
+   "active_period": "2023-W51..2024-W31 (2 names, 7 event-weeks)",
+   "example_names": [
+    "Проблема мигрантов",
+    "Конфликты с мигрантами, преступления мигрантов"
+   ]
+  },
+  {
+   "theme_id": "space",
+   "umbrella_id": "society",
+   "label_en": "Space flights and missions",
+   "label_ru": "Космос",
+   "definition": "Space flights and missions: the 2020 US crewed launch, the 2021 film shot on the ISS, Luna-25 in 2023, and other launches.",
+   "boundary_notes": "Weapons tests in orbit (the 2021 anti-satellite test) → nuclear_military.",
+   "active_period": "2020-W22..2023-W34 (three episodes)",
+   "example_names": [
+    "Запуск в США космического корабля",
+    "Запуск в США спускаемого космического корабля с космонавтами",
+    "Полет российских артистов на орбитальную станцию для съемок фильма",
+    "Полет российских кинематографистов на орбитальную станцию для съемок фильма",
+    "Запуск Россией межпланетной станции «Луна-25»",
+    "Запуск Россией межпланетной станции «Луна-25» и её крушение"
+   ]
+  },
+  {
+   "theme_id": "society__other",
+   "umbrella_id": "society",
+   "label_en": "Other society and culture news",
+   "label_ru": "Другие события в обществе и культуре",
+   "definition": "Cultural and social items that do not recur: Eurovision 2021, the 'Russia' expo at VDNKh, Ivleeva's 'naked party', Twix the cat.",
+   "boundary_notes": "Space flights → space. The 2021 anti-satellite test → nuclear_military.",
+   "active_period": "2020-W22..2024-W04 (10 names, 15 event-weeks)",
+   "example_names": [
+    "Запуск в США космического корабля",
+    "Конкурс «Евровидение»",
+    "Полет российских кинематографистов на орбитальную станцию для съемок фильма",
+    "Запуск Россией межпланетной станции «Луна-25» и её крушение",
+    "Международная выставка-форум «Россия» на ВДНХ",
+    "«Голая вечеринка» у А. Ивлеевой",
+    "Гибель кота Твикса"
+   ]
+  }
+ ],
+ "wording_drift": [
+  "War overall (war_frontline): «Военная операция России на Украине» (2022-W09..W10) → «Специальная военная операция России на Украине» (W11..W13) / «Специальная военная операция на Украине» (W12..W14) → «Военная спецоперация России на Украине» (39 weeks, 2022-W15..2023-W51) alternating with «Спецоперация, военные действия в целом» (21 weeks, 2022-W33..2023-W09; the two never fall in the same week) → «Успехи российской армии» (2023-W02..W10) → «Военная спецоперация в целом» (2023-W19..W32) → «..., наступление российских войск» (2023-W33..W41) → «СВО в целом» (2024-W02..W33) → «СВО в целом, успехи российской армии» (43 weeks, 2024-W17..2025-W11). The order is not linear: «Военная спецоперация России на Украине» returns in 2023-W42..W51, and «СВО в целом» and its extended form alternate through 2024-W17..W33. Joined, they cover all 147 war weeks.",
+  "Pre-war Ukraine (ukraine_before_2022): «События на Украине» (70 weeks, 2020-W02..2021-W50) → «Обострение обстановки на Украине» (2021-W10..W15) → «События на Украине, обострение военной напряженности» (2021-W18) → «..., угроза российско-украинского военного конфликта» (2021-W51..2022-W03) → «..., опасения российско-украинского военного конфликта» (2022-W04..W07, peak 39%) → the war rubric from 2022-W09.",
+  "Strikes on Russia (strikes_on_russia): «Обстрелы Украиной российской территории» (2022-W15..W19) → «Обстрелы Украиной российских территорий» (2022-W41) → «Обстрел российских территорий со стороны Украины, теракты на них» (2022-W43) → «Обстрелы российских территорий со стороны Украины» (2022-W45..2023-W05) → «Обстрел российских территорий» (21 weeks, 2022-W48..2024-W21); in 2023 a parallel series «Атаки дронов, взрывы, теракты на территории России» (W19..W22) → «Атаки дронов, взрывы...» (W23..W25) → «..., диверсии...» (W27..W35) → «Атаки дронов, обстрелы, диверсии...» (W36..W41); then «Обстрел Белгорода, других российских территорий» (2024-W02..W08) → «Обстрелы российских территорий» (33 weeks, 2024-W22..2025-W10), «Обстрелы других/различных российских территорий» (2024-W26/W27), «..., в том числе дальнобойным оружием» (2024-W47..W50), «..., атака беспилотников на Москву» (2025-W11).",
+  "Kursk (border_incursions): «Нападение на Курскую область» (2024-W32) → «Нападение ВСУ на Курскую область» (2024-W33..W36) → «Военные действия в Курской области» (25 weeks, 2024-W37..2025-W11).",
+  "Mobilisation: «Частичная мобилизация» (2022-W38..W48) → «Частичная мобилизация, ее завершение» (W43..W46) → «Завершение частичной мобилизации, возможность второй волны мобилизации» (W47) → «Мобилизация, возможность второй волны мобилизации» (10 weeks, 2022-W49..2023-W08) → «Закон об электронных повестках» (2023-W15) → «Военные сборы, мобилизация» (2023-W19..W22).",
+  "Western weapons (western_arms): «Поставки оружия Украине» (2023-W12..W28) → «Поставки оружия на Украину, выделение помощи США, странами/стран Запада Украине» (three spellings, 2024-W17..W22) → «Поставки Западом оружия (на) Украину/Украине» (2024-W23..W28) → «Дискуссия на Западе о разрешении Украине применять западное дальнобойное оружие» (2024-W37..W40) → «Разрешение Украине дальнобойных ударов по территории России западным оружием» (2024-W47..W48). The 2023 relations rubric that appends arms supplies belongs to the relations family, not to this one (corrected after the 2026-10-15 check).",
+  "Relations with the West (west_relations): «Отношения между Россией и США» (2020-W07) → «Ухудшение/Напряженные отношения с Евросоюзом, США, санкции против России» (2021-W06..W08) → «Напряженные отношения России с США, (западными странами,) (антироссийские) санкции» (2021-W10..W21) → «Напряженные отношения России со странами Запада» (2021-W20..W23, with NATO ships or drills appended in W26..W27) → «Обострение отношений с НАТО, рост международной напряженности» (2021-W42) → «Переговоры России с НАТО и США, напряженные отношения...» (2022-W02..W06) → «Напряженные отношения между Россией и (США,) странами Запада» (2022-W07..W26) → «..., санкции» (2022-W47..2023-W02) → «..., поставки оружия Украине» (2023, placed in western_arms) → «Поставки Западом оружия Украине, усиление конфронтации между Россией и Западом» (2024-W24, western_arms) → «Напряжённая международная обстановка, угроза ядерной войны» (2024-W47..W50, nuclear_military) → «Налаживание контактов между Россией и США» (2025-W09..W11). One FOM rubric therefore lands in three themes, by what it names first.",
+  "Russia–US in 2025 (west_relations): «Подготовка встречи В. Путина и Д. Трампа» (2025-W04) → «Подготовка к переговорам...» (W06) → «Телефонный разговор В. Путина и Д. Трампа, подготовка к встрече двух президентов» (W07) → «..., встреча делегаций России и США в Эр-Рияде» (W08) → «Налаживание контактов между Россией и США» (W09..W10) → «..., обсуждение темы перемирия на Украине» (W11).",
+  "Prices (prices_inflation): base «Рост цен, тарифов» (74 weeks, 2020-W04..2025-W11) with add-ons: «Рост цен, снижение курса рубля» (2020-W10..W15, 2022-W10/W12), «Снижение курса рубля, рост цен» (2020-W11), «..., ослабление рубля» (2020-W41..W46), «..., инфляция» (from 2020-W47), «..., меры по сдерживанию цен (на продовольствие)» (2020-W50..2021-W01), «..., падение рубля» (2022, 2023); bare «Рост цен» (17 weeks, 2021-W12..2024-W44); inflation moves to the front in 2023: «Инфляция, рост цен» (2023-W29..2024-W27), «Инфляция, рост цен, снижение курса рубля» (15 weeks, 2023-W32..W46), «Инфляция, рост цен, тарифов» (2023-W48..2024-W05); «Рост цен и тарифов» (2024-W28..W29). In 2020 FOM also used «Социальные проблемы (россиян)» and «Социально-экономические проблемы», whose quotes are about prices, pensions and the ruble.",
+  "Pensions and payments (pensions_benefits), 60 permutations of the same nouns: 2020 «Повышение зарплат, пенсий» / «Повышение пенсий» → «Выплаты, льготы социально незащищенным группам населения» (18 weeks, 2020-W15..W34) → «... различным группам» (W35..W41) → «... отдельным группам» (W42..W50) → «... семьям с детьми» (Dec 2020) → 2021 «Выплаты, повышение пенсий, детских пособий» (W10..W14), «Выплаты, пособия, повышение пенсий» (10 weeks, W25..W35) → «Пособия, выплаты, повышение пенсии» (2021-W51..2022-W06) → 2022 «Выплаты детям, рост пособий, повышение (зарплат бюджетникам,) пенсий» (W11..W17) → «Повышение зарплат, пенсий, пособий(, МРОТ)» (2022-W21..2023-W02) → «Повышение и выплата пенсий, пособий» (late 2022) → 2023–25 «Повышение пенсий, других/социальных выплат».",
+  "Putin (putin): about 35 orderings of встречи / поездки / выступления / действия / высказывания / заявления, often running in parallel: «Встречи, поездки, выступления В. Путина» (12 weeks, 2020-W06..2023-W46), «Поездки, выступления В. Путина» (17, 2020-W10..2024-W43), «Действия В. Путина» (13, 2020-W30..2023-W17), «Выступления, действия В. Путина» (16, 2021-W13..W48), «Встречи, выступления В. Путина» (11), «Выступления В. Путина» (9, 2020-W47..2024-W47), «Высказывания и действия В. Путина» (2020-W39..2025-W11), 2024 «Поездки и выступления В. Путина», «Поездки, выступления, переговоры В. Путина». Forums drift too: «Петербургский международный экономический форум» (2021–22) → «Международный экономический форум в Санкт-Петербурге» (2023) → «Экономический форум в Санкт-Петербурге» (2024); «Валдайский форум – 2020» → «Валдайский форум» (2021) → «Международный дискуссионный клуб «Валдай»...» (2022, 2023) → «Валдайский форум в Сочи» (2024); «Восточный экономический форум» → «VII Восточный экономический форум» → «ВЭФ во Владивостоке».",
+  "COVID (covid_epidemic, which since 2026-10-15 also holds the restrictions), 91 wordings: «Эпидемия коронавируса в Китае» (2020-W04..W07; once misspelled «короновируса», «Эпидемия короновируса в Китае») → «Эпидемия коронавируса» (W08..W11) → «Пандемия коронавируса(, реакция людей на нее / связанные с ней новости)» (2020-W12..W35) → «Рост эпидемии коронавируса, информация о ней, ...» (autumn 2020) → «Эпидемия коронавируса, информация о ней, принимаемые меры» (2020-W50..2021-W04) → «Эпидемия коронавируса, вакцинация» (2021-W08..W15) → «..., защитные меры, (отношение к) прививк(ам)» (2021) → «Пандемия коронавируса, рост заболеваемости...» (autumn 2021) → «..., появление новой разновидности» (2021-W47..W51) → «Рост заболеваемости коронавирусом, распространение новой его разновидности» (2022-W03..W07) → «Ситуация с коронавирусом» (2022-W09) → «Рост заболеваемости коронавирусом (в России)(, возвращение противоковидных мер)» (2022-W22..W37). Restrictions: «Карантин, нерабочая неделя / продление нерабочих дней...» (2020-W13..W20) → «Ограничительные меры..., постепенное снятие этих мер» (2020-W21..W29) → «Антиковидные меры, их ужесточение, введение QR-кодов, обязательная вакцинация» (six orderings, 2021-W45..W51) → «Ужесточение антиковидных мер, вакцинация от коронавируса» (2022-W04..W06).",
+  "Natural disasters in Russia: «Природные катаклизмы в России» (67 weeks, 2020-W21..2024-W40) is the base; summer 2021 has about 15 one-to-five-week orderings of «Пожары, наводнения (, другие погодные/природные катаклизмы) в России» (2021-W15..W40), plus «Погода в России» and «Аномальная погода в России»; «Природные аномалии, катаклизмы в России» (10 weeks, 2023-W28..W37) → «Природные катаклизмы и аномалии в России» (10 weeks, 2023-W49..2024-W14); 2024 floods «Паводки в России в целом» → «Масштабный паводок в России» → «Масштабные паводки(, пожары, природные катаклизмы) в России» (2024-W15..W22).",
+  "Accidents in Russia: «Аварии, пожары» (15 weeks, 2020-W02..2025-W06), «Аварии, несчастные случаи» (39, 2020-W04..2024-W51), «Аварии, пожары, несчастные случаи» (25), «Аварии, катастрофы, несчастные случаи» (35, 2020-W48..2024-W32) run in parallel; 2021–23 «Аварии, взрывы(, пожары)(, несчастные случаи)»; 2024 «Аварии, ДТП(, пожары)(, отравления детей)(, несчастные случаи)».",
+  "Crime and sport: «Криминальные события» (58 weeks, 2020-W04..2025-W10), «Криминальные события, их последствия» (2020), «Преступления, криминальные события» (2020-W42..W51), «Криминальные события, коррупция» (2021), «Преступления, несчастные случаи(, аварии)» (2022), «Теракты, криминальные события» (2024-W25, terrorism). «Спортивные события» (46 weeks) alternates with «События в области спорта» (11 weeks, 2020-W51..2021-W10): the same rubric.",
+  "Constitution 2020 (elections_government): about 15 wordings in 27 weeks: «Предстоящие изменения в Конституции» (2020-W04) → «Обсуждение поправок в Конституцию(, назначение дня проведения голосования)» (W07..W12) → «Поправка Терешковой о президентских сроках» (W11) → «Внесение поправок в Конституцию(, отмена дня голосования / предстоящее голосование)» (W13..W22) → «Предстоящее голосование по поправкам...» (W23..W25) → «Голосование по поправкам в Конституцию(, подведение итогов)» (W26..W32, peak 46%).",
+  "Navalny: «Отравление А. Навального» (2020-W34..W37) → «События, связанные с А. Навальным(,) (и) его отравлением» (W39..W46) → «Возвращение А. Навального в Россию, его задержание(, митинги)» (2021-W02..W03) → «Заключение под стражу А. Навального(, суд), митинги в его защиту» (W05..W07) → «Отправка А. Навального в исправительную колонию» (W10..W11) → «А. Навальный в колонии, ухудшение его здоровья, голодовка» (W13..W18) → «Смерть А. Навального(, связанные с этим события, похороны)» (2024-W07..W10). Khabarovsk: «Арест губернатора Хабаровского края С. Фургала, митинги в его защиту» (2020-W28..W32) → «Митинги в Хабаровске в защиту арестованного губернатора» (W33..W35) → «Следствие по делу С. Фургала, митинги...» (W36..W41) → «События вокруг С. Фургала, массовые выступления...» (W42..W44) → «Массовые выступления в Хабаровске...» (W45..W47) → «Продление срока ареста С. Фургала...» (W48).",
+  "Belarus and Karabakh (ex_soviet): «Президентские выборы в Белоруссии» (2020-W32) → «..., акции протеста против фальсификации результатов выборов» (W33..W34) → «События в Белоруссии» (W35) → «События в Белоруссии после президентских выборов» (14 weeks, W36..W50); later «Выборы президента в Беларуси» (2025-W05..W06) uses the other spelling of the country. Karabakh: «Конфликт между Арменией и Азербайджаном» (2020-W29) → «(Вооруженный) армяно-азербайджанский (вооруженный) конфликт» (W30, W40..W45) → «Прекращение ... конфликта, ввод российских миротворцев (в Нагорный Карабах)» (W46..W50) → «..., присутствие в Армении российских миротворческих сил» (W52) → «Армяно-азербайджанские отношения...» (2021-W02) → «Обострение ситуации в Нагорном Карабахе» (2022-W37) → «Армяно-азербайджанский конфликт(, отношения России и Армении)» (2023-W39..W41).",
+  "Middle East: «Напряженная обстановка (в Сирии, Ливии,) на Ближнем Востоке» (2020) → «Обострение палестино-израильского конфликта» (2021-W19..W21) → «Вторжение ХАМАС в Израиль(, ответные действия Израиля)» (2023-W40..W42) → «Обострение палестино-израильского конфликта, война в зоне конфликта / в секторе Газа» (2023-W43..W51) → «Война в секторе Газа» (2024-W02..W04) → «Обострение конфликта на Ближнем Востоке(, авиаудары по Йемену)» / «Конфликт на Ближнем Востоке» (2024-W02..W06) → «Напряженная обстановка..., ирано-израильский конфликт...» (2024-W15..W18) → «Военные действия на Ближнем Востоке» (2024-W39..W44) → «Перемирие в секторе Газа» (2025-W03..W05).",
+  "Smaller families: corruption «Коррупция, борьба с ней» (2020-W47..W48) → «(Меры по борьбе с коррупцией / Коррупция, меры по борьбе с ней), аресты» (2021-W10..W14) → «Арест генерала Т. Иванова» (2024-W17..W18) → «Коррупционные скандалы в Министерстве обороны(, арест генерала Т. Иванова)» (2024-W20..W30) → «Коррупционные скандалы» (2024-W25..W36). Prigozhin: «Заявление Е. Пригожина о нехватке боеприпасов» (2023-W19) / «Другое» (W20, quotes only) → «Мятеж, организованный Е./Евгением Пригожиным, события вокруг ЧВК «Вагнер»» (W25..W30) → «Крушение самолета в Тверской области, гибель Е. Пригожина» (W34..W35) → «Гибель Е. Пригожина» (W36..W38). Victory Day 2020: «Перенос празднования Дня Победы и праздничного парада» (W16) → «Празднование Дня Победы, перенос...» (W19..W21) → «Перенос на 24 июня парада Победы» (W23..W24) → «Предстоящий парад в честь 75-летия Победы» (W25) → «Парад Победы 24 июня» (W26..W28); later «Празднование Дня Победы» (2022), «..., парад на Красной площади» (2023), «Празднование 9 Мая» (2024). Holidays: «Праздники» (23 weeks) / «Праздники, памятные даты» (10) / «Годовщины, праздники, традиционные события/даты» (2021) / «Праздники, культурные/зрелищные мероприятия» (2022) / «Праздники, годовщины / дни памяти / дни поминовения» (2024).",
+  "Spelling variants that must be joined by hand: «Визит Си Цзиньпина / Си Цзиньпиня в Россию» (2023), four spellings of «Снижение скорости загрузки Ютуба / YouTube ...» (2024-W31..W34), «... пособий, MPOT» in Latin letters («Повышение зарплат, пенсий, пособий, MPOT», 2022-W24) vs «МРОТ», «Эпидемия короновируса в Китае» («Эпидемия короновируса в Китае», 2020-W04), «Смерть. А. Заворотнюк» («Смерть. А. Заворотнюк», 2024), «Белоруссия» (2020–23) vs «Беларусь» (2025), «Артемовска / Артёмовска» (2023), «Мятеж, организованный Евгением / Е. Пригожиным» (2023-W25/W26)."
+ ],
+ "meaning_drift": [
+  "«События на Украине» («События на Украине», 70 weeks): this exact name runs 2020-W02..2021-W50 only, so in this file it never spans 24 Feb 2022, contrary to the brief's expectation. Its meaning shifts inside the pre-war period instead: in 2020–21 it covers Donbas shooting, Russia–Ukraine talks and Ukrainian politics; from 2021-W51 the extended variants («..., угроза / опасения российско-украинского военного конфликта», peak 39%) mean the coming war; from 2022-W09 FOM drops the prefix for the war rubric. This is why ukraine_before_2022 and war_frontline meet at 2022-W09; the war umbrella as a whole is the continuous series (236 of 248 weeks).",
+  "«Обстрел(ы) российских территорий» («Обстрел российских территорий» 2022-W48..2024-W21, «Обстрелы российских территорий» 2024-W22..2025-W10): in 2022–23 mostly artillery on the Belgorod and Kursk border areas; by late 2024 FOM appends long-range weapons and drones on Moscow, and the quotes are about deep strikes (Tatarstan, Tambov, airfields). Same subject, much wider geography.",
+  "«Военные действия в Курской области» («Военные действия в Курской области», 2024-W37..2025-W11) starts as the Ukrainian incursion and ends as Russia's counter-offensive: same name, opposite direction of events.",
+  "«Успехи российской армии»: in 2023-W02..W10 («Успехи российской армии») it marks specific gains (Soledar); from 2024-W17 it is a fixed add-on to «СВО в целом» («СВО в целом, успехи российской армии») and no longer marks a specific success. Wording drift, not a new subject.",
+  "«Мобилизация»: 2022-W38..W48 the actual call-up; 2022-W49..2023-W08 rumours of a second wave; 2023-W19..W22 («Военные сборы, мобилизация») reservist training.",
+  "Relations rubric «Напряженные отношения России с(о) ... Запад(ом)»: in 2021 sanctions, diplomats and NATO ships; Jan–Feb 2022 the Russia–NATO talks about Ukraine; after Feb 2022 wartime confrontation; in 2023 it carries weapons deliveries («Напряженные отношения между Россией и странами Запада, поставки оружия Украине», whose quotes are about sanctions and general hostility as often as about arms — about 38 of its 86 quote fragments are not about arms); in 2025 the same subject returns as rapprochement («Налаживание контактов между Россией и США»).",
+  "«Крымский мост» names three different events: the Oct-2022 truck-bomb explosion («Взрыв Крымского моста»), the Jul-2023 sea-drone attack («Атака на Крымский мост»), both strikes_on_russia, and the Mar-2024 leaked German officers' talk about striking it («Обнародована запись переговоров военных ФРГ о возможности атаки на Крымский мост», western_arms).",
+  "One name reused for different events: «Землетрясение в Турции» («Землетрясение в Турции») covers Elazig 2020-W04, Izmir 2020-W44..W45 and the aftermath of the Feb-2023 quake (2023-W11); «Напряженная обстановка на Ближнем Востоке» («Напряженная обстановка на Ближнем Востоке») is the US–Iran crisis in 2020-W04..W05 and the Israel–Hezbollah/Iran escalation in 2024-W31; «Рост цен, снижение курса рубля» («Рост цен, снижение курса рубля») is the oil-and-COVID ruble fall of 2020-W10..W15 and the sanctions crash of 2022-W10/W12; «Послание В. Путина Федеральному собранию» («Послание В. Путина Федеральному собранию») is the 2020 constitution address and the 2023 wartime address; «Саммит НАТО» («Саммит НАТО», Madrid 2022 and Washington 2024); «Саммит БРИКС» («Саммит БРИКС», 2022 and Johannesburg 2023); «Выборы в США» («Выборы в США», the 2022 midterms and the 2024 presidential race); «События в Грузии» («События в Грузии», the 2023 foreign-agents protests and the 2024 post-election protests); «Единый день голосования» («Единый день голосования», two different Septembers, 2023 and 2024). Theme membership still holds, but a FOM name is not an event identifier.",
+  "«Выплаты, льготы социально незащищенным группам населения» («Выплаты, льготы социально незащищенным группам населения», 2020-W15..W34): generic wording, but the quotes show it meant the COVID support payments; from 2021 the benefit rubric means routine indexation and family payments, and in summer 2021 one-off payments before the Duma election.",
+  "«Рост цен, тарифов» («Рост цен, тарифов», 74 weeks): same wording over the 2020 ruble fall, the 2022 sanctions shock and the 2023–24 inflation with key-rate hikes. Same theme, different drivers.",
+  "«События в США» («События в США», 2020-W35..2021-W08) moves from race riots and the campaign (2020) to the post-election crisis (2021). «Выборы» («Выборы», 2022-W36..W37), a bare word, means the September-2022 Russian regional elections; «Выборы в России» («Выборы в России») the September-2020 ones.",
+  "Migrants: 2021 «Проблема с мигрантами на границе Белоруссии» / «Ситуация с мигрантами на белорусско-польской границе» («Проблема с мигрантами на границе Белоруссии», «Ситуация с мигрантами на белорусско-польской границе») is a Belarus–EU border crisis (ex_soviet); 2023–24 «Проблема мигрантов» («Проблема мигрантов») is labour migrants inside Russia (migrants). Same word, different subjects.",
+  "«Атаки дронов, взрывы, теракты на территории России» (2023-W19..W22) mixes Ukrainian drone strikes with terror and sabotage in one row; later FOM separates «Обстрелы...» from «Теракты...». So some 2023 terror events are hidden inside strikes_on_russia.",
+  "«Праздники, памятные даты» («Праздники, памятные даты») also carries mourning dates (quotes mention the Beslan anniversary), so the holidays theme is not purely festive.",
+  "«Спортивные события» («Спортивные события»): 41 of its 46 weeks fall before the invasion and 5 after; sport has no weeks at all in 2023. The fall follows Russia's exclusion from international sport and is not a coverage effect.",
+  "Stable series: «Природные катаклизмы в России», «Криминальные события», «Праздники» and «Рост цен, тарифов» keep the same meaning across 2020–2025 and are the safest rows for comparing years."
+ ],
+ "hard_cases": [
+  "Dashboard trap: in many weeks one theme gets two or more FOM rows: war_frontline in 48 of its 147 weeks, west_relations 26 of 81, putin 23 of 160, covid_epidemic 22 of 106, prices_inflation 19 of 186, accidents_russia 17 of 163. One respondent can name both rows, so adding the row percentages overstates a theme's weekly share. The dashboard needs a rule: for example, show the largest row (a lower bound) or show the rows separately.",
+  "Theme count: 38 subject themes plus 7 catch-alls = 45. To stay within the budget I folded war casualties and POWs into war_frontline, ecological spills into accidents_russia, key-rate and 'state of the economy' rows into prices_inflation, used one Putin theme (set pieces included) and one theme for Russia–US talks and relations, and kept space in society__other. The first candidates to split out again, if the budget allows: space (8 event-weeks over 3 years), the 2020 constitution vote (about a third of elections_government), Kursk (30 event-weeks, a clean subset of border_incursions), POWs and casualties (about 15 weeks inside war_frontline).",
+  "Rule for two-part names (the labelling default): the first-named subject is the main one. Listed exceptions only: (1) [removed after the 2026-10-15 check: the 2023 relations rubric that appends arms supplies now follows the default rule → west_relations]; (2) a Putin speech or trip whose named topic has its own theme goes to that theme (COVID addresses «Обращение В. Путина к гражданам в связи с пандемией коронавируса», «Обращение В. Путина к гражданам в связи с эпидемией коронавируса», «Обращения В. Путина к гражданам в связи с эпидемией коронавируса», «Выступления и распоряжения В. Путина в связи с эпидемией коронавируса» → covid_epidemic; doctrine «Выступление В. Путина о ядерной доктрине, другие его выступления, встречи» → nuclear_military; replies to Biden «Выступления, действия В. Путина, его ответ Д. Байдену», «Ответ В. Путина Д. Байдену» → west_relations; foreign visits → summits_partners; candidacy and inauguration → elections_government; Lukashenko → ex_soviet; the Luzhniki Crimea concert «Концерт-митинг в «Лужниках», посвященный Дню воссоединения Крыма с Россией, выступление на нем В. Путина» → annexed_territories); (3) Victory Day named anywhere beats the generic holiday rubric («Праздники, подготовка к празднованию Дня Победы», «Праздники, подготовка к 9 Мая, выставка трофеев в Москве»); (4) the ruble rate always goes to prices_inflation. The 2021 «Напряженные отношения ..., санкции» names («Ухудшение отношений с Евросоюзом, США, санкции против России», «Напряженные отношения с Евросоюзом, США, санкции против России», «Напряженные отношения России с США, антироссийские санкции», «Напряженные отношения России с США, западными странами, антироссийские санкции», «Напряженные отношения России с США, санкции», «Напряженные отношения России с США, странами Запада, санкции», «Напряженные отношения России со странами Запада, антироссийские санкции») and «Напряженные отношения между Россией и странами Запада, санкции» stay in west_relations: relations come first and the quotes are about relations in general.",
+  "«Напряжённая международная обстановка, угроза ядерной войны» (2024-W47..W50) → nuclear_military, because the first part names no country and the nuclear threat is the concrete subject; «Обострение отношений с США, Западом, угроза ядерной войны» (2022) names the West first → west_relations. The proposals split 2–1 on «Напряжённая международная обстановка, угроза ядерной войны».",
+  "«Другое» (2023-W20) and «Другие события» (2023-W15) are FOM catch-all rows that got past the exclusion filter. «Другое»'s quotes are all about Prigozhin's ammunition video, so it goes to wagner_prigozhin; «Другие события» is a real mix (Mishustin in Tyumen, the vape ban, a new governor) and goes to politics__other. Better to exclude both like the other catch-alls. «Работа властных структур, подготовка к выборам» and «Работа властных структур, перестановки во власти» start with the excluded rubric «Работа властных структур» but append a subject, so they go to elections_government (their quotes are about Mishustin's trips and officials' statements).",
+  "Killings of war-linked figures inside Russia (Dugina «Убийство Дарьи Дугиной», Tatarsky «Теракт в Санкт-Петербурге, убийство В. Татарского», Kiva «Убийство И. Кивы», the car bomb «Взрыв в Москве автомобиля с участником СВО», Kirillov «Убийство генерал-лейтенанта И. Кириллова», Alye Parusa «Теракт в ЖК «Алые паруса»») → terrorism, with Crocus «Теракт в «Крокус Сити Холле»», Dagestan «Теракты в Дагестане» and the Volgograd colony «Захват заложников в исправительной колонии в Волгоградской области». One proposal put them in strikes_on_russia, following FOM's attribution to Ukraine. Because the 2023 rubric «Атаки дронов, взрывы, теракты...» mixes both, matching posts to these two themes will be fuzzy.",
+  "«Нанесение удара по «Южмашу» в Днепропетровске российской баллистической ракетой «Орешник»», the Oreshnik strike on Yuzhmash (5 weeks, peak 16%) → war_frontline as a strike in Ukraine, although media coverage was largely about a new missile and nuclear signalling (nuclear_military). The proposals split 2–1.",
+  "«Катастрофа российского самолёта с украинскими пленными под Белгородом», the Il-76 crash with Ukrainian POWs near Belgorod (2024, peak 20%) → war_frontline (POWs are the story); it could also be read as accidents_russia or strikes_on_russia. «Падение российской бомбы в Белгороде», the accidental Russian bomb on Belgorod (2023) → strikes_on_russia as a war event on Russian soil; war__other is the alternative.",
+  "«Гибель украинского самолета над Ираном», the Ukrainian airliner shot down over Tehran (2020, peak 20%) → middle_east, as part of the US–Iran crisis; disasters_abroad is the alternative. «Авиакатастрофа в Казахстане», the 2024 air crash in Kazakhstan (an Azerbaijani plane) → disasters_abroad, because FOM words it as a crash.",
+  "«Нападения на Белгородскую область, обстрел российских территорий» (2024-W12) → border_incursions (the raids are named first). «Беженцы из ДНР и ЛНР в России», DNR/LNR refugees (2022-W07) → ukraine_before_2022; «Признание Россией независимости ДНР и ЛНР», recognition of DNR/LNR (2022-W09) → annexed_territories.",
+  "Peace talks without a Russia–US contact («Саммит G7 в Италии, конференция по Украине в Швейцарии» G7 and the Swiss conference, «Возможность мирных переговоров по Украине» possible peace talks, «Встреча Д. Трампа и В. Зеленского в Вашингтоне» and «Встреча Д. Трампа и В. Зеленского в Вашингтоне, её результаты» the Trump–Zelensky meeting) → west_relations: a separate peace-talks theme would have only about 6 weeks. «Высказывания и действия Д. Трампа» (2025) → us_politics, although part of what he said was about Ukraine.",
+  "Military incidents with NATO near Russian borders (US and UK destroyers «Нарушение российской границы эсминцем США», «Нарушение государственной границы России в Черном море эсминцем Великобритании, ответные действия», «Нарушение государственной границы России британским эсминцем», «Попытка американского эсминца нарушить российскую границу в Японском море»; US/NATO activity in the Black Sea «Военная активность США в Черном море», «Военная активность США и НАТО в Черном море», «Военная активность США и НАТО вблизи российских границ»; the US drone downed in 2023, «Беспилотник США, сбитый над Черным морем») → west_relations, by 2 of 3 proposals; nuclear_military is the alternative. Russian warships sent to Cuba («Визит российских военных кораблей на Кубу») → nuclear_military.",
+  "COVID overlaps: COVID support payments «Выплаты, льготы социально незащищенным группам населения» (18 weeks, peak 15%) → pensions_benefits; payments to medics «Назначение выплат медикам, работающим с коронавирусом, скандал в связи с их невыплатами», «Выплаты медикам, нарушения, связанные с выплатами», «Выплаты медикам», «Выплаты медикам, проблемы с их выдачей» → covid_epidemic; distance learning «Проблемы образования, дистанционного обучения в связи с карантином», «Введение дистанционного обучения в связи с карантином, проблемы в образовании», «Дистанционное обучение в связи с карантином, вопрос о сдаче экзаменов», «Школьные каникулы, перевод школьников на дистанционное обучение в связи с эпидемией коронавируса», «Перевод школьников на дистанционное обучение», «Перевод школьников и студентов на дистанционное обучение» → education; the postponed 2020 Victory Day parade → victory_day_ww2; the 2021 halt of flights to Turkey «Временное прекращение авиаперелетов в Турцию» → covid_epidemic (its official reason); Mishustin's illness «Заболевание премьер-министра М. Мишустина» → elections_government. The proposals disagreed on how to split COVID (restrictions vs vaccination vs no split); I split by the first-named word (restrictions-led vs epidemic- or vaccine-led), which keeps the rule mechanical.",
+  "Afghanistan 2021 («События в Афганистане», 8 weeks, peak 20%; «Вывод войск США из Афганистана») is a single episode; it goes to middle_east under the label 'Middle East wars and Afghanistan' so its 10 weeks stay visible, rather than to world__other (two of three proposals). Russia–Turkey friction of Feb–Mar 2020 («Обострение отношений между Россией и Турцией», «Обострение отношений между Россией и Турцией из-за ситуации в Сирии», «Российско-турецкие отношения, встреча В. Путина с В. Эрдоганом по вопросу о ситуации в Сирии», «Военные действия в Сирии, встреча В. Путина с Р. Эрдоганом по вопросу о ситуации в Сирии») → middle_east because it was about Idlib; later Putin–Erdogan meetings → summits_partners.",
+  "Vague names placed on their quotes: «Социальные проблемы россиян», «Социальные проблемы», «Социально-экономические проблемы» ('social problems') → prices_inflation; «Предстоящие изменения в социальной политике» (maternity capital) → pensions_benefits; «События в США» → us_politics; «Стихийные бедствия» → natural_disasters_russia (except its 2024-W42 week, which is about disasters abroad: see dbt/seeds/fom_event_week_themes.csv); «События в Махачкале» (airport riot) and «События в Башкирии», «События в Башкирии» (Baymak) → protests_unrest; «События в Чечне», «События в Чечне, высказывания и действия Р. Кадырова» Chechnya → protests_unrest; «Митинги, последствия для их участников» (2021-W18) → navalny as the aftermath of the April-2021 rallies, although the name does not mention him.",
+  "Other single placements: «Задержание во Франции П. Дурова» Durov's detention → internet_restrictions (world__other is the alternative); «Выдача ордера на арест В. Путина» the ICC warrant → west_relations; «Возвращение В. Бута в Россию» Bout and «Обмен заключёнными между Россией и Западом» the Aug-2024 swap → west_relations, while the Azov commanders' return «Возвращение азовцев на Украину из Турции» → war_frontline; «Отключение отопления в разных регионах России», «Отключения электричества» heating and power outages → accidents_russia; «ДТП с участием М. Ефремова, отклики на это событие», «ДТП с участием М. Ефремова», «ДТП с участием М. Ефремова, суд над ним», «Суд над М. Ефремовым» Efremov → crime; «Гибель главы МЧС Е. Зиничева» Zinichev → famous_deaths; «Болезнь В. Жириновского», «Слухи о смерти В. Жириновского» Zhirinovsky's illness and death rumours → famous_deaths; «Освящение главного храма Вооруженных сил России в подмосковном военно-патриотическом парке «Патриот»» the Armed Forces cathedral → victory_day_ww2 (the three proposals gave three different answers; its quotes link it to the Victory anniversary); «Признание движения ЛГБТ экстремистским» the LGBT 'extremist' ruling → politics__other (again three different answers); «ЧВК Рёдан» looks like Wagner but is a teenage gang → crime; «Арест российских граждан в Белоруссии» Russians (Wagner) detained in Belarus in 2020 → ex_soviet; «Визит В. Орбана в Россию», «Визит В. Орбана в Россию, в другие страны» Orban's visit → west_relations (EU leader), «Встреча В. Путина с Р. Эрдоганом в Сочи» Putin–Erdogan → summits_partners.",
+  "Two catch-alls hold only 2 names each (incidents__other: «Нападение акулы на туриста в Египте», «Спасение человека в Охотском море»; migrants is a subject theme with 2 names, «Проблема мигрантов», «Конфликты с мигрантами, преступления мигрантов»), so their example lists are shorter than 3: no more names exist."
+ ]
+}

@@ -15,9 +15,10 @@ postponed. Do not add it before giving that explanation.
 
 ## Current phase — coverage metrics through a local warehouse
 
-Built: DuckDB warehouse, dbt (15 models, 90 data tests, 2 unit tests), Metabase, a standalone
-HTML dashboard, and the first manual Dagster graph from static inputs through dbt to the
-Metabase snapshot. Not built: automated ingestion, a weekly schedule, or incremental models.
+Built: DuckDB warehouse, dbt (models, data tests, unit tests), Metabase, a standalone HTML
+dashboard (an overview across all survey weeks and a per-week view), cross-week themes for every
+FOM event (`dbt/seeds/README.md`), and the first manual Dagster graph from static inputs through
+dbt to the Metabase snapshot. Not built: automated ingestion, a weekly schedule, or incremental models.
 A dated history of the source-to-group map is deferred — no source is known to have changed group.
 Blueprint: `docs/data_architecture.md`.
 
@@ -71,6 +72,12 @@ paths alongside the output.
   0.35 it keeps 0 posts; its highest rerank score is under 0.30. The old build only had rows
   because it used 0.10. Do not quote those 50 posts as coverage.
 - **The news snapshot ends 2025-04-02.** Never describe results as current after that date.
+- **FOM 2022-W22 is misdated in the source.** Its 13 rows describe late July 2022 (Navy Day,
+  Putin in Iran), the real 2022-W22 list is missing, and there is no 2022-W30. Do not read that
+  week as late May. Details: `reports/theme_assembly_check_2026-10-15.md`.
+- **Never add matched posts across events.** Search windows of neighbouring weeks overlap, so one
+  post can be matched to two events (130 are). Totals over several events come from
+  `theme_group_coverage`, which counts each post once over the union of window days.
 - **Text columns differ sharply in coverage and in what they preserve.** `summary` is
   pre-flattened — retrieval only, never tone. `original_message` is the text field, and war
   and military channels store it as a Telegram JSON blob. Details in
