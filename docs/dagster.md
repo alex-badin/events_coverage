@@ -19,7 +19,7 @@ The first graph is deliberately static:
 validated local inputs
         |
         v
-six raw DuckDB tables
+seven raw DuckDB tables
         |
         v
 dbt seed -> staging models -> intermediate models -> marts + tests
@@ -42,7 +42,7 @@ the work ran and can carry useful facts. The raw table assets record row counts;
 assets record paths and file sizes.
 
 **Dependency.** The reason Dagster knows the order. For example, `stg_events` depends on
-`raw/fom_events`, while the Metabase snapshot depends on the seven published marts.
+`raw/fom_events`, while the Metabase snapshot depends on the published marts.
 
 **Job.** A named selection of assets to run. `static_refresh` selects the whole current
 graph. The graph defines the order; the job does not contain a second hand-written sequence.
@@ -113,8 +113,8 @@ copy and does not need the working file.
 The current job reuses the project commands rather than reimplementing their logic:
 
 1. `scripts/check_inputs.py` verifies that the primary SQLite and CSV inputs can be read.
-2. `scripts/load_warehouse.py` replaces the six `raw` DuckDB tables.
-3. `dbt build` creates the seed and 15 models and runs the dbt tests.
+2. `scripts/load_warehouse.py` replaces the seven `raw` DuckDB tables.
+3. `dbt build` loads the seeds, builds the models and runs the dbt tests.
 4. `scripts/publish_warehouse_for_metabase.py` makes the pruned DuckDB copy for Metabase.
 
 The dashboard JSON export and standalone HTML build remain available as manual working

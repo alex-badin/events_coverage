@@ -1,0 +1,66 @@
+version: 2
+
+seeds:
+  - name: fom_themes
+    description: >
+      The cross-week themes, generated from configs/fom_theme_taxonomy.json by
+      scripts/fom_themes.py. Two levels: an area of news (umbrella) holds several themes,
+      plus one "__other" theme for subjects that do not form a theme of their own. How the list was built and checked:
+      dbt/seeds/README.md.
+    config:
+      column_types:
+        umbrella_order: integer
+        theme_order: integer
+        is_other_theme: boolean
+    columns:
+      - name: theme_id
+        data_tests: [unique, not_null]
+      - name: umbrella_id
+        data_tests: [not_null]
+
+  - name: fom_event_themes
+    description: >
+      Which theme each FOM event wording belongs to, one row per exact spelling. Labels
+      were assigned by a model and checked by other models; see dbt/seeds/README.md.
+    columns:
+      - name: event_name
+        data_tests: [unique, not_null]
+      - name: theme_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('fom_themes')
+                field: theme_id
+
+  - name: fom_event_week_themes
+    description: >
+      The few survey rows whose theme differs from their wording's: generic FOM rubrics that
+      hold a different subject in one particular week. Written by hand after the
+      independent check (dbt/seeds/README.md), each with its reason.
+    config:
+      column_types:
+        fom_year: integer
+        fom_week: integer
+    columns:
+      - name: theme_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('fom_themes')
+                field: theme_id
+      - name: reason
+        data_tests: [not_null]
+
+  - name: event_labels_en
+    description: Short English names for the events with a measured post set, written by hand.
+    columns:
+      - name: event_slug
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_event_datasets')
+                field: event_slug

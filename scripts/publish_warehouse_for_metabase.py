@@ -36,6 +36,10 @@ PUBLISHED_MARTS = [
     "event_group_daily",
     "event_group_terms",
     "event_message_detail",
+    "week_events",
+    "survey_weeks",
+    "theme_week_attention",
+    "theme_group_coverage",
 ]
 
 

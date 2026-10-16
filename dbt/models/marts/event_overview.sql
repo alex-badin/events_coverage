@@ -140,9 +140,12 @@ select
     -- were never eligible to be found, so where this share is well under 1 the coverage
     -- is an undercount — and a group that looks silent may simply have been unsearchable.
     events.searchable_posts_in_window,
+    -- Both counts cover every source in the corpus, archived ones included: the search
+    -- pool was drawn from all of them. Dividing by the in-scope posts instead would put
+    -- the share above 1.
     case
-        when universe.posts_published_in_window > 0
-        then events.searchable_posts_in_window::double / universe.posts_published_in_window
+        when events.posts_in_window_all_sources > 0
+        then events.searchable_posts_in_window::double / events.posts_in_window_all_sources
     end                              as searchable_share_of_window,
 
     events.built_at

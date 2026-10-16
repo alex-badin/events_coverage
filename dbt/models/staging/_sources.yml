@@ -94,6 +94,22 @@ sources:
             description: How many candidate posts were reranked.
           - name: kept
             description: How many posts passed the threshold and became the matched set.
+          - name: posts_in_window_all_sources
+            description: >
+              Everything published in the event window by every source in the corpus,
+              archived ones included — the denominator for the share of the window that
+              could be searched. Counted by the loader from the news database.
+
+      - name: empty_event_searches
+        description: >
+          One row per event searched on the current settings that kept no post: no
+          candidate reached the relevance cut-off. Read from the manifest files of the
+          slugs in EMPTY_EVENT_SLUGS in scripts/load_warehouse.py.
+        columns:
+          - name: event_slug
+            description: Short name of the event dataset that came out empty.
+          - name: kept
+            description: Always 0; the loader refuses a manifest that kept posts.
 
       - name: media_groups
         description: >

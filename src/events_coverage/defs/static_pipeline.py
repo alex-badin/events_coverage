@@ -42,6 +42,7 @@ RAW_TABLE_DESCRIPTIONS = {
     "fom_events": "Cleaned FOM weekly event table.",
     "event_matches": "Current matched post sets for the five loaded pilot events.",
     "event_datasets": "Matching model, threshold, window, and row-count provenance.",
+    "empty_event_searches": "Events searched on the current settings that kept no post.",
     "media_groups": "In-scope source-to-media-group mapping.",
     "archived_sources": "Sources excluded from the analytical comparison, with reasons.",
     "source_day_activity": "All published posts per source and day, used as a denominator.",
@@ -55,6 +56,10 @@ REPORTING_MARTS = (
     "event_group_daily",
     "event_group_terms",
     "event_message_detail",
+    "week_events",
+    "survey_weeks",
+    "theme_week_attention",
+    "theme_group_coverage",
 )
 
 

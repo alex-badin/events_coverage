@@ -74,7 +74,9 @@ group_post_counts as (
     select
         event_id,
         media_group,
-        count(distinct message_id)   as group_posts,
+        -- Message ids are numbered per channel, so two channels can share one: a post is
+        -- identified by its source and id together.
+        count(distinct concat_ws(':', source_name, message_id))  as group_posts,
         count(distinct source_name)  as group_sources
 
     from usable_tokens

@@ -191,3 +191,17 @@ models:
         description: Posts that source published that day.
         data_tests:
           - not_null
+
+  - name: stg_empty_event_searches
+    description: >
+      Events searched on the current settings that kept no post. Their survey row reads
+      "no post passed the cut-off" on the dashboard, never "not measured".
+    columns:
+      - name: event_id
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_events')
+                field: event_id

@@ -19,6 +19,7 @@ raw `data/interim/event_*_framing.jsonl` (no model calls). Published copies live
 | **Framing clusters** | `generators/{embed_framings,cluster_lib,build_cluster_report}.py` | KMeans clusters of `problem_definition`, `causal_attribution` & `treatment` (Kursk, Trump–Zelensky) + cross-media distribution + full members | https://claude.ai/code/artifact/1d9eafcb-7314-475a-bb8a-6525d8107488 |
 | **Association tests** | `generators/{stats_lib,build_association_report}.py` | Every aggregatable framing dimension × media group, with χ² + Cramér's V + Holm correction; leaderboard + contingency tables | https://claude.ai/code/artifact/fa12ec66-de2e-46f5-b11c-9a38e4f3f7cf |
 | **Pilot analysis summary** | `generators/build_pilot_summary.py` | Evidence-backed snapshot of the whole pilot: per-event status, group counts, main spreads with bases → `pilot_analysis_summary.md` + `pilot_analysis_charts.html` | — |
+| **Theme assembly check** | — (written by hand from the check's output) | Whether the cross-week themes keep one subject together across years: linking rates, what an independent check found, what was fixed → `theme_assembly_check_2026-10-15.md` | — |
 | **Contrast tables (per event)** | `generators/build_contrast_report.py` | The framing fields the standard readout drops: clustered causal statements, emphasized facts, actor polarity × epistemic voice → `event_<slug>_contrast.md` + CSVs/heatmaps in `outputs/` | — |
 
 Helper analyses (stdout): `generators/within_event.py` (cross-media separators per event),
