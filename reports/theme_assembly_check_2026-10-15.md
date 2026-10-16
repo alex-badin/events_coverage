@@ -99,6 +99,11 @@ weeks too early on every timeline, and the real 2022-W22 list is missing. The fa
 `fom_events/processed_events/events_table.csv` (or the report it was parsed from), which is a
 read-only raw input here, so it was reported rather than patched.
 
+Fixed 2026-10-17. The PDF at FOM's `d22sn2022.pdf` address is the issue for the 29–31 July
+2022 survey, and the week came from that address number. The step that builds the table
+(`fom_events/events_analysis.ipynb`) now files that issue under 2022-W30, so the 13 rows
+moved there. The real 2022-W22 list is still missing.
+
 ## Files
 
 - Rules: `configs/fom_theme_taxonomy.json`

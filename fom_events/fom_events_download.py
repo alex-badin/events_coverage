@@ -51,7 +51,8 @@ def main():
     links_file = os.path.join(save_dir, "valid_pdf_links.txt")
     valid_links = []
     
-    # Base URL
+    # Base URL. The number is FOM's issue number, used as the week in the file name. It is not
+    # always the survey week: d22sn2022.pdf holds 2022-W30 (see events_analysis.ipynb).
     base_url = "https://media.fom.ru/fom-bd/d{week}sn{year}.pdf"
     
     # Current year

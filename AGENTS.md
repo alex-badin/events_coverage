@@ -72,9 +72,6 @@ paths alongside the output.
   0.35 it keeps 0 posts; its highest rerank score is under 0.30. The old build only had rows
   because it used 0.10. Do not quote those 50 posts as coverage.
 - **The news snapshot ends 2025-04-02.** Never describe results as current after that date.
-- **FOM 2022-W22 is misdated in the source.** Its 13 rows describe late July 2022 (Navy Day,
-  Putin in Iran), the real 2022-W22 list is missing, and there is no 2022-W30. Do not read that
-  week as late May. Details: `reports/theme_assembly_check_2026-10-15.md`.
 - **Never add matched posts across events.** Search windows of neighbouring weeks overlap, so one
   post can be matched to two events (130 are). Totals over several events come from
   `theme_group_coverage`, which counts each post once over the union of window days.
