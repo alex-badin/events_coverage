@@ -44,6 +44,10 @@ calls a billed endpoint). Once one paid run is approved, no paid run in this pro
 for 12 hours, in any session. Spending rule: one yes to a task with its stated cost or budget
 covers every paid run of that task, side sessions included. Ask again only to go over that
 budget or for a different task; when briefing a side session, pass the budget as already agreed.
+Before proposing a paid run, say which decision it changes and try the free or cheaper way first
+(data already on disk, a smaller sample, fewer tokens per call). Estimate from typical items, not
+from the largest test cases, and propose the smallest run that answers the open question; a
+budget for a whole task comes only after its cost per item is measured.
 
 DuckDB allows one writer at a time — close any open connection to the warehouse file before
 running dbt, or the run fails on a lock.
