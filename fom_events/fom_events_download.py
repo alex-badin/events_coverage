@@ -53,6 +53,8 @@ def main():
     
     # Base URL. The number is FOM's issue number, used as the week in the file name. It is not
     # always the survey week: d22sn2022.pdf holds 2022-W30 (see events_analysis.ipynb).
+    # The real 2022-W22 list is at d222022.pdf, outside this pattern; a rerun rewrites
+    # valid_pdf_links.txt without that line, so add it back.
     base_url = "https://media.fom.ru/fom-bd/d{week}sn{year}.pdf"
     
     # Current year

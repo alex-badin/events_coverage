@@ -80,7 +80,7 @@ Text fields differ sharply in coverage — choose deliberately:
 - `stance`: sparse — use `configs/media_groups.yaml` for stable group comparisons (it is a draft grouping).
 - `embedding` (in-DB column): archived sparse Cohere store, not used; current embeddings are the full-corpus Qwen3 sidecar on Neo (see [docs/data_inventory.md](docs/data_inventory.md), and [docs/neo_box.md](docs/neo_box.md) for how to run anything on that machine).
 
-The cleaned FOM event table is `fom_events/processed_events/events_table.csv`: 3,687 event rows across 2020-2025.
+The cleaned FOM event table is `fom_events/processed_events/events_table.csv`: 3,699 event rows across 2020-2025.
 
 ## Setup
 

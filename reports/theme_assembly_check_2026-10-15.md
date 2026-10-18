@@ -104,6 +104,9 @@ Fixed 2026-10-17. The PDF at FOM's `d22sn2022.pdf` address is the issue for the 
 (`fom_events/events_analysis.ipynb`) now files that issue under 2022-W30, so the 13 rows
 moved there. The real 2022-W22 list is still missing.
 
+Found 2026-10-18. The real 2022-W22 list (survey of 3–5 June 2022) is on page 8 of FOM's full
+issue at `d222022.pdf`; its 12 rows are now in the table, and its two new wordings have themes.
+
 ## Files
 
 - Rules: `configs/fom_theme_taxonomy.json`

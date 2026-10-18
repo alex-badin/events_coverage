@@ -35,7 +35,7 @@ wording has no theme yet (see `dbt/seeds/README.md` for how to label them).
 ## How it is organised
 
 The page is built for many survey weeks, of which only some will ever have measured coverage:
-the survey exists for 248 weeks (2020–2025), while a matched post set is built one event at a
+the survey exists for 249 weeks (2020–2025), while a matched post set is built one event at a
 time and costs money. Today 5 events have one, all between late January and March 2025.
 
 Two views, switched in the top bar, and one panel. Every state is in the address

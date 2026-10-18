@@ -29,7 +29,7 @@ the data-engineering layer, not new NLP.
 ```
 [1] SOURCES (read-only)
       unified_messages (SQLite, 3,861,614 messages, 84 sources)
-      fom events_table.csv (3,687 events, 2020–2025)
+      fom events_table.csv (3,699 events, 2020–2025)
       configs/media_groups.yaml (source -> media group)
         |
         v
@@ -60,7 +60,7 @@ Framing (gpt-5.5, per-message labels): OUT of MVP focus — optional input to [5
 - `unified_messages` (SQLite). Measured column sizes: `summary` 2.01 GB, `original_message`
   3.23 GB, archived `embedding` column 2.48 GB (190,426 rows, **unused — drop on load**).
   File on disk: 11 GB.
-- FOM `events_table.csv`: 3,687 events (date / year / week / event / description / percentage).
+- FOM `events_table.csv`: 3,699 events (date / year / week / event / description / percentage).
 - `media_groups.yaml`: hand-maintained source -> group map (draft — hence the tests below).
 
 **[2] Retrieval (exists, Python, on "Neo").** Qwen3 vectors (`qwen/qwen3-embedding-8b`, 4096-d,
@@ -180,7 +180,7 @@ dbt additions require the warehouse move.
 - Not a daily feed — a historical dashboard (infrequent refresh; see `methodology.md`).
 - ML stays in Python — dbt only does the SQL aggregation around it.
 - "Neo" dependency — retrieval is not cloud-portable (fine for a personal project).
-- Event set must stay curated (rerank cost scales per event; all 3,687 events would run into the
+- Event set must stay curated (rerank cost scales per event; all 3,699 events would run into the
   low hundreds of dollars).
 
 ## Phase 2 (deferred, out of this blueprint)

@@ -28,7 +28,7 @@ models:
       - name: attention_percentage
         description: >
           Share of survey respondents who named this event, in percent. Missing on four
-          of the 3,687 rows, so no not_null rule here — that would fail on real data.
+          of the 3,699 rows, so no not_null rule here — that would fail on real data.
       - name: week_start
         description: Monday of the FOM survey week.
         data_tests:

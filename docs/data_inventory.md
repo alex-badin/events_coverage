@@ -82,7 +82,7 @@ fom_events/processed_events/events_table.csv
 
 Observed shape:
 
-- Rows: 3,687
+- Rows: 3,699
 - Years covered: 2020-2025
 - Blank event names: 0
 - Missing percentages: 4
