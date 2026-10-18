@@ -1,0 +1,172 @@
+{
+  "drones_moscow_2025w11": {
+    "on_event_in_6000_est": 1455,
+    "bands": [
+      {
+        "places": "1-150",
+        "codex_on_event": 0.807,
+        "on_event_est": 121,
+        "jev_yes_share": 0.967
+      },
+      {
+        "places": "151-500",
+        "codex_on_event": 0.64,
+        "on_event_est": 224,
+        "jev_yes_share": 0.683
+      },
+      {
+        "places": "501-1000",
+        "codex_on_event": 0.333,
+        "on_event_est": 167,
+        "jev_yes_share": 0.348
+      },
+      {
+        "places": "1001-2000",
+        "codex_on_event": 0.293,
+        "on_event_est": 293,
+        "jev_yes_share": 0.267
+      },
+      {
+        "places": "2001-3000",
+        "codex_on_event": 0.24,
+        "on_event_est": 240,
+        "jev_yes_share": 0.19
+      },
+      {
+        "places": "3001-4500",
+        "codex_on_event": 0.173,
+        "on_event_est": 260,
+        "jev_yes_share": 0.076
+      },
+      {
+        "places": "4501-6000",
+        "codex_on_event": 0.1,
+        "on_event_est": 150,
+        "jev_yes_share": 0.028
+      }
+    ],
+    "rules": [
+      {
+        "batch": 250,
+        "stop_below": 0.05,
+        "scored": 4000,
+        "share_of_on_event_in_6000": 0.821
+      },
+      {
+        "batch": 250,
+        "stop_below": 0.1,
+        "scored": 3750,
+        "share_of_on_event_in_6000": 0.808
+      },
+      {
+        "batch": 250,
+        "stop_below": 0.2,
+        "scored": 2500,
+        "share_of_on_event_in_6000": 0.649
+      },
+      {
+        "batch": 500,
+        "stop_below": 0.05,
+        "scored": 5000,
+        "share_of_on_event_in_6000": 0.952
+      },
+      {
+        "batch": 500,
+        "stop_below": 0.1,
+        "scored": 4000,
+        "share_of_on_event_in_6000": 0.821
+      },
+      {
+        "batch": 500,
+        "stop_below": 0.2,
+        "scored": 2500,
+        "share_of_on_event_in_6000": 0.649
+      }
+    ]
+  },
+  "trump_statements_2025w10": {
+    "on_event_in_6000_est": 4676,
+    "bands": [
+      {
+        "places": "1-150",
+        "codex_on_event": 0.913,
+        "on_event_est": 137,
+        "jev_yes_share": 0.787
+      },
+      {
+        "places": "151-500",
+        "codex_on_event": 0.853,
+        "on_event_est": 299,
+        "jev_yes_share": 0.403
+      },
+      {
+        "places": "501-1000",
+        "codex_on_event": 0.893,
+        "on_event_est": 447,
+        "jev_yes_share": 0.41
+      },
+      {
+        "places": "1001-2000",
+        "codex_on_event": 0.813,
+        "on_event_est": 813,
+        "jev_yes_share": 0.318
+      },
+      {
+        "places": "2001-3000",
+        "codex_on_event": 0.76,
+        "on_event_est": 760,
+        "jev_yes_share": 0.259
+      },
+      {
+        "places": "3001-4500",
+        "codex_on_event": 0.813,
+        "on_event_est": 1220,
+        "jev_yes_share": 0.199
+      },
+      {
+        "places": "4501-6000",
+        "codex_on_event": 0.667,
+        "on_event_est": 1000,
+        "jev_yes_share": 0.107
+      }
+    ],
+    "rules": [
+      {
+        "batch": 250,
+        "stop_below": 0.05,
+        "scored": 6000,
+        "share_of_on_event_in_6000": 1.0
+      },
+      {
+        "batch": 250,
+        "stop_below": 0.1,
+        "scored": 5250,
+        "share_of_on_event_in_6000": 0.891
+      },
+      {
+        "batch": 250,
+        "stop_below": 0.2,
+        "scored": 3750,
+        "share_of_on_event_in_6000": 0.632
+      },
+      {
+        "batch": 500,
+        "stop_below": 0.05,
+        "scored": 6000,
+        "share_of_on_event_in_6000": 1.0
+      },
+      {
+        "batch": 500,
+        "stop_below": 0.1,
+        "scored": 5500,
+        "share_of_on_event_in_6000": 0.925
+      },
+      {
+        "batch": 500,
+        "stop_below": 0.2,
+        "scored": 4000,
+        "share_of_on_event_in_6000": 0.683
+      }
+    ]
+  }
+}
