@@ -77,3 +77,7 @@ dbt/.user.yml
 
 # Browser-tool logs and page snapshots written by the Playwright MCP server.
 .playwright-mcp/
+
+# Text pasted into the owner's Claude Project settings (instructions, memory notes, setup script).
+# Personal notes; this repository is public.
+.claude/project_setup/

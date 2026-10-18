@@ -56,6 +56,9 @@ running dbt, or the run fails on a lock.
 editing dbt files, run `dbt parse` before `uv run pytest` or `dagster job execute`, or they
 read the old manifest.
 
+The owner's Claude Project (cloud threads) sees only what is pushed to GitHub: when a local session leaves
+tracked changes uncommitted or unpushed, say so at the end, or the Project keeps working from a stale copy.
+
 ## Layout
 
 - `scripts/` pipeline entry points · `src/events_coverage/` shared code
