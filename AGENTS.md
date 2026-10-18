@@ -79,7 +79,8 @@ paths alongside the output.
   `scripts/build_event_dataset.py` embeds summaries and reranks with Cohere at 0.35; Alex chose
   cleaned `original_message` embeddings and Jev 1.13 instead (evidence in
   `exploration/2026-10-17_*`). Do not build new event sets on the old path, and never mix sets
-  from the two methods in one comparison.
+  from the two methods in one comparison. The new method runs for every specific FOM event, not
+  only the six the old pilot happened to build.
 - **`event_prices_2025w11*` has no usable matched set.** At the standard relevance cut-off of
   0.35 it keeps 0 posts; its highest rerank score is under 0.30. The old build only had rows
   because it used 0.10. Do not quote those 50 posts as coverage.

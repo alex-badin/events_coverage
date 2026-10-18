@@ -69,8 +69,9 @@ there over SSH, only the small query matrix leaves the machine. **Vectors never 
 warehouse or BI.**
 
 **[3] Rerank + threshold (exists, Python, Cohere).** `rerank-v3.5` prunes false positives; the
-0.35 threshold yields the "kept" matched set per event. Cost is on the order of a few cents per
-event at top-K=3000 (calculated) — keep the event set curated.
+0.35 threshold yields the "kept" matched set per event. Being replaced (decided 2026-10-18) by
+full-text vectors and Jev 1.13 with a per-event cut-off, run for every specific FOM event; see
+`exploration/2026-10-17_*` and `exploration/2026-10-18_candidate_depth/`.
 
 **[4] Load into DuckDB.** DuckDB can attach the SQLite directly (`sqlite_scanner`), so there is
 no heavy migration. Load the needed message columns + events + group map. Optional: a
@@ -180,8 +181,8 @@ dbt additions require the warehouse move.
 - Not a daily feed — a historical dashboard (infrequent refresh; see `methodology.md`).
 - ML stays in Python — dbt only does the SQL aggregation around it.
 - "Neo" dependency — retrieval is not cloud-portable (fine for a personal project).
-- Event set must stay curated (rerank cost scales per event; all 3,699 events would run into the
-  low hundreds of dollars).
+- Matching cost scales with the number of events and the candidate depth per event. Every
+  specific FOM event is in scope; the cost of a run is stated and approved before it starts.
 
 ## Phase 2 (deferred, out of this blueprint)
 
