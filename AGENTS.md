@@ -38,6 +38,13 @@ cd dbt && ../.venv/bin/dbt docs serve          # the model graph and column docs
 Full dashboard rebuild: `dashboard/README.md`. Metabase: `metabase/README.md`.
 API keys go in `.env`; `.env.example` says which script needs which.
 
+`.claude/hooks/ask-before-paid-run.sh` asks the user before a Python command that reaches a paid
+service (a script whose file names a vendor or paid helper, or inline code that fetches a key or
+calls a billed endpoint). Once one paid run is approved, no paid run in this project is stopped
+for 12 hours, in any session. Spending rule: one yes to a task with its stated cost or budget
+covers every paid run of that task, side sessions included. Ask again only to go over that
+budget or for a different task; when briefing a side session, pass the budget as already agreed.
+
 DuckDB allows one writer at a time — close any open connection to the warehouse file before
 running dbt, or the run fails on a lock.
 
@@ -84,6 +91,10 @@ paths alongside the output.
   filtered out everywhere including the coverage denominators.
 - **Narrative labels from `induce_narratives.py` are a per-run lens** — induction is
   stochastic. The per-message framing fields are the stable part.
+- **OpenRouter refuses every `openai/*` model for this key** (403 "violation of provider Terms Of
+  Service", even on a trivial prompt). Use OpenAI models through Codex instead. And a parallel
+  `pool.map` over paid calls must save each answer as it arrives, or one bad reply loses spend
+  that was already billed.
 - This project compares coverage. It does not judge whether the covered events are true.
 
 ## Docs

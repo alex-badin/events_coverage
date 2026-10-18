@@ -71,3 +71,9 @@ dbt/dbt_packages/
 dbt/logs/
 # Anonymous local install id that dbt writes on first run — machine-specific.
 dbt/.user.yml
+
+# Time of each approved paid run (.claude/hooks/ask-before-paid-run.sh)
+.claude/paid-run-approved.txt
+
+# Browser-tool logs and page snapshots written by the Playwright MCP server.
+.playwright-mcp/
