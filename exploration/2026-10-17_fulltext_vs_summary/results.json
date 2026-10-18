@@ -1,0 +1,1306 @@
+{
+  "putin_trump_call_2025w08": {
+    "window_posts": 45319,
+    "labelled": 595,
+    "unlabelled": 0,
+    "relevant_in_pool": 542,
+    "methods": {
+      "summary": {
+        "@50": {
+          "hits": 49,
+          "precision": 0.98,
+          "recall_of_pool": 0.09
+        },
+        "@100": {
+          "hits": 99,
+          "precision": 0.99,
+          "recall_of_pool": 0.183
+        },
+        "@200": {
+          "hits": 192,
+          "precision": 0.96,
+          "recall_of_pool": 0.354
+        },
+        "@300": {
+          "hits": 287,
+          "precision": 0.957,
+          "recall_of_pool": 0.53
+        },
+        "@500": {
+          "hits": 462,
+          "precision": 0.924,
+          "recall_of_pool": 0.852
+        }
+      },
+      "fulltext": {
+        "@50": {
+          "hits": 50,
+          "precision": 1.0,
+          "recall_of_pool": 0.092
+        },
+        "@100": {
+          "hits": 97,
+          "precision": 0.97,
+          "recall_of_pool": 0.179
+        },
+        "@200": {
+          "hits": 193,
+          "precision": 0.965,
+          "recall_of_pool": 0.356
+        },
+        "@300": {
+          "hits": 288,
+          "precision": 0.96,
+          "recall_of_pool": 0.531
+        },
+        "@500": {
+          "hits": 464,
+          "precision": 0.928,
+          "recall_of_pool": 0.856
+        }
+      }
+    },
+    "relevant_only_in_top500_of": {
+      "summary": 78,
+      "fulltext": 80
+    },
+    "top3000": {
+      "both": 2602,
+      "only_summary": {
+        "posts": 398,
+        "sampled": 100,
+        "on_event_in_sample": 43,
+        "estimated_on_event": 171
+      },
+      "only_fulltext": {
+        "posts": 398,
+        "sampled": 100,
+        "on_event_in_sample": 46,
+        "estimated_on_event": 183
+      }
+    }
+  },
+  "us_russia_contacts_2025w09": {
+    "window_posts": 46049,
+    "labelled": 575,
+    "unlabelled": 0,
+    "relevant_in_pool": 530,
+    "methods": {
+      "summary": {
+        "@50": {
+          "hits": 49,
+          "precision": 0.98,
+          "recall_of_pool": 0.092
+        },
+        "@100": {
+          "hits": 96,
+          "precision": 0.96,
+          "recall_of_pool": 0.181
+        },
+        "@200": {
+          "hits": 192,
+          "precision": 0.96,
+          "recall_of_pool": 0.362
+        },
+        "@300": {
+          "hits": 290,
+          "precision": 0.967,
+          "recall_of_pool": 0.547
+        },
+        "@500": {
+          "hits": 466,
+          "precision": 0.932,
+          "recall_of_pool": 0.879
+        }
+      },
+      "fulltext": {
+        "@50": {
+          "hits": 50,
+          "precision": 1.0,
+          "recall_of_pool": 0.094
+        },
+        "@100": {
+          "hits": 97,
+          "precision": 0.97,
+          "recall_of_pool": 0.183
+        },
+        "@200": {
+          "hits": 191,
+          "precision": 0.955,
+          "recall_of_pool": 0.36
+        },
+        "@300": {
+          "hits": 285,
+          "precision": 0.95,
+          "recall_of_pool": 0.538
+        },
+        "@500": {
+          "hits": 464,
+          "precision": 0.928,
+          "recall_of_pool": 0.875
+        }
+      }
+    },
+    "relevant_only_in_top500_of": {
+      "summary": 66,
+      "fulltext": 64
+    },
+    "top3000": {
+      "both": 2559,
+      "only_summary": {
+        "posts": 441,
+        "sampled": 100,
+        "on_event_in_sample": 35,
+        "estimated_on_event": 154
+      },
+      "only_fulltext": {
+        "posts": 441,
+        "sampled": 100,
+        "on_event_in_sample": 46,
+        "estimated_on_event": 203
+      }
+    }
+  },
+  "trump_zelensky_2025w10": {
+    "window_posts": 47313,
+    "labelled": 598,
+    "unlabelled": 0,
+    "relevant_in_pool": 526,
+    "methods": {
+      "summary": {
+        "@50": {
+          "hits": 43,
+          "precision": 0.86,
+          "recall_of_pool": 0.082
+        },
+        "@100": {
+          "hits": 85,
+          "precision": 0.85,
+          "recall_of_pool": 0.162
+        },
+        "@200": {
+          "hits": 174,
+          "precision": 0.87,
+          "recall_of_pool": 0.331
+        },
+        "@300": {
+          "hits": 265,
+          "precision": 0.883,
+          "recall_of_pool": 0.504
+        },
+        "@500": {
+          "hits": 443,
+          "precision": 0.886,
+          "recall_of_pool": 0.842
+        }
+      },
+      "fulltext": {
+        "@50": {
+          "hits": 41,
+          "precision": 0.82,
+          "recall_of_pool": 0.078
+        },
+        "@100": {
+          "hits": 83,
+          "precision": 0.83,
+          "recall_of_pool": 0.158
+        },
+        "@200": {
+          "hits": 175,
+          "precision": 0.875,
+          "recall_of_pool": 0.333
+        },
+        "@300": {
+          "hits": 263,
+          "precision": 0.877,
+          "recall_of_pool": 0.5
+        },
+        "@500": {
+          "hits": 439,
+          "precision": 0.878,
+          "recall_of_pool": 0.835
+        }
+      }
+    },
+    "relevant_only_in_top500_of": {
+      "summary": 87,
+      "fulltext": 83
+    },
+    "top3000": {
+      "both": 2674,
+      "only_summary": {
+        "posts": 326,
+        "sampled": 100,
+        "on_event_in_sample": 51,
+        "estimated_on_event": 166
+      },
+      "only_fulltext": {
+        "posts": 326,
+        "sampled": 100,
+        "on_event_in_sample": 61,
+        "estimated_on_event": 199
+      }
+    }
+  },
+  "kursk_2025w11": {
+    "window_posts": 45755,
+    "labelled": 605,
+    "unlabelled": 0,
+    "relevant_in_pool": 596,
+    "methods": {
+      "summary": {
+        "@50": {
+          "hits": 50,
+          "precision": 1.0,
+          "recall_of_pool": 0.084
+        },
+        "@100": {
+          "hits": 100,
+          "precision": 1.0,
+          "recall_of_pool": 0.168
+        },
+        "@200": {
+          "hits": 199,
+          "precision": 0.995,
+          "recall_of_pool": 0.334
+        },
+        "@300": {
+          "hits": 298,
+          "precision": 0.993,
+          "recall_of_pool": 0.5
+        },
+        "@500": {
+          "hits": 494,
+          "precision": 0.988,
+          "recall_of_pool": 0.829
+        }
+      },
+      "fulltext": {
+        "@50": {
+          "hits": 49,
+          "precision": 0.98,
+          "recall_of_pool": 0.082
+        },
+        "@100": {
+          "hits": 99,
+          "precision": 0.99,
+          "recall_of_pool": 0.166
+        },
+        "@200": {
+          "hits": 198,
+          "precision": 0.99,
+          "recall_of_pool": 0.332
+        },
+        "@300": {
+          "hits": 296,
+          "precision": 0.987,
+          "recall_of_pool": 0.497
+        },
+        "@500": {
+          "hits": 493,
+          "precision": 0.986,
+          "recall_of_pool": 0.827
+        }
+      }
+    },
+    "relevant_only_in_top500_of": {
+      "summary": 103,
+      "fulltext": 102
+    },
+    "top3000": {
+      "both": 2754,
+      "only_summary": {
+        "posts": 246,
+        "sampled": 100,
+        "on_event_in_sample": 47,
+        "estimated_on_event": 116
+      },
+      "only_fulltext": {
+        "posts": 246,
+        "sampled": 100,
+        "on_event_in_sample": 75,
+        "estimated_on_event": 184
+      }
+    }
+  },
+  "prices_2025w11": {
+    "window_posts": 45755,
+    "labelled": 611,
+    "unlabelled": 0,
+    "relevant_in_pool": 209,
+    "methods": {
+      "summary": {
+        "@50": {
+          "hits": 43,
+          "precision": 0.86,
+          "recall_of_pool": 0.206
+        },
+        "@100": {
+          "hits": 73,
+          "precision": 0.73,
+          "recall_of_pool": 0.349
+        },
+        "@200": {
+          "hits": 118,
+          "precision": 0.59,
+          "recall_of_pool": 0.565
+        },
+        "@300": {
+          "hits": 146,
+          "precision": 0.487,
+          "recall_of_pool": 0.699
+        },
+        "@500": {
+          "hits": 184,
+          "precision": 0.368,
+          "recall_of_pool": 0.88
+        }
+      },
+      "fulltext": {
+        "@50": {
+          "hits": 42,
+          "precision": 0.84,
+          "recall_of_pool": 0.201
+        },
+        "@100": {
+          "hits": 77,
+          "precision": 0.77,
+          "recall_of_pool": 0.368
+        },
+        "@200": {
+          "hits": 129,
+          "precision": 0.645,
+          "recall_of_pool": 0.617
+        },
+        "@300": {
+          "hits": 161,
+          "precision": 0.537,
+          "recall_of_pool": 0.77
+        },
+        "@500": {
+          "hits": 194,
+          "precision": 0.388,
+          "recall_of_pool": 0.928
+        }
+      }
+    },
+    "relevant_only_in_top500_of": {
+      "summary": 15,
+      "fulltext": 25
+    },
+    "top3000": {
+      "both": 2435,
+      "only_summary": {
+        "posts": 565,
+        "sampled": 100,
+        "on_event_in_sample": 0,
+        "estimated_on_event": 0
+      },
+      "only_fulltext": {
+        "posts": 565,
+        "sampled": 100,
+        "on_event_in_sample": 0,
+        "estimated_on_event": 0
+      }
+    }
+  },
+  "rerank": {
+    "putin_trump_call_2025w08": {
+      "labelled": 793,
+      "on_event": 629,
+      "searches_billed": 72,
+      "by_threshold": {
+        "0.10": {
+          "summary": {
+            "kept": 763,
+            "on_event_kept": 625,
+            "on_event_lost": 4,
+            "off_event_kept": 138
+          },
+          "fulltext": {
+            "kept": 775,
+            "on_event_kept": 628,
+            "on_event_lost": 1,
+            "off_event_kept": 147
+          }
+        },
+        "0.15": {
+          "summary": {
+            "kept": 739,
+            "on_event_kept": 621,
+            "on_event_lost": 8,
+            "off_event_kept": 118
+          },
+          "fulltext": {
+            "kept": 753,
+            "on_event_kept": 624,
+            "on_event_lost": 5,
+            "off_event_kept": 129
+          }
+        },
+        "0.20": {
+          "summary": {
+            "kept": 713,
+            "on_event_kept": 607,
+            "on_event_lost": 22,
+            "off_event_kept": 106
+          },
+          "fulltext": {
+            "kept": 732,
+            "on_event_kept": 617,
+            "on_event_lost": 12,
+            "off_event_kept": 115
+          }
+        },
+        "0.25": {
+          "summary": {
+            "kept": 691,
+            "on_event_kept": 595,
+            "on_event_lost": 34,
+            "off_event_kept": 96
+          },
+          "fulltext": {
+            "kept": 709,
+            "on_event_kept": 611,
+            "on_event_lost": 18,
+            "off_event_kept": 98
+          }
+        },
+        "0.30": {
+          "summary": {
+            "kept": 661,
+            "on_event_kept": 581,
+            "on_event_lost": 48,
+            "off_event_kept": 80
+          },
+          "fulltext": {
+            "kept": 679,
+            "on_event_kept": 598,
+            "on_event_lost": 31,
+            "off_event_kept": 81
+          }
+        },
+        "0.35": {
+          "summary": {
+            "kept": 626,
+            "on_event_kept": 560,
+            "on_event_lost": 69,
+            "off_event_kept": 66
+          },
+          "fulltext": {
+            "kept": 658,
+            "on_event_kept": 585,
+            "on_event_lost": 44,
+            "off_event_kept": 73
+          }
+        },
+        "0.40": {
+          "summary": {
+            "kept": 597,
+            "on_event_kept": 539,
+            "on_event_lost": 90,
+            "off_event_kept": 58
+          },
+          "fulltext": {
+            "kept": 630,
+            "on_event_kept": 566,
+            "on_event_lost": 63,
+            "off_event_kept": 64
+          }
+        },
+        "0.50": {
+          "summary": {
+            "kept": 542,
+            "on_event_kept": 501,
+            "on_event_lost": 128,
+            "off_event_kept": 41
+          },
+          "fulltext": {
+            "kept": 577,
+            "on_event_kept": 530,
+            "on_event_lost": 99,
+            "off_event_kept": 47
+          }
+        }
+      }
+    },
+    "us_russia_contacts_2025w09": {
+      "labelled": 772,
+      "on_event": 608,
+      "searches_billed": 72,
+      "by_threshold": {
+        "0.10": {
+          "summary": {
+            "kept": 747,
+            "on_event_kept": 607,
+            "on_event_lost": 1,
+            "off_event_kept": 140
+          },
+          "fulltext": {
+            "kept": 753,
+            "on_event_kept": 608,
+            "on_event_lost": 0,
+            "off_event_kept": 145
+          }
+        },
+        "0.15": {
+          "summary": {
+            "kept": 685,
+            "on_event_kept": 593,
+            "on_event_lost": 15,
+            "off_event_kept": 92
+          },
+          "fulltext": {
+            "kept": 701,
+            "on_event_kept": 603,
+            "on_event_lost": 5,
+            "off_event_kept": 98
+          }
+        },
+        "0.20": {
+          "summary": {
+            "kept": 636,
+            "on_event_kept": 578,
+            "on_event_lost": 30,
+            "off_event_kept": 58
+          },
+          "fulltext": {
+            "kept": 663,
+            "on_event_kept": 595,
+            "on_event_lost": 13,
+            "off_event_kept": 68
+          }
+        },
+        "0.25": {
+          "summary": {
+            "kept": 607,
+            "on_event_kept": 566,
+            "on_event_lost": 42,
+            "off_event_kept": 41
+          },
+          "fulltext": {
+            "kept": 635,
+            "on_event_kept": 585,
+            "on_event_lost": 23,
+            "off_event_kept": 50
+          }
+        },
+        "0.30": {
+          "summary": {
+            "kept": 578,
+            "on_event_kept": 549,
+            "on_event_lost": 59,
+            "off_event_kept": 29
+          },
+          "fulltext": {
+            "kept": 603,
+            "on_event_kept": 567,
+            "on_event_lost": 41,
+            "off_event_kept": 36
+          }
+        },
+        "0.35": {
+          "summary": {
+            "kept": 552,
+            "on_event_kept": 534,
+            "on_event_lost": 74,
+            "off_event_kept": 18
+          },
+          "fulltext": {
+            "kept": 574,
+            "on_event_kept": 551,
+            "on_event_lost": 57,
+            "off_event_kept": 23
+          }
+        },
+        "0.40": {
+          "summary": {
+            "kept": 521,
+            "on_event_kept": 506,
+            "on_event_lost": 102,
+            "off_event_kept": 15
+          },
+          "fulltext": {
+            "kept": 547,
+            "on_event_kept": 530,
+            "on_event_lost": 78,
+            "off_event_kept": 17
+          }
+        },
+        "0.50": {
+          "summary": {
+            "kept": 470,
+            "on_event_kept": 464,
+            "on_event_lost": 144,
+            "off_event_kept": 6
+          },
+          "fulltext": {
+            "kept": 480,
+            "on_event_kept": 473,
+            "on_event_lost": 135,
+            "off_event_kept": 7
+          }
+        }
+      }
+    },
+    "trump_zelensky_2025w10": {
+      "labelled": 796,
+      "on_event": 637,
+      "searches_billed": 54,
+      "by_threshold": {
+        "0.10": {
+          "summary": {
+            "kept": 791,
+            "on_event_kept": 634,
+            "on_event_lost": 3,
+            "off_event_kept": 157
+          },
+          "fulltext": {
+            "kept": 793,
+            "on_event_kept": 636,
+            "on_event_lost": 1,
+            "off_event_kept": 157
+          }
+        },
+        "0.15": {
+          "summary": {
+            "kept": 777,
+            "on_event_kept": 631,
+            "on_event_lost": 6,
+            "off_event_kept": 146
+          },
+          "fulltext": {
+            "kept": 785,
+            "on_event_kept": 633,
+            "on_event_lost": 4,
+            "off_event_kept": 152
+          }
+        },
+        "0.20": {
+          "summary": {
+            "kept": 758,
+            "on_event_kept": 625,
+            "on_event_lost": 12,
+            "off_event_kept": 133
+          },
+          "fulltext": {
+            "kept": 769,
+            "on_event_kept": 631,
+            "on_event_lost": 6,
+            "off_event_kept": 138
+          }
+        },
+        "0.25": {
+          "summary": {
+            "kept": 727,
+            "on_event_kept": 613,
+            "on_event_lost": 24,
+            "off_event_kept": 114
+          },
+          "fulltext": {
+            "kept": 746,
+            "on_event_kept": 627,
+            "on_event_lost": 10,
+            "off_event_kept": 119
+          }
+        },
+        "0.30": {
+          "summary": {
+            "kept": 705,
+            "on_event_kept": 601,
+            "on_event_lost": 36,
+            "off_event_kept": 104
+          },
+          "fulltext": {
+            "kept": 723,
+            "on_event_kept": 617,
+            "on_event_lost": 20,
+            "off_event_kept": 106
+          }
+        },
+        "0.35": {
+          "summary": {
+            "kept": 670,
+            "on_event_kept": 577,
+            "on_event_lost": 60,
+            "off_event_kept": 93
+          },
+          "fulltext": {
+            "kept": 695,
+            "on_event_kept": 603,
+            "on_event_lost": 34,
+            "off_event_kept": 92
+          }
+        },
+        "0.40": {
+          "summary": {
+            "kept": 647,
+            "on_event_kept": 565,
+            "on_event_lost": 72,
+            "off_event_kept": 82
+          },
+          "fulltext": {
+            "kept": 675,
+            "on_event_kept": 591,
+            "on_event_lost": 46,
+            "off_event_kept": 84
+          }
+        },
+        "0.50": {
+          "summary": {
+            "kept": 565,
+            "on_event_kept": 503,
+            "on_event_lost": 134,
+            "off_event_kept": 62
+          },
+          "fulltext": {
+            "kept": 605,
+            "on_event_kept": 537,
+            "on_event_lost": 100,
+            "off_event_kept": 68
+          }
+        }
+      }
+    },
+    "kursk_2025w11": {
+      "labelled": 802,
+      "on_event": 716,
+      "searches_billed": 63,
+      "by_threshold": {
+        "0.10": {
+          "summary": {
+            "kept": 771,
+            "on_event_kept": 711,
+            "on_event_lost": 5,
+            "off_event_kept": 60
+          },
+          "fulltext": {
+            "kept": 774,
+            "on_event_kept": 713,
+            "on_event_lost": 3,
+            "off_event_kept": 61
+          }
+        },
+        "0.15": {
+          "summary": {
+            "kept": 734,
+            "on_event_kept": 700,
+            "on_event_lost": 16,
+            "off_event_kept": 34
+          },
+          "fulltext": {
+            "kept": 747,
+            "on_event_kept": 707,
+            "on_event_lost": 9,
+            "off_event_kept": 40
+          }
+        },
+        "0.20": {
+          "summary": {
+            "kept": 718,
+            "on_event_kept": 686,
+            "on_event_lost": 30,
+            "off_event_kept": 32
+          },
+          "fulltext": {
+            "kept": 736,
+            "on_event_kept": 701,
+            "on_event_lost": 15,
+            "off_event_kept": 35
+          }
+        },
+        "0.25": {
+          "summary": {
+            "kept": 697,
+            "on_event_kept": 671,
+            "on_event_lost": 45,
+            "off_event_kept": 26
+          },
+          "fulltext": {
+            "kept": 726,
+            "on_event_kept": 696,
+            "on_event_lost": 20,
+            "off_event_kept": 30
+          }
+        },
+        "0.30": {
+          "summary": {
+            "kept": 674,
+            "on_event_kept": 653,
+            "on_event_lost": 63,
+            "off_event_kept": 21
+          },
+          "fulltext": {
+            "kept": 706,
+            "on_event_kept": 679,
+            "on_event_lost": 37,
+            "off_event_kept": 27
+          }
+        },
+        "0.35": {
+          "summary": {
+            "kept": 641,
+            "on_event_kept": 625,
+            "on_event_lost": 91,
+            "off_event_kept": 16
+          },
+          "fulltext": {
+            "kept": 678,
+            "on_event_kept": 659,
+            "on_event_lost": 57,
+            "off_event_kept": 19
+          }
+        },
+        "0.40": {
+          "summary": {
+            "kept": 608,
+            "on_event_kept": 595,
+            "on_event_lost": 121,
+            "off_event_kept": 13
+          },
+          "fulltext": {
+            "kept": 650,
+            "on_event_kept": 634,
+            "on_event_lost": 82,
+            "off_event_kept": 16
+          }
+        },
+        "0.50": {
+          "summary": {
+            "kept": 483,
+            "on_event_kept": 479,
+            "on_event_lost": 237,
+            "off_event_kept": 4
+          },
+          "fulltext": {
+            "kept": 538,
+            "on_event_kept": 531,
+            "on_event_lost": 185,
+            "off_event_kept": 7
+          }
+        }
+      }
+    },
+    "prices_2025w11": {
+      "labelled": 809,
+      "on_event": 209,
+      "searches_billed": 60,
+      "by_threshold": {
+        "0.10": {
+          "summary": {
+            "kept": 388,
+            "on_event_kept": 163,
+            "on_event_lost": 46,
+            "off_event_kept": 225
+          },
+          "fulltext": {
+            "kept": 422,
+            "on_event_kept": 170,
+            "on_event_lost": 39,
+            "off_event_kept": 252
+          }
+        },
+        "0.15": {
+          "summary": {
+            "kept": 222,
+            "on_event_kept": 113,
+            "on_event_lost": 96,
+            "off_event_kept": 109
+          },
+          "fulltext": {
+            "kept": 243,
+            "on_event_kept": 126,
+            "on_event_lost": 83,
+            "off_event_kept": 117
+          }
+        },
+        "0.20": {
+          "summary": {
+            "kept": 133,
+            "on_event_kept": 83,
+            "on_event_lost": 126,
+            "off_event_kept": 50
+          },
+          "fulltext": {
+            "kept": 138,
+            "on_event_kept": 87,
+            "on_event_lost": 122,
+            "off_event_kept": 51
+          }
+        },
+        "0.25": {
+          "summary": {
+            "kept": 84,
+            "on_event_kept": 59,
+            "on_event_lost": 150,
+            "off_event_kept": 25
+          },
+          "fulltext": {
+            "kept": 86,
+            "on_event_kept": 61,
+            "on_event_lost": 148,
+            "off_event_kept": 25
+          }
+        },
+        "0.30": {
+          "summary": {
+            "kept": 45,
+            "on_event_kept": 35,
+            "on_event_lost": 174,
+            "off_event_kept": 10
+          },
+          "fulltext": {
+            "kept": 42,
+            "on_event_kept": 31,
+            "on_event_lost": 178,
+            "off_event_kept": 11
+          }
+        },
+        "0.35": {
+          "summary": {
+            "kept": 26,
+            "on_event_kept": 22,
+            "on_event_lost": 187,
+            "off_event_kept": 4
+          },
+          "fulltext": {
+            "kept": 22,
+            "on_event_kept": 17,
+            "on_event_lost": 192,
+            "off_event_kept": 5
+          }
+        },
+        "0.40": {
+          "summary": {
+            "kept": 12,
+            "on_event_kept": 11,
+            "on_event_lost": 198,
+            "off_event_kept": 1
+          },
+          "fulltext": {
+            "kept": 9,
+            "on_event_kept": 8,
+            "on_event_lost": 201,
+            "off_event_kept": 1
+          }
+        },
+        "0.50": {
+          "summary": {
+            "kept": 1,
+            "on_event_kept": 1,
+            "on_event_lost": 208,
+            "off_event_kept": 0
+          },
+          "fulltext": {
+            "kept": 2,
+            "on_event_kept": 1,
+            "on_event_lost": 208,
+            "off_event_kept": 1
+          }
+        }
+      }
+    }
+  },
+  "jev": {
+    "putin_trump_call_2025w08": {
+      "labelled": 793,
+      "on_event": 629,
+      "cohere_fulltext_0.35": {
+        "kept": 658,
+        "on_event_kept": 585,
+        "on_event_lost": 44,
+        "off_event_kept": 73
+      },
+      "jev": {
+        "0.2": {
+          "kept": 593,
+          "on_event_kept": 566,
+          "on_event_lost": 63,
+          "off_event_kept": 27
+        },
+        "0.3": {
+          "kept": 531,
+          "on_event_kept": 512,
+          "on_event_lost": 117,
+          "off_event_kept": 19
+        },
+        "0.4": {
+          "kept": 465,
+          "on_event_kept": 449,
+          "on_event_lost": 180,
+          "off_event_kept": 16
+        },
+        "0.5": {
+          "kept": 398,
+          "on_event_kept": 385,
+          "on_event_lost": 244,
+          "off_event_kept": 13
+        },
+        "0.6": {
+          "kept": 290,
+          "on_event_kept": 285,
+          "on_event_lost": 344,
+          "off_event_kept": 5
+        },
+        "0.7": {
+          "kept": 164,
+          "on_event_kept": 163,
+          "on_event_lost": 466,
+          "off_event_kept": 1
+        },
+        "0.8": {
+          "kept": 49,
+          "on_event_kept": 48,
+          "on_event_lost": 581,
+          "off_event_kept": 1
+        },
+        "0.9": {
+          "kept": 10,
+          "on_event_kept": 10,
+          "on_event_lost": 619,
+          "off_event_kept": 0
+        }
+      }
+    },
+    "us_russia_contacts_2025w09": {
+      "labelled": 772,
+      "on_event": 608,
+      "cohere_fulltext_0.35": {
+        "kept": 574,
+        "on_event_kept": 551,
+        "on_event_lost": 57,
+        "off_event_kept": 23
+      },
+      "jev": {
+        "0.2": {
+          "kept": 629,
+          "on_event_kept": 602,
+          "on_event_lost": 6,
+          "off_event_kept": 27
+        },
+        "0.3": {
+          "kept": 618,
+          "on_event_kept": 600,
+          "on_event_lost": 8,
+          "off_event_kept": 18
+        },
+        "0.4": {
+          "kept": 609,
+          "on_event_kept": 596,
+          "on_event_lost": 12,
+          "off_event_kept": 13
+        },
+        "0.5": {
+          "kept": 595,
+          "on_event_kept": 586,
+          "on_event_lost": 22,
+          "off_event_kept": 9
+        },
+        "0.6": {
+          "kept": 579,
+          "on_event_kept": 574,
+          "on_event_lost": 34,
+          "off_event_kept": 5
+        },
+        "0.7": {
+          "kept": 559,
+          "on_event_kept": 554,
+          "on_event_lost": 54,
+          "off_event_kept": 5
+        },
+        "0.8": {
+          "kept": 499,
+          "on_event_kept": 495,
+          "on_event_lost": 113,
+          "off_event_kept": 4
+        },
+        "0.9": {
+          "kept": 271,
+          "on_event_kept": 271,
+          "on_event_lost": 337,
+          "off_event_kept": 0
+        }
+      }
+    },
+    "trump_zelensky_2025w10": {
+      "labelled": 796,
+      "on_event": 637,
+      "cohere_fulltext_0.35": {
+        "kept": 695,
+        "on_event_kept": 603,
+        "on_event_lost": 34,
+        "off_event_kept": 92
+      },
+      "jev": {
+        "0.2": {
+          "kept": 589,
+          "on_event_kept": 550,
+          "on_event_lost": 87,
+          "off_event_kept": 39
+        },
+        "0.3": {
+          "kept": 553,
+          "on_event_kept": 520,
+          "on_event_lost": 117,
+          "off_event_kept": 33
+        },
+        "0.4": {
+          "kept": 528,
+          "on_event_kept": 503,
+          "on_event_lost": 134,
+          "off_event_kept": 25
+        },
+        "0.5": {
+          "kept": 508,
+          "on_event_kept": 488,
+          "on_event_lost": 149,
+          "off_event_kept": 20
+        },
+        "0.6": {
+          "kept": 485,
+          "on_event_kept": 468,
+          "on_event_lost": 169,
+          "off_event_kept": 17
+        },
+        "0.7": {
+          "kept": 461,
+          "on_event_kept": 447,
+          "on_event_lost": 190,
+          "off_event_kept": 14
+        },
+        "0.8": {
+          "kept": 419,
+          "on_event_kept": 415,
+          "on_event_lost": 222,
+          "off_event_kept": 4
+        },
+        "0.9": {
+          "kept": 300,
+          "on_event_kept": 300,
+          "on_event_lost": 337,
+          "off_event_kept": 0
+        }
+      }
+    },
+    "kursk_2025w11": {
+      "labelled": 802,
+      "on_event": 716,
+      "cohere_fulltext_0.35": {
+        "kept": 678,
+        "on_event_kept": 659,
+        "on_event_lost": 57,
+        "off_event_kept": 19
+      },
+      "jev": {
+        "0.2": {
+          "kept": 746,
+          "on_event_kept": 711,
+          "on_event_lost": 5,
+          "off_event_kept": 35
+        },
+        "0.3": {
+          "kept": 743,
+          "on_event_kept": 710,
+          "on_event_lost": 6,
+          "off_event_kept": 33
+        },
+        "0.4": {
+          "kept": 735,
+          "on_event_kept": 706,
+          "on_event_lost": 10,
+          "off_event_kept": 29
+        },
+        "0.5": {
+          "kept": 726,
+          "on_event_kept": 702,
+          "on_event_lost": 14,
+          "off_event_kept": 24
+        },
+        "0.6": {
+          "kept": 716,
+          "on_event_kept": 694,
+          "on_event_lost": 22,
+          "off_event_kept": 22
+        },
+        "0.7": {
+          "kept": 699,
+          "on_event_kept": 681,
+          "on_event_lost": 35,
+          "off_event_kept": 18
+        },
+        "0.8": {
+          "kept": 673,
+          "on_event_kept": 661,
+          "on_event_lost": 55,
+          "off_event_kept": 12
+        },
+        "0.9": {
+          "kept": 608,
+          "on_event_kept": 605,
+          "on_event_lost": 111,
+          "off_event_kept": 3
+        }
+      }
+    },
+    "prices_2025w11": {
+      "labelled": 809,
+      "on_event": 209,
+      "cohere_fulltext_0.35": {
+        "kept": 22,
+        "on_event_kept": 17,
+        "on_event_lost": 192,
+        "off_event_kept": 5
+      },
+      "jev": {
+        "0.2": {
+          "kept": 360,
+          "on_event_kept": 200,
+          "on_event_lost": 9,
+          "off_event_kept": 160
+        },
+        "0.3": {
+          "kept": 329,
+          "on_event_kept": 183,
+          "on_event_lost": 26,
+          "off_event_kept": 146
+        },
+        "0.4": {
+          "kept": 295,
+          "on_event_kept": 170,
+          "on_event_lost": 39,
+          "off_event_kept": 125
+        },
+        "0.5": {
+          "kept": 263,
+          "on_event_kept": 156,
+          "on_event_lost": 53,
+          "off_event_kept": 107
+        },
+        "0.6": {
+          "kept": 240,
+          "on_event_kept": 145,
+          "on_event_lost": 64,
+          "off_event_kept": 95
+        },
+        "0.7": {
+          "kept": 199,
+          "on_event_kept": 125,
+          "on_event_lost": 84,
+          "off_event_kept": 74
+        },
+        "0.8": {
+          "kept": 151,
+          "on_event_kept": 99,
+          "on_event_lost": 110,
+          "off_event_kept": 52
+        },
+        "0.9": {
+          "kept": 65,
+          "on_event_kept": 50,
+          "on_event_lost": 159,
+          "off_event_kept": 15
+        }
+      }
+    }
+  }
+}
