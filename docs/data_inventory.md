@@ -22,7 +22,10 @@ Verified high-level stats from the local summary files:
 - Distinct sources: 84
 - Date range: 2018-04-16 through 2025-04-02
 - Rows with summaries: 3,848,244
-- Rows with raw collected message text: 190,426
+- Rows with the post's own text in `original_message`: 99.3–100% of every month from 2020-01 to
+  2025-04 (counted in the DB on 2026-10-18; the 190,426 given here before was wrong). Before
+  2025-02 it is plain text; from 2025-02 war and military channels store a Telegram JSON blob
+  (23% of March 2025 posts), which is why average length jumps from about 500 to over 1,000 chars.
 - Rows with an in-DB `embedding` value (Cohere JSON): 179,988 — this is the *old, sparse*
   embedding column. The full corpus is now separately embedded with Qwen3; see "Embeddings" below.
 
