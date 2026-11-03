@@ -1,7 +1,7 @@
 # Events Coverage
 
 Compares how Russian-language media groups covered the same public-agenda events — the
-weekly FOM opinion surveys, 2020–2025. A historical dashboard, not a daily monitor.
+weekly FOM opinion surveys, 2020–2026. A historical dashboard, not a daily monitor.
 
 **This is a personal project, built to learn the modern data stack and to stand as a
 portfolio piece.** Two things follow. Prefer a clean, tested, documented build over more
@@ -91,7 +91,13 @@ paths alongside the output.
 - **`event_prices_2025w11*` has no usable matched set.** At the standard relevance cut-off of
   0.35 it keeps 0 posts; its highest rerank score is under 0.30. The old build only had rows
   because it used 0.10. Do not quote those 50 posts as coverage.
-- **The news snapshot ends 2025-04-02.** Never describe results as current after that date.
+- **Posts come from two files, and only the first is in the pipeline.** The archive
+  (`news_data/ask_media_unified_*.db`) ends 2025-04-02; never describe results as current after that
+  date. Posts from 2025-04-02 to 2026-11-03 are in `news_data/telegram_previews_2026-11-03.sqlite`
+  (`scripts/collect_telegram.py`, public t.me/s pages): no forward counts, views as text («1.2K»),
+  line breaks flattened, so `posts.text` is not byte-equal to the archive's `original_message`. They join on
+  (source, message_id); the boundary posts are in both files. Not yet embedded, matched or loaded into
+  the warehouse, while FOM events already run to 2026-W43.
 - **Never add matched posts across events.** Search windows of neighbouring weeks overlap, so one
   post can be matched to two events (130 are). Totals over several events come from
   `theme_group_coverage`, which counts each post once over the union of window days.

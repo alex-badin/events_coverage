@@ -21,6 +21,15 @@ Verified high-level stats from the local summary files:
 - Rows: 3,861,614
 - Distinct sources: 84
 - Date range: 2018-04-16 through 2025-04-02
+
+Posts after that are in a second file, `news_data/telegram_previews_2026-11-03.sqlite`, collected
+2026-11-03 by `scripts/collect_telegram.py` from public channel previews (t.me/s/<channel>), for the
+56 in-scope channels, each from its newest archived post: 1,211,509 posts (1,205,058 with text),
+2025-04-02 to 2026-11-03, 53 channels with posts; `lifenews` and `riafan` have none after the
+archive, `prigozhin_hat` has no public preview. Table `posts` (source_id, message_id, published_utc,
+text, record_type, views_text); `pages` keeps each fetched page's HTML. No forward counts; views are
+display text; line breaks are flattened. The 51 boundary posts present in both files have the same
+id, time and text (up to whitespace).
 - Rows with summaries: 3,848,244
 - Rows with the post's own text in `original_message`: 99.3–100% of every month from 2020-01 to
   2025-04 (counted in the DB on 2026-10-18; the 190,426 given here before was wrong). Before
@@ -85,8 +94,9 @@ fom_events/processed_events/events_table.csv
 
 Observed shape:
 
-- Rows: 3,699
-- Years covered: 2020-2025
+- Rows: 4,876 (3,699 to 2025-W11; 1,177 added 2026-11-03 for 2025-W12 to 2026-W43, extracted with
+  Codex — `fom_events/codex_extraction/README.md`)
+- Years covered: 2020-2026 (to 2026-W43)
 - Blank event names: 0
 - Missing percentages: 4
 
