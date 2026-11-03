@@ -264,7 +264,8 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
   content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 2px solid var(--ink);
 }
 .hm-lbl { font-size: 11.5px; color: var(--ink-2); padding-right: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hm-day { font-size: 10px; color: var(--ink-muted); text-align: center; font-variant-numeric: tabular-nums; border-radius: 3px; }
+.hm-day { min-height: 26px; line-height: 13px; font-size: 10px; color: var(--ink-muted); text-align: center; font-variant-numeric: tabular-nums; border-radius: 3px; }
+.hm-month { display: block; }
 .hm-day.in-week { background: var(--att-1); color: var(--ink-2); }
 
 .post { border-top: 1px solid var(--grid); padding: 12px 0; }
@@ -357,7 +358,8 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
   <section>
     <div class="head">
       <h2 id="cov-title">Coverage measured so far</h2>
-      <p class="sub">For each measured event: how much of its own output each media group gave it.</p>
+      <p class="sub">For each event with calculated coverage: how much of its own output each media group gave it.
+        The respondent percentage comes from the FOM survey, not from media posts.</p>
     </div>
     <div class="card"><div class="scroll-x" id="cov"></div>
       <p class="line">Per 1,000 = matched posts per 1,000 posts the group published in the event's
@@ -374,8 +376,12 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
     <section id="wk-none" hidden><div class="card empty-note" id="wk-none-text"></div></section>
     <div id="wk-body">
       <section>
-        <div class="head"><h2>What people named this week</h2></div>
+        <div class="head"><h2>What people named this week</h2>
+          <p class="sub">Percentages show the share of FOM survey respondents who named each event.</p>
+        </div>
         <div class="card">
+          <p class="line">Media coverage status: <b>Coverage calculated</b> means matching posts and media-group figures are available.
+            <b>Not calculated yet</b> means matching posts and media-group figures are not available in this dashboard yet; it does not mean the media were silent.</p>
           <div class="ev-list" id="wk-events"></div>
           <p class="line" id="wk-events-note"></p>
         </div>
@@ -424,6 +430,8 @@ const utc = x => x instanceof Date ? x : new Date(String(x).slice(0, 10) + 'T00:
 const d = (date, opts) => utc(date).toLocaleDateString('en-GB', {...opts, timeZone: 'UTC'});
 const dayLabel = x => d(x, {day: 'numeric', month: 'short'});
 const longDay = x => d(x, {day: 'numeric', month: 'short', year: 'numeric'});
+// Exported post timestamps are UTC; retain their clock time as well as their date.
+const dateTimeLabel = x => x ? `${dayLabel(x)}, ${String(x).replace('T', ' ').slice(11, 16)}` : '—';
 function rangeLabel(startIso, days = 7) {
   const s = utc(startIso), e = new Date(s.getTime() + (days - 1) * DAY);
   if (s.getUTCFullYear() !== e.getUTCFullYear()) return `${longDay(s)} – ${longDay(e)}`;
@@ -852,7 +860,7 @@ function renderCoverage(sel) {
     return `<tr class="ev" data-ev="${esc(r.event_id)}" data-wk="${weekKey(r)}">
       <td class="ev-cell"><span class="ev-title">${warnMark(r.event_id)}${esc(eventTitle(r))}</span>
           <span class="ev-ru">${esc(r.event_name)}</span>
-          <span class="ev-meta">${weekKey(r)} · named by ${share(r.attention_percentage)}</span>
+          <span class="ev-meta">${weekKey(r)} · mentioned by ${share(r.attention_percentage)} of FOM survey respondents</span>
           ${t ? `<a class="tag" href="#/theme/${encodeURIComponent(t.theme_id)}">${esc(themeName(t))}</a>` : ''}</td>
       ${GROUPS.map(g => {
         const row = groups.get(g);
@@ -966,9 +974,9 @@ function renderWeek(st) {
         <span class="bar-val">${share(r.attention_percentage)}</span></span>
       <span class="ev-name">${m && r.event_label_en ? `<span class="en">${warnMark(r.event_id)}${esc(r.event_label_en)}</span>` : ''}${esc(r.event_name)}
         <span class="ev-tags">${t ? `<a class="tag" href="#/theme/${encodeURIComponent(t.theme_id)}">${esc(themeName(t))}</a>` : ''}
-          ${m ? '<span class="tag measured">coverage measured</span>'
-              : r.coverage_status === 'no post passed the cut-off' ? '<span class="tag">searched, nothing passed the cut-off</span>'
-              : '<span class="tag muted">not measured yet</span>'}</span></span>
+          ${m ? '<span class="tag measured">Coverage calculated</span>'
+              : r.coverage_status === 'no post passed the cut-off' ? '<span class="tag">Search completed: no posts selected</span>'
+              : '<span class="tag muted">Not calculated yet</span>'}</span></span>
     </button>`;
   }).join('');
   el('wk-events').querySelectorAll('.ev-row').forEach(b => b.addEventListener('click', evt => {
@@ -996,13 +1004,14 @@ function renderEventCard(r) {
     <h2>${warnMark(r.event_id)}${esc(eventTitle(r))}</h2>
     ${r.event_label_en ? `<div class="ev-ru" style="font-size:13px">${esc(r.event_name)}</div>` : ''}
     <div class="facts">
-      <span>Named by <b>${share(r.attention_percentage)}</b> of respondents</span>
+      <span>Mentioned by <b>${share(r.attention_percentage)}</b> of FOM survey respondents</span>
       ${t ? `<a class="tag" href="#/theme/${encodeURIComponent(t.theme_id)}">${esc(themeName(t))}</a>` : ''}
       ${o ? `<span>Posts searched ${dayLabel(o.match_start)} – ${longDay(new Date(utc(o.match_end_exclusive).getTime() - DAY))}</span>
              <span>${plural(o.matched_posts, 'post', 'posts')} from ${o.sources_covering} of ${o.sources_active} publishing sources · ${o.groups_covering} of ${o.groups_active} groups</span>` : ''}
     </div>
-    ${quotes.length ? `<ul class="quotes" id="quotes">${quotes.slice(0, 3).map(q => `<li>“${esc(q)}”</li>`).join('')}</ul>
-      ${quotes.length > 3 ? `<button class="more-btn" type="button" id="quotes-all">Show all ${quotes.length} quotes</button>` : ''}` : ''}
+    ${quotes.length ? `<p class="line"><b>How FOM respondents described this event</b></p>
+      <ul class="quotes" id="quotes" aria-label="Examples of answers from FOM survey respondents">${quotes.slice(0, 3).map(q => `<li>“${esc(q)}”</li>`).join('')}</ul>
+      ${quotes.length > 3 ? `<button class="more-btn" type="button" id="quotes-all">Show all ${quotes.length} respondent quotes</button>` : ''}` : ''}
     ${warnings.map(w => `<div class="warn-box"><span class="warn">⚠</span><div>${w} Comparisons between groups
       inside this event are unaffected: every group was searched the same way.</div></div>`).join('')}`;
   const all = el('quotes-all');
@@ -1022,8 +1031,9 @@ function renderGroupAndPosts(st) {
     const sameWeek = r ? (ROWS_BY_WEEK.get(r.week_start) || []).filter(isMeasured) : [];
     el('wk-groups').innerHTML = `<p class="empty-note">${r && r.coverage_status === 'no post passed the cut-off'
       ? 'This event was searched, but no post passed the 0.35 relevance cut-off. That is a result of the search, not a sign that the media were silent.'
-      : `Coverage not measured yet. Matched post sets are built one event at a time and cost money to build,
-         so ${MEASURED.length} of ${fmt(ROWS.filter(x => x.event_kind === 'specific event').length)} events have one so far.`}
+      : `No set of matching posts has been added to this dashboard for this event yet,
+         so there are no media-group figures to show. This does not mean there was no coverage.
+         Coverage has been calculated for ${MEASURED.length} of ${fmt(ROWS.filter(x => x.event_kind === 'specific event').length)} events so far.`}
       ${sameWeek.length ? '<br>Measured this week: ' + sameWeek.map(x =>
         `<a href="${weekHash(weekKey(x), x.event_id)}">${esc(eventTitle(x))}</a>`).join(' · ') : ''}
       ${near.before || near.after ? '<br>Nearest other weeks with measured coverage: ' +
@@ -1060,7 +1070,8 @@ function renderGroupBars(r) {
   <p class="line">Bar length: matched posts per 1,000 posts the group published in the window, on any topic.
     Click a group to read its posts.</p>
   <details class="more" id="wk-more"><summary>Day by day and every number</summary>
-    <h3>Matched posts per day · ○ = the group's first post · shaded dates = the survey week</h3>
+    <h3>Matched posts per day · ○ = the group's first matched post · shaded dates = the survey week</h3>
+    <p class="line">Each column is one calendar day, in UTC. Posts searched: ${longDay(o.match_start)} – ${longDay(new Date(utc(o.match_end_exclusive).getTime() - DAY))}.</p>
     <div class="scroll-x" id="wk-days"></div>
     <h3>Every number</h3>
     <div class="scroll-x" id="wk-table"></div>
@@ -1073,11 +1084,12 @@ function renderGroupBars(r) {
   }));
   renderDays(r, rows);
   el('wk-table').innerHTML = `<table><thead><tr><th>Media group</th><th>Matched posts</th><th>Per 1,000 own posts</th>
-      <th>Share of the event's posts</th><th>Sources covering</th><th>First post after (hours)</th><th>Views per post</th><th>Mean relevance</th></tr></thead>
+      <th>Share of the event's posts</th><th>Sources covering</th><th>First matched post (UTC)</th><th>Views per post</th></tr></thead>
     <tbody>${rows.map(g => `<tr><td>${esc(g.media_group)}</td><td>${fmt(g.matched_posts)}</td>
       <td>${fmt1(g.matched_posts_per_1000_published)}</td><td>${pct(g.share_of_voice)}</td>
-      <td>${g.sources_covering} of ${g.sources_active}</td><td>${g.coverage_lag_hours == null ? '—' : fmt(g.coverage_lag_hours)}</td>
-      <td>${fmt(g.views_per_matched_post)}</td><td>${fmt2(g.mean_relevance_score)}</td></tr>`).join('')}</tbody></table>`;
+      <td>${g.sources_covering} of ${g.sources_active}</td><td>${esc(dateTimeLabel(g.first_matched_at))}</td>
+      <td>${fmt(g.views_per_matched_post)}</td></tr>`).join('')}</tbody></table>` +
+    '<p class="line">First matched post is the earliest publication found for this group within the search window. It is not a measured delay from the start of the event.</p>';
   el('wk-build').innerHTML = [
     ['Search', o.retriever === 'qwen3' ? 'Qwen3 embeddings over the whole corpus' : 'older Cohere embeddings, part of the corpus'],
     ['Relevance gate', `${o.rerank_model} score ≥ ${o.rerank_threshold}`],
@@ -1094,11 +1106,11 @@ function renderDays(r, groupRows) {
   const days = [...new Set(daily.map(x => x.coverage_date))].sort();
   const byKey = new Map(daily.map(x => [x.media_group + '|' + x.coverage_date, x.matched_posts]));
   const wkStart = r.week_start, wkEnd = new Date(utc(wkStart).getTime() + 6 * DAY).toISOString().slice(0, 10);
-  const cols = `170px repeat(${days.length}, minmax(15px, 1fr))`;
-  let html = `<div class="hm" style="min-width:${170 + days.length * 18}px">`;
+  const cols = `170px repeat(${days.length}, minmax(20px, 1fr))`;
+  let html = `<div class="hm" style="min-width:${170 + days.length * 22}px">`;
   html += `<div class="hm-row" style="grid-template-columns:${cols}"><div></div>` + days.map((dd, i) => {
     const day = utc(dd), inWeek = dd >= wkStart && dd <= wkEnd;
-    return `<div class="hm-day${inWeek ? ' in-week' : ''}">${i === 0 || day.getUTCDate() === 1 ? d(day, {month: 'short'}) : day.getUTCDate()}</div>`;
+    return `<div class="hm-day${inWeek ? ' in-week' : ''}" title="${longDay(day)}">${day.getUTCDate()}${i === 0 || day.getUTCDate() === 1 ? `<span class="hm-month">${d(day, {month: 'short'})}</span>` : ''}</div>`;
   }).join('') + '</div>';
   groupRows.forEach(g => {
     const firstDay = g.first_matched_at ? String(g.first_matched_at).slice(0, 10) : null;
@@ -1196,6 +1208,9 @@ function renderAbout() {
       the Cohere rerank-v3.5 relevance model scores it 0.35 or higher. The score is on every post, so weak matches can
       be read and judged. Matched post sets are built one event at a time and cost money, so they are curated, not a
       sample: ${MEASURED.length} of ${fmt(specific.length)} events have one.</p>
+    <p><b>Coverage calculated</b> means matching posts have been selected and media-group figures are available.
+      <b>Not calculated yet</b> means that matching posts have not been added to this dashboard for this event. The FOM survey result
+      is still shown; the status says nothing about whether the media covered it.</p>
     <h3>Silence is measured, and there are three different zeros</h3>
     <p>"0 of N posts" means the group published N posts in the window and none matched the event. "Not publishing in
       this window" means the group published nothing at all then. Fewer than 5 matched posts is shown faded: too few to

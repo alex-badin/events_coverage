@@ -61,10 +61,15 @@ browser's Back button works and any view can be linked.
    them, with links to the nearest weeks that have measured coverage.
 2. *What people named this week*: every event on the week's list, by share, with its theme and
    whether its coverage is measured.
-3. The selected event: share, theme, respondent quotes, and a warning if its numbers cannot be
+3. The selected event: the share of FOM survey respondents who mentioned it, theme, explicitly
+   labelled examples of respondents' answers, and a warning if its numbers cannot be
    compared with other events.
 4. *How each media group covered it*: one bar per group, one measure. Day-by-day coverage, a
-   table of every number and how the posts were matched sit in a closed section below.
+   table of every number and how the posts were matched sit in a closed section below. Every
+   calendar column shows its day number; the first day and month boundaries also show the month.
+   The table shows the date and time of each group's first matched post in UTC. This is the first
+   publication found inside the search window, not a delay from the event's start. The mean
+   relevance score is kept in the data for checking matches and is not a coverage comparison column.
 5. *The posts behind the numbers*: filter by group, then by the words that group used more
    than the others; every post carries its relevance score.
 
@@ -78,8 +83,10 @@ zero, the warning rules, the media grouping, and the end date of the news data.
 appears, with what it did publish; "0 of 1,432 posts", "not publishing in this window" and
 "fewer than 5 posts" are three different cells, not one blank.
 
-**Not measured is not zero.** An event without a matched post set reads "not measured yet",
-never 0.
+**Not calculated is not zero.** "Coverage calculated" means a matched post set and media-group
+figures are available. An event without a matched post set reads "Not calculated yet", never 0.
+The status describes media processing, independently of the FOM survey percentage. A completed
+search with no selected posts has its own status and is not presented as media silence.
 
 **Each post is counted once.** Search windows of neighbouring weeks overlap, so a post can be
 matched to two events. Every total over several events counts it once and divides by what the
