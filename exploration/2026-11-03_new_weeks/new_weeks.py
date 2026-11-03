@@ -55,6 +55,7 @@ TOP_K, SHOW_CHARS, PER_REQUEST = 3000, 400, 400
 DEC_PRICE_PER_M = 0.10
 LUNA_PRICE = (0.10, 0.50)           # per 1M input / output tokens
 SAMPLE_N, SEED = 100, 17
+DECIDE_PER_EVENT, LUNA_PER_EVENT = 0.07, 0.0035   # measured on the pilot ($0.060, $0.003), rounded up
 
 
 # ------------------------------------------------------------------------------ ledger
@@ -332,6 +333,18 @@ def _openai():
     return OpenAI(api_key=os.environ["OPENAI_API_KEY"], max_retries=4)
 
 
+def patiently(call):
+    """Wait out the per-minute token limit; a spent budget (insufficient_quota) is not worth waiting for."""
+    import openai
+    for attempt in range(30):
+        try:
+            return call()
+        except openai.RateLimitError as error:
+            if "insufficient_quota" in str(error) or attempt == 29:
+                raise
+            time.sleep(min(10 + 5 * attempt, 60))
+
+
 def decide(n=None):
     ps, client = posts(), _openai()
     folder = OUT / "decisions"
@@ -347,26 +360,33 @@ def decide(n=None):
             body = {"model": "gpt-6-luna", "input": shared, "questions": [
                 {"type": "choice", "name": f"p{i}", "instructions": "News post:\n" + ps[i]["text"][:SHOW_CHARS],
                  "choices": [{"value": "yes"}, {"value": "no"}]} for i in chunk]}
-            d = client.post("/decisions", body=body, cast_to=object)
+            d = patiently(lambda: client.post("/decisions", body=body, cast_to=object))
             for a in d["answers"]:
                 pr = {x["value"]: x["probability"] for x in a.get("probabilities") or []}
                 if "yes" in pr:
                     have["p"][a["name"][1:]] = round(float(pr["yes"]), 4)
             u = d.get("usage") or {}
             have["usage"].append(u)
-            usd += u.get("input_tokens", 0) * DEC_PRICE_PER_M / 1e6
+            paid = u.get("input_tokens", 0) * DEC_PRICE_PER_M / 1e6
+            usd += paid
             target.write_text(json.dumps(have))            # saved after every billed request
-        return e["id"], usd, sum(u.get("input_tokens", 0) for u in have["usage"])
+            book("decide", paid, event=e["id"], input_tokens=u.get("input_tokens", 0))   # and booked with it
+        return usd
 
     evs = [e for e in todo(n) if brief(e) and not (folder / f"{e['id']}.json").exists()
            or (folder / f"{e['id']}.json").exists() and len(json.loads((folder / f"{e['id']}.json").read_text())["p"]) < len(candidates(e)) - 5]
     lock = threading.Lock()
+    # Stop early enough that every scored event can still get its cut-off inside the budget: a
+    # score without a cut-off is money spent for nothing. Room for the four events in flight too.
+    waiting = [len([e for e in events() if (folder / f"{e['id']}.json").exists()
+                    and not (OUT / "luna" / f"{e['id']}.json").exists()])]
 
     def run(e):
-        guard()
-        eid, usd, tok = one(e)
+        if spent() + 4 * DECIDE_PER_EVENT + waiting[0] * LUNA_PER_EVENT > CAP_USD:
+            return 0.0
+        usd = one(e)
         with lock:
-            book("decide", usd, event=eid, input_tokens=tok)
+            waiting[0] += 1
         return usd
 
     with concurrent.futures.ThreadPoolExecutor(4) as pool:
@@ -417,9 +437,10 @@ def luna(n=None):
             block = "\n\n".join(f"[id {i}] {ps[i]['text'][:2500]}" for i in picked[k:k + 50])
             text = R.PROMPT.format(week=f"{e['year']}-W{e['week']:02d}", name=e["name"], quotes="; ".join(e["quotes"]),
                                    lo=e["window"][0], hi=e["window"][1], posts=block)
-            d = client.chat.completions.create(model="gpt-6-luna", messages=[{"role": "user", "content": text}],
-                                               reasoning_effort="low", response_format={"type": "json_schema",
-                                               "json_schema": {"name": "labels", "strict": True, "schema": schema}}).model_dump()
+            d = patiently(lambda: client.chat.completions.create(
+                model="gpt-6-luna", messages=[{"role": "user", "content": text}], reasoning_effort="low",
+                response_format={"type": "json_schema", "json_schema": {"name": "labels", "strict": True,
+                                                                        "schema": schema}})).model_dump()
             u = d.get("usage") or {}
             usd += (u.get("prompt_tokens", 0) * LUNA_PRICE[0] + u.get("completion_tokens", 0) * LUNA_PRICE[1]) / 1e6
             for x in json.loads(d["choices"][0]["message"]["content"])["labels"]:
