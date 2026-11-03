@@ -572,6 +572,26 @@ def decisions():
             print(f"{slug}: {len(have['p'])} posts scored, ${usd:.4f}; ledger ${T.spent():.3f}", flush=True)
 
 
+def fable_collect():
+    """Fable 5.1 answers (judges/fable/out/, from fable_judge.sh) -> fable_labels/<event>.jsonl,
+    one {"post_id", "label"} line per labelled post, in the order of fable_input/posts_<event>.jsonl."""
+    (T.OUT / "fable_labels").mkdir(exist_ok=True)
+    for slug in T.EVENTS:
+        order = [json.loads(line)["post_id"] for line in open(T.OUT / "fable_input" / f"posts_{slug}.jsonl")]
+        labels = {}
+        for p in sorted((T.OUT / "judges" / "fable" / "out").glob(f"{slug}_[0-9][0-9][0-9].json")):
+            for item in json.loads(p.read_text())["labels"]:
+                if str(item["id"]).strip().isdigit():
+                    labels[int(str(item["id"]).strip())] = item["label"]
+        missing = [i for i in order if i not in labels]
+        if missing:
+            print(f"{slug}: {len(missing)} of {len(order)} posts unlabelled; rerun fable_judge.sh"); continue
+        with open(T.OUT / "fable_labels" / f"{slug}.jsonl", "w") as f:
+            for i in order:
+                f.write(json.dumps({"post_id": i, "label": labels[i]}) + "\n")
+        print(f"{slug}: {sum(labels[i] == 'yes' for i in order)} of {len(order)} yes")
+
+
 if __name__ == "__main__":
     step = sys.argv[1]
     if step in ("claude", "openai"):
@@ -579,4 +599,5 @@ if __name__ == "__main__":
     else:
         {"prepare": prepare, "embed": embed, "cosine": cosine, "brief_prompts": brief_prompts, "jev": jev,
          "label_prompts": label_prompts, "label_collect": label_collect, "reader_prompts": reader_prompts,
-         "reader_prompts_brief": reader_prompts_brief, "decisions": decisions, "deepseek": deepseek, "reader_collect": reader_collect}[step]()
+         "reader_prompts_brief": reader_prompts_brief, "decisions": decisions, "deepseek": deepseek, "reader_collect": reader_collect,
+         "fable_collect": fable_collect}[step]()
