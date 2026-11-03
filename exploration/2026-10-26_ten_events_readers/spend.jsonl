@@ -26,3 +26,16 @@
 {"step": "reader", "usd": 0.78118, "date": "2026-10-26 06:35", "model": "deepseek/deepseek-v4-flash", "prompts": 105, "input_tokens": 896562, "output_tokens": 824365}
 {"step": "reader", "usd": 0.19864, "date": "2026-10-26 06:37", "model": "claude-haiku-5-5", "prompts": 106, "input_tokens": 1093194, "output_tokens": 178641}
 {"step": "reader", "usd": 1.47769, "date": "2026-10-26 06:39", "model": "claude-sonnet-5-5", "prompts": 105, "input_tokens": 1081497, "output_tokens": 79239, "batch": "msgbatch_01EqwbEzoyEF2T6tDfLGKKGd"}
+{"step": "reader", "usd": 0.00207, "date": "2026-11-03 04:13", "model": "gpt-6-luna", "reader": "gpt-6-luna", "prompts": 2, "input_tokens": 14089, "output_tokens": 1331}
+{"step": "reader", "usd": 0.00205, "date": "2026-11-03 04:14", "model": "gpt-6-luna", "reader": "gpt-6-luna+brief", "prompts": 2, "input_tokens": 14965, "output_tokens": 1116}
+{"step": "reader", "usd": 0.01867, "date": "2026-11-03 04:14", "model": "gpt-6.1-terra", "reader": "gpt-6.1-terra", "prompts": 2, "input_tokens": 14089, "output_tokens": 916}
+{"step": "reader", "usd": 0.03779, "date": "2026-11-03 04:14", "model": "gpt-6.1-sol", "reader": "gpt-6.1-sol", "prompts": 2, "input_tokens": 14089, "output_tokens": 961}
+{"step": "reader", "usd": 0.00453, "date": "2026-11-03 04:14", "model": "claude-haiku-5-5", "prompts": 2, "input_tokens": 22237, "output_tokens": 4605}
+{"step": "reader", "usd": 0.16436, "date": "2026-11-03 04:18", "model": "gpt-6-luna", "reader": "gpt-6-luna", "prompts": 148, "input_tokens": 1055169, "output_tokens": 117693}
+{"step": "reader", "usd": 0.70464, "date": "2026-11-03 04:19", "model": "gpt-6.1-terra", "reader": "gpt-6.1-terra", "prompts": 148, "input_tokens": 1055169, "output_tokens": 70824, "batch": "batch_6ae927811ce88190a5977f47298fa9b8"}
+{"step": "reader", "usd": 0.17013, "date": "2026-11-03 04:21", "model": "gpt-6-luna", "reader": "gpt-6-luna+brief", "prompts": 148, "input_tokens": 1115253, "output_tokens": 117213}
+{"step": "reader", "usd": 0.3104, "date": "2026-11-03 04:24", "model": "claude-haiku-5-5", "prompts": 148, "input_tokens": 1676766, "output_tokens": 285453}
+{"step": "reader", "usd": 0.00158, "date": "2026-11-03 04:24", "model": "gpt-6-luna", "reader": "gpt-6-luna+brief", "prompts": 1, "input_tokens": 11780, "output_tokens": 812}
+{"step": "reader", "usd": 1.50167, "date": "2026-11-03 04:27", "model": "gpt-6.1-sol", "reader": "gpt-6.1-sol+brief", "prompts": 150, "input_tokens": 1130218, "output_tokens": 74291, "batch": "batch_6ae928d452648190ab248cbe34d1dd0c"}
+{"step": "reader", "usd": 0.00278, "date": "2026-11-03 04:31", "model": "claude-haiku-5-5", "prompts": 1, "input_tokens": 11392, "output_tokens": 3288}
+{"step": "reader", "usd": 0.74758, "date": "2026-11-03 04:44", "model": "gpt-6.1-terra", "reader": "gpt-6.1-terra+brief", "prompts": 150, "input_tokens": 1130218, "output_tokens": 72988, "batch": "batch_6ae9278635208190a849d5b33f789f9e"}

@@ -249,10 +249,21 @@ def label_collect():
 
 # ------------------------------------------------------------------------------ readers
 RD = T.OUT / "reader_labelling"
+# Reader name -> model. "+brief": the prompt also carries the event brief Jev gets (prompts_brief/).
 READERS = {"deepseek-v4-flash": "deepseek/deepseek-v4-flash",
-           "claude-haiku-5-5": "claude-haiku-5-5", "claude-sonnet-5-5": "claude-sonnet-5-5"}
-# list prices per 1M tokens (input, output); the batch API halves them
+           "claude-haiku-5-5": "claude-haiku-5-5", "claude-sonnet-5-5": "claude-sonnet-5-5",
+           "claude-haiku-5-5+brief": "claude-haiku-5-5", "claude-sonnet-5-5+brief": "claude-sonnet-5-5",
+           **{f"{m}{b}": m for m in ("gpt-6-luna", "gpt-6.1-terra", "gpt-6.1-sol") for b in ("", "+brief")}}
+# list prices per 1M tokens (input, output); both batch APIs halve them
 CLAUDE_PRICE = {"claude-haiku-5-5": (0.10, 0.50), "claude-sonnet-5-5": (2.00, 10.00)}
+OPENAI_PRICE = {"gpt-6-luna": (0.10, 0.50), "gpt-6.1-terra": (1.00, 5.00), "gpt-6.1-sol": (2.00, 10.00)}
+OPENAI_BATCH = {"gpt-6.1-terra", "gpt-6.1-sol"}   # Luna is cheap enough to call directly
+BRIEF_BLOCK = """Описание события (подготовлено заранее по постам окна):
+- что произошло: {what_happened}
+- считается освещением: {counts}
+- не считается: {does_not_count}
+
+"""
 
 
 def reader_prompts():
@@ -266,10 +277,22 @@ def reader_prompts():
         print(f"{slug}: {len(ids)} posts")
 
 
+def reader_prompts_brief():
+    """The same prompts with the event brief inserted before the instructions."""
+    (RD / "prompts_brief").mkdir(parents=True, exist_ok=True)
+    for p in sorted((RD / "prompts").glob("*.txt")):
+        b = T.brief(p.stem.rsplit("_", 1)[0])
+        text = p.read_text(encoding="utf-8").replace("Для каждого поста ниже реши:",
+                                                     BRIEF_BLOCK.format(**b) + "Для каждого поста ниже реши:", 1)
+        assert "Описание события" in text
+        (RD / "prompts_brief" / p.name).write_text(text, encoding="utf-8")
+
+
 def _todo(name, slugs):
     out = RD / "out" / name
     out.mkdir(parents=True, exist_ok=True)
-    todo = [p for p in sorted((RD / "prompts").glob("*.txt"))
+    src = RD / ("prompts_brief" if name.endswith("+brief") else "prompts")
+    todo = [p for p in sorted(src.glob("*.txt"))
             if p.stem.rsplit("_", 1)[0] in slugs and not (out / f"{p.stem}.json").exists()]
     return out, todo[:int(os.environ.get("LIMIT", 10**6))]
 
@@ -345,7 +368,7 @@ def claude(name):
     if not todo:
         print("nothing to do"); return
     model = READERS[name]
-    if name == "claude-haiku-5-5":
+    if model == "claude-haiku-5-5":
         lock, paid = threading.Lock(), {"usd": 0.0, "in": 0, "out": 0, "n": 0}
 
         def one(p):
@@ -388,8 +411,99 @@ def claude(name):
           f"ledger ${T.spent():.3f}", flush=True)
 
 
+def _openai():
+    from dotenv import load_dotenv
+    from openai import OpenAI
+    load_dotenv(T.ROOT / ".env")
+    return OpenAI(api_key=os.environ["OPENAI_API_KEY"], max_retries=4)
+
+
+def _body(model, text):
+    schema = json.loads((R.OUT / "labels" / "schema.json").read_text())
+    return {"model": model, "messages": [{"role": "user", "content": text}], "reasoning_effort": "low",
+            "response_format": {"type": "json_schema", "json_schema": {"name": "labels", "strict": True, "schema": schema}}}
+
+
+def _keep_openai(out, stem, d, model, batch):
+    """d: a chat completion as a dict. Saves it if it covers every id; returns (usd, usage)."""
+    pin, pout = OPENAI_PRICE[model]
+    u = d.get("usage") or {}
+    usd = (u.get("prompt_tokens", 0) * pin + u.get("completion_tokens", 0) * pout) / 1e6 / (2 if batch else 1)
+    usage = {"input_tokens": u.get("prompt_tokens", 0), "output_tokens": u.get("completion_tokens", 0),
+             "reasoning_tokens": (u.get("completion_tokens_details") or {}).get("reasoning_tokens", 0),
+             "cost": usd, "batch": batch}
+    want = {int(x) for x in re.findall(r"\[id (\d+)\]", (RD / "prompts" / f"{stem}.txt").read_text())}
+    try:
+        ans = json.loads(d["choices"][0]["message"]["content"])
+        got = {int(str(x["id"]).strip()) for x in ans["labels"] if str(x["id"]).strip().isdigit()}
+    except (KeyError, IndexError, TypeError, ValueError):
+        print(f"{stem}: unreadable answer", flush=True); return usd, usage
+    if not want <= got:
+        print(f"{stem}: answer covers {len(want & got)} of {len(want)} ids", flush=True); return usd, usage
+    (out / f"{stem}.json").write_text(json.dumps({**ans, "usage": usage}, ensure_ascii=False))
+    return usd, usage
+
+
+def openai_reader(name):
+    T.guard()
+    client = _openai()
+    out, todo = _todo(name, T.EVENTS)
+    if not todo:
+        print("nothing to do"); return
+    model = READERS[name]
+    paid, lock = {"usd": 0.0, "in": 0, "out": 0, "n": 0}, threading.Lock()
+
+    def add(usd, usage):
+        with lock:
+            paid["usd"] += usd; paid["in"] += usage["input_tokens"]; paid["out"] += usage["output_tokens"]
+            paid["n"] += 1
+
+    if model not in OPENAI_BATCH or os.environ.get("SYNC"):   # SYNC=1: direct calls, e.g. the cost probe
+        def one(p):
+            d = client.chat.completions.create(**_body(model, p.read_text(encoding="utf-8"))).model_dump()
+            add(*_keep_openai(out, p.stem, d, model, False))
+        try:
+            with ThreadPoolExecutor(6) as pool:
+                list(pool.map(one, todo))
+        finally:
+            T.book("reader", paid["usd"], model=model, reader=name, prompts=paid["n"], input_tokens=paid["in"],
+                   output_tokens=paid["out"])
+            print(f"{name}: {paid['n']} prompts, {paid['in']:,} in / {paid['out']:,} out, ${paid['usd']:.4f}; "
+                  f"ledger ${T.spent():.3f}", flush=True)
+        return
+    # Terra and Sol through the OpenAI Batch API: upload, record the batch id, collect when completed
+    state = RD / f"batch_{name}.json"
+    if not state.exists():
+        lines = [json.dumps({"custom_id": p.stem, "method": "POST", "url": "/v1/chat/completions",
+                             "body": _body(model, p.read_text(encoding="utf-8"))}, ensure_ascii=False) for p in todo]
+        f = client.files.create(file=("batch.jsonl", "\n".join(lines).encode()), purpose="batch")
+        batch = client.batches.create(input_file_id=f.id, endpoint="/v1/chat/completions", completion_window="24h")
+        state.write_text(json.dumps({"id": batch.id, "prompts": [p.stem for p in todo]}))
+        print(f"submitted batch {batch.id} with {len(todo)} prompts", flush=True)
+    sid = json.loads(state.read_text())["id"]
+    while (b := client.batches.retrieve(sid)).status not in ("completed", "failed", "expired", "cancelled"):
+        print(f"batch {sid}: {b.status} {b.request_counts}", flush=True)
+        time.sleep(60)
+    if b.error_file_id:
+        print(client.files.content(b.error_file_id).text[:1500], flush=True)
+    if b.output_file_id:
+        for line in client.files.content(b.output_file_id).text.splitlines():
+            r = json.loads(line)
+            if (r.get("response") or {}).get("status_code") == 200:
+                add(*_keep_openai(out, r["custom_id"], r["response"]["body"], model, True))
+            else:
+                print(f"{r['custom_id']}: {r.get('error') or r.get('response')}", flush=True)
+    T.book("reader", paid["usd"], model=model, reader=name, prompts=paid["n"], input_tokens=paid["in"],
+           output_tokens=paid["out"], batch=sid)
+    state.rename(state.with_suffix(".collected.json"))
+    print(f"{name}: {paid['n']} prompts, {paid['in']:,} in / {paid['out']:,} out, ${paid['usd']:.4f}; "
+          f"ledger ${T.spent():.3f}", flush=True)
+
+
 def reader_collect():
     for name, model in READERS.items():
+        if name != "deepseek-v4-flash" and not (RD / "out" / name).exists():
+            continue
         target = T.OUT / "reader_labels" / name
         target.mkdir(parents=True, exist_ok=True)
         for slug in T.EVENTS:
@@ -409,16 +523,17 @@ def reader_collect():
                         labels[int(str(item["id"]).strip())] = item["label"] == "yes"
             missing = [i for i in ids if i not in labels]
             (target / f"{slug}.json").write_text(json.dumps({
-                "slug": slug, "reader": model, "prompt": "run.PROMPT, slices of 50", "date": time.strftime("%Y-%m-%d"),
+                "slug": slug, "reader": model,
+                "prompt": "run.PROMPT" + (" + event brief" if name.endswith("+brief") else "") + ", slices of 50", "date": time.strftime("%Y-%m-%d"),
                 "usage": usage, "missing": missing, "labels": {str(i): labels[i] for i in ids if i in labels}}))
             print(f"{name} {slug}: {len(ids) - len(missing)} of {len(ids)} labelled, ${usage['cost']:.4f}")
 
 
 if __name__ == "__main__":
     step = sys.argv[1]
-    if step == "claude":
-        claude(sys.argv[2])
+    if step in ("claude", "openai"):
+        {"claude": claude, "openai": openai_reader}[step](sys.argv[2])
     else:
         {"prepare": prepare, "embed": embed, "cosine": cosine, "brief_prompts": brief_prompts, "jev": jev,
          "label_prompts": label_prompts, "label_collect": label_collect, "reader_prompts": reader_prompts,
-         "deepseek": deepseek, "reader_collect": reader_collect}[step]()
+         "reader_prompts_brief": reader_prompts_brief, "deepseek": deepseek, "reader_collect": reader_collect}[step]()
