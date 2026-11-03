@@ -361,6 +361,12 @@ def main():
     else:
         start = dt.datetime.fromisoformat(args.since).astimezone(dt.timezone.utc)
     if "source_starts" in existing:
+        # Per-channel starts were fixed when this database was created. A channel added later would silently fall
+        # back to the database-wide start and could miss posts after its own archive end, so refuse it instead.
+        known = {r[0] for r in conn.execute("SELECT source_id FROM sources")}
+        added = sorted({row["source_id"] for row in rows} - known)
+        if added:
+            raise ValueError(f"{db_path} was created for other channels; collect {added} into a new --db")
         source_starts = json.loads(existing["source_starts"])
     else:
         source_starts = archive_ends([row["source_id"] for row in rows])
