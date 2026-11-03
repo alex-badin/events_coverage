@@ -96,17 +96,13 @@ def other_references(out):
         for ref, (rid, truth, w) in refs.items():
             row = {"on_event": sum(w[i] for i in rid if truth[i]),
                    "best_f1": V.counts(rid, truth, w, s, V.best_cut(rid, truth, w, s))["f1"]}
-            for who in ["reference", "codex", "astra", "fable"] + READERS[1:]:
+            for who in ["reference", "codex", "astra"] + READERS[1:]:
                 if who == "reference":
                     src = truth
                 elif who == "codex":
                     src = sol
                 elif who == "astra":
                     src = astra
-                elif who == "fable":
-                    if ref != "majority":
-                        continue
-                    src = fable
                 else:
                     p = T.OUT / "reader_labels" / who / f"{slug}.json"
                     if not p.exists():
@@ -288,8 +284,8 @@ def show(out):
         per = out["by_reference"][ref]
         if not per:
             continue
-        cols = [w for w in ["reference", "codex", "astra", "fable"] + READERS[1:] if all(w in r for r in per.values())]
-        lab = {**names, "reference": "сам эталон", "codex": "Sol (Codex)", "astra": "Astra", "fable": "Fable"}
+        cols = [w for w in ["reference", "codex", "astra"] + READERS[1:] if all(w in r for r in per.values())]
+        lab = {**names, "reference": "сам эталон", "codex": "Sol (Codex)", "astra": "Astra"}
         print(f"\nF1 по выборке, {title}:\n")
         print("| Событие | " + " | ".join(lab[w] for w in cols) + " |")
         print("|---|" + "---|" * len(cols))
