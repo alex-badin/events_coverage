@@ -81,3 +81,9 @@ dbt/.user.yml
 # Text pasted into the owner's Claude Project settings (instructions, memory notes, setup script).
 # Personal notes; this repository is public.
 .claude/project_setup/
+
+# FOM extraction with Codex: prompts are rebuilt from the PDFs, logs are run noise
+fom_events/codex_extraction/prompts/
+fom_events/codex_extraction/logs/
+news_data/*.sqlite*
+fom_events/download_reports.log
