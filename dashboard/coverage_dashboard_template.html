@@ -1128,8 +1128,10 @@ function renderDays(r, groupRows) {
 
 function renderPosts(r) {
   const all = DATA.posts.filter(p => p.event_id === r.event_id);
+  // Counts come from the coverage table: the file carries only the most relevant posts of each group.
   const counts = new Map();
-  all.forEach(p => counts.set(p.media_group, (counts.get(p.media_group) || 0) + 1));
+  DATA.groups.filter(g => g.event_id === r.event_id && g.matched_posts).forEach(g => counts.set(g.media_group, g.matched_posts));
+  const total = [...counts.values()].reduce((a, b) => a + b, 0);
   let rows = postGroup ? all.filter(p => p.media_group === postGroup) : all;
   const words = postGroup ? DATA.terms.filter(t => t.event_id === r.event_id && t.media_group === postGroup) : [];
   if (postWord) {
@@ -1141,7 +1143,7 @@ function renderPosts(r) {
   const wk = weekKey(r);
   el('wk-posts').innerHTML = `
     <div class="chips">
-      <a class="chip" href="${weekHash(wk, r.event_id)}" aria-pressed="${!postGroup}">All groups · ${fmt(all.length)}</a>
+      <a class="chip" href="${weekHash(wk, r.event_id)}" aria-pressed="${!postGroup}">All groups · ${fmt(total)}</a>
       ${GROUPS.filter(g => counts.get(g)).map(g => `<a class="chip" href="${weekHash(wk, r.event_id, groupKeyOf.get(g))}" aria-pressed="${postGroup === g}">
         <i style="background:${colorOf(g)}"></i>${esc(g)} · ${fmt(counts.get(g))}</a>`).join('')}
     </div>
@@ -1149,7 +1151,8 @@ function renderPosts(r) {
     ${words.length ? `<div style="margin-top:12px"><div class="small muted" style="margin-bottom:6px">Words this group used more than the other groups did (click to filter):</div>
       <div class="chips">${words.map((t, i) => `<button class="chip" type="button" data-w="${i}" aria-pressed="${postWord && postWord.term_label === t.term_label}">
         ${esc(t.term_label)} <span class="muted">${t.posts_with_term}/${t.group_posts}</span></button>`).join('')}</div></div>` : ''}
-    <p class="small muted" style="margin:12px 0 0">Showing ${Math.min(postLimit, rows.length)} of ${fmt(rows.length)} posts${postWord ? ` containing «${esc(postWord.term_label)}»` : ''}, most relevant first.</p>
+    <p class="small muted" style="margin:12px 0 0">Showing ${Math.min(postLimit, rows.length)} of ${fmt(rows.length)} posts${postWord ? ` containing «${esc(postWord.term_label)}»` : ''}, most relevant first.
+      This page keeps the ${DATA.meta.posts_per_group} most relevant posts of each group per event${postGroup && counts.get(postGroup) > rows.length && !postWord ? ` (the group has ${fmt(counts.get(postGroup))})` : ''}.</p>
     <div id="post-list">${rows.slice(0, postLimit).map((p, i) => `
       <div class="post">
         <div class="meta"><span class="src">${esc(p.source_name)}</span>
@@ -1184,7 +1187,7 @@ function renderPosts(r) {
 function renderAbout() {
   const specific = ROWS.filter(r => r.event_kind === 'specific event');
   const labelled = specific.filter(r => r.theme_id).length;
-  const allPosts = DATA.posts.length;
+  const allPosts = DATA.events.reduce((s, e) => s + (e.matched_posts || 0), 0);
   const distinctPosts = DATA.scope_coverage.filter(s => s.scope_type === 'all').reduce((s, r) => s + r.distinct_matched_posts, 0);
   const flagged = DATA.events.filter(e => warningsFor(e).length).length;
   const gaps = WEEKS.length - SURVEYED.length;

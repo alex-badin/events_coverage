@@ -13,5 +13,7 @@ select
     top_source_share_of_term
 
 from {{ ref('event_group_terms') }}
-where sources_with_term < 2
+-- A group with one channel covering the event can only show that channel's terms (the
+-- model allows it); everywhere else a term needs two channels.
+where sources_with_term < least(2, group_sources)
    or (group_posts is not null and sources_with_term >= 3 and top_source_share_of_term > 0.7)

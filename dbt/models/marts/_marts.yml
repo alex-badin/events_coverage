@@ -47,8 +47,10 @@ models:
           cut-off: a median close to the cut-off means the matched set is mostly borderline.
       - name: standard_relevance_cutoff
         description: >
-          True when the event kept posts at the standard 0.35 relevance score. False means
-          a lower bar let weaker matches in, so the count is inflated next to the others.
+          True when the event kept posts at its method's standard bar: 0.35 for the summary +
+          Cohere events, and for the full-text events (retriever qwen3_fulltext) the per-event
+          cut-off from a 100-post gpt-6-luna sample. False means a lower bar let weaker matches
+          in, so the count is inflated next to the others.
         data_tests: [not_null]
       - name: searchable_posts_in_window
         description: >
@@ -233,7 +235,11 @@ models:
           uses, so one long post repeating a word cannot look like a group-wide habit.
         data_tests: [not_null]
       - name: sources_with_term
-        description: How many channels in the group used it. Never below two by construction.
+        description: >
+          How many channels in the group used it. Never below two by construction, except in a
+          group where only one channel covered the event.
+      - name: group_sources
+        description: How many of the group's channels have matched posts on this event.
       - name: top_source_share_of_term
         description: >
           Share of the posts carrying the term that came from its single busiest channel.

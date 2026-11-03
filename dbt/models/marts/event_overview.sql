@@ -132,9 +132,11 @@ select
     -- The two things that can make an event's counts untrustworthy are different
     -- problems, so they are measured separately rather than blended into one flag.
 
-    -- First: was the relevance bar set where the other events set it? A lower cut-off
-    -- admits weaker matches, so the count is inflated relative to the rest.
-    events.rerank_threshold = 0.35   as standard_relevance_cutoff,
+    -- First: was the relevance bar set where the other events of the same method set it?
+    -- The summary + Cohere events share one bar, 0.35; a lower one admits weaker matches,
+    -- so the count is inflated relative to the rest. The full-text events (2025-W12 on)
+    -- get their own cut-off from a 100-post sample by design, so any value is standard.
+    (events.retriever = 'qwen3_fulltext' or events.rerank_threshold = 0.35)  as standard_relevance_cutoff,
 
     -- Second: could the search see the whole window? Posts without an embedding vector
     -- were never eligible to be found, so where this share is well under 1 the coverage
