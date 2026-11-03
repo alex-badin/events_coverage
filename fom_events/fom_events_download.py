@@ -1,108 +1,108 @@
-import os
-import requests
-from datetime import datetime
-import time
+"""Download FOM's weekly "events of the week" reports (PDF) and list the ones that exist.
+
+FOM publishes each report at https://media.fom.ru/fom-bd/d{N}sn{YYYY}.pdf, where N is the issue
+number. N is the ISO week of the survey for every report but one: d22sn2022.pdf holds 2022-W30
+(see events_analysis.ipynb). The real 2022-W22 list is at d222022.pdf, outside this pattern.
+
+Usage, from the project root:
+    .venv/bin/python fom_events/fom_events_download.py                 # weeks after the last known
+    .venv/bin/python fom_events/fom_events_download.py --since 2025-12  # from 2025-W12 on
+
+Saved as downloaded_reports/fom_report_{YYYY}_week{N}.pdf. valid_pdf_links.txt is only ever
+added to: links already in it (the hand-added d222022.pdf among them) stay, in their order.
+"""
+
+import argparse
 import logging
+import re
+import time
+from datetime import date
+from pathlib import Path
 
-# Set up logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler("download_reports.log"),
-        logging.StreamHandler()
-    ]
-)
+import requests
 
-def download_pdf(url, save_path):
-    """Download a PDF file from the given URL and save it to the specified path."""
+HERE = Path(__file__).resolve().parent
+SAVE_DIR = HERE / "downloaded_reports"
+LINKS_FILE = SAVE_DIR / "valid_pdf_links.txt"
+BASE_URL = "https://media.fom.ru/fom-bd/d{week}sn{year}.pdf"
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
+
+def download_pdf(url: str, save_path: Path) -> bool:
+    """Save the PDF at `url`; False if it does not exist or is not a PDF."""
     try:
-        response = requests.get(url, stream=True, timeout=30)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-        
-        # Check if the content is a PDF (simple check)
-        content_type = response.headers.get('Content-Type', '')
-        if 'application/pdf' not in content_type and len(response.content) < 5000:
-            logging.warning(f"URL {url} doesn't seem to be a valid PDF. Skipping.")
-            return False
-        
-        # Save the file
-        with open(save_path, 'wb') as file:
-            for chunk in response.iter_content(chunk_size=8192):
-                if chunk:
-                    file.write(chunk)
-        
-        logging.info(f"Successfully downloaded: {url}")
-        return True
-    
-    except requests.exceptions.RequestException as e:
-        if isinstance(e, requests.exceptions.HTTPError) and e.response.status_code == 404:
-            logging.debug(f"File not found: {url}")
-        else:
-            logging.error(f"Error downloading {url}: {str(e)}")
+        response = requests.get(url, timeout=30)
+    except requests.exceptions.RequestException as exc:
+        logging.error(f"Error downloading {url}: {exc}")
         return False
+    if response.status_code == 404:
+        return False
+    if response.status_code != 200:
+        logging.error(f"{url}: HTTP {response.status_code}")
+        return False
+    if not response.content.startswith(b"%PDF"):
+        logging.warning(f"{url} is not a PDF. Skipping.")
+        return False
+    save_path.write_bytes(response.content)
+    logging.info(f"Downloaded: {url}")
+    return True
 
-def main():
-    # Create directory for saving PDFs
-    save_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "downloaded_reports")
-    os.makedirs(save_dir, exist_ok=True)
-    
-    # File to save valid PDF links
-    links_file = os.path.join(save_dir, "valid_pdf_links.txt")
-    valid_links = []
-    
-    # Base URL. The number is FOM's issue number, used as the week in the file name. It is not
-    # always the survey week: d22sn2022.pdf holds 2022-W30 (see events_analysis.ipynb).
-    # The real 2022-W22 list is at d222022.pdf, outside this pattern; a rerun rewrites
-    # valid_pdf_links.txt without that line, so add it back.
-    base_url = "https://media.fom.ru/fom-bd/d{week}sn{year}.pdf"
-    
-    # Current year
-    current_year = datetime.now().year
-    
-    # Download reports from 2020 to current year
-    for year in range(2020, current_year + 1):
-        # Try all possible week numbers (1-53)
-        for week in range(1, 54):
-            # Create a set of week formats to try (automatically handles duplicates)
-            week_formats = {f"{week:02d}", f"{week}"}  # Will be 1 item for weeks ≥ 10
-            
-            for week_str in week_formats:
-                # Construct URL
-                url = base_url.format(week=week_str, year=year)
-                
-                # Construct save path
-                filename = f"fom_report_{year}_week{week_str}.pdf"
-                save_path = os.path.join(save_dir, filename)
-                
-                # Skip if file already exists
-                if os.path.exists(save_path):
-                    logging.info(f"File already exists: {save_path}")
-                    valid_links.append(url)  # Add to valid links if already downloaded
-                    continue
-                
-                # Download the file
-                success = download_pdf(url, save_path)
-                
-                # If download successful, add to valid links and move to next week
-                if success:
-                    valid_links.append(url)
-                    break  # No need to try the other format if this one worked
-                elif os.path.exists(save_path):
-                    # Remove empty or invalid files
-                    os.remove(save_path)
-                
-                # Add a small delay to avoid overwhelming the server
-                time.sleep(1)
-    
-    # Save all valid links to a text file
-    with open(links_file, 'w') as f:
-        for link in valid_links:
+
+def last_known_week(links: list[str]) -> tuple[int, int]:
+    """(year, issue) of the newest dNsnYYYY link already listed; (2020, 0) if none."""
+    found = [
+        (int(m.group(2)), int(m.group(1)))
+        for link in links
+        if (m := re.search(r"/d(\d+)sn(\d{4})\.pdf$", link))
+    ]
+    return max(found, default=(2020, 0))
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--since", help="first year-issue to try, YYYY-NN; default: after the last "
+                    "link in valid_pdf_links.txt")
+    args = ap.parse_args()
+
+    SAVE_DIR.mkdir(exist_ok=True)
+    links = LINKS_FILE.read_text().split() if LINKS_FILE.exists() else []
+    if args.since:
+        start_year, start_week = (int(x) for x in args.since.split("-"))
+    else:
+        start_year, start_week = last_known_week(links)
+        start_week += 1
+    today = date.today()
+    this_year, this_week = today.isocalendar().year, today.isocalendar().week
+    logging.info(f"Trying issues from {start_year}-{start_week:02d} to {this_year}-{this_week:02d}")
+
+    new_links, missing = [], []
+    for year in range(start_year, this_year + 1):
+        first = start_week if year == start_year else 1
+        last = this_week if year == this_year else 53
+        for week in range(first, last + 1):
+            # FOM wrote early-year issue numbers both as "7" and "07"; try both.
+            for week_str in dict.fromkeys([f"{week:02d}", f"{week}"]):
+                url = BASE_URL.format(week=week_str, year=year)
+                save_path = SAVE_DIR / f"fom_report_{year}_week{week_str}.pdf"
+                if url in links or save_path.exists() or download_pdf(url, save_path):
+                    if url not in links:
+                        new_links.append(url)
+                    break
+                time.sleep(1)  # be gentle with FOM's server
+            else:
+                missing.append(f"{year}-{week:02d}")
+
+    existing = LINKS_FILE.read_text() if LINKS_FILE.exists() else ""
+    with LINKS_FILE.open("a") as f:
+        if existing and not existing.endswith("\n"):
+            f.write("\n")
+        for link in new_links:
             f.write(f"{link}\n")
-    
-    logging.info(f"Saved {len(valid_links)} valid PDF links to {links_file}")
+    logging.info(f"Added {len(new_links)} links to {LINKS_FILE}")
+    if missing:
+        logging.info(f"No report for {len(missing)} issue numbers: {', '.join(missing)}")
+
 
 if __name__ == "__main__":
-    logging.info("Starting PDF reports download")
     main()
-    logging.info("Download process completed")

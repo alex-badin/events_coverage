@@ -20,6 +20,7 @@ dependencies = [
     "dagster>=1.13,<1.14",
     "dagster-webserver>=1.13,<1.14",
     "dagster-dbt>=0.29,<0.30",
+    "telethon>=1.36",
 ]
 
 [dependency-groups]

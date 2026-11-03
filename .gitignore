@@ -81,3 +81,6 @@ dbt/.user.yml
 # Text pasted into the owner's Claude Project settings (instructions, memory notes, setup script).
 # Personal notes; this repository is public.
 .claude/project_setup/
+
+# Telegram login made by scripts/collect_telegram.py. A credential: never commit.
+.telegram/
