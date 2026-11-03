@@ -1,0 +1,52 @@
+{"step": "reader", "usd": 0.00375, "date": "2026-10-26 05:04", "model": "claude-haiku-5-5", "prompts": 2, "input_tokens": 22322, "output_tokens": 3038}
+{"step": "embed", "usd": 0.01552, "date": "2026-10-26 05:04", "slug": "mishustin_government_2020w03", "batches": 230, "input_tokens": 1551512}
+{"step": "reader", "usd": 0.02967, "date": "2026-10-26 05:07", "model": "claude-sonnet-5-5", "prompts": 2, "input_tokens": 22322, "output_tokens": 1469, "batch": "msgbatch_01CRx6PTpe8DVQC8ssNNKykY"}
+{"step": "embed", "usd": 0.03052, "date": "2026-10-26 05:08", "slug": "karabakh_ceasefire_2020w46", "batches": 472, "input_tokens": 3051926}
+{"step": "embed", "usd": 0.03701, "date": "2026-10-26 05:11", "slug": "kazan_school_2021w19", "batches": 542, "input_tokens": 3700717}
+{"step": "embed", "usd": 0.074, "date": "2026-10-26 05:18", "slug": "beijing_olympics_2022w07", "batches": 1234, "input_tokens": 7399779}
+{"step": "embed", "usd": 0.08638, "date": "2026-10-26 05:23", "slug": "turkey_earthquake_2023w06", "batches": 1029, "input_tokens": 8637532}
+{"step": "embed", "usd": 0.09023, "date": "2026-10-26 05:29", "slug": "prigozhin_mutiny_2023w26", "batches": 1048, "input_tokens": 9022722}
+{"step": "embed", "usd": 0.09228, "date": "2026-10-26 05:34", "slug": "crocus_attack_2024w13", "batches": 1104, "input_tokens": 9228490}
+{"step": "cosine", "usd": 0.0001, "date": "2026-10-26 05:34", "slug": "mishustin_government_2020w03", "probes": 8}
+{"step": "cosine", "usd": 0.0001, "date": "2026-10-26 05:34", "slug": "karabakh_ceasefire_2020w46", "probes": 7}
+{"step": "cosine", "usd": 0.0001, "date": "2026-10-26 05:35", "slug": "kazan_school_2021w19", "probes": 7}
+{"step": "cosine", "usd": 0.0001, "date": "2026-10-26 05:35", "slug": "beijing_olympics_2022w07", "probes": 6}
+{"step": "cosine", "usd": 0.0001, "date": "2026-10-26 05:35", "slug": "turkey_earthquake_2023w06", "probes": 8}
+{"step": "cosine", "usd": 0.0001, "date": "2026-10-26 05:35", "slug": "prigozhin_mutiny_2023w26", "probes": 12}
+{"step": "cosine", "usd": 0.0001, "date": "2026-10-26 05:35", "slug": "crocus_attack_2024w13", "probes": 9}
+{"step": "reader", "usd": 0.09846, "date": "2026-10-26 05:39", "model": "claude-haiku-5-5", "prompts": 43, "input_tokens": 505664, "output_tokens": 95795}
+{"step": "jev", "usd": 0.2185, "date": "2026-10-26 05:39", "slug": "mishustin_government_2020w03", "posts": 3000, "input_tokens": 5202494}
+{"step": "reader", "usd": 0.66259, "date": "2026-10-26 05:41", "model": "claude-sonnet-5-5", "prompts": 43, "input_tokens": 505664, "output_tokens": 31386, "batch": "msgbatch_01FTX4ecRGVRjxFiNum83aC1"}
+{"step": "jev", "usd": 0.25627, "date": "2026-10-26 05:41", "slug": "karabakh_ceasefire_2020w46", "posts": 3000, "input_tokens": 6101647}
+{"step": "jev", "usd": 0.19917, "date": "2026-10-26 05:43", "slug": "kazan_school_2021w19", "posts": 3000, "input_tokens": 4742098}
+{"step": "jev", "usd": 0.23898, "date": "2026-10-26 05:45", "slug": "beijing_olympics_2022w07", "posts": 3000, "input_tokens": 5690116}
+{"step": "jev", "usd": 0.23016, "date": "2026-10-26 05:47", "slug": "turkey_earthquake_2023w06", "posts": 3000, "input_tokens": 5479901}
+{"step": "jev", "usd": 0.29465, "date": "2026-10-26 05:48", "slug": "prigozhin_mutiny_2023w26", "posts": 3000, "input_tokens": 7015492}
+{"step": "jev", "usd": 0.25082, "date": "2026-10-26 05:50", "slug": "crocus_attack_2024w13", "posts": 3000, "input_tokens": 5971959}
+{"step": "reader", "usd": 0.78118, "date": "2026-10-26 06:35", "model": "deepseek/deepseek-v4-flash", "prompts": 105, "input_tokens": 896562, "output_tokens": 824365}
+{"step": "reader", "usd": 0.19864, "date": "2026-10-26 06:37", "model": "claude-haiku-5-5", "prompts": 106, "input_tokens": 1093194, "output_tokens": 178641}
+{"step": "reader", "usd": 1.47769, "date": "2026-10-26 06:39", "model": "claude-sonnet-5-5", "prompts": 105, "input_tokens": 1081497, "output_tokens": 79239, "batch": "msgbatch_01EqwbEzoyEF2T6tDfLGKKGd"}
+{"step": "reader", "usd": 0.00207, "date": "2026-11-03 04:13", "model": "gpt-6-luna", "reader": "gpt-6-luna", "prompts": 2, "input_tokens": 14089, "output_tokens": 1331}
+{"step": "reader", "usd": 0.00205, "date": "2026-11-03 04:14", "model": "gpt-6-luna", "reader": "gpt-6-luna+brief", "prompts": 2, "input_tokens": 14965, "output_tokens": 1116}
+{"step": "reader", "usd": 0.01867, "date": "2026-11-03 04:14", "model": "gpt-6.1-terra", "reader": "gpt-6.1-terra", "prompts": 2, "input_tokens": 14089, "output_tokens": 916}
+{"step": "reader", "usd": 0.03779, "date": "2026-11-03 04:14", "model": "gpt-6.1-sol", "reader": "gpt-6.1-sol", "prompts": 2, "input_tokens": 14089, "output_tokens": 961}
+{"step": "reader", "usd": 0.00453, "date": "2026-11-03 04:14", "model": "claude-haiku-5-5", "prompts": 2, "input_tokens": 22237, "output_tokens": 4605}
+{"step": "reader", "usd": 0.16436, "date": "2026-11-03 04:18", "model": "gpt-6-luna", "reader": "gpt-6-luna", "prompts": 148, "input_tokens": 1055169, "output_tokens": 117693}
+{"step": "reader", "usd": 0.70464, "date": "2026-11-03 04:19", "model": "gpt-6.1-terra", "reader": "gpt-6.1-terra", "prompts": 148, "input_tokens": 1055169, "output_tokens": 70824, "batch": "batch_6ae927811ce88190a5977f47298fa9b8"}
+{"step": "reader", "usd": 0.17013, "date": "2026-11-03 04:21", "model": "gpt-6-luna", "reader": "gpt-6-luna+brief", "prompts": 148, "input_tokens": 1115253, "output_tokens": 117213}
+{"step": "reader", "usd": 0.3104, "date": "2026-11-03 04:24", "model": "claude-haiku-5-5", "prompts": 148, "input_tokens": 1676766, "output_tokens": 285453}
+{"step": "reader", "usd": 0.00158, "date": "2026-11-03 04:24", "model": "gpt-6-luna", "reader": "gpt-6-luna+brief", "prompts": 1, "input_tokens": 11780, "output_tokens": 812}
+{"step": "reader", "usd": 1.50167, "date": "2026-11-03 04:27", "model": "gpt-6.1-sol", "reader": "gpt-6.1-sol+brief", "prompts": 150, "input_tokens": 1130218, "output_tokens": 74291, "batch": "batch_6ae928d452648190ab248cbe34d1dd0c"}
+{"step": "reader", "usd": 0.00278, "date": "2026-11-03 04:31", "model": "claude-haiku-5-5", "prompts": 1, "input_tokens": 11392, "output_tokens": 3288}
+{"step": "reader", "usd": 0.74758, "date": "2026-11-03 04:44", "model": "gpt-6.1-terra", "reader": "gpt-6.1-terra+brief", "prompts": 150, "input_tokens": 1130218, "output_tokens": 72988, "batch": "batch_6ae9278635208190a849d5b33f789f9e"}
+{"step": "decisions", "usd": 0.00173, "date": "2026-11-03 12:14", "slug": "mishustin_government_2020w03", "model": "gpt-6-luna /v1/decisions", "input_tokens": 17278}
+{"step": "decisions", "usd": 0.0237, "date": "2026-11-03 12:15", "slug": "mishustin_government_2020w03", "model": "gpt-6-luna /v1/decisions", "input_tokens": 254276}
+{"step": "decisions", "usd": 0.0266, "date": "2026-11-03 12:15", "slug": "karabakh_ceasefire_2020w46", "model": "gpt-6-luna /v1/decisions", "input_tokens": 265991}
+{"step": "decisions", "usd": 0.02508, "date": "2026-11-03 12:15", "slug": "kazan_school_2021w19", "model": "gpt-6-luna /v1/decisions", "input_tokens": 250781}
+{"step": "decisions", "usd": 0.02785, "date": "2026-11-03 12:16", "slug": "beijing_olympics_2022w07", "model": "gpt-6-luna /v1/decisions", "input_tokens": 278461}
+{"step": "decisions", "usd": 0.02622, "date": "2026-11-03 12:16", "slug": "turkey_earthquake_2023w06", "model": "gpt-6-luna /v1/decisions", "input_tokens": 262168}
+{"step": "decisions", "usd": 0.03401, "date": "2026-11-03 12:16", "slug": "prigozhin_mutiny_2023w26", "model": "gpt-6-luna /v1/decisions", "input_tokens": 340132}
+{"step": "decisions", "usd": 0.03071, "date": "2026-11-03 12:16", "slug": "crocus_attack_2024w13", "model": "gpt-6-luna /v1/decisions", "input_tokens": 307071}
+{"step": "decisions", "usd": 0.02919, "date": "2026-11-03 12:16", "slug": "drones_moscow_2025w11", "model": "gpt-6-luna /v1/decisions", "input_tokens": 291944}
+{"step": "decisions", "usd": 0.02764, "date": "2026-11-03 12:17", "slug": "putin_lukashenko_2025w11", "model": "gpt-6-luna /v1/decisions", "input_tokens": 276449}
+{"step": "decisions", "usd": 0.0303, "date": "2026-11-03 12:17", "slug": "trump_statements_2025w10", "model": "gpt-6-luna /v1/decisions", "input_tokens": 303003}
