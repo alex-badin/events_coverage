@@ -39,3 +39,14 @@
 {"step": "reader", "usd": 1.50167, "date": "2026-11-03 04:27", "model": "gpt-6.1-sol", "reader": "gpt-6.1-sol+brief", "prompts": 150, "input_tokens": 1130218, "output_tokens": 74291, "batch": "batch_6ae928d452648190ab248cbe34d1dd0c"}
 {"step": "reader", "usd": 0.00278, "date": "2026-11-03 04:31", "model": "claude-haiku-5-5", "prompts": 1, "input_tokens": 11392, "output_tokens": 3288}
 {"step": "reader", "usd": 0.74758, "date": "2026-11-03 04:44", "model": "gpt-6.1-terra", "reader": "gpt-6.1-terra+brief", "prompts": 150, "input_tokens": 1130218, "output_tokens": 72988, "batch": "batch_6ae9278635208190a849d5b33f789f9e"}
+{"step": "decisions", "usd": 0.00173, "date": "2026-11-03 12:14", "slug": "mishustin_government_2020w03", "model": "gpt-6-luna /v1/decisions", "input_tokens": 17278}
+{"step": "decisions", "usd": 0.0237, "date": "2026-11-03 12:15", "slug": "mishustin_government_2020w03", "model": "gpt-6-luna /v1/decisions", "input_tokens": 254276}
+{"step": "decisions", "usd": 0.0266, "date": "2026-11-03 12:15", "slug": "karabakh_ceasefire_2020w46", "model": "gpt-6-luna /v1/decisions", "input_tokens": 265991}
+{"step": "decisions", "usd": 0.02508, "date": "2026-11-03 12:15", "slug": "kazan_school_2021w19", "model": "gpt-6-luna /v1/decisions", "input_tokens": 250781}
+{"step": "decisions", "usd": 0.02785, "date": "2026-11-03 12:16", "slug": "beijing_olympics_2022w07", "model": "gpt-6-luna /v1/decisions", "input_tokens": 278461}
+{"step": "decisions", "usd": 0.02622, "date": "2026-11-03 12:16", "slug": "turkey_earthquake_2023w06", "model": "gpt-6-luna /v1/decisions", "input_tokens": 262168}
+{"step": "decisions", "usd": 0.03401, "date": "2026-11-03 12:16", "slug": "prigozhin_mutiny_2023w26", "model": "gpt-6-luna /v1/decisions", "input_tokens": 340132}
+{"step": "decisions", "usd": 0.03071, "date": "2026-11-03 12:16", "slug": "crocus_attack_2024w13", "model": "gpt-6-luna /v1/decisions", "input_tokens": 307071}
+{"step": "decisions", "usd": 0.02919, "date": "2026-11-03 12:16", "slug": "drones_moscow_2025w11", "model": "gpt-6-luna /v1/decisions", "input_tokens": 291944}
+{"step": "decisions", "usd": 0.02764, "date": "2026-11-03 12:17", "slug": "putin_lukashenko_2025w11", "model": "gpt-6-luna /v1/decisions", "input_tokens": 276449}
+{"step": "decisions", "usd": 0.0303, "date": "2026-11-03 12:17", "slug": "trump_statements_2025w10", "model": "gpt-6-luna /v1/decisions", "input_tokens": 303003}

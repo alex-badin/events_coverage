@@ -98,6 +98,32 @@ def other_references(out):
             out["by_reference"][ref][slug] = row
 
 
+def scorers(out):
+    """Jev v3 against the OpenAI Decisions API (same question, gpt-6-luna) on the 750 labelled posts:
+    AUC, best possible F1, F1 at the sample cut set by Codex labels and by gpt-6-luna labels."""
+    out["scorers"] = {}
+    for slug in T.EVENTS:
+        p = T.OUT / "decisions" / f"{slug}.json"
+        if not p.exists():
+            continue
+        truth, weight = T.labels(slug)
+        ids = sorted(truth)
+        luna = json.loads((T.OUT / "reader_labels" / "gpt-6-luna" / f"{slug}.json").read_text())["labels"]
+        luna = {**truth, **{int(k): v for k, v in luna.items()}}
+        row = {}
+        for name, s in (("jev", T.jev(slug)),
+                        ("decisions", {int(k): v for k, v in json.loads(p.read_text())["p"].items()})):
+            r = {"auc": V.auc(ids, truth, weight, s),
+                 "best": V.counts(ids, truth, weight, s, V.best_cut(ids, truth, weight, s))["f1"]}
+            for who, lab in (("codex", truth), ("luna", luna)):
+                rng = np.random.default_rng(17)
+                res = [V.counts(ids, truth, weight, s, V.sample_cut(ids, truth, weight, s, N, rng, lab))
+                       for _ in range(V.SEEDS)]
+                r[f"sample_{who}"] = {k: float(np.mean([x[k] for x in res])) for k in ("f1", "lost", "extra")}
+            row[name] = r
+        out["scorers"][slug] = row
+
+
 def main():
     posts, dev_labels = R.load_posts(), R.load_labels()
     dev = {s: V.dev_data(s, posts, dev_labels) for s in C.DEV}
@@ -123,6 +149,7 @@ def main():
                                  "f1_p10": float(np.percentile([x["f1"] for x in res], 10)), **info}
         out["events"][slug] = r
     other_references(out)
+    scorers(out)
     (T.HERE / "results.json").write_text(json.dumps(out, indent=2, ensure_ascii=False))
     show(out)
 
@@ -172,6 +199,23 @@ def show(out):
         print(f"| {names[w]} | {np.mean(list(gaps.values())):+.3f} | {gaps[worst]:+.3f} ({worst}) | "
               f"{sum(g < -0.02 for g in gaps.values())} из {len(gaps)} | {np.mean(agree):.0%} ({min(agree):.0%}) | "
               f"{usd:.4f} |")
+    if out.get("scorers"):
+        print("\n| Событие | AUC: Jev / Decisions | F1 лучший: Jev / Decisions | F1 по выборке Codex: Jev / Decisions | "
+              "F1 по выборке Luna: Jev / Decisions | потеряно / лишних, Luna: Jev | Decisions |")
+        print("|---|---|---|---|---|---|")
+        for slug, r in out["scorers"].items():
+            j, d = r["jev"], r["decisions"]
+            print(f"| {ev[slug]['name']} | {j['auc']:.2f} / {d['auc']:.2f} | {j['best']:.3f} / {d['best']:.3f} | "
+                  f"{j['sample_codex']['f1']:.3f} / {d['sample_codex']['f1']:.3f} | "
+                  f"{j['sample_luna']['f1']:.3f} / {d['sample_luna']['f1']:.3f} | "
+                  f"{j['sample_luna']['lost']:.0f} / {j['sample_luna']['extra']:.0f} | "
+                  f"{d['sample_luna']['lost']:.0f} / {d['sample_luna']['extra']:.0f} |")
+        rs = list(out["scorers"].values())
+        print("| среднее | " + " / ".join(f"{np.mean([r[n]['auc'] for r in rs]):.3f}" for n in ("jev", "decisions"))
+              + " | " + " / ".join(f"{np.mean([r[n]['best'] for r in rs]):.3f}" for n in ("jev", "decisions"))
+              + " | " + " / ".join(f"{np.mean([r[n]['sample_codex']['f1'] for r in rs]):.3f}" for n in ("jev", "decisions"))
+              + " | " + " / ".join(f"{np.mean([r[n]['sample_luna']['f1'] for r in rs]):.3f}" for n in ("jev", "decisions"))
+              + " | | |")
     if not out.get("judges"):
         return
     print("\n| Событие | совпадение Sol и Astra | «да» из 750: Sol / Astra |")

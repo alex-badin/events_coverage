@@ -20,6 +20,7 @@ sys.path.insert(0, str(JS))
 import common as C  # noqa: E402  (also puts run.py and src/ on the path)
 
 R = C.R
+_C_EVENT, _C_BRIEF = C.event, C.brief   # originals; question() swaps them out temporarily
 OUT = ROOT / "data" / "interim" / "ten_events_readers"
 OUT.mkdir(parents=True, exist_ok=True)
 TOP_K = C.TOP_K            # 3,000 cosine candidates per event
@@ -91,7 +92,7 @@ def event(slug):
     """Name, quotes, survey week and search window: 3 days before the ISO week's Monday to
     10 days after its Sunday, as in the pipeline manifests."""
     if slug in OLD:
-        return C.event(slug)
+        return _C_EVENT(slug)
     e = NEW[slug]
     monday = date.fromisocalendar(e["year"], e["week"], 1)
     lo, hi = monday - timedelta(days=3), monday + timedelta(days=6 + 10 + 1)
@@ -123,7 +124,7 @@ def ranked(slug, k=TOP_K):
 
 def brief(slug):
     if slug in OLD:
-        return C.brief(slug)
+        return _C_BRIEF(slug)
     p = OUT / "briefs" / "out" / f"{slug}.json"
     return json.loads(p.read_text()) if p.exists() else None
 

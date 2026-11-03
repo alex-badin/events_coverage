@@ -529,6 +529,49 @@ def reader_collect():
             print(f"{name} {slug}: {len(ids) - len(missing)} of {len(ids)} labelled, ${usage['cost']:.4f}")
 
 
+# ---------------------------------------------------------------------------- decisions
+DEC_PRICE_PER_M = 0.10      # OpenAI Decisions API, uncached input; output is free
+DEC_BATCH = 50              # posts (questions) per request; the API takes up to 400
+
+
+def decisions():
+    """OpenAI Decisions API instead of Jev, on the 750 labelled posts per event (enough for every
+    metric in report.py). Shared input: the Jev v3 question (event, quotes, window, brief, criteria);
+    one yes/no question per post. LIMIT=n caps the number of requests (cost probe)."""
+    T.guard()
+    client = _openai()
+    budget = int(os.environ.get("LIMIT", 10**6))
+    for slug in T.EVENTS:
+        target = T.OUT / "decisions" / f"{slug}.json"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        have = json.loads(target.read_text()) if target.exists() else {"p": {}, "usage": []}
+        q, posts = T.question(slug), T.posts(slug)
+        shared = json.dumps(q["instructions"], ensure_ascii=False)
+        ask = (f"Answer true if: {q['criteria']['true']} Answer false if: {q['criteria']['false']}")
+        ids = [i for i in sorted(T.labels(slug)[0]) if str(i) not in have["p"]]
+        usd = 0.0
+        for k in range(0, len(ids), DEC_BATCH):
+            if budget <= 0:
+                break
+            chunk = ids[k:k + DEC_BATCH]
+            body = {"model": "gpt-6-luna", "input": shared, "questions": [
+                {"type": "predicate", "name": f"p{i}",
+                 "instructions": f"{q['instructions']['question']} {ask}\n\nNews post:\n{posts[i]['text'][:T.POST_CHARS]}"}
+                for i in chunk]}
+            d = client.post("/decisions", body=body, cast_to=object)
+            for a in d["answers"]:
+                have["p"][a["name"][1:]] = round(float(a["probability"]), 4)
+            u = d.get("usage") or {}
+            have["usage"].append(u)
+            usd += u.get("input_tokens", 0) * DEC_PRICE_PER_M / 1e6
+            budget -= 1
+            target.write_text(json.dumps(have))          # saved after every billed request
+        if usd:
+            T.book("decisions", usd, slug=slug, model="gpt-6-luna /v1/decisions",
+                   input_tokens=sum(u.get("input_tokens", 0) for u in have["usage"]))
+            print(f"{slug}: {len(have['p'])} posts scored, ${usd:.4f}; ledger ${T.spent():.3f}", flush=True)
+
+
 if __name__ == "__main__":
     step = sys.argv[1]
     if step in ("claude", "openai"):
@@ -536,4 +579,4 @@ if __name__ == "__main__":
     else:
         {"prepare": prepare, "embed": embed, "cosine": cosine, "brief_prompts": brief_prompts, "jev": jev,
          "label_prompts": label_prompts, "label_collect": label_collect, "reader_prompts": reader_prompts,
-         "reader_prompts_brief": reader_prompts_brief, "deepseek": deepseek, "reader_collect": reader_collect}[step]()
+         "reader_prompts_brief": reader_prompts_brief, "decisions": decisions, "deepseek": deepseek, "reader_collect": reader_collect}[step]()
