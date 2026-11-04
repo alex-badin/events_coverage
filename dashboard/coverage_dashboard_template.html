@@ -212,6 +212,19 @@ tr.name-row:hover td { background: var(--raised); }
 .cov tr.ev.sel td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 .cov td.c.sel .cell { outline: 2px solid var(--ink); outline-offset: 1px; }
 .cov .ev-title { display: block; margin-bottom: 3px; }
+.cov tr.wk-sep td { background: var(--page); border-top: 2px solid var(--axis); border-bottom: 1px solid var(--grid);
+  padding: 9px 8px 7px; text-align: left; font-size: 13px; color: var(--ink-2); }
+.cov tr.wk-sep td b { color: var(--ink); font-size: 14px; margin-right: 6px; }
+.cov tr.wk-sep a { margin-left: 10px; white-space: nowrap; }
+.cov tr.wk-sep.flash td { animation: wk-flash 1.6s ease-out; }
+@keyframes wk-flash { from { background: var(--att-1); } to { background: var(--page); } }
+@media (prefers-reduced-motion: reduce) { .cov tr.wk-sep.flash td { animation: none; } }
+/* The overview table is long: its header stays under the top bar while the page scrolls. Sticky
+   needs the table's box not to be a scroll container, so this one does not scroll sideways; below
+   900px it turns into cards and has no header row. */
+#cov { overflow: visible; }
+#cov .cov thead th { position: sticky; top: 52px; z-index: 5; background: var(--surface-1);
+  box-shadow: inset 0 -1px 0 var(--axis); }
 .cov td.c-status { color: var(--ink-muted); font-size: 12.5px; text-align: left; padding: 6px 10px; }
 .cov tr.ev:hover td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
 .cov tr.total td { border-top: 2px solid var(--axis); border-bottom: 0; }
@@ -303,6 +316,8 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
   .cov, .cov tbody, .cov tr, .cov td { display: block; width: 100%; }
   .cov tr { border: 1px solid var(--hairline); border-radius: 9px; padding: 8px; margin-bottom: 10px; }
   .cov td { border: 0; padding: 3px 2px; text-align: left; }
+  .cov tr.wk-sep { border: 0; border-radius: 0; padding: 0; margin: 18px 0 6px; }
+  .cov tr.wk-sep td { border-top: 2px solid var(--axis); padding: 8px 2px 4px; }
   .cov td.c { display: grid; grid-template-columns: minmax(130px, 1fr) 1.4fr; align-items: center; gap: 8px; text-align: left; }
   .cov td.c::before, .cov td.fom::before { content: attr(data-label); font-size: 12px; color: var(--ink-2); }
   .cov td.fom { display: grid; grid-template-columns: minmax(130px, 1fr) 1.4fr; align-items: center; gap: 8px; }
@@ -455,7 +470,8 @@ ROWS.forEach(r => {
 });
 const ROW_BY_ID = new Map(ROWS.map(r => [r.event_id, r]));
 const isMeasured = r => r.coverage_status === 'measured';
-const MEASURED = ROWS.filter(isMeasured).sort((a, b) => b.week_start < a.week_start ? -1 : 1);
+const MEASURED = ROWS.filter(isMeasured).sort((a, b) =>
+  (a.week_start < b.week_start ? 1 : a.week_start > b.week_start ? -1 : 0) || (a.rank_in_week ?? 999) - (b.rank_in_week ?? 999));
 const MEASURED_WEEKS = [...new Set(MEASURED.map(r => r.week_start))].sort();
 
 // Measured-event detail, keyed by event_id.
@@ -763,8 +779,22 @@ function renderHeat(sel) {
     if (p.col < 0 || p.col >= n) return;
     const w = VIEW[p.col];
     if (coarse) { showWeekInfo(p.col, heatRows[p.r], true); return; }
-    if (w.has_survey) go(weekHash(w.key));
+    if (!w.has_survey) return;
+    if (!jumpToWeekInTable(w)) go(weekHash(w.key));
   });
+}
+// Scroll the overview table to a week's separator row, below the top bar and the table's own
+// sticky header. False when the table (as filtered now) has no row for that week.
+const tableWeekRow = w => el('cov').querySelector(`tr.wk-sep[data-wk="${w.key}"]`);
+function jumpToWeekInTable(w) {
+  const tr = tableWeekRow(w);
+  if (!tr) return false;
+  const box = el('scroll'), head = el('cov').querySelector('thead');
+  const offset = 52 + (head && getComputedStyle(head).display !== 'none' ? head.getBoundingClientRect().height : 0) + 6;
+  box.scrollTo({top: box.scrollTop + tr.getBoundingClientRect().top - box.getBoundingClientRect().top - offset,
+    behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  tr.classList.remove('flash'); void tr.offsetWidth; tr.classList.add('flash');
+  return true;
 }
 function hideCursor() { const c = el('heat-cursor'); if (c) c.setAttribute('visibility', 'hidden'); }
 function showWeekInfo(col, row, withLink) {
@@ -787,11 +817,12 @@ function showWeekInfo(col, row, withLink) {
     const sameArea = row && row.kind === 'theme' && ATT.get('u:' + THEME_BY_ID.get(row.id)?.umbrella_id + '|' + w.week_start)?.measured;
     html += ` · <span class="muted">coverage measured for ${sameArea ? 'another theme in this area' : 'another area'} this week</span>`;
   }
-  html += withLink ? ` · <a href="${weekHash(w.key)}">Open this week ›</a>` : ' · click to open the week';
+  html += withLink ? ` · <a href="${weekHash(w.key)}">Open this week ›</a>`
+    : tableWeekRow(w) ? ' · click to jump to this week in the table below' : ' · click to open the week';
   el('heat-info').innerHTML = html;
 }
 function resetInfo() {
-  el('heat-info').innerHTML = '<span class="muted">Point at a week to see what people named; click to open it. ' +
+  el('heat-info').innerHTML = '<span class="muted">Point at a week to see what people named. Click a week with measured coverage to jump to it in the table below; click any other week to open it. ' +
     'Hatched weeks had no FOM survey.</span>';
 }
 function selectRow(row) {
@@ -955,7 +986,18 @@ function renderCoverage(sel) {
     return;
   }
   const head = covHead();
-  const body = list.map(r => covEventRow(r)).join('');
+  // Events come newest week first and in the survey's order inside a week; each week opens with its
+  // own row, so it is clear where one week's ranking ends and the next begins.
+  let body = '', lastWeek = null;
+  list.forEach(r => {
+    if (r.week_start !== lastWeek) {
+      lastWeek = r.week_start;
+      const w = WEEK_BY_START.get(r.week_start), n = list.filter(x => x.week_start === r.week_start).length;
+      body += `<tr class="wk-sep" data-wk="${w.key}"><td colspan="${2 + GROUPS.length}"><b>${weekTitle(w)}</b>${rangeLabel(w.week_start)}
+        · ${plural(n, 'measured event', 'measured events')}<a href="${weekHash(w.key)}">Open this week ›</a></td></tr>`;
+    }
+    body += covEventRow(r, {showWeek: false});
+  });
 
   // The totals row comes from the warehouse, which counts a post matched to two events once.
   const scopeType = theme ? 'theme' : umb ? 'umbrella' : 'all';
