@@ -11,3 +11,9 @@ events_coverage:
       type: duckdb
       path: ../data/warehouse/events.duckdb
       threads: 4
+      # Word lists split about 69 million words. These caps keep a build from taking over a
+      # 16 GB laptop: DuckDB spills to disk past the first and fails cleanly past the second.
+      settings:
+        memory_limit: 6GB
+        max_temp_directory_size: 30GB
+        preserve_insertion_order: false

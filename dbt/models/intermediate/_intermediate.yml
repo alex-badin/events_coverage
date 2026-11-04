@@ -37,14 +37,16 @@ models:
         description: Whether the source published anything matched to this event.
         data_tests: [not_null]
 
-  - name: int_event_tokens
+  - name: int_post_tokens
     description: >
-      One word of one matched post, in the order it appears. The raw material for comparing
-      the vocabulary of different media groups. Splitting the posts into words happens here
+      One word of one distinct post text, in the order it appears. The raw material for comparing
+      the vocabulary of different media groups. Splitting the texts into words happens here
       once, so single words and two-word phrases are built from the same word stream and
-      cannot disagree with each other.
+      cannot disagree with each other. A table: a view would split and stem every text again on
+      each read.
     columns:
-      - name: message_id
+      - name: post_text_id
+        description: A hash of the post text, the same in every event that matched the post.
         data_tests: [not_null]
       - name: word_position
         description: >
@@ -63,6 +65,74 @@ models:
         description: >
           Flagged rather than removed. Single-word counting drops these; phrase building
           needs to know where they were.
+        data_tests: [not_null]
+      - name: is_source_name
+        description: The word is the name of a source. Channels sign their posts, so it is not counted.
+        data_tests: [not_null]
+
+  - name: int_post_term_forms
+    description: One spelling of one word or two-word phrase in one distinct post text. The labels come from here.
+    columns:
+      - name: post_text_id
+        data_tests: [not_null]
+      - name: term_hash
+        description: A number standing for term_type and term_key, used for all the counting downstream.
+        data_tests: [not_null]
+      - name: term_type
+        description: Whether the row is a single word or two words that stood next to each other.
+      - name: term_key
+        description: The stem, or the two stems of a phrase.
+        data_tests: [not_null]
+      - name: term_form
+        description: The spelling as written.
+        data_tests: [not_null]
+      - name: term_uses
+        description: How many times the text uses this spelling.
+
+  - name: int_post_terms
+    description: One word or two-word phrase in one distinct post text, whatever its spellings.
+    columns:
+      - name: post_text_id
+        data_tests: [not_null]
+      - name: term_hash
+        data_tests: [not_null]
+      - name: term_uses
+        description: How many times the text uses the term.
+
+  - name: int_event_posts_with_words
+    description: >
+      One matched post in one event, for posts with at least one countable word. The denominator
+      for every share in event_group_terms.
+    columns:
+      - name: post_text_id
+        data_tests: [not_null]
+
+  - name: int_event_source_terms
+    description: >
+      One word or phrase per source per event: every term, counts only. The lists of posts are built
+      later, in event_group_terms, and only for the terms that pass its filters.
+    columns:
+      - name: posts_with_term
+        data_tests: [not_null]
+
+  - name: int_event_group_term_scores
+    description: >
+      One word or phrase per media group per event, for the terms that pass the filters of
+      event_group_terms: counts and scores only, no words and no lists of posts.
+    columns:
+      - name: posts_with_term
+        data_tests: [not_null]
+
+  - name: int_event_group_term_posts
+    description: One post carrying one term, for the terms that survived int_event_group_term_scores.
+    columns:
+      - name: message_id
+        data_tests: [not_null]
+
+  - name: int_event_group_term_labels
+    description: The spelling shown for each surviving term of each media group in each event.
+    columns:
+      - name: term_label
         data_tests: [not_null]
 
   - name: int_events_with_themes

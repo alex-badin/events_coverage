@@ -107,7 +107,9 @@ No loaded event carries one today; the check stays so a later event cannot slip 
 The word chips under the posts report which words appear where. They make no claim about tone,
 stance or intent, and use no model — it is counting, done in SQL, with the posts behind every
 number one click away. The rules that keep out channel sign-offs are at the top of
-`dbt/models/marts/event_group_terms.sql`.
+`dbt/models/marts/event_group_terms.sql`. The page carries the five most relevant posts of each group
+per event, so clicking a word shows only those of its posts that are among the five; the count beside
+the word covers all of them.
 
 ## Not in the prototype
 

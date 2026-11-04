@@ -262,7 +262,7 @@ models:
       - name: event_specificity
         description: >
           The same scale, comparing this event against the group's coverage of the other
-          events. Terms below 0.4 are dropped, which is what removes sign-offs and
+          events matched by the same method. Terms below 0.4 are dropped, which is what removes sign-offs and
           subscription pitches — they appear at the same rate whatever the story is.
       - name: distinctiveness_rank
         description: Rank inside each event, group and term type. 1 is the most distinctive.
