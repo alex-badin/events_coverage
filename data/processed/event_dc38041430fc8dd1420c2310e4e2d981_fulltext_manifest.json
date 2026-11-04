@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "Аварии, пожары, несчастные случаи",
+  "year": 2025,
+  "week": 45,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Аварии в Омске»",
+   "«гибель вертолёта»",
+   "«ДТП на Варшавском шоссе, аварии»",
+   "«пожар в Юрге»",
+   "«пожароопасные моменты: осенние пожары»",
+   "«провал в Санкт-Петербурге покрытия»",
+   "«самолёт разбился в Дагестане где-то»"
+  ],
+  "event_id": "dc38041430fc8dd1420c2310e4e2d981"
+ },
+ "window": {
+  "match_start": "2025-10-31",
+  "match_end_exclusive": "2025-11-20"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.48,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 230,
+  "embedded_pool": 38259,
+  "window_posts": 38260
+ }
+}

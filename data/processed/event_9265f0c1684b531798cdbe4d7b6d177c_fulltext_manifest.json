@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Снятие Западом ограничений на поставки дальнобойных ракет Украине",
+  "year": 2025,
+  "week": 22,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Зеленскому разрешили дальнобойные орудия»",
+   "«Германия будет поставлять Украине ракеты дальнего действия»",
+   "«Мерц дал разрешение Украине на дальнобойные выстрелы по России»",
+   "«поставка ракет “Таурус” Украине»"
+  ],
+  "event_id": "9265f0c1684b531798cdbe4d7b6d177c"
+ },
+ "window": {
+  "match_start": "2025-05-23",
+  "match_end_exclusive": "2025-06-12"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.68,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 425,
+  "embedded_pool": 45522,
+  "window_posts": 45523
+ }
+}

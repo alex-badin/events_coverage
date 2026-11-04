@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Поездки, встречи, выступления В. Путина",
+  "year": 2025,
+  "week": 42,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Встреча Алиева и Путина»",
+   "«встреча Путина с Китаем и другие поездки»",
+   "«выступление на Дальневосточном форуме Путина о развитии многополярного мира»",
+   "«Путин летал в Таджикистан»",
+   "«Путин на саммитах»",
+   "«Путин приезжал на пороховой завод»"
+  ],
+  "event_id": "33a4f853056b2a639f7ac7cff7a61d26"
+ },
+ "window": {
+  "match_start": "2025-10-10",
+  "match_end_exclusive": "2025-10-30"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.94,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 225,
+  "embedded_pool": 42290,
+  "window_posts": 42291
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:27",
+ "event": {
+  "name": "Погода, природные катаклизмы",
+  "year": 2025,
+  "week": 33,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Вулкана извержение на Камчатке»",
+   "«землетрясение на Камчатке»",
+   "«природные катаклизмы»",
+   "«ураган и смерч в Сочи»"
+  ],
+  "event_id": "3189a4f7ecae9c8c4dc5106e1e77bf20"
+ },
+ "window": {
+  "match_start": "2025-08-08",
+  "match_end_exclusive": "2025-08-28"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.54,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 187,
+  "embedded_pool": 47385,
+  "window_posts": 47387
+ }
+}

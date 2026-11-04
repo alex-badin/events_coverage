@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "Угроза ядерной войны",
+  "year": 2025,
+  "week": 45,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Америка планирует ядерные испытания»",
+   "«возможность атомной войны»",
+   "«гонка вооружений»",
+   "«движемся к атомной войне»",
+   "«испытание США ядерного орудия»",
+   "«разговор о ядерном вооружении»",
+   "«ядерные новости»"
+  ],
+  "event_id": "7bbaf8941cee7ac4127887dc9507312b"
+ },
+ "window": {
+  "match_start": "2025-10-31",
+  "match_end_exclusive": "2025-11-20"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.03,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 989,
+  "embedded_pool": 38259,
+  "window_posts": 38260
+ }
+}

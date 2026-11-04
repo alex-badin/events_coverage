@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2025,
+  "week": 41,
+  "fom_percentage": 5.0,
+  "quotes": [
+   "«Атака дронов на Волгоград»",
+   "«атака дронов на Екатеринбург»",
+   "«атака ракетная на Брянск»",
+   "«атаки БПЛА»",
+   "«беспилотная опасность на территории Свердловской области»",
+   "«беспилотники в Уфе»"
+  ],
+  "event_id": "1954ad3fcc53f9270daabfec0623db7e"
+ },
+ "window": {
+  "match_start": "2025-10-03",
+  "match_end_exclusive": "2025-10-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.25,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1740,
+  "embedded_pool": 42006,
+  "window_posts": 42007
+ }
+}

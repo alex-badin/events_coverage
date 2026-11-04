@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Высказывание С. Боярского о скорой блокировке WhatsApp",
+  "year": 2025,
+  "week": 29,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Блокировка ватсапа»",
+   "«ватсап запрещают»",
+   "«потеря ватсапа»"
+  ],
+  "event_id": "eee2b369a605a1039831782b5f19fff3"
+ },
+ "window": {
+  "match_start": "2025-07-11",
+  "match_end_exclusive": "2025-07-31"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.99,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 89,
+  "embedded_pool": 44115,
+  "window_posts": 44115
+ }
+}

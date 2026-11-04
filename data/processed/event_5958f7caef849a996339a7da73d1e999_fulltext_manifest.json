@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Возможные поставки дальнобойных ракет США Украине",
+  "year": 2025,
+  "week": 42,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Америка собралась ракеты поставлять»",
+   "«возня с “Томагавками”»",
+   "«отбой про “Томагавки”»",
+   "«передача ракет Украине»",
+   "«поставка “Томагавков” Украине»",
+   "«сообщения Трампа насчет “Томагавок”»",
+   "«“Томагавки” даст рыжий Трамп или нет»",
+   "«“Томагавки” – эти вонючие ракеты»",
+   "«Трамп хотел отдать “Томагавки” Украине»"
+  ],
+  "event_id": "5958f7caef849a996339a7da73d1e999"
+ },
+ "window": {
+  "match_start": "2025-10-10",
+  "match_end_exclusive": "2025-10-30"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.05,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1234,
+  "embedded_pool": 42290,
+  "window_posts": 42291
+ }
+}

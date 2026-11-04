@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:33",
+ "event": {
+  "name": "Мирные переговоры",
+  "year": 2026,
+  "week": 7,
+  "fom_percentage": 5.0,
+  "quotes": [
+   "«Договоры о перемирии, об окончании войны на Украине»",
+   "«Зеленский проводит переговоры с США, мы не можем договориться»",
+   "«мирные переговоры»",
+   "«переговоры в Абу-Даби»",
+   "«переговоры переезжают в Швейцарию»",
+   "«переговоры по поводу СВО»"
+  ],
+  "event_id": "45eb0ffab4e4b84f52132ab7dd00a6fc"
+ },
+ "window": {
+  "match_start": "2026-02-06",
+  "match_end_exclusive": "2026-02-26"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.1,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2272,
+  "embedded_pool": 37041,
+  "window_posts": 37042
+ }
+}

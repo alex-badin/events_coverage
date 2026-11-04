@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Решения Д. Трампа об увеличении таможенных пошлин",
+  "year": 2025,
+  "week": 14,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Повышение процентных ставок Трампом на мировую экономику»",
+   "«пошлины, которые Трамп выдвинул»",
+   "«торговые войны США со всем миром»",
+   "«Трамп объявил не санкции, а тарифы на торговлю – обрушение экономики всего мира»",
+   "«Трамп обложил всех налогами»"
+  ],
+  "event_id": "d8638a356ee4b311893e87dd55c4e590"
+ },
+ "window": {
+  "match_start": "2025-03-28",
+  "match_end_exclusive": "2025-04-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.23,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2363,
+  "embedded_pool": 41143,
+  "window_posts": 41145
+ }
+}

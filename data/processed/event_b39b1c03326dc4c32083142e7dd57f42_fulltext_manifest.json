@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "Действия В. Зеленского, коррупционный скандал на Украине",
+  "year": 2025,
+  "week": 48,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Зеленский: коррупция»",
+   "«коррупции на Украине»",
+   "«лживость киевской власти»",
+   "«о коррупции на Украине»"
+  ],
+  "event_id": "b39b1c03326dc4c32083142e7dd57f42"
+ },
+ "window": {
+  "match_start": "2025-11-21",
+  "match_end_exclusive": "2025-12-11"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.01,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1481,
+  "embedded_pool": 40036,
+  "window_posts": 40036
+ }
+}

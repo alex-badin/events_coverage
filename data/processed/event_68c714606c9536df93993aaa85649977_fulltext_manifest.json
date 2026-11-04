@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Праздники, годовщины",
+  "year": 2025,
+  "week": 31,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«День деревни»",
+   "«День железнодорожника»",
+   "«День памяти о детях – жертвах теракта в России»",
+   "«праздники в Шексне – гуляли на площади»",
+   "«проведение дня физической культуры»",
+   "«Якубовичу 80»"
+  ],
+  "event_id": "68c714606c9536df93993aaa85649977"
+ },
+ "window": {
+  "match_start": "2025-07-25",
+  "match_end_exclusive": "2025-08-14"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.68,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 84,
+  "embedded_pool": 43016,
+  "window_posts": 43018
+ }
+}

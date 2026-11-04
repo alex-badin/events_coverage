@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:33",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2026,
+  "week": 8,
+  "fom_percentage": 16.0,
+  "quotes": [
+   "«Боевые действия на Украине»",
+   "«бои под Купянском»",
+   "«итоги СВО, наши побеждают»",
+   "«наступление войск на Украине»",
+   "«освобождение территории на Украине»",
+   "«продвижение на фронте»",
+   "«СВО – сводки»",
+   "«хорошее продвижение войск на территории Украины»"
+  ],
+  "event_id": "2776e2d56b4bf1b04c6daf403702041a"
+ },
+ "window": {
+  "match_start": "2026-02-13",
+  "match_end_exclusive": "2026-03-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 3000,
+  "embedded_pool": 44677,
+  "window_posts": 44679
+ }
+}

@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Праздники",
+  "year": 2025,
+  "week": 38,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«80 лет атомной промышленности»",
+   "«День города»",
+   "«День города Воронежа – то, что праздновали»"
+  ],
+  "event_id": "f8fcd45eca4b0d8ae8bd4bcaf2756648"
+ },
+ "window": {
+  "match_start": "2025-09-12",
+  "match_end_exclusive": "2025-10-02"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.33,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 281,
+  "embedded_pool": 45591,
+  "window_posts": 45592
+ }
+}

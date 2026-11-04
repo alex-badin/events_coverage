@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Аварии, пожары, несчастные случаи",
+  "year": 2025,
+  "week": 31,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«В Башкирии автобус свалился в пропасть»",
+   "«в Белгороде в аварии погибли дети»",
+   "«авария на дороге местная»",
+   "«авария с подростками на железной дороге»",
+   "«гибель в Тынде: самолёт разбился»",
+   "«дети тонут на пляжах»",
+   "«обрушился дом в Саратове от взрыва газа»"
+  ],
+  "event_id": "ac9c32886466c45c3cd136b1429d080e"
+ },
+ "window": {
+  "match_start": "2025-07-25",
+  "match_end_exclusive": "2025-08-14"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.88,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1039,
+  "embedded_pool": 43016,
+  "window_posts": 43018
+ }
+}

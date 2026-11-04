@@ -77,7 +77,8 @@ full-text vectors and Jev 1.13 with a per-event cut-off, run for every specific 
 no heavy migration. Load the needed message columns + events + group map. Optional: a
 precomputed "posts per source per week" aggregate for denominators (small, computed once).
 
-*Event scope.* Only events with a complete, current matched set are loaded — today that is 5 events
+*Event scope.* Only events with a complete, current matched set are loaded — today the 644 of
+2025-W12..2026-W20 on the new method (`exploration/2026-11-03_new_weeks/`) and, on the old one, 5 events
 and 4,108 matched messages. The loader script holds the authoritative list; incomplete pilot
 leftovers are named in the `AGENTS.md` cautions.
 

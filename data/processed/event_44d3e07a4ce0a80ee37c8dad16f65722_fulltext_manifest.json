@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Аварии, несчастные случаи, пожары",
+  "year": 2025,
+  "week": 40,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«В Щёкино авария вчера была»",
+   "«ДТП»",
+   "«отравление суррогатом в Ленинградской области»",
+   "«пожар в Новосибирском зоопарке»",
+   "«семья пропала в Красноярске»",
+   "«человека сбили автомобилем»"
+  ],
+  "event_id": "44d3e07a4ce0a80ee37c8dad16f65722"
+ },
+ "window": {
+  "match_start": "2025-09-26",
+  "match_end_exclusive": "2025-10-16"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.89,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 592,
+  "embedded_pool": 43608,
+  "window_posts": 43609
+ }
+}

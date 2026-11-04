@@ -13,6 +13,9 @@ drawn from ten probability bands. Budget: $55 for the whole task (Alex, 2026-11-
     python new_weeks.py brief_prompts      # free; then zsh ../2026-10-17_jev_selection/codex_answer.sh <OUT>/briefs
     python new_weeks.py decide [N]         # paid: Decisions API on the 3,000 candidates
     python new_weeks.py luna [N]           # paid (cents): the 100-post sample and its cut-off
+    python new_weeks.py cutoff_prompts     # free: the same sample for scored events without a cut-off;
+                                           # zsh ../2026-10-17_jev_selection/codex_answer.sh <OUT>/cutoffs
+    python new_weeks.py cutoff_collect     # Codex answers -> cut-offs, reader recorded per event
     python new_weeks.py export             # data/processed/event_<id>_fulltext_dataset.csv + manifest
 N limits a step to the pilot (the first N events of PILOT order).
 """
@@ -55,6 +58,9 @@ TOP_K, SHOW_CHARS, PER_REQUEST = 3000, 400, 400
 DEC_PRICE_PER_M = 0.10
 LUNA_PRICE = (0.10, 0.50)           # per 1M input / output tokens
 SAMPLE_N, SEED = 100, 17
+LAST_COMPLETE_WEEK = 202620         # the run stopped here; the 13 pilot events after it stay out of the warehouse
+LUNA_READER = "gpt-6-luna, OpenAI API, effort low"
+CODEX_READER = "gpt-6.1-sol, Codex subscription, effort medium"
 DECIDE_PER_EVENT, LUNA_PER_EVENT = 0.07, 0.0035   # measured on the pilot ($0.060, $0.003), rounded up
 
 
@@ -330,19 +336,37 @@ def _openai():
     from dotenv import load_dotenv
     from openai import OpenAI
     load_dotenv(ROOT / ".env")
-    return OpenAI(api_key=os.environ["OPENAI_API_KEY"], max_retries=4)
+    # max_retries=0: on 2026-11-03 OpenAI billed 1,584 requests (134M tokens, $13.43) that no file
+    # recorded, most likely the SDK's silent retries. Every attempt now goes through patiently() and
+    # into attempts.jsonl.
+    return OpenAI(api_key=os.environ["OPENAI_API_KEY"], max_retries=0)
 
 
 def patiently(call):
-    """Wait out the per-minute token limit; a spent budget (insufficient_quota) is not worth waiting for."""
+    """Our own retry, one line in attempts.jsonl per attempt (a failed attempt may still be billed). Waits out
+    the per-minute token limit and server errors; a spent budget (insufficient_quota) stops at once."""
     import openai
-    for attempt in range(30):
+    for attempt in range(8):
+        started = time.time()
         try:
-            return call()
-        except openai.RateLimitError as error:
-            if "insufficient_quota" in str(error) or attempt == 29:
+            result = call()
+            log_attempt(attempt, "ok", time.time() - started)
+            return result
+        except (openai.RateLimitError, openai.APIStatusError, openai.APIConnectionError) as error:
+            status = getattr(error, "status_code", None) or type(error).__name__
+            log_attempt(attempt, status, time.time() - started, str(error)[:200])
+            if "insufficient_quota" in str(error) or attempt == 7 or status in (400, 401, 403, 404):
                 raise
             time.sleep(min(10 + 5 * attempt, 60))
+
+
+_attempts_lock = threading.Lock()
+
+
+def log_attempt(attempt, status, seconds, note=""):
+    with _attempts_lock, (OUT / "attempts.jsonl").open("a") as f:
+        f.write(json.dumps({"at": time.strftime("%Y-%m-%d %H:%M:%S"), "attempt": attempt, "status": status,
+                            "seconds": round(seconds, 1), "note": note}) + "\n")
 
 
 def decide(n=None):
@@ -459,6 +483,50 @@ def luna(n=None):
     print(f"${total:.4f}; total ${spent():.2f}")
 
 
+# ------------------------------------------------------------------------- codex cut-offs
+def cutoff_prompts():
+    """Scored events with no cut-off yet: the same 100-post sample and prompt as luna(), read by Codex
+    (subscription) instead of the API. One prompt per event."""
+    ps = posts()
+    folder = OUT / "cutoffs" / "prompts"
+    folder.mkdir(parents=True, exist_ok=True)
+    (OUT / "cutoffs" / "schema.json").write_text((R.OUT / "labels" / "schema.json").read_text())
+    n = 0
+    for e in events():
+        if scores(e) is None or (OUT / "luna" / f"{e['id']}.json").exists():
+            continue
+        picked, _ = sample(e)
+        block = "\n\n".join(f"[id {i}] {ps[i]['text'][:2500]}" for i in picked)
+        (folder / f"{e['id']}.txt").write_text(R.PROMPT.format(
+            week=f"{e['year']}-W{e['week']:02d}", name=e["name"], quotes="; ".join(e["quotes"]),
+            lo=e["window"][0], hi=e["window"][1], posts=block), encoding="utf-8")
+        n += 1
+    print(f"{n} prompts")
+
+
+def cutoff_collect():
+    """Codex answers -> luna/<id>.json with the reader named; existing Luna files are not touched."""
+    n = skipped = 0
+    for e in events():
+        target, answer = OUT / "luna" / f"{e['id']}.json", OUT / "cutoffs" / "out" / f"{e['id']}.json"
+        if target.exists() or not answer.exists():
+            continue
+        picked, w = sample(e)
+        labels = {int(str(x["id"]).strip()): x["label"] == "yes" for x in json.loads(answer.read_text())["labels"]
+                  if str(x["id"]).strip().isdigit()}
+        got = [i for i in picked if i in labels]
+        if len(got) < 0.95 * len(picked):
+            print(f"{e['id']}: answer covers {len(got)} of {len(picked)}; rerun"); answer.unlink(); skipped += 1
+            continue
+        s = scores(e)
+        cut = V.best_cut(got, labels, w, s) if any(labels[i] for i in got) else 1.01
+        target.write_text(json.dumps({"labels": {str(i): labels[i] for i in got}, "weights": {str(i): w[i] for i in got},
+                                      "missing": [i for i in picked if i not in labels], "cut": cut, "usd": 0.0,
+                                      "reader": CODEX_READER}))
+        n += 1
+    print(f"{n} cut-offs written, {skipped} to rerun")
+
+
 # ------------------------------------------------------------------------------ export
 def export():
     """One dataset CSV and manifest per event in data/processed, in the shape load_warehouse.py reads."""
@@ -466,11 +534,15 @@ def export():
     ps = posts()
     out_dir = ROOT / "data" / "processed"
     done, empty = [], []    # events with matched posts / searched with nothing kept (no dataset file)
+    table = []
     for e in events():
         lp = OUT / "luna" / f"{e['id']}.json"
         if not lp.exists():
             continue
-        cut, s = json.loads(lp.read_text())["cut"], scores(e)
+        if e["year"] * 100 + e["week"] > LAST_COMPLETE_WEEK:   # one event in a week is not that week's picture
+            continue
+        lj, s = json.loads(lp.read_text()), scores(e)
+        cut, reader = lj["cut"], lj.get("reader", LUNA_READER)
         cos = {c["i"]: c["cos"] for c in candidates(e)}
         kept = [i for i in cos if s.get(i, 0) >= cut]
         slug = f"event_{e['id']}_fulltext"
@@ -491,14 +563,21 @@ def export():
             "window": {"match_start": e["window"][0], "match_end_exclusive": e["window"][1]},
             "models": {"retriever": "qwen3_fulltext", "embed_model": M.QWEN_MODEL,
                        "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
-                       "cut_reader": "gpt-6-luna, 100-post band sample", "brief": "gpt-6.1-sol via Codex"},
+                       "cut_reader": reader, "brief": "gpt-6.1-sol via Codex"},
             "params": {"top_k": TOP_K, "rerank_threshold": cut, "show_chars": SHOW_CHARS},
             "counts": {"candidates": len(cos), "kept": len(kept), "embedded_pool": sc["window_posts_with_text"],
                        "window_posts": sc["window_posts"]}}, ensure_ascii=False, indent=1))
         if not kept:
             (out_dir / f"{slug}_dataset.csv").unlink()
+        table.append([e["id"], f"{e['year']}-W{e['week']:02d}", e["name"], e["percentage"], reader, cut, len(kept),
+                      len(lj["labels"]), sum(lj["labels"].values()), len(lj["missing"])])
     (OUT / "exported_slugs.json").write_text(json.dumps(done, indent=0))
     (OUT / "exported_empty_slugs.json").write_text(json.dumps(empty, indent=0))
+    with (HERE / "cutoffs.csv").open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["event_id", "week", "event", "fom_percentage", "cut_reader", "cut", "kept_posts",
+                    "sample_labelled", "sample_yes", "sample_missing"])
+        w.writerows(table)
     print(f"{len(done)} events with posts, {len(empty)} with none")
 
 
@@ -506,4 +585,4 @@ if __name__ == "__main__":
     step, arg = sys.argv[1], (sys.argv[2] if len(sys.argv) > 2 else None)
     {"events": events_step, "prepare": prepare, "embed": embed, "cosine": lambda: cosine(arg),
      "brief_prompts": brief_prompts, "decide": lambda: decide(arg), "luna": lambda: luna(arg),
-     "export": export}[step]()
+     "cutoff_prompts": cutoff_prompts, "cutoff_collect": cutoff_collect, "export": export}[step]()

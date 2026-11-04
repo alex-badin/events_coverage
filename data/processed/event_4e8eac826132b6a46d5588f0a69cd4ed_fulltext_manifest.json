@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "События в Китае",
+  "year": 2025,
+  "week": 37,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Безвизовый въезд в Китай»",
+   "«встреча стран ШОС»",
+   "«парад в Пекине»",
+   "«саммит в Китае»",
+   "«совещание с Китаем, Индией»",
+   "«съезд ШОС»",
+   "«ШОС»"
+  ],
+  "event_id": "4e8eac826132b6a46d5588f0a69cd4ed"
+ },
+ "window": {
+  "match_start": "2025-09-05",
+  "match_end_exclusive": "2025-09-25"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.02,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 543,
+  "embedded_pool": 45732,
+  "window_posts": 45733
+ }
+}

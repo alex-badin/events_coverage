@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Рост цен, тарифов",
+  "year": 2025,
+  "week": 38,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Выросли цены на бензин»",
+   "«инфляция»",
+   "«коммуналка»",
+   "«метро подорожало»",
+   "«НДС с 1 января будет 22%»",
+   "«повышение утильсбора на автомобиль»",
+   "«рост цен»",
+   "«рост цен на бензин»"
+  ],
+  "event_id": "1b17f0ae349f9a0c9a499a9c08118faa"
+ },
+ "window": {
+  "match_start": "2025-09-12",
+  "match_end_exclusive": "2025-10-02"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.59,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 581,
+  "embedded_pool": 45591,
+  "window_posts": 45592
+ }
+}

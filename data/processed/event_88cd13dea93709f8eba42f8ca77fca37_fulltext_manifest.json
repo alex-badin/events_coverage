@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Военный конфликт Израиля и Ирана, атака США на Иран",
+  "year": 2025,
+  "week": 26,
+  "fom_percentage": 20.0,
+  "quotes": [
+   "«Арабо-израильский конфликт»",
+   "«бомбёжки Америкой Ирана»",
+   "«в Иране уничтожили ядерные базы»",
+   "«военные действия в Иране»",
+   "«Иран с Израилем подписали договор»",
+   "«бомбёжка Израилем телестудии»",
+   "«США Иран долбанули, ни с кем не советуясь»"
+  ],
+  "event_id": "88cd13dea93709f8eba42f8ca77fca37"
+ },
+ "window": {
+  "match_start": "2025-06-20",
+  "match_end_exclusive": "2025-07-10"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.12,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2939,
+  "embedded_pool": 46825,
+  "window_posts": 46825
+ }
+}

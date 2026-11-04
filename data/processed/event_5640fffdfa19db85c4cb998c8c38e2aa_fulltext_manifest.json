@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Встречи, выступления В. Путина",
+  "year": 2025,
+  "week": 26,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Встречи Путина с руководителями других государств, в том числе ЮАР, которые входят в ШОС; особо заинтересовала беседа с индонезийскими руководителями»",
+   "«выступление Путина в Питере»",
+   "«Путин в Минске»"
+  ],
+  "event_id": "5640fffdfa19db85c4cb998c8c38e2aa"
+ },
+ "window": {
+  "match_start": "2025-06-20",
+  "match_end_exclusive": "2025-07-10"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.01,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1447,
+  "embedded_pool": 46825,
+  "window_posts": 46825
+ }
+}

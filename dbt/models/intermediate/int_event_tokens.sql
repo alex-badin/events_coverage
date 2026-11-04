@@ -22,6 +22,10 @@ with posts as (
         regexp_split_to_array(lower(post_text), '[^a-zа-яё0-9]+')  as words
     from {{ ref('event_message_detail') }}
     where post_text is not null
+      -- The full-text events (2025-W12 on) hold about 734,000 matched posts, and splitting those
+      -- into words and phrases runs out of memory (over 43 GB) in event_group_terms. Word lists
+      -- stay on the five earlier events until that model is rebuilt to scale.
+      and event_slug not like '%\_fulltext' escape '\'
 
 ),
 

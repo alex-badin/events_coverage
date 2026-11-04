@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Землетрясение в Юго-Восточной Азии",
+  "year": 2025,
+  "week": 14,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Землетрясение в Азии, много смертей»",
+   "«землетрясение в Мьянме – это было последнее, о чём я читала»",
+   "«новое землетрясение в Мьянме»",
+   "«землетрясение в Таиланде»"
+  ],
+  "event_id": "c1f0700844697563e356839c2cf16510"
+ },
+ "window": {
+  "match_start": "2025-03-28",
+  "match_end_exclusive": "2025-04-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.13,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1015,
+  "embedded_pool": 41143,
+  "window_posts": 41145
+ }
+}

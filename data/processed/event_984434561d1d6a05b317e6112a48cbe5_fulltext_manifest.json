@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2025,
+  "week": 26,
+  "fom_percentage": 21.0,
+  "quotes": [
+   "«Бомбят Украину»",
+   "«воина на Украине»",
+   "«каждый день смотрю, как наши воюют на Украине: вроде движутся вперёд, жертвы бесконечные и с той, и с нашей стороны – это тяжёлое испытание»",
+   "«наши войска продвигаются»",
+   "«наши побеждают»",
+   "«про Украину: все наши бои»"
+  ],
+  "event_id": "984434561d1d6a05b317e6112a48cbe5"
+ },
+ "window": {
+  "match_start": "2025-06-20",
+  "match_end_exclusive": "2025-07-10"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 3000,
+  "embedded_pool": 46825,
+  "window_posts": 46825
+ }
+}

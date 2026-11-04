@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Аварии, пожары",
+  "year": 2025,
+  "week": 23,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Взволновало ДТП в Иланском, повлекшее гибель ребенка»",
+   "«дети попали в аварию на автобусе»",
+   "«дорожные трагедии»",
+   "«пожар в Москве»"
+  ],
+  "event_id": "1fefb96af0aabc13ddcf29d278216f3c"
+ },
+ "window": {
+  "match_start": "2025-05-30",
+  "match_end_exclusive": "2025-06-19"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.68,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 52,
+  "embedded_pool": 48691,
+  "window_posts": 48692
+ }
+}

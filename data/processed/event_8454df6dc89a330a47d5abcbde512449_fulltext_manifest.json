@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:33",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2026,
+  "week": 8,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Атака беспилотника на Чебоксары»",
+   "«Белгород опять разбомбили»",
+   "«беспилотная атака в городе»",
+   "«в Краснодарском крае атаки беспилотников»",
+   "«воздушная тревога»",
+   "«налёты БПЛА в крае»",
+   "«ракетная опасность»",
+   "«тревоги о беспилотной опасности»"
+  ],
+  "event_id": "8454df6dc89a330a47d5abcbde512449"
+ },
+ "window": {
+  "match_start": "2026-02-13",
+  "match_end_exclusive": "2026-03-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.1,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1806,
+  "embedded_pool": 44677,
+  "window_posts": 44679
+ }
+}

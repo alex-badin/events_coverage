@@ -1,0 +1,44 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2025,
+  "week": 40,
+  "fom_percentage": 17.0,
+  "quotes": [
+   "«Важнее, чем СВО и всё связанное с этим, ничего не может быть»",
+   "«военные действия на Украине»",
+   "«война, текущее положение на фронте»",
+   "«идём к победе»",
+   "«на поле боя, что мы продвигаемся»",
+   "«на Украине освободили один населённый пункт»",
+   "«наступаем в Малороссии»",
+   "«наши успехи на СВО»",
+   "«положение на фронте»",
+   "«про Украину, ход военных действий»"
+  ],
+  "event_id": "7fe5422b39925ef0508a550fe96a25fd"
+ },
+ "window": {
+  "match_start": "2025-09-26",
+  "match_end_exclusive": "2025-10-16"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 3000,
+  "embedded_pool": 43608,
+  "window_posts": 43609
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "СВО в целом",
+  "year": 2026,
+  "week": 20,
+  "fom_percentage": 15.0,
+  "quotes": [
+   "«Военные сводки»",
+   "«война России с Украиной»",
+   "«информация по СВО»",
+   "«когда хохлов бьют»",
+   "«наши войска продвигаются»",
+   "«новости про СВО»",
+   "«освобождение территорий»",
+   "«ситуация на СВО»",
+   "«удар по Киеву»",
+   "«успехи на СВО»",
+   "«что на войне происходит»"
+  ],
+  "event_id": "f732c15360baeb1c443bc65bbfcf885f"
+ },
+ "window": {
+  "match_start": "2026-05-08",
+  "match_end_exclusive": "2026-05-28"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 3000,
+  "embedded_pool": 39121,
+  "window_posts": 39121
+ }
+}

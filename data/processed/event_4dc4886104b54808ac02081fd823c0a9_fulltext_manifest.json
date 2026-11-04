@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:31",
+ "event": {
+  "name": "Другие действия В. Путина",
+  "year": 2025,
+  "week": 50,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Визит Путина в Таджикистан»",
+   "«встреча Путина с лидерами ШОС»",
+   "«выступление Путина на форуме»",
+   "«награждали героев»",
+   "«Путин ездил куда-то»"
+  ],
+  "event_id": "4dc4886104b54808ac02081fd823c0a9"
+ },
+ "window": {
+  "match_start": "2025-12-05",
+  "match_end_exclusive": "2025-12-25"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.55,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 383,
+  "embedded_pool": 40738,
+  "window_posts": 40740
+ }
+}

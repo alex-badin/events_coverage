@@ -191,10 +191,10 @@ def load_event_matches(con: duckdb.DuckDBPyConnection) -> None:
             """
         )
 
-    con.execute(
-        f"create or replace table {RAW_SCHEMA}.event_matches as "
-        + "\nunion all by name\n".join(selects)
-    )
+    # One event at a time: a single union over hundreds of CSV files runs out of memory.
+    con.execute(f"create or replace table {RAW_SCHEMA}.event_matches as {selects[0]}")
+    for select in selects[1:]:
+        con.execute(f"insert into {RAW_SCHEMA}.event_matches by name {select}")
 
     # Say out loud how many matched posts the archiving removed, so the number is never
     # a silent difference between two runs.

@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:32",
+ "event": {
+  "name": "Криминальные события",
+  "year": 2026,
+  "week": 6,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«В Оренбургской области напал мужчина с ножом в детском саду»",
+   "«диверсии несовершеннолетних»",
+   "«нападение на школу, учителя»",
+   "«преступления различного характера в Дагестане и России»",
+   "«рождение детей и избавление от них»",
+   "«стрельба в школе»",
+   "«убийство жены»"
+  ],
+  "event_id": "fc120904f2a2b622f2177ae1426c1570"
+ },
+ "window": {
+  "match_start": "2026-01-30",
+  "match_end_exclusive": "2026-02-19"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.51,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1141,
+  "embedded_pool": 37705,
+  "window_posts": 37706
+ }
+}

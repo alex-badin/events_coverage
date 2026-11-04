@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Встречи, выступления В. Путина",
+  "year": 2025,
+  "week": 24,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Встречи Путина в Кремле»",
+   "«награждение Путиным заслуженных людей»",
+   "«поздравление медиков Путиным»"
+  ],
+  "event_id": "fd5d30f746008149f6ece8a191dc7563"
+ },
+ "window": {
+  "match_start": "2025-06-06",
+  "match_end_exclusive": "2025-06-26"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.04,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 379,
+  "embedded_pool": 50693,
+  "window_posts": 50694
+ }
+}

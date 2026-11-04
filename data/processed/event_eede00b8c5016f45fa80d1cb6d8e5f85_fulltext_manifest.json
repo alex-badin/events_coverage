@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "Агрессивная политика Евросоюза, поставка оружия Украине, поддержка ударов по России",
+  "year": 2026,
+  "week": 16,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«На территории НАТО будут строить заводы по производству беспилотников»",
+   "«Европа собирается воевать»",
+   "«возможное нападение на Россию»",
+   "«производство дронов в Европе»",
+   "«везде делают дроны для помощи Украине»",
+   "«все против нас»"
+  ],
+  "event_id": "eede00b8c5016f45fa80d1cb6d8e5f85"
+ },
+ "window": {
+  "match_start": "2026-04-10",
+  "match_end_exclusive": "2026-04-30"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.11,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 286,
+  "embedded_pool": 37764,
+  "window_posts": 37764
+ }
+}

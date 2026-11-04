@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "Российско-американские отношения",
+  "year": 2025,
+  "week": 46,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Взаимоотношения с Америкой»",
+   "«новые санкции»",
+   "«поведение Америки»",
+   "«санкции на ЛУКОЙЛ»",
+   "«Трамп и Путин не хотят беседовать»"
+  ],
+  "event_id": "4a3ebf66a34f04740ccff76b42e666ba"
+ },
+ "window": {
+  "match_start": "2025-11-07",
+  "match_end_exclusive": "2025-11-27"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.02,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2454,
+  "embedded_pool": 39557,
+  "window_posts": 39558
+ }
+}

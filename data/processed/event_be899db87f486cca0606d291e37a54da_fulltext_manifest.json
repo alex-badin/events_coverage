@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2025,
+  "week": 16,
+  "fom_percentage": 24.0,
+  "quotes": [
+   "«Военные действия на Украине»",
+   "«самое большое внимание – это сводки с фронтов СВО»",
+   "«связанные с СВО события»",
+   "«на фронте всё хорошо»",
+   "«военная информация, успехи наши»",
+   "«успехи на передовой»"
+  ],
+  "event_id": "be899db87f486cca0606d291e37a54da"
+ },
+ "window": {
+  "match_start": "2025-04-11",
+  "match_end_exclusive": "2025-05-01"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.08,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2673,
+  "embedded_pool": 41424,
+  "window_posts": 41428
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Контакты между Россией и США",
+  "year": 2025,
+  "week": 15,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Визит Уиткоффа в Россию»",
+   "«встреча Путина с представителем из США»",
+   "«встреча Путина с американцами в Питере»",
+   "«диалог с США»"
+  ],
+  "event_id": "f90126112604888384d2385284619cc4"
+ },
+ "window": {
+  "match_start": "2025-04-04",
+  "match_end_exclusive": "2025-04-24"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.51,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1144,
+  "embedded_pool": 41139,
+  "window_posts": 41144
+ }
+}

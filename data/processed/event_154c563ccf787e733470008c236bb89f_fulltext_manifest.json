@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Взрыв газа в Саратове",
+  "year": 2025,
+  "week": 30,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Взрыв дома в Саратове»",
+   "«газ взорвался в Саратове»",
+   "«народ гибнет ни за что – в Саратове дом рухнул»",
+   "«рухнул дом девятиэтажный»",
+   "«трагедия в Саратове»"
+  ],
+  "event_id": "154c563ccf787e733470008c236bb89f"
+ },
+ "window": {
+  "match_start": "2025-07-18",
+  "match_end_exclusive": "2025-08-07"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.38,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 653,
+  "embedded_pool": 44152,
+  "window_posts": 44153
+ }
+}

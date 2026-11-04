@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:31",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2025,
+  "week": 49,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Беспилотники летают, усилились обстрелы Курского приграничья»",
+   "«в Таганроге дрон упал – и не один: люди пострадали»",
+   "«дроны бомбят нашу территорию, и до нас доходит»"
+  ],
+  "event_id": "76a2ae73e9a97862d4ec740f1aa6de35"
+ },
+ "window": {
+  "match_start": "2025-11-28",
+  "match_end_exclusive": "2025-12-18"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.1,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1979,
+  "embedded_pool": 40071,
+  "window_posts": 40071
+ }
+}

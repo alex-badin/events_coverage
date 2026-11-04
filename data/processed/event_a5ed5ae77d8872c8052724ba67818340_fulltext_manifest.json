@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2026,
+  "week": 15,
+  "fom_percentage": 5.0,
+  "quotes": [
+   "«Атака БПЛА»",
+   "«атаки всё время со стороны Украины»",
+   "«атаки на Карачев»",
+   "«беспилотник в Александрове»",
+   "«беспилотники – атака на Череповец»",
+   "«БПЛА в Ленинградской области»",
+   "«обстрел приграничных территорий России»",
+   "«усиление атак беспилотников со стороны Украины»"
+  ],
+  "event_id": "a5ed5ae77d8872c8052724ba67818340"
+ },
+ "window": {
+  "match_start": "2026-04-03",
+  "match_end_exclusive": "2026-04-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.49,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1623,
+  "embedded_pool": 38320,
+  "window_posts": 38321
+ }
+}

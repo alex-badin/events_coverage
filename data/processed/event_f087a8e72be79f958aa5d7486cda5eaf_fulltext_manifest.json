@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:32",
+ "event": {
+  "name": "Экономический форум в Давосе",
+  "year": 2026,
+  "week": 4,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Встреча в Давосе»",
+   "«встреча Трампа с европейскими лидерами»",
+   "«Давос – экономический форум»",
+   "«саммит в Давосе»",
+   "«сборище в Швейцарии, город Давос»",
+   "«события в Давосе»",
+   "«экономический форум в Европе»"
+  ],
+  "event_id": "f087a8e72be79f958aa5d7486cda5eaf"
+ },
+ "window": {
+  "match_start": "2026-01-16",
+  "match_end_exclusive": "2026-02-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.49,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 827,
+  "embedded_pool": 38170,
+  "window_posts": 38170
+ }
+}

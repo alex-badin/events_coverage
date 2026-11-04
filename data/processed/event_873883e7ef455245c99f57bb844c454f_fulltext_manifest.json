@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "Смерть А. Пиманова",
+  "year": 2026,
+  "week": 17,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Смерть Алексея Пиманова»",
+   "«смерть Пиманова»",
+   "«смерть редактора “Человек и закон”»",
+   "«умер ведущий передачи “Человек и закон” Пиманов»",
+   "«уход из жизни ведущего Алексея Пиманова»"
+  ],
+  "event_id": "873883e7ef455245c99f57bb844c454f"
+ },
+ "window": {
+  "match_start": "2026-04-17",
+  "match_end_exclusive": "2026-05-07"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.42,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 212,
+  "embedded_pool": 36907,
+  "window_posts": 36907
+ }
+}

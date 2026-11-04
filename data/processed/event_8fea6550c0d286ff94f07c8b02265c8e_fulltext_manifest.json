@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Поездки, встречи, выступления В. Путина",
+  "year": 2025,
+  "week": 38,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Поездки Путина»",
+   "«Путин – встречи»",
+   "«встреча Путина в Пекине»",
+   "«Путин посетил саммит в Китае»",
+   "«поездка Путина в Китай»",
+   "«пресс-конференция Путина в декабре»",
+   "«приезд Путина в Пермь»",
+   "«Путин приехал в Пермь, пообещал приехать на следующий год»"
+  ],
+  "event_id": "8fea6550c0d286ff94f07c8b02265c8e"
+ },
+ "window": {
+  "match_start": "2025-09-12",
+  "match_end_exclusive": "2025-10-02"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.53,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 448,
+  "embedded_pool": 45591,
+  "window_posts": 45592
+ }
+}

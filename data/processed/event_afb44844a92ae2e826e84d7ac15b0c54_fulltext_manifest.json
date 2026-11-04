@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Аварии, несчастные случаи, пожары",
+  "year": 2025,
+  "week": 38,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Авария в городе»",
+   "«в Казани утонул катер с людьми»",
+   "«гибель людей на канатной дороге на горе Эльбрус»",
+   "«много аварий на дорогах»",
+   "«пожар»",
+   "«происшествия разные»",
+   "«ДТП на МКАДе»"
+  ],
+  "event_id": "afb44844a92ae2e826e84d7ac15b0c54"
+ },
+ "window": {
+  "match_start": "2025-09-12",
+  "match_end_exclusive": "2025-10-02"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 1.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 199,
+  "embedded_pool": 45591,
+  "window_posts": 45592
+ }
+}

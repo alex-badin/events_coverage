@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "Инфляция, рост цен",
+  "year": 2025,
+  "week": 44,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«О повышении цен на всё»",
+   "«повышение цен на продукты и ЖКХ»",
+   "«хлеб подорожал, молоко – всё подорожало: как выживать пенсионерам?»",
+   "«поднятие цен»"
+  ],
+  "event_id": "7612beb056541f6cc9b1c5cbfcf81dcf"
+ },
+ "window": {
+  "match_start": "2025-10-24",
+  "match_end_exclusive": "2025-11-13"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.47,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 268,
+  "embedded_pool": 39216,
+  "window_posts": 39217
+ }
+}

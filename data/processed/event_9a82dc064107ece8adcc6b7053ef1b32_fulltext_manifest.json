@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "Инфляция, рост цен",
+  "year": 2026,
+  "week": 14,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Повышение всего»",
+   "«подорожают коммунальные услуги»",
+   "«рост цен»",
+   "«цены растут на бензин»"
+  ],
+  "event_id": "9a82dc064107ece8adcc6b7053ef1b32"
+ },
+ "window": {
+  "match_start": "2026-03-27",
+  "match_end_exclusive": "2026-04-16"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.51,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 259,
+  "embedded_pool": 38784,
+  "window_posts": 38786
+ }
+}

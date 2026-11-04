@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Погода, природные катаклизмы",
+  "year": 2025,
+  "week": 28,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Аномальная жара»",
+   "«ветер, и дерево упало»",
+   "«жаркая погода, её перепады»",
+   "«катаклизмы в природе»",
+   "«наводнение в Петербурге»",
+   "«пожар на Ставрополье»",
+   "«ураган в области»"
+  ],
+  "event_id": "033698c148b2a19e4e23c31ae69b2ef9"
+ },
+ "window": {
+  "match_start": "2025-07-04",
+  "match_end_exclusive": "2025-07-24"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.33,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1148,
+  "embedded_pool": 44063,
+  "window_posts": 44063
+ }
+}

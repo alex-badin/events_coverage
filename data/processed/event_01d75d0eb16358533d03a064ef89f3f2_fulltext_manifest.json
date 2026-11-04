@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Криминальные события",
+  "year": 2025,
+  "week": 22,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«В Кучино с одного удара убили человека в бытовой ситуации»",
+   "«девушку повесили на забор, и она умерла»",
+   "«соседа убили молодого»",
+   "«убил нашего медика мигрант»"
+  ],
+  "event_id": "01d75d0eb16358533d03a064ef89f3f2"
+ },
+ "window": {
+  "match_start": "2025-05-23",
+  "match_end_exclusive": "2025-06-12"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 1.01,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 0,
+  "embedded_pool": 45522,
+  "window_posts": 45523
+ }
+}

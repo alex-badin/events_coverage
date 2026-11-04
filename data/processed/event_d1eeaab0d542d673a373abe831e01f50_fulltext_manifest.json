@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2025,
+  "week": 24,
+  "fom_percentage": 8.0,
+  "quotes": [
+   "«Атака беспилотников на Россию»",
+   "«атака дронов»",
+   "«атаки украинских дронов на наших людей»",
+   "«беспилотник в нашем городе»",
+   "«атака на Энгельс»",
+   "«в Татарстане дроны»",
+   "«беспилотники в Чебоксарах, Зеленограде, над Москвой»"
+  ],
+  "event_id": "d1eeaab0d542d673a373abe831e01f50"
+ },
+ "window": {
+  "match_start": "2025-06-06",
+  "match_end_exclusive": "2025-06-26"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.13,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1773,
+  "embedded_pool": 50693,
+  "window_posts": 50694
+ }
+}

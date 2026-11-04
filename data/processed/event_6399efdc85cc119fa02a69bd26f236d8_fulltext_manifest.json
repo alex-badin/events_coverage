@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:27",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2025,
+  "week": 36,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Атака дронов»",
+   "«беспилотники летели, нападение на завод»",
+   "«дроны в Самаре, над Ульяновском, в Татарстане»",
+   "«дроны волнуют»",
+   "«участились атаки»"
+  ],
+  "event_id": "6399efdc85cc119fa02a69bd26f236d8"
+ },
+ "window": {
+  "match_start": "2025-08-29",
+  "match_end_exclusive": "2025-09-18"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.41,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1301,
+  "embedded_pool": 45735,
+  "window_posts": 45735
+ }
+}

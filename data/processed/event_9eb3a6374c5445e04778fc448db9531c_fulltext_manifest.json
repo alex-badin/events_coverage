@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:32",
+ "event": {
+  "name": "Рост цен, тарифов",
+  "year": 2026,
+  "week": 3,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«ЖКХ – повышение»",
+   "«машины подорожали»",
+   "«повышение платежей ЖКУ с января»",
+   "«повышение цен»",
+   "«предстоящий рост цен»"
+  ],
+  "event_id": "9eb3a6374c5445e04778fc448db9531c"
+ },
+ "window": {
+  "match_start": "2026-01-09",
+  "match_end_exclusive": "2026-01-29"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.51,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 225,
+  "embedded_pool": 37311,
+  "window_posts": 37311
+ }
+}

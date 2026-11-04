@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Конфликт России и Азербайджана",
+  "year": 2025,
+  "week": 27,
+  "fom_percentage": 6.0,
+  "quotes": [
+   "«Обострение отношений с Азербайджаном»",
+   "«азербайджанский криминал в России»",
+   "«азербайджанцы в Екатеринбурге»",
+   "«азерскую мафию начали в Екатеринбурге щемить»",
+   "«арест азербайджанской диаспоры»",
+   "«арест журналистов в Азербайджане»",
+   "«арестовывать начали в Азербайджане наших»"
+  ],
+  "event_id": "70630f316246f72f3f509d53816bc0f0"
+ },
+ "window": {
+  "match_start": "2025-06-27",
+  "match_end_exclusive": "2025-07-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.14,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1556,
+  "embedded_pool": 43419,
+  "window_posts": 43419
+ }
+}

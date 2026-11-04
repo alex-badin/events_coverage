@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2025,
+  "week": 29,
+  "fom_percentage": 7.0,
+  "quotes": [
+   "«Атаки БПЛА по всей России»",
+   "«беспилотники на Москву летают»",
+   "«бомбёжки Воронежа дроном, и больше всего люди пострадали»",
+   "«бомбили Смоленск – сбили 17 БПЛА; на Рудню прилетели, на нефтебазу, но промахнулись»",
+   "«БПЛА в Ленинградской области»",
+   "«в Ижевске беспилотники летали»",
+   "«продолжаются в России обстрелы дронами, люди гибнут»"
+  ],
+  "event_id": "5d86da77303a41745211f4d37e739110"
+ },
+ "window": {
+  "match_start": "2025-07-11",
+  "match_end_exclusive": "2025-07-31"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.29,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2391,
+  "embedded_pool": 44115,
+  "window_posts": 44115
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2025,
+  "week": 46,
+  "fom_percentage": 18.0,
+  "quotes": [
+   "«Военные новости»",
+   "«военная операция на Украине»",
+   "«интересуют события СВО»",
+   "«как действует наша армия на СВО»",
+   "«на СВО взяли Красноармейск в окружение»",
+   "«наши победы на СВО»",
+   "«окружение Купянска»",
+   "«продвижение войск на СВО»",
+   "«сводки с фронта»",
+   "«следим за СВО»",
+   "«я смотрю, что происходит на войне»"
+  ],
+  "event_id": "d66469867ae5abaf01e83cc684bf2e66"
+ },
+ "window": {
+  "match_start": "2025-11-07",
+  "match_end_exclusive": "2025-11-27"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.01,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2711,
+  "embedded_pool": 39557,
+  "window_posts": 39558
+ }
+}

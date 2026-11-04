@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Военные действия в Курской области",
+  "year": 2025,
+  "week": 18,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Освобождение Курской области от нацистов украинских»",
+   "«что Курскую область забрали. Радость!»",
+   "«выгнали врага с Курской области»"
+  ],
+  "event_id": "1d3bcb481db2e9ca86b7093f57497d7f"
+ },
+ "window": {
+  "match_start": "2025-04-25",
+  "match_end_exclusive": "2025-05-15"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.04,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1247,
+  "embedded_pool": 42219,
+  "window_posts": 42222
+ }
+}

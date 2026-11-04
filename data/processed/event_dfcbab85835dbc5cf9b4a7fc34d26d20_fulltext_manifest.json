@@ -1,0 +1,45 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2025,
+  "week": 42,
+  "fom_percentage": 17.0,
+  "quotes": [
+   "«Информация об СВО»",
+   "«слежу за СВО»",
+   "«на СВО как идёт»",
+   "«наши солдаты продвигаются вперёд»",
+   "«новости о бойцах на передовой»",
+   "«информация о ходе СВО»",
+   "«продвижение на фронте»",
+   "«СВО: наши продвигаются, рады»",
+   "«сводки с фронта каждый день»",
+   "«события на СВО»",
+   "«ход СВО»"
+  ],
+  "event_id": "dfcbab85835dbc5cf9b4a7fc34d26d20"
+ },
+ "window": {
+  "match_start": "2025-10-10",
+  "match_end_exclusive": "2025-10-30"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.06,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2246,
+  "embedded_pool": 42290,
+  "window_posts": 42291
+ }
+}

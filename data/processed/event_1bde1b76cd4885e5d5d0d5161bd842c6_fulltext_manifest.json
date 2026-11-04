@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Аварии, пожары",
+  "year": 2025,
+  "week": 27,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«В городе Йошкар-Ола было ДТП – их несколько было»",
+   "«вчера было четыре аварии на Коммунистической»",
+   "«выпадение детей из окон»",
+   "«дом в Красноярске провалился под землю – размыло грунт»"
+  ],
+  "event_id": "1bde1b76cd4885e5d5d0d5161bd842c6"
+ },
+ "window": {
+  "match_start": "2025-06-27",
+  "match_end_exclusive": "2025-07-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 1.01,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 0,
+  "embedded_pool": 43419,
+  "window_posts": 43419
+ }
+}

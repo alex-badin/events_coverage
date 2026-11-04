@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Криминальные события",
+  "year": 2025,
+  "week": 12,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Убийство мужчины на 8 Марта»",
+   "«девочка столкнулась с мошенничеством»",
+   "«детей нашли в пруду, криминальные новости»"
+  ],
+  "event_id": "4d3e5a91e2d704264f44ef3f9360fdfb"
+ },
+ "window": {
+  "match_start": "2025-03-14",
+  "match_end_exclusive": "2025-04-03"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.97,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 115,
+  "embedded_pool": 44637,
+  "window_posts": 44638
+ }
+}

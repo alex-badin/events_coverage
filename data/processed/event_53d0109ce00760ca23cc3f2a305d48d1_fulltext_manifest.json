@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Договорённость об обмене пленными по формуле «1000 на 1000»",
+  "year": 2025,
+  "week": 20,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Вчерашнее решение по обмену на СВО: 1000 на 1000»",
+   "«договор: 1000 пленных на 1000 поменяем»",
+   "«ждём обмена с 1000 на 1000, интересно»"
+  ],
+  "event_id": "53d0109ce00760ca23cc3f2a305d48d1"
+ },
+ "window": {
+  "match_start": "2025-05-09",
+  "match_end_exclusive": "2025-05-29"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.05,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1027,
+  "embedded_pool": 45488,
+  "window_posts": 45490
+ }
+}

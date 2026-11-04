@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:34",
+ "event": {
+  "name": "Аварии, пожары, несчастные случаи",
+  "year": 2026,
+  "week": 11,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Девочка упала с 18 этажа»",
+   "«ДТП на пересечении железнодорожных путей»",
+   "«людей сбивают на дорогах, снег с крыш заваливается на людей»",
+   "«мальчики утонули в Звенигороде»"
+  ],
+  "event_id": "e9ac75bb4ae91bd87fd1001227c5bdf7"
+ },
+ "window": {
+  "match_start": "2026-03-06",
+  "match_end_exclusive": "2026-03-26"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.99,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 229,
+  "embedded_pool": 39685,
+  "window_posts": 39685
+ }
+}

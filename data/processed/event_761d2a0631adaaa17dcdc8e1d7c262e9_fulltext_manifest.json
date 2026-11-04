@@ -1,0 +1,46 @@
+{
+ "generated_at": "2026-11-04T14:25:34",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2026,
+  "week": 10,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Атаки беспилотников»",
+   "«беспилотная и ракетная атака»",
+   "«беспилотники в Саратове»",
+   "«прилёт дрона в Чепецк, в завод»",
+   "«беспилотники – Чепецк»",
+   "«беспилотники, ракетная атака – задолбали»",
+   "«воздушная тревога в Самаре: ракеты полетели»",
+   "«звук сирены»",
+   "«летают беспилотники»",
+   "«прилёт в Новороссийске»",
+   "«ракетная атака на Чебоксары»",
+   "«сообщения о БПЛА»"
+  ],
+  "event_id": "761d2a0631adaaa17dcdc8e1d7c262e9"
+ },
+ "window": {
+  "match_start": "2026-02-27",
+  "match_end_exclusive": "2026-03-19"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.31,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1463,
+  "embedded_pool": 47400,
+  "window_posts": 47402
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Погода, природные катаклизмы",
+  "year": 2025,
+  "week": 22,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Обещания синоптиков по плохой погоде подтвердились»",
+   "«пожары в Бурятии»",
+   "«пожары в тайге»",
+   "«пожары во многих местах страны»",
+   "«пожары, наводнения»"
+  ],
+  "event_id": "93cafea86abaeb994c6d593f11a2beeb"
+ },
+ "window": {
+  "match_start": "2025-05-23",
+  "match_end_exclusive": "2025-06-12"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.27,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 291,
+  "embedded_pool": 45522,
+  "window_posts": 45523
+ }
+}

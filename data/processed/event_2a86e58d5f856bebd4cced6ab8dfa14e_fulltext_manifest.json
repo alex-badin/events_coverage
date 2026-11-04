@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2025,
+  "week": 21,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Атаки беспилотников на российские города»",
+   "«атаки БПЛА»",
+   "«беспилотники везде и жертвы, с ними связанные»",
+   "«атака на Елец»",
+   "«массовый налёт дронов в Москву и Подмосковье: три дня аэропорты работали с сильными перебоями»"
+  ],
+  "event_id": "2a86e58d5f856bebd4cced6ab8dfa14e"
+ },
+ "window": {
+  "match_start": "2025-05-16",
+  "match_end_exclusive": "2025-06-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.06,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2237,
+  "embedded_pool": 45624,
+  "window_posts": 45624
+ }
+}

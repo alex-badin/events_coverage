@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Переговоры в Эр-Рияде на тему прекращения боевых действий между Россией и Украиной",
+  "year": 2025,
+  "week": 13,
+  "fom_percentage": 9.0,
+  "quotes": [
+   "«Переговоры в Саудовской Аравии»",
+   "«переговоры стран-участниц конфликта»",
+   "«переговоры США, России, Украины»",
+   "«переговоры мирные, Америка с нашими договаривается»",
+   "«договорнячок между США и Россией. Пытаются, торгуются»",
+   "«переговоры по мирному соглашению в конфликте с Украиной»"
+  ],
+  "event_id": "868f36e67d72dc8cf4e85b77b6a3f8e7"
+ },
+ "window": {
+  "match_start": "2025-03-21",
+  "match_end_exclusive": "2025-04-10"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.02,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1627,
+  "embedded_pool": 43016,
+  "window_posts": 43019
+ }
+}

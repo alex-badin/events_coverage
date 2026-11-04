@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Возможные поставки дальнобойных ракет США Украине",
+  "year": 2025,
+  "week": 41,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Поставка Украине “Томагавков”»",
+   "«США хотят поставлять Украине стратегическое оружие»",
+   "«США собираются дать Украине дальнобойное оружие»"
+  ],
+  "event_id": "5b690e75f2f2aef604c64a01505a62df"
+ },
+ "window": {
+  "match_start": "2025-10-03",
+  "match_end_exclusive": "2025-10-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.06,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1371,
+  "embedded_pool": 42006,
+  "window_posts": 42007
+ }
+}

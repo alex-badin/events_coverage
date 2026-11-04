@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной",
+  "year": 2025,
+  "week": 22,
+  "fom_percentage": 11.0,
+  "quotes": [
+   "«В понедельник – переговоры»",
+   "«вопросы по перемирию на Украине»",
+   "«как проходят переговоры в Турции»",
+   "«в Стамбуле договорённости. Куда они вырулят?»",
+   "«переговорный процесс в Стамбуле»"
+  ],
+  "event_id": "c8b66e321eb537397afc561cc0da3bd6"
+ },
+ "window": {
+  "match_start": "2025-05-23",
+  "match_end_exclusive": "2025-06-12"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.01,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2811,
+  "embedded_pool": 45522,
+  "window_posts": 45523
+ }
+}

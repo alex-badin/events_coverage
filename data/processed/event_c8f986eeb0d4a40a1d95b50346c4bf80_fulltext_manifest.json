@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Телефонный разговор В. Путина и Д. Трампа",
+  "year": 2025,
+  "week": 42,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Телефонный звонок Путина Трампу»",
+   "«вчерашние переговоры Путина с Трампом»",
+   "«переговоры Путина с Трампом по телефону»",
+   "«разговор Путина и Трампа по телефону»"
+  ],
+  "event_id": "c8f986eeb0d4a40a1d95b50346c4bf80"
+ },
+ "window": {
+  "match_start": "2025-10-10",
+  "match_end_exclusive": "2025-10-30"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.36,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1398,
+  "embedded_pool": 42290,
+  "window_posts": 42291
+ }
+}

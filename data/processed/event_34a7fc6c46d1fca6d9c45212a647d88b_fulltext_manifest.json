@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:32",
+ "event": {
+  "name": "Отключения света, отопления и воды",
+  "year": 2026,
+  "week": 5,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«В Бодайбо вышли из строя четыре котельных из семи»",
+   "«Бодайбо замёрзло из-за аварии в котельной»",
+   "«обесточивание Белгорода»",
+   "«холод в квартирах»",
+   "«электричества нет в Мурманске»"
+  ],
+  "event_id": "34a7fc6c46d1fca6d9c45212a647d88b"
+ },
+ "window": {
+  "match_start": "2026-01-23",
+  "match_end_exclusive": "2026-02-12"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.51,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 547,
+  "embedded_pool": 37581,
+  "window_posts": 37582
+ }
+}

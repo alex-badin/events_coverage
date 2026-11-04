@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Контакты между Россией и США",
+  "year": 2025,
+  "week": 16,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Переговоры с Америкой»",
+   "«наладился переговорный процесс России с США»",
+   "«переговоры Москвы и США»",
+   "«переговоры Путина с Трампом»"
+  ],
+  "event_id": "c8aa60e5c0fbf11201df2c449d57737a"
+ },
+ "window": {
+  "match_start": "2025-04-11",
+  "match_end_exclusive": "2025-05-01"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.79,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1318,
+  "embedded_pool": 41424,
+  "window_posts": 41428
+ }
+}

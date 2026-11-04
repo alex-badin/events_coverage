@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "Обращение блогера Виктории Бони к власти, его последствия",
+  "year": 2026,
+  "week": 17,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Боня высказала всю правду: шумиха вокруг этого»",
+   "«Боня с Соловьёвым – конфликт»",
+   "«Виктория Боня выступила на народ»",
+   "«обращение Виктории Бони в адрес власти – пока нет ответа»"
+  ],
+  "event_id": "671ef9bdbe6c2bf12b2f74bf2b2337a7"
+ },
+ "window": {
+  "match_start": "2026-04-17",
+  "match_end_exclusive": "2026-05-07"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.28,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 163,
+  "embedded_pool": 36907,
+  "window_posts": 36907
+ }
+}

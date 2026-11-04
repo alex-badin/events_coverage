@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "СВО в целом",
+  "year": 2026,
+  "week": 15,
+  "fom_percentage": 16.0,
+  "quotes": [
+   "«Военная операция»",
+   "«военные действия на Украине»",
+   "«гибель солдат на СВО»",
+   "«освобождение наших солдат из плена»",
+   "«пасхальное перемирие»",
+   "«про СВО»",
+   "«про Украину – наступление наших войск»"
+  ],
+  "event_id": "26271809b19e9327b030647a3549eb0d"
+ },
+ "window": {
+  "match_start": "2026-04-03",
+  "match_end_exclusive": "2026-04-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.12,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2423,
+  "embedded_pool": 38320,
+  "window_posts": 38321
+ }
+}

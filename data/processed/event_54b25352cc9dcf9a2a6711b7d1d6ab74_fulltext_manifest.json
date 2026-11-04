@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2025,
+  "week": 15,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Атаки дронов по нашим городам»",
+   "«беспилотники в крае»",
+   "«беспилотная опасность в Ставропольском крае и Ростове»",
+   "«в Москве сбивали беспилотники, и в Оренбурге»",
+   "«дроны в Авиагородке у нас»",
+   "«налёты беспилотников, особенно на Белгородскую область»"
+  ],
+  "event_id": "54b25352cc9dcf9a2a6711b7d1d6ab74"
+ },
+ "window": {
+  "match_start": "2025-04-04",
+  "match_end_exclusive": "2025-04-24"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.12,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1734,
+  "embedded_pool": 41139,
+  "window_posts": 41144
+ }
+}

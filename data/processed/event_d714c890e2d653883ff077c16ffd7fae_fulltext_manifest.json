@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Предстоящая встреча В. Путина и Д. Трампа на Аляске",
+  "year": 2025,
+  "week": 32,
+  "fom_percentage": 10.0,
+  "quotes": [
+   "«Возможная встреча Путина и Трампа»",
+   "«встреча будущая Путина с Трампом»",
+   "«встреча двух президентов»",
+   "«меня поразило, почему встреча Путина и Трампа будет на Аляске»",
+   "«планируется встреча Путина с Трампом»",
+   "«подготовка к переговорам Трампа и Путина»",
+   "«саммит на Аляске»"
+  ],
+  "event_id": "d714c890e2d653883ff077c16ffd7fae"
+ },
+ "window": {
+  "match_start": "2025-08-01",
+  "match_end_exclusive": "2025-08-21"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.01,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2957,
+  "embedded_pool": 46833,
+  "window_posts": 46836
+ }
+}

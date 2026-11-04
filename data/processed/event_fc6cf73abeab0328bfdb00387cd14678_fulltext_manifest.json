@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "СВО в целом",
+  "year": 2026,
+  "week": 14,
+  "fom_percentage": 16.0,
+  "quotes": [
+   "«Военные действия: вся родня на Украине»",
+   "«война на Украине»",
+   "«Донбасс: война»",
+   "«Луганская республика уже наша, дошли до границы – очень приятно хотя бы в этом»",
+   "«наши бойцы долбят, давят фашизм и возвращают наши земли, как это было исконно»",
+   "«наши продвигаются на СВО»",
+   "«сводки с фронта»"
+  ],
+  "event_id": "fc6cf73abeab0328bfdb00387cd14678"
+ },
+ "window": {
+  "match_start": "2026-03-27",
+  "match_end_exclusive": "2026-04-16"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.01,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2885,
+  "embedded_pool": 38784,
+  "window_posts": 38786
+ }
+}

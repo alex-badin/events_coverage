@@ -1,0 +1,45 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2026,
+  "week": 13,
+  "fom_percentage": 6.0,
+  "quotes": [
+   "«Атака БПЛА»",
+   "«атака на порт в Петербурге»",
+   "«атака на порт Усть-Луга, Приморск»",
+   "«беспилотники долетают до Москвы»",
+   "«беспилотники, гибель людей в Курске, Белгороде, Смоленске»",
+   "«дроны в Самаре»",
+   "«дроны долетели до Череповца»",
+   "«дроны летали на “Северсталь”»",
+   "«дроны над Башкирией»",
+   "«обстрел наших территории сильный с Украины»",
+   "«обстрел: Хомутовский и Рыльский районы Курской области – много пострадавших»"
+  ],
+  "event_id": "9db3b65f43813353ad053df784b348f1"
+ },
+ "window": {
+  "match_start": "2026-03-20",
+  "match_end_exclusive": "2026-04-09"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.52,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1954,
+  "embedded_pool": 38871,
+  "window_posts": 38873
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2025,
+  "week": 24,
+  "fom_percentage": 20.0,
+  "quotes": [
+   "«Война идёт с Украиной»",
+   "«война, СВО»",
+   "«действия СВО»",
+   "«новости про СВО»",
+   "«СВО, продвижение»",
+   "«СВО, ребята хорошо работают»",
+   "«победа на Донбассе»",
+   "«успехи нашей армии на СВО»"
+  ],
+  "event_id": "b48489b544ad524618748edaf1b2fea7"
+ },
+ "window": {
+  "match_start": "2025-06-06",
+  "match_end_exclusive": "2025-06-26"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 3000,
+  "embedded_pool": 50693,
+  "window_posts": 50694
+ }
+}

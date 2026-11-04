@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2026,
+  "week": 17,
+  "fom_percentage": 15.0,
+  "quotes": [
+   "«Атака БПЛА, их падение на людей»",
+   "«атаки дронов на нашу Родину»",
+   "«в Самаре, Сызрани БПЛА, в Саратове сегодня человек погиб»",
+   "«в Сызрани атаковали беспилотники жилые дома»",
+   "«в Туапсе взрыв на НПЗ от дронов»",
+   "«людей убивают беспилотники»",
+   "«на Череповец дроны летали всю неделю»",
+   "«разлив нефти из-за дронов»",
+   "«сбили дрон»"
+  ],
+  "event_id": "c619a6f7893340ebbf1bf6f587f8b26d"
+ },
+ "window": {
+  "match_start": "2026-04-17",
+  "match_end_exclusive": "2026-05-07"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.41,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2465,
+  "embedded_pool": 36907,
+  "window_posts": 36907
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "Погода, природные катаклизмы в России",
+  "year": 2026,
+  "week": 15,
+  "fom_percentage": 7.0,
+  "quotes": [
+   "«Дагестан: наводнение»",
+   "«в Дагестане потоп»",
+   "«дожди, наводнения»",
+   "«катаклизмы в Дагестане»",
+   "«наводнение в Чечне»",
+   "«паводок в Дагестане: там дамбу прорвало»"
+  ],
+  "event_id": "f4d67042ba97413e24400ed5b377c10d"
+ },
+ "window": {
+  "match_start": "2026-04-03",
+  "match_end_exclusive": "2026-04-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.97,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 829,
+  "embedded_pool": 38320,
+  "window_posts": 38321
+ }
+}

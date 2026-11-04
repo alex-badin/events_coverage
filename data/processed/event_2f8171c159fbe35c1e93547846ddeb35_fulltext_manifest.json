@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:32",
+ "event": {
+  "name": "Убийство девятилетнего мальчика в Санкт-Петербурге",
+  "year": 2026,
+  "week": 6,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«В Санкт-Петербурге пропал мальчик»",
+   "«мальчика в Питере похитили»",
+   "«мужик убил девятилетнего мальчика»",
+   "«педофил украл ребенка и утопил»"
+  ],
+  "event_id": "2f8171c159fbe35c1e93547846ddeb35"
+ },
+ "window": {
+  "match_start": "2026-01-30",
+  "match_end_exclusive": "2026-02-19"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.37,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 324,
+  "embedded_pool": 37705,
+  "window_posts": 37706
+ }
+}

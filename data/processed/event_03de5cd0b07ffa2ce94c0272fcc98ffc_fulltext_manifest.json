@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:32",
+ "event": {
+  "name": "Действия США, Д. Трампа",
+  "year": 2026,
+  "week": 4,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Американцы завоёвывают»",
+   "«действия Америки, Трампа»",
+   "«Трамп подминает весь мир»",
+   "«поведение Трампа»",
+   "«Трамп и его действия»",
+   "«Трамп чудит»",
+   "«Трамп шевелит Европу»"
+  ],
+  "event_id": "03de5cd0b07ffa2ce94c0272fcc98ffc"
+ },
+ "window": {
+  "match_start": "2026-01-16",
+  "match_end_exclusive": "2026-02-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.06,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2677,
+  "embedded_pool": 38170,
+  "window_posts": 38170
+ }
+}

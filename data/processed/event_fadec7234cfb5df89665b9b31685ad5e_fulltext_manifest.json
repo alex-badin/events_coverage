@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Военный конфликт Израиля и Ирана, атака США на Иран",
+  "year": 2025,
+  "week": 27,
+  "fom_percentage": 5.0,
+  "quotes": [
+   "«Бомбардировки Израиля и Ирана»",
+   "«боялся, что война на Востоке»",
+   "«Израиль с Ираном – война»",
+   "«Израиль – победа арабов»",
+   "«конфликт Ирана с Израилем»",
+   "«прекращение войны Ирана с Израилем»",
+   "«Иран – Трампом сброшенные бомбы»",
+   "«удары США по Ирану»"
+  ],
+  "event_id": "fadec7234cfb5df89665b9b31685ad5e"
+ },
+ "window": {
+  "match_start": "2025-06-27",
+  "match_end_exclusive": "2025-07-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.05,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 785,
+  "embedded_pool": 43419,
+  "window_posts": 43419
+ }
+}

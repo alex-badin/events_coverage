@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:33",
+ "event": {
+  "name": "Рост цен, тарифов",
+  "year": 2026,
+  "week": 7,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Огурцы подорожали»",
+   "«повышение тарифов ЖКХ»",
+   "«поднятие квартплаты в два раза»",
+   "«поднятие цен на квартплату: о людях не думают»",
+   "«рост цен и оплата ЖКХ»",
+   "«цены на ЖКХ выросли»"
+  ],
+  "event_id": "96a067478a466fb329c37e08dac25e95"
+ },
+ "window": {
+  "match_start": "2026-02-06",
+  "match_end_exclusive": "2026-02-26"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.52,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 209,
+  "embedded_pool": 37041,
+  "window_posts": 37042
+ }
+}

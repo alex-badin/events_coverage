@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "Криминальные события, аресты",
+  "year": 2026,
+  "week": 15,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Арест коррупционеров»",
+   "«девушку нашли мёртвой в Воронеже: тело уже зиму пережило»",
+   "«осудили Смирнова – бывшего губернатора – на 14 лет»",
+   "«случай в Добрянке: ученик зарезал учительницу»",
+   "«стрельба в школе»"
+  ],
+  "event_id": "c0fd100e3b1f2b2fe813d0573a4e314f"
+ },
+ "window": {
+  "match_start": "2026-04-03",
+  "match_end_exclusive": "2026-04-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.04,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 785,
+  "embedded_pool": 38320,
+  "window_posts": 38321
+ }
+}

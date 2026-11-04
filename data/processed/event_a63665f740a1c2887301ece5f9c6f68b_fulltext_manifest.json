@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Договорённости о временном прекращении огня, их нарушение",
+  "year": 2025,
+  "week": 16,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Мораторий, который был введён и не выполнялся на энергосберегающие объекты»",
+   "«Украина не выполняет обещаний и бомбит наши энергообъекты»",
+   "«перемирие России с Украиной на пасхальные дни»",
+   "«перемирие с Украиной на период Пасхи на СВО»"
+  ],
+  "event_id": "a63665f740a1c2887301ece5f9c6f68b"
+ },
+ "window": {
+  "match_start": "2025-04-11",
+  "match_end_exclusive": "2025-05-01"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.04,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1706,
+  "embedded_pool": 41424,
+  "window_posts": 41428
+ }
+}

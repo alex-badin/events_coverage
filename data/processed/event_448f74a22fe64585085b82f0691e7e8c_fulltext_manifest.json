@@ -1,0 +1,36 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Криминальные события",
+  "year": 2025,
+  "week": 24,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Женщина зарубила троих детей»",
+   "«мужчина убил человека за собаку»"
+  ],
+  "event_id": "448f74a22fe64585085b82f0691e7e8c"
+ },
+ "window": {
+  "match_start": "2025-06-06",
+  "match_end_exclusive": "2025-06-26"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 1.01,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 0,
+  "embedded_pool": 50693,
+  "window_posts": 50694
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:31",
+ "event": {
+  "name": "Блокировка Роскомнадзором звонков через мессенджеры Telegram и WhatsApp, других приложений",
+  "year": 2025,
+  "week": 49,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Блокировка Вотсап, Фейстайм»",
+   "«блокировка Роскомнадзором нескольких сайтов и программ»",
+   "«блокировка соцсетей»",
+   "«заблокировали Ютуб и Телеграм»",
+   "«отключение Вотсап и Роблокс»",
+   "«сайт закрыли»"
+  ],
+  "event_id": "baeaeb34cd4e1003221b410e2b5dcba9"
+ },
+ "window": {
+  "match_start": "2025-11-28",
+  "match_end_exclusive": "2025-12-18"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.11,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 570,
+  "embedded_pool": 40071,
+  "window_posts": 40071
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Аварии, пожары, несчастные случаи",
+  "year": 2025,
+  "week": 30,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Несчастные случаи с детьми»",
+   "«автобус перевернулся в Якутии»",
+   "«ДТП – самокаты»",
+   "«пожар в моём городе»",
+   "«вахтовка упала с обрыва, и погибли люди»",
+   "«шахта взорвалась»"
+  ],
+  "event_id": "8aecfe38c79442f587225f9ccd190fb3"
+ },
+ "window": {
+  "match_start": "2025-07-18",
+  "match_end_exclusive": "2025-08-07"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.98,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 96,
+  "embedded_pool": 44152,
+  "window_posts": 44153
+ }
+}

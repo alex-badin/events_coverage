@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "СВО в целом",
+  "year": 2026,
+  "week": 17,
+  "fom_percentage": 17.0,
+  "quotes": [
+   "«Военное положение – СВО»",
+   "«всё по Украине, военная обстановка»",
+   "«наши продвигаются, ДНР освободили полностью»",
+   "«новости о СВО»",
+   "«положение дел на Украине»",
+   "«свои добиваются успехов»",
+   "«события на Украине, СВО»"
+  ],
+  "event_id": "ae806fd4e23ac0665091b643bdd67f31"
+ },
+ "window": {
+  "match_start": "2026-04-17",
+  "match_end_exclusive": "2026-05-07"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.11,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2723,
+  "embedded_pool": 36907,
+  "window_posts": 36907
+ }
+}

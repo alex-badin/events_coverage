@@ -1,0 +1,36 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Отказ В. Зеленского от договоренности о прекращении огня 8–11 мая",
+  "year": 2025,
+  "week": 18,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Путин предложил прекращение огня, а Украина не прислушивается, не поддерживает»",
+   "«Зеленский отказался от перемирия на 9 Мая, от прекращения огня»"
+  ],
+  "event_id": "39bccf7b72ffcce22c38fb680c08d180"
+ },
+ "window": {
+  "match_start": "2025-04-25",
+  "match_end_exclusive": "2025-05-15"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.44,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 980,
+  "embedded_pool": 42219,
+  "window_posts": 42222
+ }
+}

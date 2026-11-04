@@ -1,0 +1,645 @@
+event_id,week,event,fom_percentage,cut_reader,cut,kept_posts,sample_labelled,sample_yes,sample_missing
+c71ebc1ce599aeeef085c67ce342555d,2025-W12,"СВО в целом, успехи российской армии",19.0,"gpt-6-luna, OpenAI API, effort low",0.23,2819,100,75,0
+f3d2c3fd93cb785a5799da32055d4d35,2025-W12,"Переговоры, встречи делегаций по прекращению огня на Украине",11.0,"gpt-6-luna, OpenAI API, effort low",0.11,2592,100,66,0
+34be36b58e789fb45e036f351e54615a,2025-W12,Телефонный разговор В. Путина с Д. Трампом,11.0,"gpt-6-luna, OpenAI API, effort low",0.53,919,100,58,0
+9448d7232a6fe3ce839e36c3f916c6bd,2025-W12,Военные действия в Курской области,5.0,"gpt-6-luna, OpenAI API, effort low",0.24,1850,100,71,0
+412c1567fc43ae72d49e122711949244,2025-W12,Обстрелы российских территорий,4.0,"gpt-6-luna, OpenAI API, effort low",0.13,2075,100,76,0
+0c6212bc49897862e7cbc440aaa32d53,2025-W12,"Пожары, наводнения в России",1.0,"gpt-6-luna, OpenAI API, effort low",0.31,149,77,5,0
+263e54c5c64b8aa27934d2e60c2c9e7f,2025-W12,События в секторе Газа,1.0,"gpt-6-luna, OpenAI API, effort low",0.02,577,82,43,0
+37e0e851af5fe4d7a2d0c880e8cd203f,2025-W12,Обмен военнопленными,1.0,"gpt-6-luna, OpenAI API, effort low",0.37,157,94,56,0
+4d3e5a91e2d704264f44ef3f9360fdfb,2025-W12,Криминальные события,1.0,"gpt-6-luna, OpenAI API, effort low",0.97,115,53,10,0
+cf92f43c78cf5791917962a1ca08cca0,2025-W13,"СВО в целом, успехи российской армии",21.0,"gpt-6-luna, OpenAI API, effort low",0.64,1296,100,32,0
+868f36e67d72dc8cf4e85b77b6a3f8e7,2025-W13,Переговоры в Эр-Рияде на тему прекращения боевых действий между Россией и Украиной,9.0,"gpt-6-luna, OpenAI API, effort low",0.02,1627,100,86,0
+b925b46eb207e7223493860c39486e21,2025-W13,Военные действия в Курской области,4.0,"gpt-6-luna, OpenAI API, effort low",0.15,1207,100,72,0
+4eec24f924bf93c59918d797647797ea,2025-W13,Обстрелы российских территорий,3.0,"gpt-6-luna, OpenAI API, effort low",0.29,1580,100,77,0
+ba2cdcbb226230ffed0af552862db930,2025-W13,Землетрясение в Юго-Восточной Азии,3.0,"gpt-6-luna, OpenAI API, effort low",0.16,977,73,57,0
+a2ed1c669b5f2637797e9cd640a69cd0,2025-W13,Гибель российских журналистов на Украине,2.0,"gpt-6-luna, OpenAI API, effort low",0.98,470,94,49,0
+520ab1e197174eaa184c97501ea2ac4c,2025-W13,Телефонный разговор В. Путина с Д. Трампом,2.0,"gpt-6-luna, OpenAI API, effort low",0.53,299,100,25,0
+622d030545a09ebf6d2712d219f42a04,2025-W13,"Аварии, несчастные случаи",1.0,"gpt-6-luna, OpenAI API, effort low",0.73,233,88,20,0
+444ed7dc1461702fe4232c18f66df1bd,2025-W13,Гибель российских туристов на батискафе в Египте,1.0,"gpt-6-luna, OpenAI API, effort low",0.56,315,42,19,0
+c2926fe878f7965884d310cfd36fb2a4,2025-W13,"Договорённости о временном прекращении огня, их нарушение",1.0,"gpt-6-luna, OpenAI API, effort low",0.03,1644,100,44,0
+22e40c6e85d7a16184d4893280c1533b,2025-W13,Поездка В. Путина в Мурманск,1.0,"gpt-6-luna, OpenAI API, effort low",0.25,388,100,67,0
+9e31a2d72e8721c1ebba93053a687ecc,2025-W14,"СВО в целом, успехи российской армии",23.0,"gpt-6-luna, OpenAI API, effort low",0.07,2518,100,60,0
+19bba0e9ebe301715ff6dff07a3880df,2025-W14,Переговоры с участием США о прекращении боевых действий между Россией и Украиной,7.0,"gpt-6-luna, OpenAI API, effort low",0.69,1217,100,42,0
+d8638a356ee4b311893e87dd55c4e590,2025-W14,Решения Д. Трампа об увеличении таможенных пошлин,3.0,"gpt-6-luna, OpenAI API, effort low",0.23,2363,100,65,0
+17288b3b60df0da9156016e2e66d26f1,2025-W14,Природные катаклизмы и аномалии в России,2.0,"gpt-6-luna, OpenAI API, effort low",0.01,1026,89,66,0
+9918930fa50cd3b8c9b207668f5b19c4,2025-W14,Обстрелы российских территорий,2.0,"gpt-6-luna, OpenAI API, effort low",0.11,1792,100,83,0
+c1f0700844697563e356839c2cf16510,2025-W14,Землетрясение в Юго-Восточной Азии,2.0,"gpt-6-luna, OpenAI API, effort low",0.13,1015,60,40,0
+b1dc53ba996c8942ec1e5b430a5f75aa,2025-W14,Аварии,1.0,"gpt-6-luna, OpenAI API, effort low",0.9,209,100,10,0
+1a3fedbd501d2df414889141cd843831,2025-W14,Криминальные события,1.0,"gpt-6-luna, OpenAI API, effort low",0.53,218,89,25,0
+9872ca83bc49ef69ee786ae8826a65b6,2025-W14,Рекорд А. Овечкина,1.0,"gpt-6-luna, OpenAI API, effort low",0.02,1002,97,67,0
+5e3aa1d7f5a06f91c966817d86e23896,2025-W14,Военные действия в Курской области,1.0,"gpt-6-luna, OpenAI API, effort low",0.0,3000,100,86,0
+15e1283c90551aa217afe95694af0729,2025-W14,Договорённости о частичном прекращении огня,1.0,"gpt-6-luna, OpenAI API, effort low",0.06,850,100,69,0
+e05f66b3a8f75998953851e6fc95b6b5,2025-W14,Телефонный разговор В. Путина и Д. Трампа,1.0,"gpt-6-luna, OpenAI API, effort low",0.35,189,96,9,0
+4360b97dc11cc79434d8f7754067b62d,2025-W14,"Рост цен, инфляция",1.0,"gpt-6-luna, OpenAI API, effort low",0.05,514,100,41,0
+09823feaac7e54ae86502c60ba5f2cb4,2025-W15,"СВО в целом, успехи российской армии",18.0,"gpt-6-luna, OpenAI API, effort low",0.0,3000,100,65,0
+b1e50a20693c8016592ef070453f4e2c,2025-W15,Переговоры в Эр-Рияде на тему прекращения боевых действий между Россией и Украиной,6.0,"gpt-6-luna, OpenAI API, effort low",1.01,0,100,0,0
+539dfb991ba4fc351690b7b767e65f58,2025-W15,Действия и высказывания Д. Трампа,4.0,"gpt-6-luna, OpenAI API, effort low",0.0,3000,100,94,0
+54b25352cc9dcf9a2a6711b7d1d6ab74,2025-W15,Обстрелы российских территорий,3.0,"gpt-6-luna, OpenAI API, effort low",0.12,1734,100,75,0
+6036fb98de729da811a5e244a644b868,2025-W15,Рекорд А. Овечкина,2.0,"gpt-6-luna, OpenAI API, effort low",0.53,777,100,56,0
+4b86c7a27620d84eaf89fa17e4ed02f2,2025-W15,Военные действия в Курской области,2.0,"gpt-6-luna, OpenAI API, effort low",0.01,1694,100,75,0
+6abea3ce2b2b65d0676231e794dfb35a,2025-W15,Природные катаклизмы и аномалии в России,2.0,"gpt-6-luna, OpenAI API, effort low",0.31,426,100,66,0
+a9b67a1fc18fd4ad3f3366a69857a549,2025-W15,Смерть рэпера Паши Техника,1.0,"gpt-6-luna, OpenAI API, effort low",0.22,293,90,43,0
+8f40a690d918e88b95b89cde47667c2a,2025-W15,Праздники,1.0,"gpt-6-luna, OpenAI API, effort low",0.61,146,83,27,0
+e13f23581fa1ee7c6dd23271855e3f7c,2025-W15,"Аварии, пожары, несчастные случаи",1.0,"gpt-6-luna, OpenAI API, effort low",1.01,0,100,0,0
+80055352f9ce07c9c248cbc862c48821,2025-W15,"Рост цен, инфляция",1.0,"gpt-6-luna, OpenAI API, effort low",0.0,3000,100,24,0
+f90126112604888384d2385284619cc4,2025-W15,Контакты между Россией и США,1.0,"gpt-6-luna, OpenAI API, effort low",0.51,1144,100,43,0
+63fd38bcb8cb360f82c207fbf27c6b30,2025-W15,Телефонный разговор В. Путина с Д. Трампом,1.0,"gpt-6-luna, OpenAI API, effort low",0.48,100,83,4,0
+8b1da6422e19db942a74cfc73e0ee0ca,2025-W15,Торговая война США с Китаем,1.0,"gpt-6-luna, OpenAI API, effort low",0.84,1089,100,28,0
+7ad079c130af029dddc78250d8a31ff1,2025-W15,Землетрясение в Юго-Восточной Азии,1.0,"gpt-6-luna, OpenAI API, effort low",0.48,83,41,19,0
+be899db87f486cca0606d291e37a54da,2025-W16,"СВО в целом, успехи российской армии",24.0,"gpt-6-luna, OpenAI API, effort low",0.08,2673,100,71,0
+c8aa60e5c0fbf11201df2c449d57737a,2025-W16,Контакты между Россией и США,4.0,"gpt-6-luna, OpenAI API, effort low",0.79,1318,100,31,0
+5267abe631057b1702fa187811cd0b33,2025-W16,Обстрелы российских территорий,3.0,"gpt-6-luna, OpenAI API, effort low",0.53,1134,100,49,0
+282ce0b47976bbe7ea7eecd8310a8592,2025-W16,Переговоры с участием США о прекращении боевых действий между Россией и Украиной,3.0,"gpt-6-luna, OpenAI API, effort low",0.0,3000,100,79,0
+9ad8f5ef0dfe185821379b0c808b659e,2025-W16,Праздники,2.0,"gpt-6-luna, OpenAI API, effort low",0.95,910,100,21,0
+8281675fc21b3055829f3458048619e4,2025-W16,Военные действия в Курской области,2.0,"gpt-6-luna, OpenAI API, effort low",0.06,1516,100,69,0
+f63cfbbe4e7faf3b083f41a376314696,2025-W16,Действия и высказывания Д. Трампа,1.0,"gpt-6-luna, OpenAI API, effort low",0.0,3000,100,85,0
+d9d69a520d00a63619c22140a0cf6bcb,2025-W16,Рекорд А. Овечкина,1.0,"gpt-6-luna, OpenAI API, effort low",0.44,135,47,24,1
+a63665f740a1c2887301ece5f9c6f68b,2025-W16,"Договорённости о временном прекращении огня, их нарушение",1.0,"gpt-6-luna, OpenAI API, effort low",0.04,1706,100,43,0
+f421e78c9a454b6aae72524aa486d2a4,2025-W16,Природные катаклизмы и аномалии в России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,69,100,8,0
+35e4f4c20bec3752ed6fab6bb321fd17,2025-W16,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.63,1214,100,2,0
+d8ea75d05b76f145d1c12a136ef7b07a,2025-W16,"Рост цен, инфляция",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.48,423,100,39,0
+119062a245347fd9078e439fd7b7baca,2025-W17,"СВО в целом, успехи российской армии",20.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,95,0
+b0bacfbb03ccd42f6f0b7eac9179fa59,2025-W17,Переговоры с участием США о прекращении боевых действий между Россией и Украиной,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2846,100,78,0
+bd69604e99f4ffb042fe94c89d946461,2025-W17,Военные действия в Курской области,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,1185,100,66,0
+b4a13182728948405c76dba21de08fd3,2025-W17,Смерть и похороны папы римского Франциска,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.12,1082,100,63,0
+191f838f4ed1231bbd4037015feb4188,2025-W17,Контакты между Россией и США,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,1812,100,81,0
+7bce246abbd52c4057ebcf2fd0a0bcc6,2025-W17,Обстрелы российских территорий,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.23,1850,100,69,0
+4f601ee94acf3a972a6b30b0d928ab79,2025-W17,Убийство генерал-лейтенанта Я. Москалика в Балашихе,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,581,66,43,0
+385700798005643d52925b6cb80e0201,2025-W17,Возгорание и детонация на складе боеприпасов в Киржачском районе,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.34,381,47,24,0
+ab06cb6fb619752e003bae58bfba852c,2025-W17,"Аварии, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.01,0,100,0,0
+7c7717a1df23b72ffe7ddcfdf0e79c59,2025-W17,"Договорённости о временном прекращении огня, их нарушение",1.0,"gpt-6-luna, OpenAI API, effort low",0.53,947,100,43,0
+d49a12f0ad78004028694d5ed103feec,2025-W17,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.39,1701,100,66,0
+594c6ff925fbaadcc03667e4541b90d0,2025-W17,Природные катаклизмы и аномалии в России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,829,100,78,0
+a39e59503c4a5ec18ab27f28755009c4,2025-W17,Землетрясение в Турции,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.43,117,36,14,0
+7dc744d5955002f4e988e87e971c2c26,2025-W18,"СВО в целом, успехи российской армии",19.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2767,100,93,0
+1765a95d68fa99ffbabe859646e49817,2025-W18,Переговоры с участием США о прекращении боевых действий между Россией и Украиной,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.31,2651,100,65,0
+1d3bcb481db2e9ca86b7093f57497d7f,2025-W18,Военные действия в Курской области,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,1247,100,85,0
+2f66a9a168674de760a3836f5f45b050,2025-W18,"Праздники, подготовка к 80-летию Победы",4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2746,100,72,0
+40f53b896265ca139e9a759bd440c7f9,2025-W18,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.29,1673,100,76,0
+39bccf7b72ffcce22c38fb680c08d180,2025-W18,Отказ В. Зеленского от договоренности о прекращении огня 8–11 мая,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.44,980,100,43,0
+362ccf27ea32b4b1c2662f91446b8ada,2025-W18,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,43,0
+0b71117f98c06588bb0856419e465bee,2025-W18,Вооружённый конфликт между Индией и Пакистаном,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,1173,100,69,0
+918e9e80d903c81f26611c496d0d3f13,2025-W18,Контакты между Россией и США,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.4,1699,100,55,0
+988facd6c21d26cd3f5b7fba8a0d9400,2025-W18,Аномальные снегопады в Москве и других городах,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.33,227,91,58,0
+78171ff268de5850c97d7654901cde08,2025-W18,Подписание соглашения между США и Украиной о полезных ископаемых,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.57,488,82,40,0
+c5ed4f78b65ffe69904efb733373532c,2025-W20,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,33.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,86,0
+20179bb957218b97053726a335ad5aaa,2025-W20,"СВО в целом, успехи российской армии",13.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2775,100,92,0
+416d4dab33c43e6cd3b7e4801e7f343b,2025-W20,Празднование 80-летия Победы,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2243,100,80,0
+53d0109ce00760ca23cc3f2a305d48d1,2025-W20,Договорённость об обмене пленными по формуле «1000 на 1000»,1.0,"gpt-6-luna, OpenAI API, effort low",0.05,1027,100,68,0
+96096b613a32bcc96f9cd4a40972ad32,2025-W20,Обстрелы российских территорий,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2616,100,75,0
+aaae57917d80a029ef15e5a1f4c56937,2025-W20,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,184,89,61,0
+c8e1668811cf02f9d4421c505b3caa4e,2025-W21,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,19.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,62,0
+c25e942872d9432bd2598a6d1aab5b58,2025-W21,"СВО в целом, успехи российской армии",15.0,"gpt-6.1-sol, Codex subscription, effort medium",0.37,1972,100,57,0
+1e6cdbd728ccd1108bbc9e112329a82e,2025-W21,Контакты В. Путина с Д. Трампом,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.57,1356,100,38,0
+d5fe3995e15f26c3887fac09a27ef63d,2025-W21,Обмен пленными «1000 на 1000»,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.67,852,100,44,0
+2a86e58d5f856bebd4cced6ab8dfa14e,2025-W21,Обстрелы российских территорий,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,2237,100,86,0
+e640b1b9443273dcf6844bd7fdd9b47f,2025-W21,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.29,257,99,66,0
+b30bd1940239f0a3cfc38b22cf864e71,2025-W21,Военные действия на приграничных территориях России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.96,99,100,17,0
+836a165bd992f370362e6154b1247238,2025-W21,Спортивные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,225,93,55,0
+7fcf431e0b828105b3f80736460bf64f,2025-W21,Выступления и действия В. Путина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.42,306,100,59,0
+f368214c5b029aa3fd655571547278ea,2025-W21,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.61,198,100,33,0
+2c5ce5ccaf450f534195cd4ed8bfc6cb,2025-W22,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,95,0
+c8b66e321eb537397afc561cc0da3bd6,2025-W22,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,11.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2811,100,81,0
+67274fc8942677763c2ad725cc2b45cb,2025-W22,Обстрелы российских территорий,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2449,100,80,0
+9265f0c1684b531798cdbe4d7b6d177c,2025-W22,Снятие Западом ограничений на поставки дальнобойных ракет Украине,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.68,425,97,36,0
+01d75d0eb16358533d03a064ef89f3f2,2025-W22,Криминальные события,1.0,"gpt-6-luna, OpenAI API, effort low",1.01,0,100,0,0
+93cafea86abaeb994c6d593f11a2beeb,2025-W22,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.27,291,100,66,0
+607ba8df0926166cde2135075f07d313,2025-W22,Контакты между Россией и США,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,1495,100,69,0
+7ce72f28064f611a3d2289ce75008f2a,2025-W22,Подрыв мостов в Курской и Брянской областях,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,1548,98,70,0
+9433f538262bde88c415d463aa3e645a,2025-W22,Спортивные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.49,187,98,52,0
+92832375129cf1f6d874da1328446de9,2025-W22,Военные действия на приграничных территориях России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.97,964,100,25,0
+f7ef4de8be4bcb7fd8ccd2f8d3982536,2025-W22,Выступления и действия В. Путина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.51,100,74,31,0
+c2b7363bc90abc0edb35a578733771da,2025-W22,Обмен пленными «1000 на 1000»,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.67,593,100,37,0
+8af9051c1032daef11c096b590737351,2025-W22,"Рост цен, инфляция",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,374,100,65,0
+55c9b99eb4f64e9ef1a94069eda5b1c6,2025-W23,"СВО в целом, успехи российской армии",17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2790,100,94,0
+b070933f11074aa627e159c306e4fa5a,2025-W23,Обстрелы российских территорий,12.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,2246,100,79,0
+bee2306c714fa1764250676b84cb404c,2025-W23,Подрыв мостов в Курской и Брянской областях,11.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,1727,90,68,0
+acf076654ddaacb4b4721cd2373d95e9,2025-W23,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2498,100,81,0
+6f03b298c1dcafe9da7ba9854519a202,2025-W23,Операция «Паутина»,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,776,100,74,0
+d4e1e574fbe0ef1d5bffc9b7ad80cd64,2025-W23,"Рост цен, инфляция",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.33,337,100,44,0
+3c7c85616631f21ecb3fb3eec6b7a859,2025-W23,"Выступления, высказывания В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.41,305,100,43,0
+1f2ba5dfbc6227a8a8186bdde63ede05,2025-W23,Контакты между Россией и США,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,1078,100,64,0
+713384c20c70ba2251b2f3f4df34b547,2025-W23,"Погода, природные катаклизмы",1.0,"gpt-6-luna, OpenAI API, effort low",1.0,113,98,9,2
+1fefb96af0aabc13ddcf29d278216f3c,2025-W23,"Аварии, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.68,52,68,15,0
+614ed14564395775cc0bc7a442ed438d,2025-W23,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.62,159,94,38,0
+0e849f09ba2c4f404173fde0a41bdce9,2025-W23,"Обмен пленными, погибшими",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2019,100,83,0
+b48489b544ad524618748edaf1b2fea7,2025-W24,"СВО в целом, успехи российской армии",20.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,85,0
+f5846888d2e5ebe6b54233dc05f81ae5,2025-W24,Военный конфликт Израиля и Ирана,12.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,93,87,0
+d1eeaab0d542d673a373abe831e01f50,2025-W24,Обстрелы российских территорий,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,1773,100,74,0
+7b24f8656c0e5e281cc8d6cb52b595ad,2025-W24,"Обмен пленными, погибшими",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.44,1655,100,66,0
+81e26495a41f6381d97656905e962023,2025-W24,Операция «Паутина»,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.44,148,80,36,0
+954b11752d78cf70a4e570e76edebb78,2025-W24,Подрыв мостов в Курской и Брянской областях,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.34,74,52,20,0
+ed6ff91cc86f540d4fb54f74f1d021e5,2025-W24,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,1152,100,70,0
+dbb412f50b527bc382405a0d7d30e5c3,2025-W24,Праздники,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.66,432,100,43,0
+cd42127875cacd7af08eba92963a5881,2025-W24,Авиакатастрофа в Индии,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.47,529,41,21,0
+f2173b9ffe5d36f4d96bca93dbd4ff8f,2025-W24,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,315,100,55,0
+448f74a22fe64585085b82f0691e7e8c,2025-W24,Криминальные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.01,0,82,0,0
+fd5d30f746008149f6ece8a191dc7563,2025-W24,"Встречи, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,379,77,41,0
+cf2365197e3e5a06ab3a13416607658d,2025-W24,"Аварии, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.48,691,100,56,0
+d724f4106a0464bcb044adbae3dee93d,2025-W25,"Военный конфликт Израиля и Ирана, атака США на Иран",24.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,93,86,0
+5a67fe24a7cee023afd003eec283be57,2025-W25,"СВО в целом, успехи российской армии",20.0,"gpt-6-luna, OpenAI API, effort low",0.0,3000,100,67,0
+5e6503b132f0af98c87e03b55dac6f8c,2025-W25,Обстрелы российских территорий,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,1600,100,56,0
+fae79fab68dd177a06cad7972f87580b,2025-W25,Петербургский международный экономический форум,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.16,1567,100,56,0
+337398926612f9a27a422aab9923e722,2025-W25,"Аварии, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.01,0,100,0,0
+163cfa49c84943e3c8e1fe829126eef5,2025-W25,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.32,294,100,56,0
+bf3aee61da73ff9db6cf992815468be6,2025-W25,"Встречи, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.6,984,100,38,0
+b20918cd7a2b784a65adb6f7eb3c3f15,2025-W25,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,383,100,72,0
+484665a49d8f0f5d93738e4d12be6ad1,2025-W25,Обмен пленными,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.16,471,98,76,0
+59adeb4443db482d8a82babb988dc52d,2025-W25,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.22,858,100,52,0
+984434561d1d6a05b317e6112a48cbe5,2025-W26,"СВО в целом, успехи российской армии",21.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,92,0
+88cd13dea93709f8eba42f8ca77fca37,2025-W26,"Военный конфликт Израиля и Ирана, атака США на Иран",20.0,"gpt-6.1-sol, Codex subscription, effort medium",0.12,2939,98,90,0
+0f8915e1378c8416548f81a5e1dccc1a,2025-W26,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.78,401,100,6,0
+e1ac0a03ea9bdd05aecc59ff9e80be18,2025-W26,Петербургский международный экономический форум,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,822,89,55,0
+3071e221641ec823579d47b789ad1a71,2025-W26,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.32,487,100,60,0
+f15733748fd6159e4fcae728ce30f37f,2025-W26,"Аварии, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.99,209,100,2,0
+c0d2bbf976b19445a60f5106c726b010,2025-W26,"Всероссийский выпускной, праздники",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,309,99,51,0
+03c466b8f85551c5fd02a4bfd5609084,2025-W26,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.12,349,100,56,0
+5640fffdfa19db85c4cb998c8c38e2aa,2025-W26,"Встречи, выступления В. Путина",1.0,"gpt-6-luna, OpenAI API, effort low",0.01,1447,100,45,0
+6826282b67e69c71386636a82fd1a9cb,2025-W26,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1596,100,60,0
+dad5746f76f914622f7edfe20200ee0c,2025-W26,Обмен пленными,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.12,337,99,68,0
+9a93645e8abc49e7ebdc8ef72d539785,2025-W27,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,89,0
+f0d0e028f8978aab2edbc722b9ef381f,2025-W27,Обстрелы российских территорий,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,2176,100,77,0
+70630f316246f72f3f509d53816bc0f0,2025-W27,Конфликт России и Азербайджана,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.14,1556,100,77,0
+fadec7234cfb5df89665b9b31685ad5e,2025-W27,"Военный конфликт Израиля и Ирана, атака США на Иран",5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,785,100,64,0
+3cd33ef85d5e823ad52d3ab6017611b0,2025-W27,"Рост цен, тарифов",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.99,66,100,20,0
+e23f5c86c45993ecb8748bdc61e89bae,2025-W27,"Встречи, выступления В. Путина",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.39,753,100,56,0
+62a355777261af4aca5391b20244c571,2025-W27,"Погода, природные катаклизмы",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.09,1165,100,79,0
+1bde1b76cd4885e5d5d0d5161bd842c6,2025-W27,"Аварии, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.01,0,100,0,0
+d1f77d948e36a73a48b5428c004d201b,2025-W27,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,379,100,54,0
+1d54a3e5276e9772b6816f10611121ee,2025-W27,"Всероссийский выпускной, праздники",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.14,290,100,74,0
+ce6975bf77c7fd72a8fa2ef9c50e92f9,2025-W27,Отказ Д. Трампа от поставок вооружений Украине,1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,391,100,27,0
+aea998abb96130967453746869cfc60c,2025-W27,Наплыв мигрантов,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.23,435,100,67,0
+ce0da5a3b0ebdb17b853f31cd3047323,2025-W27,Петербургский международный экономический форум,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.99,9,52,7,0
+965e2243b98bc47f8f9fffb8b8b11715,2025-W27,"Плохая работа мобильной связи, интернета",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.52,195,98,52,0
+53f5328a9c53aaecd40f06e909c99449,2025-W28,"СВО в целом, успехи российской армии",20.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,93,0
+3c3229ab718bc448d039fdaa99657718,2025-W28,Обстрелы российских территорий,9.0,"gpt-6-luna, OpenAI API, effort low",0.34,2194,100,67,0
+fe1facc3def4f1b2de4c234f049dc902,2025-W28,Изменение позиции Д. Трампа по отношению к России,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2476,100,72,0
+033698c148b2a19e4e23c31ae69b2ef9,2025-W28,"Погода, природные катаклизмы",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.33,1148,100,71,0
+bb93e7df2bd11893f941941c747158a8,2025-W28,"Аварии, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.01,0,100,0,0
+0b2136ffcef944393cb8228f1b3a7306,2025-W28,Отставка и смерть министра транспорта Р. Старовойта,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.26,749,92,63,0
+1b32509a64e564c8c5a3acc202f72ed0,2025-W28,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,1349,100,80,0
+55ccc2ae64134ac2d3008ac297f8b964,2025-W28,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.52,159,100,43,0
+7d1b2c0999b17078cdae9da3c369901f,2025-W28,Конфликт России и Азербайджана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,395,97,67,0
+b7db9340c0780e5bf9234c88b1288da5,2025-W28,"Плохая работа мобильной связи, интернета",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.14,192,77,43,0
+af730e1cf9e82c21c0185455c82192b2,2025-W28,Военный конфликт Израиля и Ирана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.53,215,100,55,0
+bd043dc25b30c651d57313b946fd0e9e,2025-W29,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2621,100,88,0
+5d86da77303a41745211f4d37e739110,2025-W29,Обстрелы российских территорий,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.29,2391,100,72,0
+3550fdad1505c75a8b6447885717fbb7,2025-W29,Изменение позиции Д. Трампа по отношению к России,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,1541,100,76,0
+529e9a0cc51bfa5eff2ded50d574020b,2025-W29,"Погода, природные катаклизмы",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.47,837,100,47,0
+0878386aa8c824c392335de81ba2b7fa,2025-W29,"Аварии, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.86,1100,100,15,0
+24b51e346c7f924365c3806e9e15b709,2025-W29,Ситуация на Ближнем Востоке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,426,99,83,0
+f82a9596d7f342d0cd96c31f1392a9f4,2025-W29,Отставка и смерть министра транспорта Р. Старовойта,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.62,97,48,15,0
+eee2b369a605a1039831782b5f19fff3,2025-W29,Высказывание С. Боярского о скорой блокировке WhatsApp,1.0,"gpt-6-luna, OpenAI API, effort low",0.99,89,96,5,1
+bd6b7225a7b3fcb84047fe65be9b8b97,2025-W29,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.66,168,100,31,0
+a193d4b47c5e2d734226204668aa1235,2025-W29,Конфликт России и Азербайджана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.34,259,98,67,0
+0f2adb8f2f440beb7bb5d5ff7e773241,2025-W30,"СВО в целом, успехи российской армии",20.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,94,0
+239ea4ee783d446514f92fa57c00c281,2025-W30,Обстрелы российских территорий,10.0,"gpt-6.1-sol, Codex subscription, effort medium",0.26,2288,100,80,0
+21ac11fbffca6e918cd8ee9a33a75c03,2025-W30,Авиакатастрофа в Тынде,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.4,929,45,25,0
+671b6bb048844959b1a6d9402243a2ec,2025-W30,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.08,1302,100,72,0
+154c563ccf787e733470008c236bb89f,2025-W30,Взрыв газа в Саратове,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,653,45,28,0
+98f39b4fe2b717eee694bd5c0d7acd07,2025-W30,Понижение ключевой ставки,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.47,239,99,44,0
+7b776fcf5caa5ee6effec7b7ae411e64,2025-W30,Изменение позиции Д. Трампа по отношению к России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,1902,100,83,0
+7b65b5be431375523360edf05507d63a,2025-W30,Ситуация на Ближнем Востоке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1404,100,72,0
+40f46c05188dca64f5ae36b38ea75c66,2025-W30,Конфликт России и Азербайджана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,289,96,68,0
+ba57325ecfb089a7fed8b5f8d694bb45,2025-W30,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.48,417,100,38,0
+8aecfe38c79442f587225f9ccd190fb3,2025-W30,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.98,96,100,8,0
+eceeb7b0352d161d76260b171a2ac47b,2025-W30,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,1459,100,67,0
+24cc44d05a4d7ce97351b78667605d7d,2025-W30,Конфликт Таиланда и Камбоджи,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,435,64,38,0
+2baec60c98090d1ddca8702c22546b3c,2025-W31,"СВО в целом, успехи российской армии",17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.16,1804,100,70,0
+3e8685e287bd83ee23a51d16a2728139,2025-W31,"Погода, природные катаклизмы",10.0,"gpt-6-luna, OpenAI API, effort low",0.31,1522,100,59,0
+4a4fd8dc952a94b4f2b2c86cba2033c3,2025-W31,Обстрелы российских территорий,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.39,2040,100,63,0
+b6fd7dde106c5e2b6fd7290adfd50eae,2025-W31,Изменение позиции Д. Трампа по отношению к России,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.43,1322,100,51,0
+ac9c32886466c45c3cd136b1429d080e,2025-W31,"Аварии, пожары, несчастные случаи",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.88,1039,100,13,0
+e9b33907df6151e6aeaa137cb00183e1,2025-W31,"Обострение отношений с США, Евросоюзом",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.37,1242,100,65,0
+fb0f650bcc7cc945eebba2ba6e87d7e5,2025-W31,Встреча В. Путина и А. Лукашенко на Валааме,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.26,155,65,35,0
+68c714606c9536df93993aaa85649977,2025-W31,"Праздники, годовщины",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.68,84,67,20,0
+9fea0c928a5f9e5dfc6bc81e6c08055e,2025-W31,Перебои с интернетом,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,341,99,48,0
+2ee6314f7e86f2ca0aa46abdf6c9f0c4,2025-W31,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.57,173,100,36,0
+297c2011e60142e0745bf42c200a74bf,2025-W31,Ситуация на Ближнем Востоке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,647,100,78,0
+7d4c9161971b62a04b413720db40387a,2025-W31,Конфликт России и Азербайджана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.17,189,85,54,0
+cec03d174aab63ec46575c33c18fb952,2025-W31,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.19,525,100,57,0
+4f7e2147465d9ea5c1cf7ecb18c92202,2025-W32,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.23,1838,100,67,0
+d714c890e2d653883ff077c16ffd7fae,2025-W32,Предстоящая встреча В. Путина и Д. Трампа на Аляске,10.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2957,100,62,0
+efb5d0a8a92a48fd904120cac05e2fad,2025-W32,"Погода, природные катаклизмы",6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.53,712,100,63,0
+7b7eaac14c9d306c9ff90391b936fc4c,2025-W32,Обстрелы российских территорий,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.16,2203,100,78,0
+3b522b88cf08e3a3b2bdcfb9beea191c,2025-W32,Встреча В. Путина со С. Уиткоффом,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,853,100,36,0
+93b063e30df006404a5035b3f1cd4f94,2025-W32,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.58,200,100,47,0
+9c9e3f60218f487423307ee8942fe8ec,2025-W32,Переговоры в Стамбуле о прекращении боевых действий между Россией и Украиной,1.0,"gpt-6-luna, OpenAI API, effort low",0.56,213,99,34,1
+81de3a859dc506e65fbef0b23116465e,2025-W32,Изменение позиции Д. Трампа по отношению к России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.7,720,100,31,0
+663236b1cedbb70a9770c2480d4909f6,2025-W32,Ситуация на Ближнем Востоке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,521,100,74,0
+bb008fb2dc0b1a9b39d8e7ad71e26527,2025-W32,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.81,1221,100,20,0
+6be3c9a90bdb6c098a383b081ec17551,2025-W33,Встреча В. Путина и Д. Трампа на Аляске,38.0,"gpt-6.1-sol, Codex subscription, effort medium",0.99,2325,100,65,0
+4da513bd99cf95b5ebc6a0e96108ed0f,2025-W33,"СВО в целом, успехи российской армии",10.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2631,100,77,0
+3a6179d3f2b7ebd6217447ee8659ac49,2025-W33,Обстрелы российских территорий,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.48,2309,100,57,0
+705634e2f889ee822e8fc58cbedc4b12,2025-W33,Блокировка Роскомнадзором звонков через мессенджеры Telegram и WhatsApp,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.27,348,99,67,0
+3054cdec63feba9db2e44bb488ec1537,2025-W33,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.01,0,100,0,0
+3189a4f7ecae9c8c4dc5106e1e77bf20,2025-W33,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,187,93,33,0
+16340cdc578628fa6876272d2c0cfadd,2025-W34,Встреча В. Путина и Д. Трампа на Аляске,32.0,"gpt-6.1-sol, Codex subscription, effort medium",0.34,2396,100,60,0
+aed083af73ea1420f59437a3c17016a3,2025-W34,"СВО в целом, успехи российской армии",11.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,99,0
+a7f28f91cc46baedc452a95b2146c052,2025-W34,Обстрелы российских территорий,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.31,1714,100,70,0
+4f9923985f0404acefb15a3deabc2c3e,2025-W34,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,50,100,10,0
+654732e53160483e3a4ec92d4289d3d3,2025-W34,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.94,65,90,16,0
+9ebd55cf412c2a0451113b9d898a15de,2025-W34,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.53,377,100,38,0
+53468f42e43664dc932262c786dc237b,2025-W34,Встреча Д. Трампа с В. Зеленским и европейскими лидерами,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.43,2082,100,51,0
+8806b63b2f3f35706e20dc92913d82bb,2025-W34,Блокировка Роскомнадзором звонков через мессенджеры Telegram и WhatsApp,1.0,"gpt-6-luna, OpenAI API, effort low",0.01,713,80,33,0
+1e81aee1b0a871de5ed305f07b535e58,2025-W35,"СВО в целом, успехи российской армии",17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,83,0
+1fc016f0bdf6822def9cdccb7bb50008,2025-W35,Встреча В. Путина и Д. Трампа на Аляске,9.0,"gpt-6.1-sol, Codex subscription, effort medium",0.6,342,100,37,0
+7238ed3eb686dbbb78fc4925afa371bc,2025-W35,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.26,1585,100,75,0
+48f92f40142b8441b2abd5e2785a58a4,2025-W35,Предстоящая встреча В. Путина с В. Зеленским,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.23,718,100,63,0
+d40f476895acea561e24c72db731ba11,2025-W35,"Аварии, пожары, несчастные случаи",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.7,349,64,25,0
+0192a969115e38e6e89e4d46587a36f1,2025-W35,Поездка В. Путина в Китай,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,1885,100,63,0
+46b1d78796495aca43a4c0b73b0c299d,2025-W35,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.89,248,100,16,0
+ab4a6902d6c1f7bec3783bd663d5b348,2025-W35,Международные встречи в Китае,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.17,2393,100,76,0
+3aea8a9536814ed2c10ba8765a5bc4c3,2025-W35,"Блокировка Роскомнадзором звонков через мессенджеры Telegram и WhatsApp, переход на российский мессенджер Макс",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,213,100,56,0
+2fcd966c2d2788f221c41447c849faff,2025-W35,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,198,100,13,0
+f5a2d80a97a76ba8da95c5a8ee48dff4,2025-W36,"СВО в целом, успехи российской армии",13.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,93,0
+1108fcc829450cffe308eb9a0922caa0,2025-W36,Поездка В. Путина в Китай,12.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2260,100,72,0
+86fc514f829a8c2ca431f4f9c090ec41,2025-W36,Саммит ШОС,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,1080,100,44,0
+b2cb46f2d51f4dad39c99a13db894dd4,2025-W36,Встреча В. Путина и Д. Трампа на Аляске,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.65,230,100,27,0
+c201bd717fc441e87948da4486a64823,2025-W36,"Парад, посвящённый 80-летию победы над Японией",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.67,665,100,36,0
+6399efdc85cc119fa02a69bd26f236d8,2025-W36,Обстрелы российских территорий,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.41,1301,100,62,0
+3206c56b59fcc26628e11f6285ff8acd,2025-W36,Восточный экономический форум во Владивостоке,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,926,100,56,0
+8b9821b6bc78d02214c3c15f7df4f76b,2025-W36,Праздники,1.0,"gpt-6-luna, OpenAI API, effort low",0.5,396,100,42,0
+c9f6bf222d412f10b7f001bc29211494,2025-W36,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.99,254,100,4,0
+35af01b58449ad0fab92541fe5f43d3a,2025-W36,Другие поездки и выступления,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.96,413,100,21,0
+c104ac2870e752cf7d308bbc67d47551,2025-W36,"Блокировка Роскомнадзором звонков через мессенджеры Telegram и WhatsApp, переход на российский мессенджер Маx",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,421,100,62,0
+4c03a7b44971d10ee39d1730883446e2,2025-W37,"СВО в целом, успехи российской армии",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,1891,100,82,0
+4e8eac826132b6a46d5588f0a69cd4ed,2025-W37,События в Китае,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,543,100,62,0
+08fe3b2049b1079fc3fa0f70a9ae061d,2025-W37,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,1809,100,71,0
+1eb2d73eabb795b3484589ab14925e2a,2025-W37,Поездка В. Путина в Китай,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,149,99,34,0
+f047f38e2af5088b1ce37fcc5ac75d43,2025-W37,Инцидент с беспилотниками в Польше,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.42,1003,100,63,0
+aa126bc3bd3d3b0f085c9a1577d657b5,2025-W37,Встреча В. Путина и Д. Трампа на Аляске,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.53,63,78,24,0
+367327dbfd9a3dcdc652354ed412d3de,2025-W37,Убийство Чарли Кирка,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.62,1297,82,40,0
+82902f5ecdf8638185a077e1a8313551,2025-W37,Ситуация на Ближнем Востоке,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,895,100,86,0
+1cbceb937347170d1870b1b5882b9fb5,2025-W37,Обострение отношений со странами Запада,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,1615,100,80,0
+2d7ab0b2c12c479a1433aafaa13f1489,2025-W37,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,158,100,10,0
+d794cf23ef94822579e35cacfb377379,2025-W37,Восточный экономический форум во Владивостоке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,694,98,67,0
+bd25fee472b0d397e5dea787fa263e21,2025-W38,"СВО в целом, успехи российской армии",17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,2733,100,86,0
+343de6e236efb7a3c825489207db45f4,2025-W38,Региональные и местные выборы,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,748,100,59,0
+1b17f0ae349f9a0c9a499a9c08118faa,2025-W38,"Рост цен, тарифов",2.0,"gpt-6-luna, OpenAI API, effort low",0.59,581,100,29,0
+c18f5a57b09108c5f901bf930ac60b38,2025-W38,Обстрелы российских территорий,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,1538,100,88,0
+8fea6550c0d286ff94f07c8b02265c8e,2025-W38,"Поездки, встречи, выступления В. Путина",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.53,448,100,17,0
+269ea94c7f58844e82f075d6bc01adad,2025-W38,Встреча В. Путина и Д. Трампа на Аляске,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,61,75,18,0
+f8fcd45eca4b0d8ae8bd4bcaf2756648,2025-W38,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.33,281,100,50,0
+afb44844a92ae2e826e84d7ac15b0c54,2025-W38,"Аварии, несчастные случаи, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,199,100,3,0
+7fcd93f171cbd46360a63838e7beafb9,2025-W38,События в Китае,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.6,9,53,12,0
+5bace405616a0972ec6a25eba3c4abad,2025-W38,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,550,99,62,0
+5071b51164cea1e6cc1381c84cceb408,2025-W38,Проблема с мигрантами,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,201,93,40,1
+95411d66d14d74959b4b8ab75783643e,2025-W38,Интервидение,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,496,60,34,0
+567832bffe9b9561c88bbf5e7832fe16,2025-W38,Ситуация на Ближнем Востоке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,967,100,75,0
+75e85ee96ebc0b4365f096ab1ffcfa47,2025-W38,Визит Д. Трампа в Великобританию,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,224,94,45,0
+9abedd50d914d039d89e9835741a966b,2025-W39,"СВО в целом, успехи российской армии",15.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,85,0
+955aabe2aa1ab0d116deecf02ca81848,2025-W39,Обстрелы российских территорий,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1922,100,96,0
+c23b30b2b53ff3d6cf716977503eb2d3,2025-W39,События на Генеральной ассамблее ООН,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,1074,100,72,0
+98d50e9efe7f40c9ff155055572a7109,2025-W39,Российско-американские отношения,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,1930,100,73,0
+bc8a1163cd88808a4fb89f62b59ac874,2025-W39,Выступление С. Лаврова,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,840,98,32,0
+6befe35052187550e80d62e1597a26b5,2025-W39,"Эскалация конфликта России с Европой, НАТО",1.0,"gpt-6-luna, OpenAI API, effort low",0.1,1660,100,83,0
+9fe27ad0cc6cfc11291617a404b4ebcf,2025-W39,Региональные и местные выборы,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,128,96,48,0
+f9ed3be10839067b1e6639e2bea211d7,2025-W39,"Поездки, встречи, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.21,870,100,30,0
+be78c95072336149d5c6a315455fcdac,2025-W39,Дефицит бензина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,279,100,62,0
+111a230cfc3fbdc105078ddb89e68f78,2025-W39,"Аварии, несчастные случаи, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.68,152,99,32,0
+f3d2214970fbfd367495faec18453212,2025-W39,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.31,593,100,50,0
+7b9ad6864e54a80640398f368afa49e4,2025-W39,Смерть Т. Кеосаяна,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1200,64,21,0
+9019d7752beb6dd52f554c106fb892da,2025-W39,Ситуация на Ближнем Востоке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,1539,100,79,0
+54da124def66fb3f3008451be246a4de,2025-W39,Интервидение,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.41,416,47,21,0
+3c416bc286a0e6fa76225bb501515f4d,2025-W39,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.47,249,100,45,0
+7fe5422b39925ef0508a550fe96a25fd,2025-W40,"СВО в целом, успехи российской армии",17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,96,0
+e75a5e551cf06568e78db271a8fe8352,2025-W40,Выступление В. Путина на «Валдае»,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,789,100,63,0
+47dd662a1abafef95e1413e03f16fe8f,2025-W40,"Эскалация конфликта России с Европой, НАТО, возможные поставки дальнобойных ракет США",4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2185,100,81,0
+b887be160d83829a8af77a5fa1256cca,2025-W40,Обстрелы российских территорий,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,1857,100,80,0
+803ca821485e377f73b5bcb07c30e79d,2025-W40,Международный дискуссионный клуб «Валдай» в Сочи,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.23,350,98,61,0
+8f53777951085c835f417f44fadb62f8,2025-W40,"Инфляция, рост цен, налогов, сборов",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,1251,100,58,0
+22c06dd0499b1b4e2a846c608d623216,2025-W40,"Другие встречи, поездки, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.93,341,100,21,0
+736e41dc87e9e74e040bc49d8c01fea7,2025-W40,Российско-американские отношения,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.62,476,100,32,0
+44d3e07a4ce0a80ee37c8dad16f65722,2025-W40,"Аварии, несчастные случаи, пожары",1.0,"gpt-6-luna, OpenAI API, effort low",0.89,592,100,20,0
+0af1238a6a1bf2221090d91ea1eee5d8,2025-W40,Ситуация на Ближнем Востоке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,1916,100,83,0
+f07d5760bf697b5102c44f0bfbd1a2c4,2025-W40,"Погода, природные катаклизмы",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,965,100,58,0
+fa999676ee9cdc2ed29dc975dc5a67d0,2025-W40,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.99,90,62,14,0
+f578bf516f92704c8374d93d497336bb,2025-W41,"СВО в целом, успехи российской армии",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2694,100,97,0
+1954ad3fcc53f9270daabfec0623db7e,2025-W41,Обстрелы российских территорий,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,1740,100,64,0
+5b690e75f2f2aef604c64a01505a62df,2025-W41,Возможные поставки дальнобойных ракет США Украине,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,1371,100,47,0
+b32c51074a95016e3781f1495afa2648,2025-W41,Ситуация на Ближнем Востоке,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,1749,100,80,0
+fab7d9b2fdc08826c2a3b2c793c23e0c,2025-W41,Визит В. Путина в Таджикистан,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.43,474,100,54,0
+0e760ec3ce3b48c1e33d35472386cfa0,2025-W41,День рождения В. Путина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.53,236,81,30,0
+07591ebd03760397d75821ed142b3860,2025-W41,"Другие встречи, поездки, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.09,960,100,56,0
+1ef7291eb985122d3dee14a49f0f0b5c,2025-W41,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,555,100,58,0
+e4ff1ac1536c9b454f7b49d2387a8d9c,2025-W41,Предложение Министерства финансов повысить НДС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.57,55,75,23,0
+273656fbb99990b068ba404f5c3c965d,2025-W41,Российско-американские отношения,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,90,0
+229d4d627133f554d713d51da5cc6cbc,2025-W41,Обсуждение вручения Нобелевской премии мира,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.49,347,100,44,0
+7204ab043fb87810eb2675d1bee6c9bc,2025-W41,Голосование за дизайн новой 500-рублёвой купюры,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.17,125,37,20,0
+43b6e0e01f39fac4a29b54b20114780c,2025-W41,Дефицит бензина в некоторых регионах России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.61,91,89,35,0
+3de8f768b225a0e6654447e39c22297e,2025-W41,"Аварии, несчастные случаи",1.0,"gpt-6-luna, OpenAI API, effort low",0.09,265,51,27,1
+04f57421c244c9a4554861109b6f3d1d,2025-W41,Международный дискуссионный клуб «Валдай» в Сочи,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.76,56,76,17,0
+dfcbab85835dbc5cf9b4a7fc34d26d20,2025-W42,"СВО в целом, успехи российской армии",17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,2246,100,84,0
+dbae441199d7edebc83221340674a3f2,2025-W42,Предстоящая встреча В. Путина и Д. Трампа в Будапеште,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.83,1179,100,39,0
+5958f7caef849a996339a7da73d1e999,2025-W42,Возможные поставки дальнобойных ракет США Украине,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,1234,100,45,0
+c8f986eeb0d4a40a1d95b50346c4bf80,2025-W42,Телефонный разговор В. Путина и Д. Трампа,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.36,1398,100,63,0
+f79307af7c87a898c5b515750ef3948f,2025-W42,Обстрелы российских территорий,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.31,1837,100,63,0
+54672553213fe2982607338bb0e8f544,2025-W42,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.97,133,100,15,0
+689204c7d8a73cb1d6ac1ddb832d7c92,2025-W42,Встреча Д. Трампа и В. Зеленского,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,1225,100,53,0
+380aabf92624b04a450dcb96ecd5df70,2025-W42,Ситуация на Ближнем Востоке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,1354,100,76,0
+33a4f853056b2a639f7ac7cff7a61d26,2025-W42,"Поездки, встречи, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.94,225,100,17,0
+30b16db7efc7ec63da5881d3c53fe826,2025-W42,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,224,100,42,0
+30fa574e6dd7da6fa4eb2677423035bc,2025-W42,Предложение Министерства финансов повысить НДС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.34,98,91,49,0
+d15074d66581aa30824ed92acdb23ca5,2025-W42,Российско-американские отношения,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.08,2208,100,66,0
+a36462c07c9670fdf9c8444b035d5c5c,2025-W43,"СВО в целом, успехи российской армии",13.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,95,0
+380edbb32d40b6db74248cf155b516dd,2025-W43,Отмена встречи В. Путина и Д. Трампа в Будапеште,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1879,100,35,0
+3fe44988c805b262a1f7d6ab0dd2e7ed,2025-W43,Обстрелы российских территорий,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.41,2050,100,66,0
+994c6152a4c0bb2c57ab0ee06d66bfbe,2025-W43,Российско-американские отношения,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,1754,100,91,0
+3696e2825d277dbab63656b936c81b88,2025-W43,Возможные поставки дальнобойных ракет США Украине,1.0,"gpt-6-luna, OpenAI API, effort low",0.45,640,100,58,0
+c037417d90fd4500c63d0e9c80b49728,2025-W43,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.52,316,100,45,0
+0428251c16f4c608f4792d9335c5db04,2025-W43,"Поездки, встречи, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.98,242,100,19,0
+dd02db03edbcf235c393abf9abb9c0b1,2025-W43,Предложение Министерства финансов повысить НДС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.44,74,73,43,0
+84fa32f4a156009f2dbb1452cc19161a,2025-W43,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,92,100,9,0
+a364d73e40d098eebc6a8096a4455605,2025-W43,Перебои с интернетом,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.51,238,93,44,0
+ed8eaa8ae80ead054578326f2d80b0e2,2025-W44,"СВО в целом, успехи российской армии",17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2598,100,81,0
+813c47033be06924fc26f4de617d8a82,2025-W44,Испытания российского новейшего оружия,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.98,537,100,24,0
+16e083a736ee4bad21d742b3b33873cc,2025-W44,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.14,1971,100,79,0
+64df17ce0ef2c4d2db2557653039942f,2025-W44,Отмена встречи В. Путина и Д. Трампа в Будапеште,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.34,333,100,62,0
+a2cbd931a360cbdbcb7f02b12b3b95cb,2025-W44,Предложение Министерства финансов повысить НДС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,87,71,32,0
+46426a629b85c8bb8eadaa925c490dba,2025-W44,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.98,90,77,11,0
+2366db17a8e7366c3a2a318769a8533a,2025-W44,Российско-американские отношения,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2091,100,81,0
+d287ff9622ee22de76d54de4f302367a,2025-W44,Возможные поставки дальнобойных ракет США Украине,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,136,75,22,0
+42c943c5e32526087bf6015981388db7,2025-W44,"Поездки, встречи, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,882,100,47,0
+9846b3f25a0b7012026aef04931c221e,2025-W44,Угроза ядерной войны,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,978,100,80,0
+e3793c87e13d0d3df8cd3e48a620a4cd,2025-W44,Поездка Д. Трампа в Юго-Восточную Азию,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.18,542,100,64,0
+7612beb056541f6cc9b1c5cbfcf81dcf,2025-W44,"Инфляция, рост цен",1.0,"gpt-6-luna, OpenAI API, effort low",0.47,268,100,32,0
+8ede931112980339d14951e2bca85ff0,2025-W45,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2647,100,90,0
+dfbc9b58e4a11b07d14a26da274810e9,2025-W45,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2047,100,72,0
+8a9f2d50bb7550e83aa5e21f484701c4,2025-W45,Испытания российского новейшего оружия,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.94,204,100,16,0
+7bbaf8941cee7ac4127887dc9507312b,2025-W45,Угроза ядерной войны,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,989,100,67,0
+919d4c8b170c42f32e6806fb41280705,2025-W45,Российско-американские отношения,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,1261,100,65,0
+dc38041430fc8dd1420c2310e4e2d981,2025-W45,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.48,230,82,39,0
+26ea64debefc48a08e2f67469e2e3ec3,2025-W45,Предложение Министерства финансов повысить налоги,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.37,125,80,42,0
+def34424943375bf09d7395cbfc74cd4,2025-W45,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,407,100,45,0
+9c0ad2629d047c83c34ff519d6a1afe0,2025-W45,Возможные поставки дальнобойных ракет США Украине,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.58,102,63,22,0
+abe18319a602c80b006feee14c6b7fa1,2025-W45,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.49,344,100,35,0
+146aa78335ceea191794e51dc388d8b5,2025-W45,"Поездки, встречи, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,184,91,55,0
+d66469867ae5abaf01e83cc684bf2e66,2025-W46,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2711,100,86,0
+69269147076fa27d959d2c05ba78a2b9,2025-W46,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,1810,100,80,0
+1480bb7b9d3a499edcc12af63540b364,2025-W46,"Теракт в Красногорске, другие преступления против детей",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.43,503,81,37,0
+1255ea5fc623766797eab3f26bb536a5,2025-W46,Испытания российского новейшего оружия,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.71,27,52,16,0
+4a3ebf66a34f04740ccff76b42e666ba,2025-W46,Российско-американские отношения,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2454,100,65,0
+757e15947c353d6c96f3300d3e5f5993,2025-W46,Предложение Министерства финансов повысить налоги,1.0,"gpt-6-luna, OpenAI API, effort low",0.52,181,100,40,0
+4051877e5174a76dd490443191b5f048,2025-W46,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,293,100,53,0
+423ea9d2b21165eb147d47d2cfaa07dc,2025-W46,"Обострение отношений с Евросоюзом, нагнетание войны",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.52,870,100,44,0
+af10b7dc43624b47a841f2b3e62df553,2025-W46,Перебои с интернетом,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,343,93,62,0
+9a1c523c169c8fa13ed53c24635cd4e2,2025-W46,Угроза ядерной войны,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.16,269,92,67,0
+71b3a332585696be5557df493259e90b,2025-W46,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.01,0,100,0,0
+2e72dd5b46d5f1845ad3bef611946f9f,2025-W46,"Погода, природные явления",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.22,682,100,70,0
+3452cddf02f4d209f5622aaf2a01fea7,2025-W47,"СВО в целом, успехи российской армии",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2370,100,76,0
+684881d56c11cd36acf9f020657b2be8,2025-W47,План Д. Трампа по урегулированию российско-украинского конфликта,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2908,100,85,0
+724bd80474a81c28d3e98aeeb06b089e,2025-W47,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,1892,100,65,0
+bc47e966517ed7aae6400c9cc60e8f10,2025-W47,Коррупционный скандал на Украине,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.19,1350,100,62,0
+bdc5152b890b8f3c8a85500c1932dcae,2025-W47,"Поездки, встречи, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,325,100,8,0
+bd738ae772ae96532bc5600e912f1296,2025-W47,Предложение Министерства финансов повысить налоги,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,289,100,52,0
+4d420005b7c0ee39bf1911ee8dbea84c,2025-W47,Российско-американские отношения,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.47,2022,100,52,0
+e8540320219a93366b9c45f16e0d2074,2025-W47,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,613,100,55,0
+f33bb6c5f8151fd8e2d21e793d3e5dfd,2025-W47,Перебои с интернетом,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.39,234,98,44,0
+8a7e4c8649e099308b5903ec69f172ac,2025-W47,"Погода, природные явления",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.14,638,100,72,0
+468c275f708981eadc321e0b23a556c8,2025-W47,Спортивные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.63,69,63,22,0
+405b8e93b57118890e5cca55a9d5065d,2025-W47,Криминальные события,1.0,"gpt-6-luna, OpenAI API, effort low",0.04,1252,98,60,0
+41fdd63666806a203e87db8b040a6653,2025-W47,Действия В. Зеленского,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,1865,100,67,0
+e604f2c0af0f137eef85478442f6e874,2025-W47,"Теракт в Красногорске, другие теракты",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.94,59,41,8,0
+c24b7af2b599cef657db9a4b01f71b85,2025-W48,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2264,100,71,0
+5a9afa8481d9c8ce9660fb5d702c827d,2025-W48,"Мирные переговоры, план Д. Трампа по урегулированию российско-украинского конфликта",11.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,95,0
+06fdcf33e56bfc4dadf8dc33d1b02011,2025-W48,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2031,100,89,0
+b39b1c03326dc4c32083142e7dd57f42,2025-W48,"Действия В. Зеленского, коррупционный скандал на Украине",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1481,100,61,0
+2c7e145a21898f5a3b9afefe42cef125,2025-W48,"Поездки, встречи, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.58,512,100,45,0
+0fa10bfb3cc49589fc0578d2af4635a5,2025-W48,Подписание закона о повышении ставки НДС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.39,125,66,38,0
+db3c44e20c978e1eb79a37c0770f2c85,2025-W48,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.27,583,100,45,0
+bc66575ac3ce3a89255bb3bcd0b4ea9b,2025-W48,Дело о мошенничестве с квартирой Л. Долиной,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.75,503,100,35,0
+f9e2580b99544691d209258707c4c9fa,2025-W48,"Криминальные события, теракты",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.99,315,100,2,0
+a6e68e86104f5a1d9d542cada9019d14,2025-W48,Спортивные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,274,77,41,0
+a2251f5ca5978896af931049ecfdfd9d,2025-W48,"Перебои с интернетом, ограничение работы соцсетей",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,567,100,64,0
+a84c825900882035558c75e1de4780fc,2025-W49,"СВО в целом, успехи российской армии",13.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,2297,100,88,0
+6f72893b48b60f97391b638b56df8328,2025-W49,"Мирные переговоры, план Д. Трампа по урегулированию российско-украинского конфликта",10.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2795,100,84,0
+c2cef9d58a6d945cee9b6ef3ec23b9b7,2025-W49,Визит В. Путина в Индию,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,780,100,54,0
+76a2ae73e9a97862d4ec740f1aa6de35,2025-W49,Обстрелы российских территорий,2.0,"gpt-6-luna, OpenAI API, effort low",0.1,1979,100,76,0
+6ed5f2c915d10bc049976dded346a05b,2025-W49,Дело о мошенничестве с квартирой Л. Долиной,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.68,986,89,35,0
+f465cbae68e2b55b69f1a289f6d1197c,2025-W49,Предстоящая прямая линия с В. Путиным,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.48,208,51,23,0
+bd503ff985746e438fdc7703b0da4edf,2025-W49,Другие действия В. Путина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,83,0
+baeaeb34cd4e1003221b410e2b5dcba9,2025-W49,"Блокировка Роскомнадзором звонков через мессенджеры Telegram и WhatsApp, других приложений",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,570,100,74,0
+1fe6473749662d6bd4eaac62c2b9cfcd,2025-W49,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,388,100,41,0
+383dce1a2175504a7f34fd26074984ef,2025-W49,Подписание закона о повышении ставки НДС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.24,130,58,31,0
+601bd91e05d96f48d146b3f0c6bbfc73,2025-W49,"Действия В. Зеленского, коррупционный скандал на Украине",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.49,794,100,44,0
+b81244c3eb4f490b629148c5b6aa93ab,2025-W49,Перебои с интернетом,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,89,68,0
+deb942c976430678deb339a7816fe630,2025-W49,"Погода, природные явления",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.36,426,100,54,0
+e6d9e325259b40ca1f50bf73895e67e9,2025-W50,"СВО в целом, успехи российской армии",19.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2737,100,77,0
+2fe75247622608a1be14f418cb8eb372,2025-W50,"Мирные переговоры, план Д. Трампа по урегулированию российско-украинского конфликта",6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2513,100,80,0
+8d2d28fbd9fcd555cda91a2ca267bb4a,2025-W50,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.51,1961,100,54,0
+c741d34ba22ddce4032aa32190b20230,2025-W50,Предстоящая прямая линия с В. Путиным,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,1007,100,83,0
+e60683d24341876fd2af1d4b73b36577,2025-W50,"Аварии, пожары",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,191,53,24,0
+b0b4cc13310526314f5a0f3bfc067345,2025-W50,Визит В. Путина в Индию,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.27,357,100,74,0
+4dc4886104b54808ac02081fd823c0a9,2025-W50,Другие действия В. Путина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,383,100,23,0
+0010e8b1c734aa3780078a0665b848ac,2025-W50,"Рост цен, тарифов",1.0,"gpt-6-luna, OpenAI API, effort low",0.76,403,100,21,0
+6a2f3298aecbb12aa48f820551059fc7,2025-W50,Подписание закона о повышении ставки НДС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.41,135,91,56,0
+e703279ee2ed41030513e183927fe0bd,2025-W50,Дело о мошенничестве с квартирой Л. Долиной,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.79,926,86,31,0
+17992b0bcad2452bb228dd14bd958f15,2025-W50,Враждебное отношение Евросоюза к России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,2253,100,82,0
+e715b0b555be4ab102e1f16ee92ae3f8,2025-W50,Перебои с интернетом,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.14,226,95,59,0
+b9c97caf84ef465c1f0e43807dfb302a,2025-W50,"Частичная или полная блокировка Роскомнадзором Telegram, WhatsApp, других сайтов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,700,100,63,0
+958b38c82f0a5ea7102e5a627bea9228,2025-W50,"Повышение пенсий, пособий",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,50,100,18,0
+110f7dc0eb2204af50cad111986dd6e3,2025-W50,Российско-американские отношения,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.61,1100,100,44,0
+25cd94e746c135ad4287498f0676bce4,2025-W51,Прямая линия с В. Путиным,18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,1550,100,72,0
+0b3e3b0b7c72f29da4e6c36d05905146,2025-W51,"СВО в целом, успехи российской армии",13.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,2319,100,81,0
+7f64844b3e251e2cc7a18312b980ab4b,2025-W51,Резня в школе в Одинцово,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.23,529,44,20,0
+df6c1ab9602931bde48836cd06d3a6cc,2025-W51,Обстрелы российских территорий,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2311,100,71,0
+1c4ee236ddee7575b66e2feceaebfe21,2025-W51,Мирные переговоры,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,90,0
+500a0e3931371244abfadcda894e5292,2025-W51,Дело о мошенничестве с квартирой Л. Долиной,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,890,84,45,0
+29868f986ffbfdee454b06efe2e7c0d8,2025-W51,Враждебное отношение Евросоюза к России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.78,852,100,33,0
+e127acd58e22eec2d32ee07aac3c4d90,2025-W51,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.57,398,100,32,0
+a4901c44e959f9e7b249d65692f1af5a,2025-W51,"Повышение пенсий, пособий",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.42,210,99,46,0
+cb96d4ee9a235d30d8c6808791b38bdc,2025-W51,Перебои с интернетом,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.29,169,84,44,0
+81166c84aa7e309420b7f3811055d785,2025-W51,Подписание закона о повышении ставки НДС,1.0,"gpt-6-luna, OpenAI API, effort low",0.16,162,82,40,0
+9128a8061fdf0af53e392b71b601dc2c,2026-W03,"СВО в целом, успехи российской армии",15.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,90,0
+f431c11c647690ea8025afc876ce435c,2026-W03,События в Венесуэле,9.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,1348,100,58,0
+b20d00d7bc7fe3ec61f600f7ab68c394,2026-W03,"Действия США, Д. Трампа",5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,94,0
+1e449d002a07d96ea0af6ca643064cf4,2026-W03,Обстрелы российских территорий,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,1856,100,68,0
+8fda752e61abae8a25f6e6130e61fe78,2026-W03,Ситуация вокруг Гренландии,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,75,0
+8f26ed2c32432d3f15f9c7f8f2f4d1bb,2026-W03,Гибель детей в роддоме в Новокузнецке,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.17,640,57,37,0
+be564224e091c42018afe2d536c523c2,2026-W03,События в Иране,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1963,100,70,0
+2a30de5ffe15e0c9b069b274160ffe45,2026-W03,"Погода, природные катаклизмы в России",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.27,1359,100,67,0
+9eb3a6374c5445e04778fc448db9531c,2026-W03,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.51,225,100,34,0
+68bea9e3c8943af38d706094328e15ed,2026-W03,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,229,100,1,0
+563220fb6026f0caba3ceeb551765e3b,2026-W03,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.58,333,100,44,0
+8b6704a17cf14c92a529d39b887350a4,2026-W03,"Выступления, действия В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,1396,100,79,0
+18386c262d492901fd5602933e64d47e,2026-W03,Повышение ставки НДС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.5,106,76,37,0
+b137be1d11457b7c2a04e23c3200b7c9,2026-W04,"СВО в целом, успехи российской армии",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2704,100,93,0
+ae27fd3a4efbd222a524189d71da60bf,2026-W04,Мирные переговоры,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2474,100,86,0
+8bd562bf7eb69ac075ae958009b29962,2026-W04,Ситуация вокруг Гренландии,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2233,100,70,0
+03de5cd0b07ffa2ce94c0272fcc98ffc,2026-W04,"Действия США, Д. Трампа",3.0,"gpt-6-luna, OpenAI API, effort low",0.06,2677,100,77,0
+1d1a8b0cdefb3c165cb8e8c50fa387b3,2026-W04,Обстрелы российских территорий,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,1173,100,44,0
+c1d3681bcfcedceeed0caf3400cf4d93,2026-W04,"Погода, природные катаклизмы в России",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.29,1017,100,62,0
+5f27e3afa4ca5f9065f6055f2d5c7abe,2026-W04,"Аварии, несчастные случаи",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.29,259,46,21,0
+234dc58442973e76b0c608bcf8f3b2c5,2026-W04,События в Венесуэле,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.61,314,100,36,0
+2886221011a8f94ec874d715fb319a98,2026-W04,Встреча В. Путина с С. Уиткоффом и Д. Кушнером в Кремле,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.68,491,100,33,0
+83ad19bbedfa62a0fa7b99c3731db382,2026-W04,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.47,213,100,51,0
+f087a8e72be79f958aa5d7486cda5eaf,2026-W04,Экономический форум в Давосе,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.49,827,100,45,0
+99f742317e46e68f03ff8862429ad33b,2026-W04,Криминальные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.47,223,59,30,0
+604166ccc965e3375c09152411689d73,2026-W04,События в Иране,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,961,100,80,0
+651ad3dd59ee38022048070766ec39c2,2026-W04,Повышение ставки НДС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.33,113,71,39,0
+1ff0a68fa87b7512d97e15c272a4f5c6,2026-W05,"СВО в целом, успехи российской армии",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,77,0
+3ca2297d2ac9573dfc4612dc8c8a4b2e,2026-W05,Мирные переговоры,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,95,0
+7e6bfd3e56fbd976951d9479963a9a63,2026-W05,"Погода, природные катаклизмы в России",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.42,834,100,52,0
+3e7d2ed7781d015f6be3a7ca454a3c2a,2026-W05,Обстрелы российских территорий,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.43,1174,100,61,0
+b34a46dfe86c6dc33768e0bce37de1ba,2026-W05,"Действия США, Д. Трампа",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,2548,100,75,0
+94d6ba7af9fca10292b568f48cb58377,2026-W05,События в Иране,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.41,677,100,59,0
+d440987e7495d7441baa40eff180c388,2026-W05,События в Венесуэле,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.33,266,100,63,0
+64e7272cd53acd41d1324d0606451505,2026-W05,"Рост цен, тарифов",1.0,"gpt-6-luna, OpenAI API, effort low",0.73,218,86,22,14
+67d0e8a8fe632b53ae3d0aa7df447e9e,2026-W05,Ситуация вокруг Гренландии,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.08,556,100,51,0
+40ee96db58930bb628749df50a95db5d,2026-W05,Криминальные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,158,100,1,0
+34a7fc6c46d1fca6d9c45212a647d88b,2026-W05,"Отключения света, отопления и воды",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.51,547,100,51,0
+0183f4f5695dfdb3beb6c7c7cfcec94e,2026-W05,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.98,507,100,12,0
+26090a712f5fffe81f8ec4c9182c011c,2026-W06,"СВО в целом, успехи российской армии",19.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,90,0
+8cbc9be211c8c1cecb160be38d2beb7b,2026-W06,Мирные переговоры,10.0,"gpt-6.1-sol, Codex subscription, effort medium",0.08,2275,100,90,0
+cdfb5e1f84e2c997b284def748eb0843,2026-W06,Обстрелы российских территорий,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.41,1571,100,61,0
+fc120904f2a2b622f2177ae1426c1570,2026-W06,Криминальные события,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.51,1141,100,35,0
+d193e5aef8520cb9cbc2f7a7f7b9387b,2026-W06,"Аварии, несчастные случаи",2.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,226,100,7,0
+cd5436919477eee8d6693551468e46fc,2026-W06,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,456,100,55,0
+2f8171c159fbe35c1e93547846ddeb35,2026-W06,Убийство девятилетнего мальчика в Санкт-Петербурге,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.37,324,41,19,0
+13769dbb96c4e0dd8a53ff19424f6530,2026-W06,Обнародование файлов Эпштейна,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.12,908,100,74,0
+819177426f433a8329b7c7c0e6e22454,2026-W06,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.19,929,100,61,0
+e306b85fba1f21b1777b864e8674aeca,2026-W06,Покушение на генерала В. Алексеева,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.34,830,42,26,0
+6f27eee4f43060d2ceb23613113a3381,2026-W06,Спортивные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1861,100,56,0
+fe753bc4b3e6e6e280473d3fa79c765f,2026-W06,События в Иране,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.49,617,100,58,0
+550762c0cd20a26fe783b8c2013db3c3,2026-W06,Ситуация вокруг Гренландии,1.0,"gpt-6-luna, OpenAI API, effort low",0.53,170,82,39,0
+0f75428bad2217a1f8529cca38c4473c,2026-W06,События в Венесуэле,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.7,107,99,35,0
+01564fbaf674f314767f91d690699847,2026-W07,"СВО в целом, успехи российской армии",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,93,0
+45eb0ffab4e4b84f52132ab7dd00a6fc,2026-W07,Мирные переговоры,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2272,100,81,0
+d66d63d71e9d65f26a9b265cc02b58de,2026-W07,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,1926,100,72,0
+9e8cd13e8aebf1272188c8717501a8ba,2026-W07,"Замедление работы Telegram, блокировка других интернет-ресурсов",4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.5,1065,100,50,0
+a432465f04d8e84c7df3feb49081c55a,2026-W07,Нападения учеников в учебных заведениях,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,524,100,76,0
+1a2e831502fd480ea0426bfb725e4e0b,2026-W07,Олимпийские игры в Италии,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.43,1046,100,61,0
+96a067478a466fb329c37e08dac25e95,2026-W07,"Рост цен, тарифов",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.52,209,97,55,0
+89adc86e01bfa64febcff3e3fefea4d3,2026-W07,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,1885,100,56,0
+3faa0bd90215055d8ca4076803bd0f13,2026-W07,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.37,895,100,66,0
+78045cd28bd7a746f7edc894cf464b46,2026-W07,Обнародование файлов Эпштейна,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,682,100,76,0
+cd520a2998437591dff7f3d59dbca37e,2026-W07,Криминальные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.82,635,100,28,0
+992de27dfa5233b0709d9a0cd35e97c7,2026-W07,Покушение на генерала В. Алексеева,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.47,856,43,24,0
+f92b7399925c137fe8415fd6d97ea681,2026-W07,События вокруг Кубы,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.34,287,86,53,0
+329d4398d95a13ca04723d9d365e03fb,2026-W07,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.01,0,100,0,0
+2776e2d56b4bf1b04c6daf403702041a,2026-W08,"СВО в целом, успехи российской армии",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,82,0
+ede1b6623e370830dd509ea04ff6d5cd,2026-W08,Мирные переговоры,10.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,2349,100,75,0
+8454df6dc89a330a47d5abcbde512449,2026-W08,Обстрелы российских территорий,3.0,"gpt-6-luna, OpenAI API, effort low",0.1,1806,100,82,0
+0f60828a9c30eaff8d87d966d50bb308,2026-W08,"Замедление работы Telegram, блокировка других интернет-ресурсов",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.68,564,100,39,0
+e0cc4c67e272923837880e8dc058fbd2,2026-W08,"Погода, природные катаклизмы в России",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.49,858,100,58,0
+55a07dd6b0aa2a45d6b9990bff29ae30,2026-W08,"Рост цен, тарифов",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.44,332,100,48,0
+3ef24d8ec1f4129a220d216ae97435ac,2026-W08,События вокруг Ирана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,95,81,0
+414a79fb0ec59080bd388e7023b4d1d3,2026-W08,Олимпийские игры в Италии,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.21,581,93,59,0
+972d6ec80b95c45f8a400f4583a3ba36,2026-W08,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,324,100,58,0
+3779979fb5ff77168997d9211afda629,2026-W08,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.98,1132,100,2,0
+94af8f854725a1793b4f5d04c1254ab4,2026-W08,Нападения учеников в учебных заведениях,1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,58,67,3,0
+22d4ca9f70f7bce08cf4480c5456d6bb,2026-W08,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.51,616,100,49,0
+0b902d413b2f75a616d2514c18ea3d1f,2026-W09,СВО в целом,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2623,100,82,0
+37eefb214855fbf0cb067bf0030fca60,2026-W09,"События вокруг Ирана, эскалация конфликта",13.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,75,55,0
+9112ef0503ecd85e5b4c2f54435f1012,2026-W09,Обстрелы российских территорий,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.37,1681,100,72,0
+7fe5d630aff97f406708e39ff13e7d5b,2026-W09,Мирные переговоры,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.18,1008,100,75,0
+344f92e0e48adb3a6072511214fa75bc,2026-W09,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,678,100,65,0
+6791c980cf087098c93f037ca8408109,2026-W09,"Замедление работы Telegram, блокировка других интернет-ресурсов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.14,716,100,61,0
+dadedddc4ae5a19abaf23626894ac4de,2026-W09,Планы Лондона и Парижа по вооружению Украины ядерной бомбой,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,297,66,30,0
+6b3ac62dcba9acf55a1ba89da1b310a6,2026-W09,Похищение девочки в Смоленске,1.0,"gpt-6-luna, OpenAI API, effort low",0.87,188,28,12,0
+69c9ad4fa48eba4b63ac276a86cd061e,2026-W09,Криминальные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,271,61,26,0
+dcc235544252b772eaee7bf669463b63,2026-W09,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,88,0
+08b90da876881ff2bb21b40cb49e1350,2026-W09,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,31,100,9,0
+b7ee510655e4ccf19a7ca8b99799e11d,2026-W09,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.96,276,100,19,0
+b11d1b1b5154a59798fadacaf54d3eac,2026-W09,Спортивные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,569,100,43,0
+95488aa51d599847897d3a6fb1641cf6,2026-W10,"События вокруг Ирана, эскалация конфликта",38.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,96,94,0
+a48a98bbba0e793b6e1442a84499854f,2026-W10,СВО в целом,15.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,82,0
+761d2a0631adaaa17dcdc8e1d7c262e9,2026-W10,Обстрелы российских территорий,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.31,1463,100,71,0
+9a5d0b80dad5c1169ba493fd60fa6cc9,2026-W10,"Рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.83,529,100,11,0
+66073104622b4f06ef612b3e7ffd322b,2026-W10,"Замедление работы Telegram, блокировка других интернет-ресурсов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.46,790,100,42,0
+d27403438f9a08f69ce8083d4a0ce054,2026-W10,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,90,0
+6f99a307b26f5d982f362a11c0a60305,2026-W10,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.99,505,100,14,0
+0fe4f29b271e75842600dfa21a6bedab,2026-W11,"События вокруг Ирана, эскалация конфликта",31.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,98,0
+666afd3c32f89c650bad37e0a3e07d57,2026-W11,СВО в целом,17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,2567,100,57,0
+6a48ac5940294dc60ba34d759ac07267,2026-W11,Обстрелы российских территорий,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2539,100,87,0
+3e1bbba98ef355e4fa7b0ecce88a0da6,2026-W11,"Замедление работы Telegram, блокировка других интернет-ресурсов",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,1114,100,69,0
+87086e89c496a74d4588c3e42dc8b2ed,2026-W11,"Рост цен, тарифов",1.0,"gpt-6-luna, OpenAI API, effort low",0.51,605,100,22,0
+e9ac75bb4ae91bd87fd1001227c5bdf7,2026-W11,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.99,229,100,9,0
+2f2e9498a4079b1fee4a77cbd0c13508,2026-W12,"События вокруг Ирана, эскалация конфликта",27.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,94,0
+8fa4cf01e5002d24f92ee2139f500446,2026-W12,СВО в целом,18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,2524,100,75,0
+d062ecddaf2cc2702bc8b62d53b1c274,2026-W12,Обстрелы российских территорий,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.37,2261,100,60,0
+225200ce338e1de513655f2a81b7cb35,2026-W12,Вспышка опасных инфекций и массовый забой скота,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.42,300,50,30,0
+33e7bf68875566126c649f17756fb37c,2026-W12,"Замедление работы Telegram, блокировка других интернет-ресурсов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.13,1361,100,60,0
+12b6b268a986ca1e031833d06ff030ff,2026-W12,Блокировка интернета,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1651,99,77,1
+7414f3d7334fadc82344b6e1326e816e,2026-W12,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,549,100,49,0
+0dcb9a18191bd1585e4fc77e0f9cc5f0,2026-W12,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,70,60,0
+aabe2d6b743fe69d85e4e6e38263796d,2026-W13,"События вокруг Ирана, эскалация конфликта",19.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,91,89,0
+ece5e91ac73e26add80582dbb2df1b2f,2026-W13,СВО в целом,17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,80,0
+9db3b65f43813353ad053df784b348f1,2026-W13,Обстрелы российских территорий,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.52,1954,100,60,0
+72aa68ae5878d9c673f4325bb8cf8cc8,2026-W13,Вспышка опасных инфекций и массовый забой скота,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.29,178,39,19,0
+d37697a54e35db0dca4ea4e861717670,2026-W13,"Замедление работы Telegram, блокировка других интернет-ресурсов",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,1437,100,53,0
+8708b948fd348b3fb50f011b9b373d10,2026-W13,"Погода, природные катаклизмы в России",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.03,1413,100,70,0
+1a1f13fc4e2cac9a43d3ba75b120fc95,2026-W13,Блокировка интернета,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.5,646,100,43,0
+2ad6bdd00ccc3904c731625c970dcf92,2026-W13,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.5,292,100,48,0
+f80089fceb5efe069b4c6de09faa42b1,2026-W13,"Криминальные события, аресты",1.0,"gpt-6-luna, OpenAI API, effort low",0.39,652,100,49,0
+fc6cf73abeab0328bfdb00387cd14678,2026-W14,СВО в целом,16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2885,100,83,0
+c8561cf2a0da1ae87d2b5b6b2a90e52d,2026-W14,"События вокруг Ирана, эскалация конфликта",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,97,89,0
+be1f6e77fbe9e8d91c19c722d82a1033,2026-W14,Обстрелы российских территорий,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,2021,100,75,0
+3e1a2b5f0a41f1a677700fe5ba8e33de,2026-W14,"Погода, природные катаклизмы в России",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.18,1556,100,77,0
+f2b1b8bcf90119f13f3545847fb4cfc4,2026-W14,"Замедление работы Telegram, блокировка других интернет-ресурсов",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,1296,100,69,0
+920982541a3826c0a02a905c52a1093e,2026-W14,"Аварии, пожары",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.36,1221,100,59,0
+af8d69f900c65bf7a7701a2a31cb4097,2026-W14,Блокировка интернета,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,890,100,84,0
+ca604c4a6bd0c413cf8ee376ab7f5072,2026-W14,Вспышка опасных инфекций и массовый забой скота,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.57,69,42,19,0
+9a82dc064107ece8adcc6b7053ef1b32,2026-W14,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.51,259,100,44,0
+2446afd58df0f9b9155389921301ede1,2026-W14,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,2744,100,87,0
+8f35bdb08f335565e2eed0b0844ebd7b,2026-W15,"События вокруг Ирана, эскалация конфликта",22.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,88,87,0
+26271809b19e9327b030647a3549eb0d,2026-W15,СВО в целом,16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.12,2423,100,79,0
+f4d67042ba97413e24400ed5b377c10d,2026-W15,"Погода, природные катаклизмы в России",7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.97,829,100,20,0
+a5ed5ae77d8872c8052724ba67818340,2026-W15,Обстрелы российских территорий,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.49,1623,100,60,0
+c0fd100e3b1f2b2fe813d0573a4e314f,2026-W15,"Криминальные события, аресты",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,785,84,52,0
+cafa7f8157a20ac24dd1079e2dd06971,2026-W15,"Замедление работы Telegram, блокировка других интернет-ресурсов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.43,621,100,59,0
+0caa9b602dbec001e97ae775f07b81e9,2026-W15,Блокировка интернета,1.0,"gpt-6-luna, OpenAI API, effort low",0.07,845,95,44,5
+7e83808ad1048aa420f1804723e4bcc0,2026-W15,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,85,0
+0c18c62bf7a6be03e57b3fce71398435,2026-W15,Вспышка опасных инфекций и массовый забой скота,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,58,40,19,0
+398464b9f51335636db4cde1a5e1311e,2026-W15,Спортивные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.97,33,100,4,0
+e279b52e10360397fd0e874c33bb65e3,2026-W15,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,237,100,43,0
+cec3d684493c5ce71513044e2e9445b8,2026-W15,Православная Пасха,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.69,791,100,27,0
+6ff16f4b83ef956d128f5cd76b9ec7b6,2026-W16,СВО в целом,17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2659,100,78,0
+72abbd54f894f35b6c498e34f441a261,2026-W16,"События вокруг Ирана, эскалация конфликта",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,2840,99,91,0
+12ed97d9f3b3e9463d4d4210b91c05ee,2026-W16,"Погода, природные катаклизмы в России",7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,1131,100,55,0
+b8700c5950ff15eb258f0045fef648d7,2026-W16,Обстрелы российских территорий,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.6,1734,100,57,0
+0d440022a55e77ae5e981c3fe3d62080,2026-W16,Блокировка интернета,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.26,782,100,66,0
+c07c621d48b6e9b4bd5bf31fe8ff88c2,2026-W16,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,657,100,47,0
+8caa31c0922a453bf82ce6e69989a129,2026-W16,Вспышка опасных инфекций и массовый забой скота,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.74,51,44,12,0
+876bb6248b0c0cedcc9f56b81b96c029,2026-W16,"Аварии, пожары",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.97,342,100,8,0
+47caa57c4d159b9f20000d8da10bf604,2026-W16,"Православная Пасха, День космонавтики",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.85,584,100,34,0
+3d21f00c2850416fe510b8bfd4321c15,2026-W16,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.12,2537,100,71,0
+0bcde71219c932b39b4f25f683d7e951,2026-W16,"Замедление работы Telegram, блокировка других интернет-ресурсов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,952,100,66,0
+35c4fc651c4ab39eec9462e3229b921c,2026-W16,Обращение блогера Виктории Бони к В. Путину,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,224,91,53,0
+eede00b8c5016f45fa80d1cb6d8e5f85,2026-W16,"Агрессивная политика Евросоюза, поставка оружия Украине, поддержка ударов по России",1.0,"gpt-6-luna, OpenAI API, effort low",0.11,286,98,65,0
+ae806fd4e23ac0665091b643bdd67f31,2026-W17,СВО в целом,17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,2723,100,85,0
+c619a6f7893340ebbf1bf6f587f8b26d,2026-W17,Обстрелы российских территорий,15.0,"gpt-6.1-sol, Codex subscription, effort medium",0.41,2465,100,60,0
+900a0d511e43281ab1024c44d342c42a,2026-W17,"События вокруг Ирана, эскалация конфликта",8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,92,0
+b977bc731df46f243d961663335a4249,2026-W17,"Погода, природные катаклизмы в России",4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,988,100,49,0
+c436e8a06869833c057a62e0b0dc454b,2026-W17,Блокировка интернета,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.16,667,100,72,0
+e7161fe7cbc364d4f41f2683647e6131,2026-W17,"Агрессивная политика Евросоюза, поставка оружия Украине, поддержка ударов по России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.16,738,100,75,0
+671ef9bdbe6c2bf12b2f74bf2b2337a7,2026-W17,"Обращение блогера Виктории Бони к власти, его последствия",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.28,163,66,34,1
+873883e7ef455245c99f57bb844c454f,2026-W17,Смерть А. Пиманова,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.42,212,37,16,0
+3a7db8feeb80fd15333e1c210bd5c3c7,2026-W17,"Замедление работы Telegram, блокировка других интернет-ресурсов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,718,100,41,0
+ec1225c6a2d863678a77a32ec6f9cace,2026-W17,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,78,100,1,0
+95dcb6819a9a0de8cb09b55ae53204b9,2026-W17,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.28,348,100,51,0
+215bd3be9e3ada02fdc7c3927bd173dd,2026-W18,Обстрелы российских территорий,18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.08,2469,100,72,0
+925a6d78de600d465c2545ddac496a1a,2026-W18,СВО в целом,16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.08,2754,100,81,0
+1e7c28164a32c36d67b4ea6e55e409ee,2026-W18,"События вокруг Ирана, эскалация конфликта",6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.02,2522,100,82,0
+d86d333c2ff76232000f398b15483b85,2026-W18,"Погода, природные катаклизмы в России",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.11,759,100,70,0
+0b9c30cdf765e7690d5781ccc3fcee75,2026-W18,Экологическая катастрофа в Туапсе,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,871,85,47,0
+b3d0475e2b9eb20a4ca97537fde38ca3,2026-W18,Блокировка интернета,2.0,"gpt-6-luna, OpenAI API, effort low",0.44,602,100,56,0
+d218a5246b9a7dea269db00cd7f68ede,2026-W18,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,94,0
+942f5263a9a1b861e63467a51e8ee53e,2026-W18,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.12,2573,100,75,0
+efa3a6190bb5e686c584899036c349a3,2026-W18,"Встречи, переговоры В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.04,1227,100,48,0
+451ae0bf7e69f3df39d32b8945840a92,2026-W20,Обстрелы российских территорий,15.0,"gpt-6.1-sol, Codex subscription, effort medium",0.07,2134,100,83,0
+f732c15360baeb1c443bc65bbfcf885f,2026-W20,СВО в целом,15.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,100,76,0
+1b72bd62d7473dce350bf210bdd45b89,2026-W20,"Празднование Дня Победы, парад",4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2039,100,74,0
+e1872a32ac8adaec4c899c2209f4720c,2026-W20,Визит Д. Трампа в Китай,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.06,740,100,64,0
+05b1ae11afee1995c27b214341a2a1e7,2026-W20,"События вокруг Ирана, эскалация конфликта",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,1719,100,79,0
+44959a08a35ec664e3224701bef2de0b,2026-W20,"Встречи, переговоры В. Путина",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.01,1328,100,77,0
+ddfbf5eeab4594d3d1cf6241e854a94a,2026-W20,Перемирие на День Победы,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,636,100,64,0
+740dee0c8b9fcc892c153529ec3c6448,2026-W20,Экологическая катастрофа в Туапсе,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.54,45,32,13,0
+63a1313d97cb2ed4e0ff770b5d28adfb,2026-W20,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.16,472,100,73,0
+ed0bc367fa84e3e3349d0191f75f9dd0,2026-W20,Успешное испытание ракеты «Сармат»,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,235,80,59,0
+6e9c319568765249cd4d6794a48e877a,2026-W20,Блокировка интернета,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.53,276,100,49,0
+6b96927b2e62d720bdc208873ac6ccf1,2026-W20,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.41,525,100,51,0
+77c91a3dfadde6f2b6e608d3c344e912,2026-W20,"Аварии, пожары, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.01,0,100,0,0
+868b8a972feb744e9d6987bcc5622020,2026-W20,Вспышка хантавируса,1.0,"gpt-6-luna, OpenAI API, effort low",0.1,330,93,74,0

@@ -1,0 +1,44 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "Погода, природные катаклизмы в России",
+  "year": 2026,
+  "week": 16,
+  "fom_percentage": 7.0,
+  "quotes": [
+   "«Бедствия»",
+   "«стихийные бедствия»",
+   "«Дагестан затопило, Тюмень затопило»",
+   "«дождь»",
+   "«затопления»",
+   "«катаклизм природный в горах, в России наводнение»",
+   "«наводнения в Дагестане и Туапсе»",
+   "«пожары»",
+   "«природные явления, наводнения»",
+   "«снег в Москве»"
+  ],
+  "event_id": "12ed97d9f3b3e9463d4d4210b91c05ee"
+ },
+ "window": {
+  "match_start": "2026-04-10",
+  "match_end_exclusive": "2026-04-30"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.45,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1131,
+  "embedded_pool": 37764,
+  "window_posts": 37764
+ }
+}

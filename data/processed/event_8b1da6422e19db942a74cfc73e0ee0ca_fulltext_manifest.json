@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Торговая война США с Китаем",
+  "year": 2025,
+  "week": 15,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Китайцы с Трампом выдерживают позиции»",
+   "«санкционная война Китая и США»",
+   "«торговая война США и Китая»"
+  ],
+  "event_id": "8b1da6422e19db942a74cfc73e0ee0ca"
+ },
+ "window": {
+  "match_start": "2025-04-04",
+  "match_end_exclusive": "2025-04-24"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.84,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1089,
+  "embedded_pool": 41139,
+  "window_posts": 41144
+ }
+}

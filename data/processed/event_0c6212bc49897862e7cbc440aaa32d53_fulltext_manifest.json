@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Пожары, наводнения в России",
+  "year": 2025,
+  "week": 12,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Пожары в Приморском крае, уничтожение животных»",
+   "«наводнения в России»",
+   "«потоп в Башкирии»"
+  ],
+  "event_id": "0c6212bc49897862e7cbc440aaa32d53"
+ },
+ "window": {
+  "match_start": "2025-03-14",
+  "match_end_exclusive": "2025-04-03"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.31,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 149,
+  "embedded_pool": 44637,
+  "window_posts": 44638
+ }
+}

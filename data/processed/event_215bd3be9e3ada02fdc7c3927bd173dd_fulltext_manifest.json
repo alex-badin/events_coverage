@@ -1,0 +1,46 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2026,
+  "week": 18,
+  "fom_percentage": 18.0,
+  "quotes": [
+   "«Атака беспилотников по России»",
+   "«атака дронов на большие города»",
+   "«атаки по городу, в школу нужно было бегать забирать детей»",
+   "«беспилотная опасность»",
+   "«беспилотники летают по России, бомбы на российские объекты»",
+   "«беспилотники летают и тревога постоянно»",
+   "«беспилотники очень беспокоят»",
+   "«бомбёжки нефтебаз»",
+   "«в Екатеринбурге дрон прилетал, дом разрушил»",
+   "«налёты беспилотников»",
+   "«обстрел в Самаре»",
+   "«пожары в Туапсе и в Перми»"
+  ],
+  "event_id": "215bd3be9e3ada02fdc7c3927bd173dd"
+ },
+ "window": {
+  "match_start": "2026-04-24",
+  "match_end_exclusive": "2026-05-14"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.08,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2469,
+  "embedded_pool": 37743,
+  "window_posts": 37743
+ }
+}

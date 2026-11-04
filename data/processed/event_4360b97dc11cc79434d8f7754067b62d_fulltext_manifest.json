@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Рост цен, инфляция",
+  "year": 2025,
+  "week": 14,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Про цены»",
+   "«рост цен»",
+   "«рост цен на проезд»",
+   "«инфляция»"
+  ],
+  "event_id": "4360b97dc11cc79434d8f7754067b62d"
+ },
+ "window": {
+  "match_start": "2025-03-28",
+  "match_end_exclusive": "2025-04-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.05,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 514,
+  "embedded_pool": 41143,
+  "window_posts": 41145
+ }
+}

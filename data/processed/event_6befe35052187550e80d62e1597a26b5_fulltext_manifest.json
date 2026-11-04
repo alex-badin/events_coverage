@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Эскалация конфликта России с Европой, НАТО",
+  "year": 2025,
+  "week": 39,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Активизировались войска НАТО»",
+   "«дроны в Польше – провокация против России»",
+   "«Европа нападает на Россию»",
+   "«НАТО у границ РФ и Беларуси»",
+   "«провокации Польши, Эстонии»",
+   "«слухи о войне с НАТО»"
+  ],
+  "event_id": "6befe35052187550e80d62e1597a26b5"
+ },
+ "window": {
+  "match_start": "2025-09-19",
+  "match_end_exclusive": "2025-10-09"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.1,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 1660,
+  "embedded_pool": 45682,
+  "window_posts": 45684
+ }
+}

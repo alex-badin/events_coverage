@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:34",
+ "event": {
+  "name": "Аварии, несчастные случаи",
+  "year": 2026,
+  "week": 9,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Дорогобуж – авария»",
+   "«женщину покусали в Южном: две огромные собаки напали»",
+   "«крыша обвалилась»",
+   "«про Байкал: утонули восемь туристов»",
+   "«спасение ребёнка, который выпал из окна»"
+  ],
+  "event_id": "b7ee510655e4ccf19a7ca8b99799e11d"
+ },
+ "window": {
+  "match_start": "2026-02-20",
+  "match_end_exclusive": "2026-03-12"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.96,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 276,
+  "embedded_pool": 46052,
+  "window_posts": 46054
+ }
+}

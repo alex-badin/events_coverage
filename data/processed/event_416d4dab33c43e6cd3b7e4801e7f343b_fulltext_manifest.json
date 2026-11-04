@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Празднование 80-летия Победы",
+  "year": 2025,
+  "week": 20,
+  "fom_percentage": 7.0,
+  "quotes": [
+   "«80-летие Победы»",
+   "«9 Мая, День Победы»",
+   "«9 Мая, салют»",
+   "«как страна отпраздновала День Победы: блестяще, на самом высоком уровне, достойно нашей страны и нашей великой Победы»",
+   "«День Победы – праздник для каждой семьи в нашем государстве»",
+   "«парад на Красной площади и приезд лидеров государств»"
+  ],
+  "event_id": "416d4dab33c43e6cd3b7e4801e7f343b"
+ },
+ "window": {
+  "match_start": "2025-05-09",
+  "match_end_exclusive": "2025-05-29"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.15,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "kept": 2243,
+  "embedded_pool": 45488,
+  "window_posts": 45490
+ }
+}
