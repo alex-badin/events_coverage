@@ -28,10 +28,11 @@
 
   --empty: #efeee9;
   --att-1: #e4e0f6; --att-2: #c3baea; --att-3: #9384d6; --att-4: #6352bd; --att-5: #33267f;
-  --cov-1: #efeee9; --cov-2: #dddbd2; --cov-3: #b9b6aa; --cov-4: #85827a;
-  --cov-ink-4: #ffffff;
   /* Measured-week marks: a neutral ink, so they never read as one more survey-attention value. */
   --measured: #3a3935;
+  /* Coverage table: a group's value against the median of the groups for the same event. */
+  --rel-lo2: #2a5f9e; --rel-lo1: #c6dcf3; --rel-mid: #efeee9; --rel-hi1: #f6c9ae; --rel-hi2: #c2410c;
+  --rel-ink-strong: #ffffff;
 
   --warning: #fab219;
 }
@@ -44,9 +45,9 @@
     --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300;
     --empty: #1f1f1e;
     --att-1: #2a2640; --att-2: #3f3870; --att-3: #5d51a8; --att-4: #8a7fe0; --att-5: #cfc9f7;
-    --cov-1: #232322; --cov-2: #34342f; --cov-3: #55544d; --cov-4: #8d8b82;
-    --cov-ink-4: #0d0d0d;
     --measured: #e3e1d9;
+    --rel-lo2: #5b9be0; --rel-lo1: #1f3550; --rel-mid: #262624; --rel-hi1: #5a3020; --rel-hi2: #e0703a;
+    --rel-ink-strong: #0d0d0d;
   }
 }
 :root[data-theme="dark"] {
@@ -57,9 +58,9 @@
   --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300;
   --empty: #1f1f1e;
   --att-1: #2a2640; --att-2: #3f3870; --att-3: #5d51a8; --att-4: #8a7fe0; --att-5: #cfc9f7;
-  --cov-1: #232322; --cov-2: #34342f; --cov-3: #55544d; --cov-4: #8d8b82;
-  --cov-ink-4: #0d0d0d;
   --measured: #e3e1d9;
+  --rel-lo2: #5b9be0; --rel-lo1: #1f3550; --rel-mid: #262624; --rel-hi1: #5a3020; --rel-hi2: #e0703a;
+  --rel-ink-strong: #0d0d0d;
 }
 
 * { box-sizing: border-box; }
@@ -187,7 +188,22 @@ tr.name-row:hover td { background: var(--raised); }
 .cov .cell { border-radius: 6px; padding: 6px 4px; cursor: pointer; }
 .cov .cell b { display: block; font-size: 14px; font-weight: 600; color: var(--ink); }
 .cov .cell small { display: block; font-size: 11px; color: var(--ink-2); }
-.cov .cell.b4 b, .cov .cell.b4 small { color: var(--cov-ink-4); }
+.cov .cell.strong b, .cov .cell.strong small { color: var(--rel-ink-strong); }
+.cov td.fom { min-width: 96px; padding: 6px 8px; font-variant-numeric: tabular-nums; }
+.cov td.fom b { display: block; font-size: 14px; font-weight: 600; }
+.cov .fom-track { display: block; height: 7px; border-radius: 2px; background: var(--att-1); margin-top: 4px; }
+.cov .fom-track span { display: block; height: 100%; border-radius: 2px; background: var(--att-4); }
+.cov th.fom-h { text-align: left; font-weight: 600; font-size: 11px; white-space: normal; line-height: 1.25; }
+.rel-scale { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 11.5px; color: var(--ink-muted); margin-top: 10px; }
+.rel-scale span { display: inline-flex; align-items: center; gap: 5px; }
+.rel-scale i { width: 18px; height: 11px; border-radius: 2px; display: inline-block; border: 1px solid var(--hairline); }
+
+/* Overview: period picker for the heatmap ---------------------------------- */
+.range { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-bottom: 12px; }
+.range .chips { gap: 5px; }
+.range .chip { min-height: 26px; padding: 2px 10px; }
+.range label { font-size: 12.5px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; }
+.range select { font: inherit; font-size: 12.5px; color: var(--ink); background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 6px; padding: 3px 6px; }
 .cov .cell.zero b { color: var(--ink-muted); }
 .cov .cell.thin { opacity: .5; outline: 1px dashed var(--axis); outline-offset: -2px; }
 .cov .cell.off { cursor: default; color: var(--ink-muted); font-size: 11.5px; }
@@ -314,7 +330,8 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
   .cov tr { border: 1px solid var(--hairline); border-radius: 9px; padding: 8px; margin-bottom: 10px; }
   .cov td { border: 0; padding: 3px 2px; text-align: left; }
   .cov td.c { display: grid; grid-template-columns: minmax(130px, 1fr) 1.4fr; align-items: center; gap: 8px; text-align: left; }
-  .cov td.c::before { content: attr(data-label); font-size: 12px; color: var(--ink-2); }
+  .cov td.c::before, .cov td.fom::before { content: attr(data-label); font-size: 12px; color: var(--ink-2); }
+  .cov td.fom { display: grid; grid-template-columns: minmax(130px, 1fr) 1.4fr; align-items: center; gap: 8px; }
   .cov .cell { text-align: left; padding: 4px 8px; }
   .cov .cell b, .cov .cell small { display: inline; margin-right: 6px; }
 }
@@ -349,6 +366,7 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
         that week's list.</p>
     </div>
     <div class="card">
+      <div class="range" id="heat-range"></div>
       <div id="heat"></div>
       <div class="info" id="heat-info"></div>
       <div class="scale" id="heat-scale"></div>
@@ -366,9 +384,12 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
         The respondent percentage comes from the FOM survey, not from media posts.</p>
     </div>
     <div class="card"><div class="scroll-x" id="cov"></div>
+      <div class="rel-scale" id="rel-scale"></div>
       <p class="line">Per 1,000 = matched posts per 1,000 posts the group published in the event's
-        search window (3 days before the survey week to 10 days after). Faded and outlined: fewer than 5
-        posts, too few to compare.</p>
+        search window (3 days before the survey week to 10 days after). The colour compares each group with
+        the median of the groups for the same event, so it shows which groups gave the event more or less room
+        than the others; it does not compare one event with another. Faded and outlined: fewer than 5
+        posts, too few to compare, and left out of the median.</p>
     </div>
   </section>
 </main>
@@ -600,6 +621,43 @@ const BINS = [
 const binColor = v => BINS.find(b => v < b.max).color;
 let heatRows = [], heatGeom = null, selNow = null;
 
+/* Period shown in the heatmap: indexes into WEEKS, both ends included. All of it by default. */
+let heatSpan = {a: 0, b: WEEKS.length - 1};
+let VIEW = WEEKS;
+const YEARS = [...new Set(WEEKS.map(w => w.fom_year))];
+const monthOf = w => w.week_start.slice(0, 7);
+const MONTHS = [...new Set(WEEKS.map(monthOf))];
+const monthName = m => new Date(m + '-15T00:00:00Z').toLocaleDateString('en-GB', {month: 'short', year: 'numeric', timeZone: 'UTC'});
+function setSpan(a, b) {
+  a = Math.max(0, Math.min(a, WEEKS.length - 1)); b = Math.max(a, Math.min(b, WEEKS.length - 1));
+  heatSpan = {a, b};
+  renderRange(); renderHeat(selNow); resetInfo();
+}
+function renderRange() {
+  const {a, b} = heatSpan, all = a === 0 && b === WEEKS.length - 1;
+  const yearOn = y => WEEKS[a].fom_year === y && WEEKS[b].fom_year === y &&
+    (a === 0 || WEEKS[a - 1].fom_year !== y) && (b === WEEKS.length - 1 || WEEKS[b + 1].fom_year !== y);
+  const mFrom = monthOf(WEEKS[a]), mTo = monthOf(WEEKS[b]);
+  el('heat-range').innerHTML = `<div class="chips" role="group" aria-label="Period">
+      <button type="button" class="chip" data-span="all" aria-pressed="${all}">All years</button>
+      ${YEARS.map(y => `<button type="button" class="chip" data-year="${y}" aria-pressed="${yearOn(y)}">${y}</button>`).join('')}
+    </div>
+    <label>From <select id="range-from">${MONTHS.map(m => `<option value="${m}"${m === mFrom ? ' selected' : ''}>${monthName(m)}</option>`).join('')}</select></label>
+    <label>to <select id="range-to">${MONTHS.map(m => `<option value="${m}"${m === mTo ? ' selected' : ''}>${monthName(m)}</option>`).join('')}</select></label>`;
+  el('heat-range').querySelectorAll('[data-span]').forEach(bt => bt.addEventListener('click', () => setSpan(0, WEEKS.length - 1)));
+  el('heat-range').querySelectorAll('[data-year]').forEach(bt => bt.addEventListener('click', () => {
+    const y = Number(bt.dataset.year);
+    setSpan(WEEKS.findIndex(w => w.fom_year === y), WEEKS.findLastIndex(w => w.fom_year === y));
+  }));
+  const onMonths = () => {
+    let f = el('range-from').value, t = el('range-to').value;
+    if (t < f) [f, t] = [t, f];
+    setSpan(WEEKS.findIndex(w => monthOf(w) >= f), WEEKS.findLastIndex(w => monthOf(w) <= t));
+  };
+  el('range-from').addEventListener('change', onMonths);
+  el('range-to').addEventListener('change', onMonths);
+}
+
 function heatRowList(sel) {
   const openUmbrella = sel ? (sel.type === 'umbrella' ? sel.id : THEME_BY_ID.get(sel.id)?.umbrella_id) : null;
   const rows = [];
@@ -623,7 +681,8 @@ function renderHeat(sel) {
   const narrow = W < 560;
   const labelW = narrow ? 0 : Math.min(250, Math.round(W * 0.24));
   const rowH = 20, gap = 3, labelH = narrow ? 15 : 0, topH = 18, axisH = 22;
-  const n = WEEKS.length, colW = (W - labelW) / n;
+  VIEW = WEEKS.slice(heatSpan.a, heatSpan.b + 1);
+  const n = VIEW.length, colW = (W - labelW) / n;
   const stride = rowH + gap + labelH;
   const H = topH + gap + heatRows.length * stride + axisH;
   heatGeom = {labelW, rowH, gap, labelH, topH, stride, colW, W, H};
@@ -636,8 +695,9 @@ function renderHeat(sel) {
   // Weeks with a measured event: a tick on the top strip.
   s += `<text x="${narrow ? 0 : labelW - 10}" y="${topH - 5}" text-anchor="${narrow ? 'start' : 'end'}" class="yr">${narrow ? '' : 'Coverage measured'}</text>`;
   const measuredIdx = new Set(MEASURED_WEEKS.map(ws => WEEK_BY_START.get(ws)?.i));
-  measuredIdx.forEach(i => {
-    if (i == null) return;
+  measuredIdx.forEach(gi => {
+    if (gi == null || gi < heatSpan.a || gi > heatSpan.b) return;
+    const i = gi - heatSpan.a;
     // A dot in neutral ink, not a purple bar: the purple scale below is survey attention.
     s += `<circle cx="${labelW + (i + 0.5) * colW}" cy="${topH / 2}" r="${Math.max(1.5, Math.min(3, colW / 2))}" fill="var(--measured)"/>`;
   });
@@ -654,7 +714,7 @@ function renderHeat(sel) {
       <text x="${narrow ? indent : lx - 0}" y="${ly}" text-anchor="${narrow ? 'start' : 'end'}"${weight}>${esc(prefix + row.label)}</text></g>`;
     // Cells
     s += `<g${dim}>`;
-    WEEKS.forEach((w, i) => {
+    VIEW.forEach((w, i) => {
       const x = labelW + i * colW;
       let fill;
       if (!w.has_survey) fill = 'url(#hatch)';
@@ -669,14 +729,25 @@ function renderHeat(sel) {
       s += `<line x1="${labelW - 4}" x2="${labelW - 4}" y1="${y0}" y2="${y0 + rowH}" stroke="var(--axis)"/>`;
   });
 
-  // Year boundaries.
+  // Year boundaries; on a span of about two years or less, month boundaries too.
   const yBottom = topH + gap + heatRows.length * stride;
-  WEEKS.forEach((w, i) => {
-    const prev = WEEKS[i - 1];
-    if (i === 0 || (prev && prev.fom_year !== w.fom_year)) {
-      const x = labelW + i * colW;
+  const showMonths = n <= 110;
+  const monthEvery = n <= 30 ? 1 : n <= 60 ? 2 : 3;
+  let monthCount = 0;
+  VIEW.forEach((w, i) => {
+    const prev = VIEW[i - 1];
+    const x = labelW + i * colW;
+    const newYear = i === 0 || (prev && prev.fom_year !== w.fom_year);
+    const newMonth = prev && monthOf(prev) !== monthOf(w);
+    if (newYear) {
       s += `<line x1="${x}" x2="${x}" y1="${topH}" y2="${yBottom + 4}" stroke="var(--axis)" stroke-width="1"/>`;
-      s += `<text x="${x + 3}" y="${yBottom + 16}" class="yr">${w.fom_year}</text>`;
+      s += `<text x="${x + 3}" y="${yBottom + 16}" class="yr">${showMonths ? monthName(monthOf(w)) : w.fom_year}</text>`;
+      monthCount = 0;
+    } else if (showMonths && newMonth) {
+      monthCount++;
+      s += `<line x1="${x}" x2="${x}" y1="${yBottom}" y2="${yBottom + 4}" stroke="var(--axis)" stroke-width="1"/>`;
+      if (monthCount % monthEvery === 0 && x < W - 30)
+        s += `<text x="${x + 3}" y="${yBottom + 16}" class="yr">${new Date(monthOf(w) + '-15T00:00:00Z').toLocaleDateString('en-GB', {month: 'short', timeZone: 'UTC'})}</text>`;
     }
   });
   s += `<rect id="heat-cursor" x="0" y="${topH}" width="${Math.max(2, colW)}" height="${yBottom - topH}" fill="none" stroke="var(--ink)" stroke-width="1" visibility="hidden"/>`;
@@ -716,14 +787,14 @@ function renderHeat(sel) {
     if (lbl) { selectRow(heatRows[Number(lbl.dataset.r)]); return; }
     const p = locate(evt);
     if (p.col < 0 || p.col >= n) return;
-    const w = WEEKS[p.col];
+    const w = VIEW[p.col];
     if (coarse) { showWeekInfo(p.col, heatRows[p.r], true); return; }
     if (w.has_survey) go(weekHash(w.key));
   });
 }
 function hideCursor() { const c = el('heat-cursor'); if (c) c.setAttribute('visibility', 'hidden'); }
 function showWeekInfo(col, row, withLink) {
-  const w = WEEKS[col], g = heatGeom, c = el('heat-cursor');
+  const w = VIEW[col], g = heatGeom, c = el('heat-cursor');
   c.setAttribute('x', g.labelW + col * g.colW); c.setAttribute('visibility', 'visible');
   if (!w.has_survey) {
     el('heat-info').innerHTML = `<b>${weekTitle(w)}</b> · ${rangeLabel(w.week_start)} · no FOM survey this week`;
@@ -839,15 +910,38 @@ function renderSelection(sel) {
 }
 
 /* --- Coverage measured so far ---------------------------------------------- */
-const COV_BINS = [{max: 5, cls: 'b1'}, {max: 15, cls: 'b2'}, {max: 30, cls: 'b3'}, {max: Infinity, cls: 'b4'}];
-const covBg = {b1: 'var(--cov-1)', b2: 'var(--cov-2)', b3: 'var(--cov-3)', b4: 'var(--cov-4)'};
-function covCell(v, posts, published, label, thin) {
+// A group's value against the median of the groups for the same event (or the same totals row).
+// Cells with fewer than 5 posts are too few to compare and stay out of the median.
+const REL_BINS = [
+  {min: 2,       bg: 'var(--rel-hi2)', strong: true,  label: 'twice the median or more'},
+  {min: 1.4,     bg: 'var(--rel-hi1)', strong: false, label: 'well above the median'},
+  {min: 1 / 1.4, bg: 'var(--rel-mid)', strong: false, label: 'close to the median'},
+  {min: 0.5,     bg: 'var(--rel-lo1)', strong: false, label: 'well below the median'},
+  {min: 0,       bg: 'var(--rel-lo2)', strong: true,  label: 'half the median or less'}
+];
+const median = a => { if (!a.length) return null; const s = [...a].sort((x, y) => x - y), m = s.length >> 1;
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+// Median of the comparable cells in one row: [{v, posts}] -> number or null.
+const rowMedian = cells => { const ok = cells.filter(c => c.v != null && c.posts >= 5).map(c => c.v);
+  return ok.length >= 2 ? median(ok) : null; };
+function covCell(v, posts, published, label, thin, med) {
   if (published == null) return `<div class="cell off">not publishing in this window</div>`;
   if (!posts) return `<div class="cell zero" style="background:var(--empty)"><b>0</b><small>of ${fmt(published)} posts</small></div>`;
-  const bin = COV_BINS.find(b => v < b.max).cls;
-  return `<div class="cell ${bin}${thin ? ' thin' : ''}" style="background:${covBg[bin]}"
-            title="${thin ? 'Fewer than 5 posts: too few to compare' : ''}"><b>${fmt1(v)}</b><small>${plural(posts, 'post', 'posts')}</small></div>`;
+  // Too few posts to compare: no colour, so the cell cannot look like a finding.
+  const bin = med && !thin ? REL_BINS.find(b => v / med >= b.min) : REL_BINS[2];
+  const title = thin ? 'Fewer than 5 posts: too few to compare' : med ? `${bin.label[0].toUpperCase() + bin.label.slice(1)} of the groups for this event (median ${fmt1(med)} per 1,000)` : '';
+  return `<div class="cell${bin.strong ? ' strong' : ''}${thin ? ' thin' : ''}" style="background:${bin.bg}"
+            title="${title}"><b>${fmt1(v)}</b><small>${plural(posts, 'post', 'posts')}</small></div>`;
 }
+function renderRelScale() {
+  el('rel-scale').innerHTML = '<span>Against the median of the groups for the same event:</span>' +
+    [...REL_BINS].reverse().map(b => `<span><i style="background:${b.bg}"></i>${b.label}</span>`).join('');
+}
+// The FOM bar is scaled to the most-named measured event, so it reads as "how much interest, compared
+// with the other measured events".
+const FOM_MAX = () => Math.max(1, ...MEASURED.map(r => r.attention_percentage || 0));
+const fomCell = pct => `<td class="fom" data-label="FOM respondents"><b>${share(pct)}</b>
+  <span class="fom-track"><span style="width:${Math.min(100, (pct || 0) / FOM_MAX() * 100).toFixed(1)}%"></span></span></td>`;
 function renderCoverage(sel) {
   const theme = sel && sel.type === 'theme' ? THEME_BY_ID.get(sel.id) : null;
   const umb = sel && sel.type === 'umbrella' ? UMBRELLA_BY_ID.get(sel.id) : null;
@@ -860,7 +954,7 @@ function renderCoverage(sel) {
       : 'No event has measured coverage yet.'}</p>`;
     return;
   }
-  const head = `<thead><tr><th>Event</th>` +
+  const head = `<thead><tr><th>Event</th><th class="fom-h">FOM respondents who named it</th>` +
     GROUPS.map(g => `<th class="g"><i style="background:${colorOf(g)}"></i>${esc(g)}</th>`).join('') + '</tr></thead>';
   const body = list.map(r => {
     const groups = new Map((GROUP_ROWS.get(r.event_id) || []).map(g => [g.media_group, g]));
@@ -868,13 +962,18 @@ function renderCoverage(sel) {
     return `<tr class="ev" data-ev="${esc(r.event_id)}" data-wk="${weekKey(r)}">
       <td class="ev-cell"><span class="ev-title">${warnMark(r.event_id)}${esc(eventTitle(r))}</span>
           <span class="ev-ru">${esc(r.event_name)}</span>
-          <span class="ev-meta">${weekKey(r)} · mentioned by ${share(r.attention_percentage)} of FOM survey respondents</span>
+          <span class="ev-meta">${weekKey(r)}</span>
           ${t ? `<a class="tag" href="#/theme/${encodeURIComponent(t.theme_id)}">${esc(themeName(t))}</a>` : ''}</td>
-      ${GROUPS.map(g => {
-        const row = groups.get(g);
-        return `<td class="c" data-label="${esc(g)}" data-g="${esc(groupKeyOf.get(g) || '')}">${covCell(row?.matched_posts_per_1000_published, row?.matched_posts,
-          row?.posts_published_in_window, g, row && row.matched_posts > 0 && row.matched_posts < 5)}</td>`;
-      }).join('')}
+      ${fomCell(r.attention_percentage)}
+      ${(() => {
+        const med = rowMedian(GROUPS.map(g => groups.get(g)).filter(x => x && x.posts_published_in_window != null && x.matched_posts > 0)
+          .map(x => ({v: x.matched_posts_per_1000_published, posts: x.matched_posts})));
+        return GROUPS.map(g => {
+          const row = groups.get(g);
+          return `<td class="c" data-label="${esc(g)}" data-g="${esc(groupKeyOf.get(g) || '')}">${covCell(row?.matched_posts_per_1000_published, row?.matched_posts,
+            row?.posts_published_in_window, g, row && row.matched_posts > 0 && row.matched_posts < 5, med)}</td>`;
+        }).join('');
+      })()}
     </tr>`;
   }).join('');
 
@@ -888,11 +987,16 @@ function renderCoverage(sel) {
       <td><span class="ev-title">${label ? `All ${list.length} measured here, together` : `All ${list.length} measured events, together`}</span>
         <span class="ev-ru">posts about any of them per 1,000 posts the group published over the ${any.union_window_days} days their
           windows cover; a post about two events counts once${label ? ` · ${any.n_events} events in this ${theme ? 'theme' : 'area'} in all` : ''}</span></td>
-      ${GROUPS.map(g => {
-        const s = scope.get(g);
-        return `<td class="c" data-label="${esc(g)}">${covCell(s?.matched_posts_per_1000_published, s?.distinct_matched_posts,
-          s?.posts_published_in_union_window, g, s && s.distinct_matched_posts > 0 && s.distinct_matched_posts < 5)}</td>`;
-      }).join('')}</tr>` : '';
+      <td class="fom"></td>
+      ${(() => {
+        const med = rowMedian([...scope.values()].filter(x => x.posts_published_in_union_window != null && x.distinct_matched_posts > 0)
+          .map(x => ({v: x.matched_posts_per_1000_published, posts: x.distinct_matched_posts})));
+        return GROUPS.map(g => {
+          const s = scope.get(g);
+          return `<td class="c" data-label="${esc(g)}">${covCell(s?.matched_posts_per_1000_published, s?.distinct_matched_posts,
+            s?.posts_published_in_union_window, g, s && s.distinct_matched_posts > 0 && s.distinct_matched_posts < 5, med)}</td>`;
+        }).join('');
+      })()}</tr>` : '';
 
   el('cov').innerHTML = `<table class="cov">${head}<tbody>${body}${total}</tbody></table>`;
   el('cov').querySelectorAll('tr.ev').forEach(tr => tr.addEventListener('click', evt => {
@@ -1265,6 +1369,8 @@ addEventListener('keydown', e => { if (e.key === 'Escape' && !el('about').hidden
    ========================================================================= */
 renderStatus();
 renderHeatScale();
+renderRelScale();
+renderRange();
 renderAbout();
 route();
 
