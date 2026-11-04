@@ -1155,7 +1155,7 @@ function renderPosts(r) {
       <div class="chips">${words.map((t, i) => `<button class="chip" type="button" data-w="${i}" aria-pressed="${postWord && postWord.term_label === t.term_label}">
         ${esc(t.term_label)} <span class="muted">${t.posts_with_term}/${t.group_posts}</span></button>`).join('')}</div></div>` : ''}
     <p class="small muted" style="margin:12px 0 0">Showing ${Math.min(postLimit, rows.length)} of ${fmt(rows.length)} posts${postWord ? ` containing «${esc(postWord.term_label)}»` : ''}, most relevant first.
-      This page keeps the ${DATA.meta.posts_per_group} most relevant posts of each group per event${postGroup && counts.get(postGroup) > rows.length && !postWord ? ` (the group has ${fmt(counts.get(postGroup))})` : ''}.</p>
+      This page keeps the ${DATA.meta.posts_per_group} most relevant posts of each group per event${postGroup && counts.get(postGroup) > rows.length && !postWord ? ` (the group has ${fmt(counts.get(postGroup))})` : ''}${postWord ? `: ${fmt(rows.length)} of the ${fmt(postWord.posts_with_term)} posts with this word are among them` : ''}.</p>
     <div id="post-list">${rows.slice(0, postLimit).map((p, i) => `
       <div class="post">
         <div class="meta"><span class="src">${esc(p.source_name)}</span>

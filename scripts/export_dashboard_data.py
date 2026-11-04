@@ -168,10 +168,11 @@ def main() -> None:
     finally:
         con.close()
 
-    # A word's post list only needs the posts this file carries: clicking the word filters them.
-    carried = {f"{p['source_name']}:{p['message_id']}" for p in payload["posts"]}
+    # A word's post list only needs the posts this file carries for that event: clicking the word
+    # filters them.
+    carried = {(p["event_id"], f"{p['source_name']}:{p['message_id']}") for p in payload["posts"]}
     for row in payload["terms"]:
-        row["post_keys"] = [k for k in (row["post_keys"] or []) if k in carried]
+        row["post_keys"] = [k for k in (row["post_keys"] or []) if (row["event_id"], k) in carried]
 
     for row in payload["week_events"]:
         row["quotes"] = parse_quotes(row.pop("quote_examples"))
