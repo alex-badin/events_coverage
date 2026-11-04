@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:34",
+ "event": {
+  "name": "Рост цен, тарифов",
+  "year": 2026,
+  "week": 10,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Повышение цен на продукты и товары»",
+   "«рост цен на бензин»",
+   "«увеличение цен на всё»",
+   "«цены в магазине»"
+  ],
+  "event_id": "9a5d0b80dad5c1169ba493fd60fa6cc9"
+ },
+ "window": {
+  "match_start": "2026-02-27",
+  "match_end_exclusive": "2026-03-19"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.83,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 529,
+  "embedded_pool": 47400,
+  "window_posts": 47402
+ }
+}

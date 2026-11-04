@@ -66,7 +66,8 @@ tracked changes uncommitted or unpushed, say so at the end, or the Project keeps
 - `news_data/`, `fom_events/` raw inputs, read-only · `configs/` source groups and paths
 - `data/interim/`, `data/processed/` derived data · `outputs/`, `reports/` results
 - The full-corpus Qwen3 embeddings live on a LAN machine called Neo, not here; retrieval
-  reaches them over SSH (`scripts/remote/neo_qwen_retrieve.py`, `docs/neo_box.md`).
+  reaches them over SSH (`scripts/remote/neo_qwen_retrieve.py`, `docs/neo_box.md`). So do the full-text
+  vectors of the new posts (`new_weeks_2026-11-03`), which only a re-run of candidates needs.
 
 Keep raw inputs unchanged. Write derived data under `data/`, results under `outputs/` or
 `reports/`. When a step uses model-generated labels, record the prompt, model name, date and
@@ -82,22 +83,26 @@ paths alongside the output.
   2026-08-03; the versions without the suffix could search only part of each window and
   under-count. `_cohere_archived` ones are incomplete for the same kind of reason.
   `scripts/load_warehouse.py` holds the list actually loaded — trust it over the folder.
-- **Matching is moving to full text + Jev, but the code is still summary + Cohere.**
-  `scripts/build_event_dataset.py` embeds summaries and reranks with Cohere at 0.35; Alex chose
-  cleaned `original_message` embeddings and Jev 1.13 instead (evidence in
-  `exploration/2026-10-17_*`). Do not build new event sets on the old path, and never mix sets
-  from the two methods in one comparison. The new method runs for every specific FOM event, not
-  only the six the old pilot happened to build.
+- **Two matching methods are loaded; never compare them.** The 5 events before 2025-W12 are summary +
+  Cohere at 0.35 (`scripts/build_event_dataset.py`, do not build new sets on it). 2025-W12..2026-W20 (644
+  events) are full text + OpenAI Decisions API with a per-event cut-off
+  (`exploration/2026-11-03_new_weeks/`). The 2020–2025 history has not been re-run; the decision is that every
+  specific FOM event ends up on one method.
+- **Weeks after 2026-W20 are unmeasured on purpose.** FOM events run to 2026-W43, but the run stopped there:
+  13 of those events are scored and held back (`LAST_COMPLETE_WEEK`), 213 are not scored. One event in a
+  week must not be shown as that week.
+- **OpenAI billed $13.62 of Decisions attempts that never returned a response**, nearly all while the run sat at
+  the 10M tokens-per-minute limit, with the SDK set to retry. A ledger built from responses under-counts:
+  use `max_retries=0`, stay below the limit, and compare with the Usage API (`OPENAI_API_ADMIN_KEY` in
+  `.env`; `OPENAI_ADMIN_KEY` there is another organisation's).
 - **`event_prices_2025w11*` has no usable matched set.** At the standard relevance cut-off of
   0.35 it keeps 0 posts; its highest rerank score is under 0.30. The old build only had rows
   because it used 0.10. Do not quote those 50 posts as coverage.
-- **Posts come from two files, and only the first is in the pipeline.** The archive
-  (`news_data/ask_media_unified_*.db`) ends 2025-04-02; never describe results as current after that
-  date. Posts from 2025-04-02 to 2026-11-03 are in `news_data/telegram_previews_2026-11-03.sqlite`
-  (`scripts/collect_telegram.py`, public t.me/s pages): no forward counts, views as text («1.2K»),
-  line breaks flattened, so `posts.text` is not byte-equal to the archive's `original_message`. They join on
-  (source, message_id); the boundary posts are in both files. Not yet embedded, matched or loaded into
-  the warehouse, while FOM events already run to 2026-W43.
+- **Posts come from two files.** The archive (`news_data/ask_media_unified_*.db`) ends 2025-04-02; never
+  describe results as current after that date unless they use the second file,
+  `news_data/telegram_previews_2026-11-03.sqlite` (`scripts/collect_telegram.py`, public t.me/s pages): no
+  forward counts, views as text («1.2K»), line breaks flattened, so `posts.text` is not byte-equal to the
+  archive's `original_message`. They join on (source, message_id); the boundary posts are in both files.
 - **Never add matched posts across events.** Search windows of neighbouring weeks overlap, so one
   post can be matched to two events (130 are). Totals over several events come from
   `theme_group_coverage`, which counts each post once over the union of window days.

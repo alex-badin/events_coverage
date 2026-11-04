@@ -59,6 +59,9 @@ FOM_EVENTS_CSV = PROJECT_ROOT / "fom_events" / "processed_events" / "events_tabl
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 MEDIA_GROUPS_YAML = PROJECT_ROOT / "configs" / "media_groups.yaml"
 NEWS_SQLITE = PROJECT_ROOT / "news_data" / "ask_media_unified_messages_20260604.db"
+# Posts after the archive's end (2025-04-02), collected from public channel previews by
+# scripts/collect_telegram.py. Rows whose (source, message_id) the archive already has are skipped.
+PREVIEWS_SQLITE = PROJECT_ROOT / "news_data" / "telegram_previews_2026-11-03.sqlite"
 WAREHOUSE_DB = PROJECT_ROOT / "data" / "warehouse" / "events.duckdb"
 
 RAW_SCHEMA = "raw"
@@ -85,28 +88,39 @@ EVENT_SLUGS = [
     "event_us_russia_contacts_2025w09_qwen3",
 ]
 
+# The FOM events of 2025-W12..2026-W20, matched on full text with the method of
+# exploration/2026-10-26_ten_events_readers/ (Qwen3 full-text candidates, OpenAI Decisions API,
+# a per-event cut-off) by exploration/2026-11-03_new_weeks/new_weeks.py, whose `export` step writes
+# this list. A different method from EVENT_SLUGS above: do not compare the two sets with each other.
+NEW_WEEKS_EVENTS_JSON = PROJECT_ROOT / "configs" / "new_weeks_events.json"
+NEW_WEEKS = json.loads(NEW_WEEKS_EVENTS_JSON.read_text(encoding="utf-8"))
+EVENT_SLUGS = EVENT_SLUGS + NEW_WEEKS["with_posts"]
+
 # Events searched on the current settings whose matched set is empty: no candidate reached
 # the 0.35 relevance cut-off. They have no posts to load, only the record that the search
 # ran, which the dashboard needs to tell "searched, nothing found" from "never searched".
 EMPTY_EVENT_SLUGS = [
     "event_prices_2025w11_qwen3",
 ]
+# The new-week events whose cut-off kept no candidate.
+EMPTY_EVENT_SLUGS = EMPTY_EVENT_SLUGS + NEW_WEEKS["empty"]
 
-# Columns kept from each event dataset CSV. The heavy text stays: it is only a few
-# thousand rows in total, and the dashboard drill-down shows the posts themselves.
-MATCH_COLUMNS = [
-    "source",
-    "message_id",
-    "date",
-    "is_digest",
-    "summary",
-    "original_message",
-    "views",
-    "forwards",
-    "cosine_max",
-    "rerank_score",
-    "keyword_match",
-]
+# Columns kept from each event dataset CSV, with the type each is read as. The types are
+# fixed because a CSV whose column is empty throughout (no forward counts in the preview
+# posts, for example) would otherwise be read as text and break the union.
+MATCH_COLUMNS = {
+    "source": "varchar",
+    "message_id": "bigint",
+    "date": "timestamptz",
+    "is_digest": "bigint",
+    "summary": "varchar",
+    "original_message": "varchar",
+    "views": "bigint",
+    "forwards": "double",
+    "cosine_max": "double",
+    "rerank_score": "double",
+    "keyword_match": "boolean",
+}
 
 
 def require_readable(path: Path) -> None:
@@ -160,7 +174,7 @@ def load_event_matches(con: duckdb.DuckDBPyConnection) -> None:
 
         event = json.loads(manifest_json.read_text(encoding="utf-8"))["event"]
         name_sql = event["name"].replace("'", "''")
-        columns = ", ".join(MATCH_COLUMNS)
+        columns = ", ".join(f"try_cast({c} as {t}) as {c}" for c, t in MATCH_COLUMNS.items())
         selects.append(
             f"""
             select
@@ -174,10 +188,10 @@ def load_event_matches(con: duckdb.DuckDBPyConnection) -> None:
             """
         )
 
-    con.execute(
-        f"create or replace table {RAW_SCHEMA}.event_matches as "
-        + "\nunion all by name\n".join(selects)
-    )
+    # One event at a time: a single union over hundreds of CSV files runs out of memory.
+    con.execute(f"create or replace table {RAW_SCHEMA}.event_matches as {selects[0]}")
+    for select in selects[1:]:
+        con.execute(f"insert into {RAW_SCHEMA}.event_matches by name {select}")
 
     # Say out loud how many matched posts the archiving removed, so the number is never
     # a silent difference between two runs.
@@ -205,11 +219,28 @@ def corpus_posts_per_day(con: duckdb.DuckDBPyConnection) -> None:
         f"""
         create or replace temp table corpus_day_posts as
         select try_cast(substr(date, 1, 10) as date) as day, count(*) as posts
-        from sqlite_scan('{NEWS_SQLITE.as_posix()}', 'unified_messages')
+        from ({all_posts_sql()})
         where date is not null
         group by 1
         """
     )
+
+
+def all_posts_sql() -> str:
+    """source, message_id and date of every post: the archive, then the preview posts it lacks.
+    The preview file covers only the in-scope channels; the archive has every source."""
+    archive = f"sqlite_scan('{NEWS_SQLITE.as_posix()}', 'unified_messages')"
+    if not PREVIEWS_SQLITE.exists():
+        return f"select source, cast(message_id as varchar) as message_id, date from {archive}"
+    previews = f"sqlite_scan('{PREVIEWS_SQLITE.as_posix()}', 'posts')"
+    return f"""
+        select source, cast(message_id as varchar) as message_id, date from {archive}
+        union all
+        select p.source_id, cast(p.message_id as varchar), p.published_utc
+        from {previews} p
+        anti join {archive} a on a.source = p.source_id and cast(a.message_id as varchar) = cast(p.message_id as varchar)
+        where p.record_type = 'text'
+    """
 
 
 def load_event_datasets(con: duckdb.DuckDBPyConnection) -> None:
@@ -393,7 +424,7 @@ def load_source_day_activity(con: duckdb.DuckDBPyConnection) -> None:
             -- ten characters are the calendar day in UTC.
             try_cast(substr(date, 1, 10) as date)  as activity_date,
             count(*)                              as post_count
-        from sqlite_scan('{NEWS_SQLITE.as_posix()}', 'unified_messages')
+        from ({all_posts_sql()})
         where date is not null
           and source not in {archived_sql_list()}
         group by 1, 2

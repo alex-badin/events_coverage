@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Региональные и местные выборы",
+  "year": 2025,
+  "week": 39,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Выборы в Курской области»",
+   "«выборы губернатора»",
+   "«выборы губернатора, главы поселения»",
+   "«выборы местные»",
+   "«выборы президента Татарстана»"
+  ],
+  "event_id": "9fe27ad0cc6cfc11291617a404b4ebcf"
+ },
+ "window": {
+  "match_start": "2025-09-19",
+  "match_end_exclusive": "2025-10-09"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.46,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 128,
+  "embedded_pool": 45682,
+  "window_posts": 45684
+ }
+}

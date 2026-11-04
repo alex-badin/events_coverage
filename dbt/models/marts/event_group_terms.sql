@@ -374,6 +374,7 @@ select
 
     posts_with_term,
     sources_with_term,
+    group_sources,
     term_uses,
     max_share_within_one_source,
     top_source_share_of_term,

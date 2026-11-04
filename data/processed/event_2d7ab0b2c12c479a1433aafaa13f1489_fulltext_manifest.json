@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Аварии, несчастные случаи",
+  "year": 2025,
+  "week": 37,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Аварии и ДТП»",
+   "«автобус чуть в речку не сорвался: отказали тормоза»",
+   "«пожар склада в Некрасовке»",
+   "«смерть альпинистки»",
+   "«техногенные катастрофы: обрыв канатной дороги в Приэльбрусье»"
+  ],
+  "event_id": "2d7ab0b2c12c479a1433aafaa13f1489"
+ },
+ "window": {
+  "match_start": "2025-09-05",
+  "match_end_exclusive": "2025-09-25"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 1.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 158,
+  "embedded_pool": 45732,
+  "window_posts": 45733
+ }
+}

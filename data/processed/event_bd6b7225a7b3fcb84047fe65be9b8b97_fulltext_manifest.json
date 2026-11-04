@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Рост цен, тарифов",
+  "year": 2025,
+  "week": 29,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Повышение ЖКХ»",
+   "«повышение тарифов и цен»",
+   "«за проезд увеличение»",
+   "«повышение платы за электричество в России»"
+  ],
+  "event_id": "bd6b7225a7b3fcb84047fe65be9b8b97"
+ },
+ "window": {
+  "match_start": "2025-07-11",
+  "match_end_exclusive": "2025-07-31"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.66,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 168,
+  "embedded_pool": 44115,
+  "window_posts": 44115
+ }
+}

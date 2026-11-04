@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Действия и высказывания Д. Трампа",
+  "year": 2025,
+  "week": 15,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Трамп, его действия»",
+   "«международная повестка про Трампа»",
+   "«высказывания Трампа: ввёл пошлины»",
+   "«иностранный тариф на международную торговлю, который вводит Трамп»",
+   "«Трамп вводит тарифные пошлины против всего мира»"
+  ],
+  "event_id": "539dfb991ba4fc351690b7b767e65f58"
+ },
+ "window": {
+  "match_start": "2025-04-04",
+  "match_end_exclusive": "2025-04-24"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 3000,
+  "embedded_pool": 41139,
+  "window_posts": 41144
+ }
+}

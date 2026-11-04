@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Землетрясение в Турции",
+  "year": 2025,
+  "week": 17,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«В Турции землетрясение»",
+   "«землетрясение в регионе Стамбула»"
+  ],
+  "event_id": "a39e59503c4a5ec18ab27f28755009c4"
+ },
+ "window": {
+  "match_start": "2025-04-18",
+  "match_end_exclusive": "2025-05-08"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.43,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 117,
+  "embedded_pool": 41326,
+  "window_posts": 41330
+ }
+}

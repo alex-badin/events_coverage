@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:27",
+ "event": {
+  "name": "Изменение позиции Д. Трампа по отношению к России",
+  "year": 2025,
+  "week": 32,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Повышение пошлины Трампа»",
+   "«санкции Трампа, связанные с нефтью и газом»",
+   "«Трамп дал Путину 50 или 10 дней для прекращения войны на Украине»",
+   "«угрозы Трампа»",
+   "«высказывания Трампа»",
+   "«действия американского президента»"
+  ],
+  "event_id": "81de3a859dc506e65fbef0b23116465e"
+ },
+ "window": {
+  "match_start": "2025-08-01",
+  "match_end_exclusive": "2025-08-21"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.7,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 720,
+  "embedded_pool": 46833,
+  "window_posts": 46836
+ }
+}

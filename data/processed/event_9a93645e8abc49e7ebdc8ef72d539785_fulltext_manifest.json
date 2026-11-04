@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2025,
+  "week": 27,
+  "fom_percentage": 18.0,
+  "quotes": [
+   "«Взятие новых населённых пунктов на СВО»",
+   "«война на Украине»",
+   "«Луганскую республику освободили полностью»",
+   "«наступление на территории Украины»",
+   "«наступление наших на СВО»",
+   "«наши ребята идут вперёд»",
+   "«наши успехи на СВО»",
+   "«СВО идёт к победе»"
+  ],
+  "event_id": "9a93645e8abc49e7ebdc8ef72d539785"
+ },
+ "window": {
+  "match_start": "2025-06-27",
+  "match_end_exclusive": "2025-07-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 3000,
+  "embedded_pool": 43419,
+  "window_posts": 43419
+ }
+}

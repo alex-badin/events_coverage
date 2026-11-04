@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "Предложение Министерства финансов повысить налоги",
+  "year": 2025,
+  "week": 47,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Введение НДС для ИП»",
+   "«налог на ввоз авто»",
+   "«налоговая реформа»",
+   "«НДС 22%»",
+   "«НДС повышают и вводят технологический налог»",
+   "«повышение утильсбора»"
+  ],
+  "event_id": "bd738ae772ae96532bc5600e912f1296"
+ },
+ "window": {
+  "match_start": "2025-11-14",
+  "match_end_exclusive": "2025-12-04"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.46,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 289,
+  "embedded_pool": 40291,
+  "window_posts": 40292
+ }
+}

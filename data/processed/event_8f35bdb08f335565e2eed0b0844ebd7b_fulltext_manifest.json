@@ -1,0 +1,44 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "События вокруг Ирана, эскалация конфликта",
+  "year": 2026,
+  "week": 15,
+  "fom_percentage": 22.0,
+  "quotes": [
+   "«Американцы с израильтянами затеяли в Иране бойню»",
+   "«Ормузский пролив»",
+   "«Ближний Восток: война в Иране и Ливане»",
+   "«война в Иране продолжается»",
+   "«война в Иране с Израилем и США»",
+   "«война в Персидский заливе»",
+   "«переговоры США и Ирана»",
+   "«Трамп перемирие объявил с Ираном»",
+   "«Трамп убеждает весь мир о том, что победил Иран»"
+  ],
+  "event_id": "8f35bdb08f335565e2eed0b0844ebd7b"
+ },
+ "window": {
+  "match_start": "2026-04-03",
+  "match_end_exclusive": "2026-04-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 3000,
+  "embedded_pool": 38320,
+  "window_posts": 38321
+ }
+}

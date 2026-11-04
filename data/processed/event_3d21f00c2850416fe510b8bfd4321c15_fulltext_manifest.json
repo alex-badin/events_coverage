@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "Действия США, Д. Трампа",
+  "year": 2026,
+  "week": 16,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Не нравится поведение Трампа»",
+   "«неконкретность Америки»",
+   "«неладное с американским президентом и его окружением»",
+   "«Трамп»",
+   "«Трамп – бумажный тигр»",
+   "«Трамп изобразил себя Иисусом»"
+  ],
+  "event_id": "3d21f00c2850416fe510b8bfd4321c15"
+ },
+ "window": {
+  "match_start": "2026-04-10",
+  "match_end_exclusive": "2026-04-30"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.12,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 2537,
+  "embedded_pool": 37764,
+  "window_posts": 37764
+ }
+}

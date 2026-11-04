@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:34",
+ "event": {
+  "name": "Замедление работы Telegram, блокировка других интернет-ресурсов",
+  "year": 2026,
+  "week": 9,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Блокировка приложений»",
+   "«блокировка социальных сетей»",
+   "«блокировка Telegram-менеджера с 1 апреля»",
+   "«интернет – ограничение»",
+   "«интернет плохо работает»"
+  ],
+  "event_id": "6791c980cf087098c93f037ca8408109"
+ },
+ "window": {
+  "match_start": "2026-02-20",
+  "match_end_exclusive": "2026-03-12"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.14,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 716,
+  "embedded_pool": 46052,
+  "window_posts": 46054
+ }
+}

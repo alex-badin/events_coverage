@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:34",
+ "event": {
+  "name": "СВО в целом",
+  "year": 2026,
+  "week": 11,
+  "fom_percentage": 17.0,
+  "quotes": [
+   "«Военные действия на СВО»",
+   "«война в Украине»",
+   "«мы побеждаем»",
+   "«события на СВО»",
+   "«события на Украине»",
+   "«фронт на Украине»"
+  ],
+  "event_id": "666afd3c32f89c650bad37e0a3e07d57"
+ },
+ "window": {
+  "match_start": "2026-03-06",
+  "match_end_exclusive": "2026-03-26"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.45,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 2567,
+  "embedded_pool": 39685,
+  "window_posts": 39685
+ }
+}

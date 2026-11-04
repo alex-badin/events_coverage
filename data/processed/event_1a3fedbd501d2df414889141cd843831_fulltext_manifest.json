@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Криминальные события",
+  "year": 2025,
+  "week": 14,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«История с мурманским стрелком»",
+   "«как пенсионеров дурят, лишают квартир»",
+   "«новости о мошенниках»",
+   "«убийство в Козельске»"
+  ],
+  "event_id": "1a3fedbd501d2df414889141cd843831"
+ },
+ "window": {
+  "match_start": "2025-03-28",
+  "match_end_exclusive": "2025-04-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.53,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 218,
+  "embedded_pool": 41143,
+  "window_posts": 41145
+ }
+}

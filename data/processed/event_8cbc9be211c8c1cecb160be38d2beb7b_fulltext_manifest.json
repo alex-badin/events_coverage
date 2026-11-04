@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-04T14:25:32",
+ "event": {
+  "name": "Мирные переговоры",
+  "year": 2026,
+  "week": 6,
+  "fom_percentage": 10.0,
+  "quotes": [
+   "«Была встреча США, России и Украины в Абу-Даби»",
+   "«мирное соглашение с Украиной»",
+   "«окончание войны, переговоры»",
+   "«переговоры 4 февраля»",
+   "«переговоры в Абу-Даби»",
+   "«тема окончания войны»",
+   "«трёхсторонняя встреча по Украине»",
+   "«урегулирование конфликта СВО»"
+  ],
+  "event_id": "8cbc9be211c8c1cecb160be38d2beb7b"
+ },
+ "window": {
+  "match_start": "2026-01-30",
+  "match_end_exclusive": "2026-02-19"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.08,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 2275,
+  "embedded_pool": 37705,
+  "window_posts": 37706
+ }
+}

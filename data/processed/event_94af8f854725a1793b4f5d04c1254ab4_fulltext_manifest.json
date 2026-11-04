@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:33",
+ "event": {
+  "name": "Нападения учеников в учебных заведениях",
+  "year": 2026,
+  "week": 8,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Перестрелка в школах»",
+   "«расстрел в анапском техникуме»",
+   "«стрельба в Анапе»",
+   "«трагедия в Анапе»"
+  ],
+  "event_id": "94af8f854725a1793b4f5d04c1254ab4"
+ },
+ "window": {
+  "match_start": "2026-02-13",
+  "match_end_exclusive": "2026-03-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 1.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 58,
+  "embedded_pool": 44677,
+  "window_posts": 44679
+ }
+}

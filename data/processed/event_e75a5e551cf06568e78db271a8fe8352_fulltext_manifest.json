@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Выступление В. Путина на «Валдае»",
+  "year": 2025,
+  "week": 40,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Доклад Путина»",
+   "«интервью Путина на “Валдае”»",
+   "«на “Валдае” выступление Путина»",
+   "«Путин на “Валдае” выступал»",
+   "«Путина выступление в Сочи»"
+  ],
+  "event_id": "e75a5e551cf06568e78db271a8fe8352"
+ },
+ "window": {
+  "match_start": "2025-09-26",
+  "match_end_exclusive": "2025-10-16"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.13,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 789,
+  "embedded_pool": 43608,
+  "window_posts": 43609
+ }
+}

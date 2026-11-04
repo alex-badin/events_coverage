@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Российско-американские отношения",
+  "year": 2025,
+  "week": 41,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Высказывания Трампа в отношении России»",
+   "«переговоры между РФ и США»",
+   "«переговоры Путина и Трампа»",
+   "«Трамп назвал нас “бумажным тигром”»"
+  ],
+  "event_id": "273656fbb99990b068ba404f5c3c965d"
+ },
+ "window": {
+  "match_start": "2025-10-03",
+  "match_end_exclusive": "2025-10-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 3000,
+  "embedded_pool": 42006,
+  "window_posts": 42007
+ }
+}

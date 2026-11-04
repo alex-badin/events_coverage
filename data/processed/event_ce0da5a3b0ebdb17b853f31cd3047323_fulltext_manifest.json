@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Петербургский международный экономический форум",
+  "year": 2025,
+  "week": 27,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Международный экономический форум»",
+   "«форум петербургский»"
+  ],
+  "event_id": "ce0da5a3b0ebdb17b853f31cd3047323"
+ },
+ "window": {
+  "match_start": "2025-06-27",
+  "match_end_exclusive": "2025-07-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.99,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 9,
+  "embedded_pool": 43419,
+  "window_posts": 43419
+ }
+}

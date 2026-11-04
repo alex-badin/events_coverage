@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "События в секторе Газа",
+  "year": 2025,
+  "week": 12,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Война в Палестине»",
+   "«события в Газе»"
+  ],
+  "event_id": "263e54c5c64b8aa27934d2e60c2c9e7f"
+ },
+ "window": {
+  "match_start": "2025-03-14",
+  "match_end_exclusive": "2025-04-03"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.02,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 577,
+  "embedded_pool": 44637,
+  "window_posts": 44638
+ }
+}

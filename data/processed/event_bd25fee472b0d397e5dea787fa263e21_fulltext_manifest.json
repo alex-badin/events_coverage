@@ -1,0 +1,46 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2025,
+  "week": 38,
+  "fom_percentage": 17.0,
+  "quotes": [
+   "«Взятие Константиновки»",
+   "«новое продвижение СВО по территории Украины»",
+   "«обстановка на войне»",
+   "«положение на фронтах»",
+   "«положение наших войск на СВО»",
+   "«рады, что наши ребята хорошо воют, побеждают»",
+   "«сведения с фронта»",
+   "«СВО только привлекает внимание»",
+   "«сводки с СВО»",
+   "«Украина: как наши там»",
+   "«успехи на фронте»"
+  ],
+  "event_id": "bd25fee472b0d397e5dea787fa263e21"
+ },
+ "window": {
+  "match_start": "2025-09-12",
+  "match_end_exclusive": "2025-10-02"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.03,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 2733,
+  "embedded_pool": 45591,
+  "window_posts": 45592
+ }
+}

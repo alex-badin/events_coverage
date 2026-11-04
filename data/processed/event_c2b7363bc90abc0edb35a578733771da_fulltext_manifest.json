@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Обмен пленными «1000 на 1000»",
+  "year": 2025,
+  "week": 22,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Возвращение пленных»",
+   "«обмен 1000 на 1000»",
+   "«освободили 1000 военнопленных»"
+  ],
+  "event_id": "c2b7363bc90abc0edb35a578733771da"
+ },
+ "window": {
+  "match_start": "2025-05-23",
+  "match_end_exclusive": "2025-06-12"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.67,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 593,
+  "embedded_pool": 45522,
+  "window_posts": 45523
+ }
+}

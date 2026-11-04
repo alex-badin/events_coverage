@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "Теракт в Красногорске, другие преступления против детей",
+  "year": 2025,
+  "week": 46,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Взрыв в Красногорске: оторвало ребёнку пальцы»",
+   "«Красногорск: маленький мальчик»",
+   "«мальчик взорвался, поднимая нашедшиеся деньги»",
+   "«теракт в Москве: мальчику руки оторвало»",
+   "«мальчик хотел поднять деньги, женщина 13-летнюю девочку столкнула на рельсы в метро Таганская, мужчина мальчика столкнул под поезд»",
+   "«в метро женщина сбросила девочку на пути»",
+   "«сегодня в пруду нашли голову ребёнка в Балашихе»"
+  ],
+  "event_id": "1480bb7b9d3a499edcc12af63540b364"
+ },
+ "window": {
+  "match_start": "2025-11-07",
+  "match_end_exclusive": "2025-11-27"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.43,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 503,
+  "embedded_pool": 39557,
+  "window_posts": 39558
+ }
+}

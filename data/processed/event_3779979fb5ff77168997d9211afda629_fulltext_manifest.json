@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:33",
+ "event": {
+  "name": "Действия США, Д. Трампа",
+  "year": 2026,
+  "week": 8,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Захват президента Венесуэлы»",
+   "«Трамп ведёт себя как бандит в мире»",
+   "«Трамп ведёт политику непонятную»",
+   "«Трамп хочет “Северный поток” блокировать»"
+  ],
+  "event_id": "3779979fb5ff77168997d9211afda629"
+ },
+ "window": {
+  "match_start": "2026-02-13",
+  "match_end_exclusive": "2026-03-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.98,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 1132,
+  "embedded_pool": 44677,
+  "window_posts": 44679
+ }
+}

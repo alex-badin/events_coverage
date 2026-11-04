@@ -99,6 +99,11 @@ Observed shape:
 - Years covered: 2020-2026 (to 2026-W43)
 - Blank event names: 0
 - Missing percentages: 4
+- Matched posts: 5 events before 2025-W12 (summary + Cohere) and 644 of 2025-W12..2026-W20 (full text +
+  Decisions API; 632 with posts, 12 with none), which do not compare with each other. The 870 specific events
+  of 2025-W12..2026-W43 also include 226 with no posts loaded, all after 2026-W20: 213 never scored (the
+  end of the work queue, run stopped) and 13 scored but held back, since one event is not a week's picture.
+  `exploration/2026-11-03_new_weeks/README.md` has the details and the spend reconciliation.
 
 Columns:
 

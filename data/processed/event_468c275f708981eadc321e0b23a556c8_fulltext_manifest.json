@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "Спортивные события",
+  "year": 2025,
+  "week": 47,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Отставка тренера московского “Динамо”, хоккей»",
+   "«проигрыш “Динамо”»",
+   "«сборная России по футболу»",
+   "«“Спартак” выиграл у ЦСКА»",
+   "«чемпионат по боксу»",
+   "«фигурное катание – чемпионат»",
+   "«чемпионат России по фигурному катанию среди мужчин»"
+  ],
+  "event_id": "468c275f708981eadc321e0b23a556c8"
+ },
+ "window": {
+  "match_start": "2025-11-14",
+  "match_end_exclusive": "2025-12-04"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.63,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 69,
+  "embedded_pool": 40291,
+  "window_posts": 40292
+ }
+}

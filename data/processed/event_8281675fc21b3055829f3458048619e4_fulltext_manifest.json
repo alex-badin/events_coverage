@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Военные действия в Курской области",
+  "year": 2025,
+  "week": 16,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«В Курске что происходит»",
+   "«Курск наши берут, наконец-то их выгонят»",
+   "«продвижение в Курской области»",
+   "«самое последнее, что помню, это как в трубу наши русские залезли»"
+  ],
+  "event_id": "8281675fc21b3055829f3458048619e4"
+ },
+ "window": {
+  "match_start": "2025-04-11",
+  "match_end_exclusive": "2025-05-01"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.33,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 1335,
+  "embedded_pool": 41424,
+  "window_posts": 41428
+ }
+}

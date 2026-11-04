@@ -76,11 +76,14 @@ models:
           - unique
           - not_null
       - name: retriever
-        description: Which embedding retriever found the candidate posts.
+        description: >
+          Which embedding retriever found the candidate posts: qwen3 (summary vectors) or
+          cohere for the 2025 pilot events, qwen3_fulltext (cleaned full-text fragment
+          vectors) for the events of 2025-W12 on.
         data_tests:
           - accepted_values:
               arguments:
-                values: ['qwen3', 'cohere']
+                values: ['qwen3', 'cohere', 'qwen3_fulltext']
       - name: matched_posts_reported
         description: >
           Number of posts the build recorded as kept. Includes posts from sources that
@@ -128,9 +131,14 @@ models:
         data_tests:
           - not_null
       - name: views
-        description: View counter. Present on every matched post.
+        description: >
+          View counter. Present on every matched post of the archive. Posts collected from
+          public channel previews (2025-04-02 on) show it only when the page did, so a few
+          are null.
         data_tests:
-          - not_null
+          - not_null:
+              config:
+                where: "event_slug not like '%_fulltext'"
       - name: forwards
         description: >
           Forward counter. Missing on some posts, so it is left null rather than set to

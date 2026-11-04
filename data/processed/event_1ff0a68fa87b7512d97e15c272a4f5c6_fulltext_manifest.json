@@ -1,0 +1,44 @@
+{
+ "generated_at": "2026-11-04T14:25:32",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2026,
+  "week": 5,
+  "fom_percentage": 14.0,
+  "quotes": [
+   "«Бомбёжка энергообъектов Украины»",
+   "«война на Украине»",
+   "«завоевание территории на СВО»",
+   "«наши воюют хорошо, СВО»",
+   "«победы на СВО»",
+   "«сводки с войны»",
+   "«ситуация на Украине»",
+   "«удача на фронтах»",
+   "«что на фронте творится»"
+  ],
+  "event_id": "1ff0a68fa87b7512d97e15c272a4f5c6"
+ },
+ "window": {
+  "match_start": "2026-01-23",
+  "match_end_exclusive": "2026-02-12"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 3000,
+  "embedded_pool": 37581,
+  "window_posts": 37582
+ }
+}

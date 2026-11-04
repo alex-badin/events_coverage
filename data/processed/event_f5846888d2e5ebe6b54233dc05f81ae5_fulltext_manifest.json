@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Военный конфликт Израиля и Ирана",
+  "year": 2025,
+  "week": 24,
+  "fom_percentage": 12.0,
+  "quotes": [
+   "«Атака Израиля на Иран»",
+   "«бомбардировки в Иране»",
+   "«война Израиля с Ираном»",
+   "«нападение Израиля на Иран»",
+   "«фашистские нападки Израиля на Иран под руководством Америки»"
+  ],
+  "event_id": "f5846888d2e5ebe6b54233dc05f81ae5"
+ },
+ "window": {
+  "match_start": "2025-06-06",
+  "match_end_exclusive": "2025-06-26"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 3000,
+  "embedded_pool": 50693,
+  "window_posts": 50694
+ }
+}

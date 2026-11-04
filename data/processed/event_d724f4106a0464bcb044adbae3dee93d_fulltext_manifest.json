@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:25",
+ "event": {
+  "name": "Военный конфликт Израиля и Ирана, атака США на Иран",
+  "year": 2025,
+  "week": 25,
+  "fom_percentage": 24.0,
+  "quotes": [
+   "«Израиль с Ираком воюют, Америка вписалась туда»",
+   "«ирано-израильская война очень потревожила»",
+   "«Иран с Израилем начали активно воевать, ракетами закидывать друг друга»",
+   "«ситуация с Ираном и Израилем»",
+   "«США бомбит Иран»",
+   "«Трамп атаковал Иран»"
+  ],
+  "event_id": "d724f4106a0464bcb044adbae3dee93d"
+ },
+ "window": {
+  "match_start": "2025-06-13",
+  "match_end_exclusive": "2025-07-03"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 3000,
+  "embedded_pool": 50405,
+  "window_posts": 50405
+ }
+}

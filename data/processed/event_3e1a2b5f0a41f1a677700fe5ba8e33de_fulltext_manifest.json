@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "Погода, природные катаклизмы в России",
+  "year": 2026,
+  "week": 14,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Весенний потоп»",
+   "«наводнение в Дагестане»",
+   "«наводнение в Красноярском крае»",
+   "«паводки»",
+   "«пекло»",
+   "«погода»",
+   "«стихийные бедствия»",
+   "«тает снег, много воды – подтопление грозит»"
+  ],
+  "event_id": "3e1a2b5f0a41f1a677700fe5ba8e33de"
+ },
+ "window": {
+  "match_start": "2026-03-27",
+  "match_end_exclusive": "2026-04-16"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.18,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 1556,
+  "embedded_pool": 38784,
+  "window_posts": 38786
+ }
+}

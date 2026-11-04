@@ -1,0 +1,45 @@
+{
+ "generated_at": "2026-11-04T14:25:34",
+ "event": {
+  "name": "Вспышка опасных инфекций и массовый забой скота",
+  "year": 2026,
+  "week": 12,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Скотину убивают по всей России»",
+   "«забой скота в Сибири»",
+   "«Новосибирская область – беспредел, что происходит: раскулачивают фермеров и домашнее хозяйство в посёлках»",
+   "«сжигание скота в Новосибирской области»",
+   "«массовое уничтожение скота в Магаданской»",
+   "«убийство коров на севере»",
+   "«власть режет скот»",
+   "«убой коров»",
+   "«забой коров из-за болезни, карантин в деревнях»",
+   "«уничтожение коров в стране»"
+  ],
+  "event_id": "225200ce338e1de513655f2a81b7cb35"
+ },
+ "window": {
+  "match_start": "2026-03-13",
+  "match_end_exclusive": "2026-04-02"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.42,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 300,
+  "embedded_pool": 39102,
+  "window_posts": 39103
+ }
+}

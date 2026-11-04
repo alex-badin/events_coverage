@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "Празднование Дня Победы, парад",
+  "year": 2026,
+  "week": 20,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«9 Мая – парад»",
+   "«9 Мая, День Победы»",
+   "«День Победы»",
+   "«парад в Москве, наш парад»",
+   "«парад Победы»",
+   "«празднование 9 Мая, “Бессмертный полк”»",
+   "«празднование Дня Победы»",
+   "«радость за парад»"
+  ],
+  "event_id": "1b72bd62d7473dce350bf210bdd45b89"
+ },
+ "window": {
+  "match_start": "2026-05-08",
+  "match_end_exclusive": "2026-05-28"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.2,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 2039,
+  "embedded_pool": 39121,
+  "window_posts": 39121
+ }
+}

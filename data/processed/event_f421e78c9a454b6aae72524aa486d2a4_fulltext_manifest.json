@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Природные катаклизмы и аномалии в России",
+  "year": 2025,
+  "week": 16,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Дагестан: ливни»",
+   "«потоп в Махачкале из-за дождя»",
+   "«снегопад в Новосибирске»",
+   "«ледоход в Архангельске»",
+   "«ураганы в Иркутской области»"
+  ],
+  "event_id": "f421e78c9a454b6aae72524aa486d2a4"
+ },
+ "window": {
+  "match_start": "2025-04-11",
+  "match_end_exclusive": "2025-05-01"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 1.0,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 69,
+  "embedded_pool": 41424,
+  "window_posts": 41428
+ }
+}

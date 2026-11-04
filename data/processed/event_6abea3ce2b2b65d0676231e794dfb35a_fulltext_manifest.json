@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:23",
+ "event": {
+  "name": "Природные катаклизмы и аномалии в России",
+  "year": 2025,
+  "week": 15,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Резкий снегопад по всей стране»",
+   "«зима вернулась»",
+   "«снег в Москве»",
+   "«заморозки»",
+   "«ураганный ветер в Красноярске»"
+  ],
+  "event_id": "6abea3ce2b2b65d0676231e794dfb35a"
+ },
+ "window": {
+  "match_start": "2025-04-04",
+  "match_end_exclusive": "2025-04-24"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.31,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 426,
+  "embedded_pool": 41139,
+  "window_posts": 41144
+ }
+}

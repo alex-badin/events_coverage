@@ -1,0 +1,44 @@
+{
+ "generated_at": "2026-11-04T14:25:32",
+ "event": {
+  "name": "Аварии, несчастные случаи",
+  "year": 2026,
+  "week": 4,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Взрыв дома от газа»",
+   "«новокузнецкий роддом»",
+   "«девочка в Красноярске в сугробе умерла»",
+   "«крыша ТЦ упала»",
+   "«крыша провалилась на ТЦ»",
+   "«развалился павильон»",
+   "«рухнул магазин возле дома»",
+   "«дети, которые утонули»",
+   "«утонули дети в Брянской области»"
+  ],
+  "event_id": "5f27e3afa4ca5f9065f6055f2d5c7abe"
+ },
+ "window": {
+  "match_start": "2026-01-16",
+  "match_end_exclusive": "2026-02-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.29,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 259,
+  "embedded_pool": 38170,
+  "window_posts": 38170
+ }
+}

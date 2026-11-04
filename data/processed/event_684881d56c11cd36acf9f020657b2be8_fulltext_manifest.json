@@ -1,0 +1,44 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "План Д. Трампа по урегулированию российско-украинского конфликта",
+  "year": 2025,
+  "week": 47,
+  "fom_percentage": 7.0,
+  "quotes": [
+   "«28 пунктов о перемирии США выдвинули»",
+   "«договор Трампа о мире с Украиной»",
+   "«изучение 28 пунктов Трампа о перемирии»",
+   "«конечно, новость про 28 пунктов плана примирения с Украиной, которые они, США и Россия, сейчас обсуждают»",
+   "«мирные инициативы по СВО»",
+   "«мирный план Трампа и капитуляция Украины»",
+   "«план Трампа»",
+   "«тайные мирные переговоры»",
+   "«Трамп пытается протащить мирный приговор»"
+  ],
+  "event_id": "684881d56c11cd36acf9f020657b2be8"
+ },
+ "window": {
+  "match_start": "2025-11-14",
+  "match_end_exclusive": "2025-12-04"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.02,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 2908,
+  "embedded_pool": 40291,
+  "window_posts": 40292
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:35",
+ "event": {
+  "name": "Вспышка опасных инфекций и массовый забой скота",
+  "year": 2026,
+  "week": 13,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«В Новосибирске забой скота по болезни»",
+   "«забой скота принудительный в Новосибирской области»",
+   "«пришли к человеку в деревне, убили корову в Новосибирской области»",
+   "«сжигание коров в Сибири: обнаружили заразу»",
+   "«как губят скот в Сибири»"
+  ],
+  "event_id": "72aa68ae5878d9c673f4325bb8cf8cc8"
+ },
+ "window": {
+  "match_start": "2026-03-20",
+  "match_end_exclusive": "2026-04-09"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.29,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 178,
+  "embedded_pool": 38871,
+  "window_posts": 38873
+ }
+}

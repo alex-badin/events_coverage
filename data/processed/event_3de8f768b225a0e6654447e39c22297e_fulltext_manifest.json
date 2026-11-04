@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Аварии, несчастные случаи",
+  "year": 2025,
+  "week": 41,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Аварии»",
+   "«большое количество жертв ДТП в Башкирии»",
+   "«женщина с ребёнком пропали»",
+   "«не могут найти семью в лесу в Красноярске»"
+  ],
+  "event_id": "3de8f768b225a0e6654447e39c22297e"
+ },
+ "window": {
+  "match_start": "2025-10-03",
+  "match_end_exclusive": "2025-10-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.09,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 265,
+  "embedded_pool": 42006,
+  "window_posts": 42007
+ }
+}

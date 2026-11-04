@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "Блокировка интернета",
+  "year": 2026,
+  "week": 18,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«5-7 мая не будет связи по телефону»",
+   "«блокировка VPN»",
+   "«блокировки интернета»",
+   "«все то, что касается работы интернета»",
+   "«интернет, VPN»",
+   "«платный VPN-трафик, блокировка ресурсов»"
+  ],
+  "event_id": "b3d0475e2b9eb20a4ca97537fde38ca3"
+ },
+ "window": {
+  "match_start": "2026-04-24",
+  "match_end_exclusive": "2026-05-14"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.44,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 602,
+  "embedded_pool": 37743,
+  "window_posts": 37743
+ }
+}

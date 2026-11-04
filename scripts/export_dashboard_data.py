@@ -38,6 +38,9 @@ GROUP_ORDER = [
     "War and military channels",
 ]
 
+POSTS_PER_GROUP = 5
+POST_CHARS = 500
+
 QUERIES = {
     # The time axis: one row per calendar week, with has_survey marking the weeks FOM
     # published a list. Weeks without a survey are gaps on the page, not zeros.
@@ -104,12 +107,17 @@ QUERIES = {
         where term_type = 'word' and distinctiveness_rank <= 8
         order by event_id, media_group, distinctiveness_rank
     """,
-    # One row per matched post, for the drill-down.
-    "posts": """
+    # The drill-down's posts: the POSTS_PER_GROUP most relevant matched posts of each media
+    # group on each event, text cut at POST_CHARS. With every matched post of 870 events the
+    # file would pass a gigabyte; the counts on the page come from the coverage tables, not
+    # from these rows.
+    "posts": f"""
         select
             event_id, media_group, source_name, message_id, published_at,
-            is_digest, views, forwards, rerank_score, post_text
+            is_digest, views, forwards, rerank_score, left(post_text, {POST_CHARS}) as post_text
         from event_message_detail
+        qualify row_number() over (partition by event_id, media_group
+                                   order by rerank_score desc, published_at) <= {POSTS_PER_GROUP}
         order by event_id, rerank_score desc
     """,
 }
@@ -160,6 +168,11 @@ def main() -> None:
     finally:
         con.close()
 
+    # A word's post list only needs the posts this file carries: clicking the word filters them.
+    carried = {f"{p['source_name']}:{p['message_id']}" for p in payload["posts"]}
+    for row in payload["terms"]:
+        row["post_keys"] = [k for k in (row["post_keys"] or []) if k in carried]
+
     for row in payload["week_events"]:
         row["quotes"] = parse_quotes(row.pop("quote_examples"))
 
@@ -169,6 +182,7 @@ def main() -> None:
         # current after it.
         "snapshot_end": snapshot_end.isoformat(),
         "row_counts": {name: len(rows) for name, rows in payload.items()},
+        "posts_per_group": POSTS_PER_GROUP,
         # Left blank deliberately: an export timestamp would make the file differ on
         # every run and show up as a change in git even when the numbers are identical.
         "source": "data/warehouse/events.duckdb, dbt marts",

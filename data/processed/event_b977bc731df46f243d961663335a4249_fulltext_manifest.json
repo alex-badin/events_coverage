@@ -1,0 +1,44 @@
+{
+ "generated_at": "2026-11-04T14:25:36",
+ "event": {
+  "name": "Погода, природные катаклизмы в России",
+  "year": 2026,
+  "week": 17,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Выпал снег, попадали деревья – коммунальщики не шевелятся»",
+   "«Дагестан – потопы»",
+   "«Дагестан залило, снег везде»",
+   "«новости про затопы в Марий Эл»",
+   "«дожди, потопы»",
+   "«погодные условия: потопы, снегопады, чрезвычайные ситуации»",
+   "«природные условия»",
+   "«снегопад везде»",
+   "«холодная погода до конца мая»"
+  ],
+  "event_id": "b977bc731df46f243d961663335a4249"
+ },
+ "window": {
+  "match_start": "2026-04-17",
+  "match_end_exclusive": "2026-05-07"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.07,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 988,
+  "embedded_pool": 36907,
+  "window_posts": 36907
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Проблема с мигрантами",
+  "year": 2025,
+  "week": 38,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Мигранты»",
+   "«приезжих придавливать начали»",
+   "«происшествия, связанные с мигрантами»",
+   "«ужесточение миграции»",
+   "«меня бесит, что кругом одни чурки, чёрные, мигранты: они нас насилуют, режут и убивают»"
+  ],
+  "event_id": "5071b51164cea1e6cc1381c84cceb408"
+ },
+ "window": {
+  "match_start": "2025-09-12",
+  "match_end_exclusive": "2025-10-02"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.55,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 201,
+  "embedded_pool": 45591,
+  "window_posts": 45592
+ }
+}

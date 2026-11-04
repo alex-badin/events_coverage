@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:30",
+ "event": {
+  "name": "Перебои с интернетом",
+  "year": 2025,
+  "week": 47,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Блокировка интернета»",
+   "«замедление интернета»",
+   "«ограничение на интернет»",
+   "«отключения мобильной связи и интернета»",
+   "«плохая связь в городе»",
+   "«по всей России будут отключать интернет в целях безопасности»",
+   "«про связь мобильную – глушат»"
+  ],
+  "event_id": "f33bb6c5f8151fd8e2d21e793d3e5dfd"
+ },
+ "window": {
+  "match_start": "2025-11-14",
+  "match_end_exclusive": "2025-12-04"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.39,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 234,
+  "embedded_pool": 40291,
+  "window_posts": 40292
+ }
+}

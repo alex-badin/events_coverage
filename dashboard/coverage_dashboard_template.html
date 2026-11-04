@@ -563,6 +563,7 @@ addEventListener('hashchange', route);
 /* =========================================================================
    OVERVIEW
    ========================================================================= */
+const NOT_YET = ROWS.filter(r => r.event_kind === 'specific event' && r.fom_year * 100 + r.fom_week > 202620 && !isMeasured(r));
 function renderStatus() {
   const specific = ROWS.filter(r => r.event_kind === 'specific event');
   const years = SURVEYED.map(w => w.fom_year);
@@ -579,6 +580,8 @@ function renderStatus() {
       ? `<b>Coverage measured for ${plural(MEASURED.length, 'event', 'events')}</b> (${span}): ${fmt(posts)} posts from
          ${covering} of the ${active} sources publishing in those weeks, ${GROUPS.length} media groups. `
       : '<b>Coverage measured for 0 events so far.</b> ') +
+    `<b>Two methods:</b> up to 2025-W11 summaries + Cohere, from 2025-W12 full text + Decisions API; do not compare counts across that line. ` +
+    (NOT_YET.length ? `<b>Weeks after 2026-W20 are not calculated</b> (${plural(NOT_YET.length, 'event', 'events')}). ` : '') +
     `<b>News data ends ${longDay(DATA.meta.snapshot_end)}.</b>`;
 }
 
@@ -1128,8 +1131,10 @@ function renderDays(r, groupRows) {
 
 function renderPosts(r) {
   const all = DATA.posts.filter(p => p.event_id === r.event_id);
+  // Counts come from the coverage table: the file carries only the most relevant posts of each group.
   const counts = new Map();
-  all.forEach(p => counts.set(p.media_group, (counts.get(p.media_group) || 0) + 1));
+  DATA.groups.filter(g => g.event_id === r.event_id && g.matched_posts).forEach(g => counts.set(g.media_group, g.matched_posts));
+  const total = [...counts.values()].reduce((a, b) => a + b, 0);
   let rows = postGroup ? all.filter(p => p.media_group === postGroup) : all;
   const words = postGroup ? DATA.terms.filter(t => t.event_id === r.event_id && t.media_group === postGroup) : [];
   if (postWord) {
@@ -1141,7 +1146,7 @@ function renderPosts(r) {
   const wk = weekKey(r);
   el('wk-posts').innerHTML = `
     <div class="chips">
-      <a class="chip" href="${weekHash(wk, r.event_id)}" aria-pressed="${!postGroup}">All groups · ${fmt(all.length)}</a>
+      <a class="chip" href="${weekHash(wk, r.event_id)}" aria-pressed="${!postGroup}">All groups · ${fmt(total)}</a>
       ${GROUPS.filter(g => counts.get(g)).map(g => `<a class="chip" href="${weekHash(wk, r.event_id, groupKeyOf.get(g))}" aria-pressed="${postGroup === g}">
         <i style="background:${colorOf(g)}"></i>${esc(g)} · ${fmt(counts.get(g))}</a>`).join('')}
     </div>
@@ -1149,7 +1154,8 @@ function renderPosts(r) {
     ${words.length ? `<div style="margin-top:12px"><div class="small muted" style="margin-bottom:6px">Words this group used more than the other groups did (click to filter):</div>
       <div class="chips">${words.map((t, i) => `<button class="chip" type="button" data-w="${i}" aria-pressed="${postWord && postWord.term_label === t.term_label}">
         ${esc(t.term_label)} <span class="muted">${t.posts_with_term}/${t.group_posts}</span></button>`).join('')}</div></div>` : ''}
-    <p class="small muted" style="margin:12px 0 0">Showing ${Math.min(postLimit, rows.length)} of ${fmt(rows.length)} posts${postWord ? ` containing «${esc(postWord.term_label)}»` : ''}, most relevant first.</p>
+    <p class="small muted" style="margin:12px 0 0">Showing ${Math.min(postLimit, rows.length)} of ${fmt(rows.length)} posts${postWord ? ` containing «${esc(postWord.term_label)}»` : ''}, most relevant first.
+      This page keeps the ${DATA.meta.posts_per_group} most relevant posts of each group per event${postGroup && counts.get(postGroup) > rows.length && !postWord ? ` (the group has ${fmt(counts.get(postGroup))})` : ''}.</p>
     <div id="post-list">${rows.slice(0, postLimit).map((p, i) => `
       <div class="post">
         <div class="meta"><span class="src">${esc(p.source_name)}</span>
@@ -1184,7 +1190,7 @@ function renderPosts(r) {
 function renderAbout() {
   const specific = ROWS.filter(r => r.event_kind === 'specific event');
   const labelled = specific.filter(r => r.theme_id).length;
-  const allPosts = DATA.posts.length;
+  const allPosts = DATA.events.reduce((s, e) => s + (e.matched_posts || 0), 0);
   const distinctPosts = DATA.scope_coverage.filter(s => s.scope_type === 'all').reduce((s, r) => s + r.distinct_matched_posts, 0);
   const flagged = DATA.events.filter(e => warningsFor(e).length).length;
   const gaps = WEEKS.length - SURVEYED.length;
@@ -1204,10 +1210,13 @@ function renderAbout() {
       separate models; how, and what that check found, is in dbt/seeds/README.md. Click any theme to see every FOM wording
       it groups.</p>
     <h3>What counts as coverage</h3>
-    <p>A post counts as coverage of an event when an embedding search over post summaries finds it as a candidate and
-      the Cohere rerank-v3.5 relevance model scores it 0.35 or higher. The score is on every post, so weak matches can
-      be read and judged. Matched post sets are built one event at a time and cost money, so they are curated, not a
-      sample: ${MEASURED.length} of ${fmt(specific.length)} events have one.</p>
+    <p>Two methods, and their counts should not be compared with each other. <b>The five events of January–March
+      2025:</b> an embedding search over post summaries finds candidates, and the Cohere rerank-v3.5 relevance model must
+      score a post 0.35 or higher. <b>Events from 2025-W12 on:</b> an embedding search over the cleaned full text finds the
+      3,000 closest posts of the window, the OpenAI Decisions API gives each a probability that it reports on the event,
+      and the cut-off is set per event from 100 posts read by a language model. The score is on every post, so weak
+      matches can be read and judged. ${MEASURED.length} of ${fmt(specific.length)} events have a matched set.
+      ${NOT_YET.length ? `Every event of 2025-W12 to 2026-W20 is calculated. The ${plural(NOT_YET.length, 'event', 'events')} of the weeks after 2026-W20 ${NOT_YET.length === 1 ? 'is' : 'are'} not: the run stopped there.` : ''}</p>
     <p><b>Coverage calculated</b> means matching posts have been selected and media-group figures are available.
       <b>Not calculated yet</b> means that matching posts have not been added to this dashboard for this event. The FOM survey result
       is still shown; the status says nothing about whether the media covered it.</p>
@@ -1221,7 +1230,7 @@ function renderAbout() {
       are ${fmt(distinctPosts)} distinct posts. Every total that spans several events counts a post once, and divides by
       what the group published over the days the windows cover, each day once.</p>
     <h3>When a count cannot be compared</h3>
-    <p>An event is marked ⚠ if it kept posts below the standard 0.35 relevance score (its total is too high) or if its
+    <p>An event of the first method is marked ⚠ if it kept posts below the standard 0.35 relevance score (its total is too high); any event is marked if its
       search could not reach the whole window (too low). ${flagged ? `${flagged} event${flagged > 1 ? 's carry' : ' carries'} the mark.` :
       'No loaded event carries the mark; the check stays so that an event built on other settings cannot slip in unmarked.'}
       Comparisons between groups inside one event are unaffected either way.</p>
@@ -1232,10 +1241,12 @@ function renderAbout() {
     <h3>Word lists are counting, not interpretation</h3>
     <p>A word is listed for a group only if at least two of its channels used it, no single channel accounts for more
       than 70% of the posts carrying it, and the group used it more on this event than on the other events. Clicking it
-      shows exactly the posts it was counted in. It says nothing about tone or intent.</p>
+      shows exactly the posts it was counted in. It says nothing about tone or intent. Word lists exist only for the five
+      events of January–March 2025 so far.</p>
     <h3>Dates</h3>
     <p>The news corpus ends on ${longDay(DATA.meta.snapshot_end)}. Nothing here describes anything after that date.
-      View counters were read once, when the posts were collected.</p>`;
+      View counters were read once, when the posts were collected. Posts after 2 April 2025 come from public channel
+      pages, which show views rounded and no forward counts.</p>`;
   el('about-close').addEventListener('click', closeAbout);
 }
 function openAbout() { el('about').hidden = false; el('backdrop').hidden = false; el('about-close').focus(); }

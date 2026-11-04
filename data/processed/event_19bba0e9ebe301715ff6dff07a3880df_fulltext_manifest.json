@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Переговоры с участием США о прекращении боевых действий между Россией и Украиной",
+  "year": 2025,
+  "week": 14,
+  "fom_percentage": 7.0,
+  "quotes": [
+   "«Переговоры между Америкой, Украиной, Россией»",
+   "«всякие переговоры по Украине»",
+   "«разговоры о перемирии»",
+   "«договоры о конце войны»",
+   "«переговоры с Украиной»",
+   "«переговоры Трампа и Зеленского»"
+  ],
+  "event_id": "19bba0e9ebe301715ff6dff07a3880df"
+ },
+ "window": {
+  "match_start": "2025-03-28",
+  "match_end_exclusive": "2025-04-17"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.69,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 1217,
+  "embedded_pool": 41143,
+  "window_posts": 41145
+ }
+}

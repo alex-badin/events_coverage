@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:26",
+ "event": {
+  "name": "Изменение позиции Д. Трампа по отношению к России",
+  "year": 2025,
+  "week": 31,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Высказывания Трампа»",
+   "«изменение Трампом сроков воздействия на Россию с 50 дней на 10»",
+   "«попытка Трампа пошлины ввести вторичные»",
+   "«событие с Трампом, с его санкциями»",
+   "«тарифы Трампа, которые он будет вводить против союзных, дружественных государств»",
+   "«ультиматум Трампа России»"
+  ],
+  "event_id": "b6fd7dde106c5e2b6fd7290adfd50eae"
+ },
+ "window": {
+  "match_start": "2025-07-25",
+  "match_end_exclusive": "2025-08-14"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.43,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 1322,
+  "embedded_pool": 43016,
+  "window_posts": 43018
+ }
+}

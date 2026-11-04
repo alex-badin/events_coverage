@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-04T14:25:24",
+ "event": {
+  "name": "Спортивные события",
+  "year": 2025,
+  "week": 21,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Забег в Ростове-на-Дону проходил»",
+   "«“Зенит” занял второе место»",
+   "«Краснодарская футбольная команда стала чемпионом»",
+   "«“Локомотив” выиграл в хоккей»",
+   "«“Ростов” вышел в финал Кубка России по футболу»",
+   "«соревнования по волейболу»"
+  ],
+  "event_id": "836a165bd992f370362e6154b1247238"
+ },
+ "window": {
+  "match_start": "2025-05-16",
+  "match_end_exclusive": "2025-06-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.25,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 225,
+  "embedded_pool": 45624,
+  "window_posts": 45624
+ }
+}

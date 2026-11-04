@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Испытания российского новейшего оружия",
+  "year": 2025,
+  "week": 44,
+  "fom_percentage": 5.0,
+  "quotes": [
+   "«“Буревестник”, “Посейдон” – новое вооружение России»",
+   "«“Буревестник” – современные ракеты, “Посейдон” – это радует»",
+   "«испытание нашего оружия»",
+   "«испытания носителей ядерного оружия»",
+   "«испытания ракет: мы показали мощь страны»",
+   "«наши создали новую хорошую ракету – порадовался»",
+   "«оружие наше суперхорошее»",
+   "«ракеты испытали удачно»"
+  ],
+  "event_id": "813c47033be06924fc26f4de617d8a82"
+ },
+ "window": {
+  "match_start": "2025-10-24",
+  "match_end_exclusive": "2025-11-13"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.98,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 537,
+  "embedded_pool": 39216,
+  "window_posts": 39217
+ }
+}

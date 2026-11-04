@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Обстрелы российских территорий",
+  "year": 2025,
+  "week": 12,
+  "fom_percentage": 4.0,
+  "quotes": [
+   "«Атаки беспилотников на Россию»",
+   "«большое количество дронов»",
+   "«атака дронов в Подмосковье»",
+   "«атаки ВСУ на Белгородскую область»",
+   "«беспилотники летают по Чувашии»",
+   "«бомбёжки в Краснодаре, Волгограде»",
+   "«про дроны в Петровском районе»"
+  ],
+  "event_id": "412c1567fc43ae72d49e122711949244"
+ },
+ "window": {
+  "match_start": "2025-03-14",
+  "match_end_exclusive": "2025-04-03"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.13,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 2075,
+  "embedded_pool": 44637,
+  "window_posts": 44638
+ }
+}

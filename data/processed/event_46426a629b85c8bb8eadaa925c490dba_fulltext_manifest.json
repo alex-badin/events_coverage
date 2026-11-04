@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:29",
+ "event": {
+  "name": "Аварии, несчастные случаи",
+  "year": 2025,
+  "week": 44,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Авария в Туле на мосту»",
+   "«ДТП в Туле очень серьёзное»",
+   "«всё какие-то происшествия попадаются»",
+   "«девочек в Ревде свошник пьяный сбил насмерть»",
+   "«обвалилась крыша в детском кардиологическом отделении»"
+  ],
+  "event_id": "46426a629b85c8bb8eadaa925c490dba"
+ },
+ "window": {
+  "match_start": "2025-10-24",
+  "match_end_exclusive": "2025-11-13"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.98,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 90,
+  "embedded_pool": 39216,
+  "window_posts": 39217
+ }
+}

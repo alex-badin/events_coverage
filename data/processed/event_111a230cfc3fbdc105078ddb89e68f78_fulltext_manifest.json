@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:28",
+ "event": {
+  "name": "Аварии, несчастные случаи, пожары",
+  "year": 2025,
+  "week": 39,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«18 вагонов сошли с рельсов и загорелись»",
+   "«авария в Рудне»",
+   "«ДТП в Каменске-Уральском: ребёнка сбили»",
+   "«пожар в зоопарке Новосибирска»",
+   "«сгорела машина у дома»"
+  ],
+  "event_id": "111a230cfc3fbdc105078ddb89e68f78"
+ },
+ "window": {
+  "match_start": "2025-09-19",
+  "match_end_exclusive": "2025-10-09"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.68,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 152,
+  "embedded_pool": 45682,
+  "window_posts": 45684
+ }
+}

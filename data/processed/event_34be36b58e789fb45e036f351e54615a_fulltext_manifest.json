@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-04T14:25:22",
+ "event": {
+  "name": "Телефонный разговор В. Путина с Д. Трампом",
+  "year": 2025,
+  "week": 12,
+  "fom_percentage": 11.0,
+  "quotes": [
+   "«Беседа Путина с Трампом»",
+   "«диалог Трампа и Путина»",
+   "«звонок Трампа Путину»",
+   "«разговор президентов России и США»",
+   "«Трамп по телефону разговаривал с Путиным два часа»"
+  ],
+  "event_id": "34be36b58e789fb45e036f351e54615a"
+ },
+ "window": {
+  "match_start": "2025-03-14",
+  "match_end_exclusive": "2025-04-03"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
+  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "brief": "gpt-6.1-sol via Codex"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.53,
+  "show_chars": 400
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 919,
+  "embedded_pool": 44637,
+  "window_posts": 44638
+ }
+}
