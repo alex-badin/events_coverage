@@ -30,6 +30,8 @@
   --att-1: #e4e0f6; --att-2: #c3baea; --att-3: #9384d6; --att-4: #6352bd; --att-5: #33267f;
   --cov-1: #efeee9; --cov-2: #dddbd2; --cov-3: #b9b6aa; --cov-4: #85827a;
   --cov-ink-4: #ffffff;
+  /* Measured-week marks: a neutral ink, so they never read as one more survey-attention value. */
+  --measured: #3a3935;
 
   --warning: #fab219;
 }
@@ -44,6 +46,7 @@
     --att-1: #2a2640; --att-2: #3f3870; --att-3: #5d51a8; --att-4: #8a7fe0; --att-5: #cfc9f7;
     --cov-1: #232322; --cov-2: #34342f; --cov-3: #55544d; --cov-4: #8d8b82;
     --cov-ink-4: #0d0d0d;
+    --measured: #e3e1d9;
   }
 }
 :root[data-theme="dark"] {
@@ -56,6 +59,7 @@
   --att-1: #2a2640; --att-2: #3f3870; --att-3: #5d51a8; --att-4: #8a7fe0; --att-5: #cfc9f7;
   --cov-1: #232322; --cov-2: #34342f; --cov-3: #55544d; --cov-4: #8d8b82;
   --cov-ink-4: #0d0d0d;
+  --measured: #e3e1d9;
 }
 
 * { box-sizing: border-box; }
@@ -634,7 +638,8 @@ function renderHeat(sel) {
   const measuredIdx = new Set(MEASURED_WEEKS.map(ws => WEEK_BY_START.get(ws)?.i));
   measuredIdx.forEach(i => {
     if (i == null) return;
-    s += `<rect x="${labelW + i * colW}" y="2" width="${Math.max(2, colW)}" height="${topH - 4}" fill="var(--accent)" rx="1"/>`;
+    // A dot in neutral ink, not a purple bar: the purple scale below is survey attention.
+    s += `<circle cx="${labelW + (i + 0.5) * colW}" cy="${topH / 2}" r="${Math.max(1.5, Math.min(3, colW / 2))}" fill="var(--measured)"/>`;
   });
 
   heatRows.forEach((row, r) => {
@@ -757,7 +762,7 @@ function renderHeatScale() {
     BINS.map(b => `<span><i style="background:${b.color}"></i>${b.label}</span>`).join('') +
     `<span><i style="background:var(--empty); border:1px solid var(--grid)"></i>none named</span>` +
     `<span><i class="hatch-swatch"></i>no survey</span>` +
-    `<span><i style="background:var(--accent); width:4px"></i>coverage measured</span>` +
+    `<span><i style="background:var(--measured); width:6px; height:6px; border-radius:50%"></i>coverage measured (top strip)</span>` +
     `<span style="flex-basis:100%">People can name several events, so a row that holds two events in a week can count one person twice; these are mentions, not a share of people.</span>`;
 }
 
