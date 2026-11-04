@@ -30,6 +30,7 @@
  },
  "counts": {
   "candidates": 3000,
+  "scored": 3000,
   "kept": 617,
   "embedded_pool": 37705,
   "window_posts": 37706

@@ -58,6 +58,10 @@ TOP_K, SHOW_CHARS, PER_REQUEST = 3000, 400, 400
 DEC_PRICE_PER_M = 0.10
 LUNA_PRICE = (0.10, 0.50)           # per 1M input / output tokens
 SAMPLE_N, SEED = 100, 17
+MAX_UNANSWERED = 5
+# The OpenAI spend limit stopped this event at 2,000 of its 3,000 candidates, nearest first, and no paid
+# call followed. Its cut-off and counts rest on those 2,000: "Перемирие на День Победы", 2026-W20.
+KNOWN_PARTIAL = {"ddfbf5eeab4594d3d1cf6241e854a94a"}
 LAST_COMPLETE_WEEK = 202620         # the run stopped here; the 13 pilot events after it stay out of the warehouse
 LUNA_READER = "gpt-6-luna, OpenAI API, effort low"
 CODEX_READER = "gpt-6.1-sol, Codex subscription, effort medium"
@@ -419,8 +423,20 @@ def decide(n=None):
 
 
 def scores(e):
+    """Whatever is saved so far, which may be part of the event: check complete() before relying on it."""
     p = OUT / "decisions" / f"{e['id']}.json"
     return {int(k): v for k, v in json.loads(p.read_text())["p"].items()} if p.exists() else None
+
+
+def complete(e):
+    """Every candidate scored (a few may lack an answer: the model can refuse a single question)."""
+    s = scores(e)
+    return s is not None and sum(c["i"] not in s for c in candidates(e)) <= MAX_UNANSWERED
+
+
+def sample_is_current(e, cut_file):
+    """Was this cut-off set on the sample the present scores give? False means the scores changed afterwards."""
+    return set(map(int, cut_file["weights"])) | set(cut_file["missing"]) == set(sample(e)[0])
 
 
 # ------------------------------------------------------------------------------- luna
@@ -452,13 +468,19 @@ def luna(n=None):
 
     def one(e):
         target = folder / f"{e['id']}.json"
-        if target.exists() or scores(e) is None:
+        if target.exists() or not complete(e):
             return 0.0
         guard()
         picked, w = sample(e)
-        labels, usd = {}, 0.0
+        partial = OUT / "luna_partial" / f"{e['id']}.json"
+        partial.parent.mkdir(exist_ok=True)
+        have = json.loads(partial.read_text()) if partial.exists() else {"labels": {}, "usd": 0.0}
+        spent_now = 0.0
         for k in range(0, len(picked), 50):
-            block = "\n\n".join(f"[id {i}] {ps[i]['text'][:2500]}" for i in picked[k:k + 50])
+            chunk = picked[k:k + 50]
+            if all(str(i) in have["labels"] for i in chunk):    # answered before a crash; already paid for
+                continue
+            block = "\n\n".join(f"[id {i}] {ps[i]['text'][:2500]}" for i in chunk)
             text = R.PROMPT.format(week=f"{e['year']}-W{e['week']:02d}", name=e["name"], quotes="; ".join(e["quotes"]),
                                    lo=e["window"][0], hi=e["window"][1], posts=block)
             d = patiently(lambda: client.chat.completions.create(
@@ -466,17 +488,22 @@ def luna(n=None):
                 response_format={"type": "json_schema", "json_schema": {"name": "labels", "strict": True,
                                                                         "schema": schema}})).model_dump()
             u = d.get("usage") or {}
-            usd += (u.get("prompt_tokens", 0) * LUNA_PRICE[0] + u.get("completion_tokens", 0) * LUNA_PRICE[1]) / 1e6
+            usd = (u.get("prompt_tokens", 0) * LUNA_PRICE[0] + u.get("completion_tokens", 0) * LUNA_PRICE[1]) / 1e6
+            book("luna", usd, event=e["id"])                    # booked and saved per response
+            spent_now += usd
+            have["usd"] += usd
             for x in json.loads(d["choices"][0]["message"]["content"])["labels"]:
                 if str(x["id"]).strip().isdigit():
-                    labels[int(str(x["id"]).strip())] = x["label"] == "yes"
+                    have["labels"][str(x["id"]).strip()] = x["label"] == "yes"
+            partial.write_text(json.dumps(have))
+        labels = {int(i): v for i, v in have["labels"].items()}
         s = scores(e)
         got = [i for i in picked if i in labels]
         cut = V.best_cut(got, labels, w, s) if any(labels[i] for i in got) else 1.01
         target.write_text(json.dumps({"labels": {str(i): labels[i] for i in got}, "weights": {str(i): w[i] for i in got},
-                                      "missing": [i for i in picked if i not in labels], "cut": cut, "usd": usd}))
-        book("luna", usd, event=e["id"])
-        return usd
+                                      "missing": [i for i in picked if i not in labels], "cut": cut, "usd": have["usd"]}))
+        partial.unlink()
+        return spent_now
 
     with concurrent.futures.ThreadPoolExecutor(6) as pool:
         total = sum(pool.map(one, todo(n)))
@@ -493,7 +520,7 @@ def cutoff_prompts():
     (OUT / "cutoffs" / "schema.json").write_text((R.OUT / "labels" / "schema.json").read_text())
     n = 0
     for e in events():
-        if scores(e) is None or (OUT / "luna" / f"{e['id']}.json").exists():
+        if not complete(e) or (OUT / "luna" / f"{e['id']}.json").exists():
             continue
         picked, _ = sample(e)
         block = "\n\n".join(f"[id {i}] {ps[i]['text'][:2500]}" for i in picked)
@@ -509,7 +536,7 @@ def cutoff_collect():
     n = skipped = 0
     for e in events():
         target, answer = OUT / "luna" / f"{e['id']}.json", OUT / "cutoffs" / "out" / f"{e['id']}.json"
-        if target.exists() or not answer.exists():
+        if target.exists() or not answer.exists() or not complete(e):
             continue
         picked, w = sample(e)
         labels = {int(str(x["id"]).strip()): x["label"] == "yes" for x in json.loads(answer.read_text())["labels"]
@@ -542,6 +569,10 @@ def export():
         if e["year"] * 100 + e["week"] > LAST_COMPLETE_WEEK:   # one event in a week is not that week's picture
             continue
         lj, s = json.loads(lp.read_text()), scores(e)
+        if not complete(e) and e["id"] not in KNOWN_PARTIAL:
+            raise SystemExit(f"{e['id']}: scores are incomplete; run decide, then set the cut-off again")
+        if not sample_is_current(e, lj):
+            raise SystemExit(f"{e['id']}: its cut-off was set on other scores; delete luna/{e['id']}.json and set it again")
         cut, reader = lj["cut"], lj.get("reader", LUNA_READER)
         cos = {c["i"]: c["cos"] for c in candidates(e)}
         kept = [i for i in cos if s.get(i, 0) >= cut]
@@ -556,8 +587,11 @@ def export():
                 w.writerow([p["source"], p["message_id"], p["date"], "", "", p["text"], p["views"] or "", "",
                             cos[i], s[i], ""])
         sc = json.loads((OUT / "scores" / f"{e['id']}.json").read_text())
+        old_manifest = out_dir / f"{slug}_manifest.json"     # a rewrite with equal numbers is not a new build
+        built_at = (json.loads(old_manifest.read_text())["generated_at"] if old_manifest.exists()
+                    else time.strftime("%Y-%m-%dT%H:%M:%S"))
         (out_dir / f"{slug}_manifest.json").write_text(json.dumps({
-            "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "generated_at": built_at,
             "event": {"name": e["name"], "year": e["year"], "week": e["week"], "fom_percentage": e["percentage"],
                       "quotes": e["quotes"], "event_id": e["id"]},
             "window": {"match_start": e["window"][0], "match_end_exclusive": e["window"][1]},
@@ -565,17 +599,19 @@ def export():
                        "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
                        "cut_reader": reader, "brief": "gpt-6.1-sol via Codex"},
             "params": {"top_k": TOP_K, "rerank_threshold": cut, "show_chars": SHOW_CHARS},
-            "counts": {"candidates": len(cos), "kept": len(kept), "embedded_pool": sc["window_posts_with_text"],
-                       "window_posts": sc["window_posts"]}}, ensure_ascii=False, indent=1))
+            "counts": {"candidates": len(cos), "scored": sum(i in s for i in cos), "kept": len(kept),
+                       "embedded_pool": sc["window_posts_with_text"], "window_posts": sc["window_posts"]}},
+            ensure_ascii=False, indent=1))
         if not kept:
             (out_dir / f"{slug}_dataset.csv").unlink()
-        table.append([e["id"], f"{e['year']}-W{e['week']:02d}", e["name"], e["percentage"], reader, cut, len(kept),
+        table.append([e["id"], f"{e['year']}-W{e['week']:02d}", e["name"], e["percentage"], reader, cut,
+                      sum(i in s for i in cos), len(kept),
                       len(lj["labels"]), sum(lj["labels"].values()), len(lj["missing"])])
-    (OUT / "exported_slugs.json").write_text(json.dumps(done, indent=0))
-    (OUT / "exported_empty_slugs.json").write_text(json.dumps(empty, indent=0))
+    (ROOT / "configs" / "new_weeks_events.json").write_text(
+        json.dumps({"with_posts": done, "empty": empty}, indent=0) + "\n")
     with (HERE / "cutoffs.csv").open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["event_id", "week", "event", "fom_percentage", "cut_reader", "cut", "kept_posts",
+        w.writerow(["event_id", "week", "event", "fom_percentage", "cut_reader", "cut", "scored_candidates", "kept_posts",
                     "sample_labelled", "sample_yes", "sample_missing"])
         w.writerows(table)
     print(f"{len(done)} events with posts, {len(empty)} with none")

@@ -88,14 +88,13 @@ EVENT_SLUGS = [
     "event_us_russia_contacts_2025w09_qwen3",
 ]
 
-# The 870 FOM events of 2025-W12..2026-W43, matched on full text with the method of
+# The FOM events of 2025-W12..2026-W20, matched on full text with the method of
 # exploration/2026-10-26_ten_events_readers/ (Qwen3 full-text candidates, OpenAI Decisions API,
-# cut-off from a 100-post gpt-6-luna sample) by exploration/2026-11-03_new_weeks/new_weeks.py,
-# whose `export` step writes this list. A different method from EVENT_SLUGS above: do not compare
-# the two sets with each other.
-NEW_WEEKS_SLUGS_JSON = PROJECT_ROOT / "data" / "interim" / "new_weeks" / "exported_slugs.json"
-if NEW_WEEKS_SLUGS_JSON.exists():
-    EVENT_SLUGS = EVENT_SLUGS + json.loads(NEW_WEEKS_SLUGS_JSON.read_text(encoding="utf-8"))
+# a per-event cut-off) by exploration/2026-11-03_new_weeks/new_weeks.py, whose `export` step writes
+# this list. A different method from EVENT_SLUGS above: do not compare the two sets with each other.
+NEW_WEEKS_EVENTS_JSON = PROJECT_ROOT / "configs" / "new_weeks_events.json"
+NEW_WEEKS = json.loads(NEW_WEEKS_EVENTS_JSON.read_text(encoding="utf-8"))
+EVENT_SLUGS = EVENT_SLUGS + NEW_WEEKS["with_posts"]
 
 # Events searched on the current settings whose matched set is empty: no candidate reached
 # the 0.35 relevance cut-off. They have no posts to load, only the record that the search
@@ -103,10 +102,8 @@ if NEW_WEEKS_SLUGS_JSON.exists():
 EMPTY_EVENT_SLUGS = [
     "event_prices_2025w11_qwen3",
 ]
-# The new-week events whose cut-off kept no candidate (the export step writes this list too).
-NEW_WEEKS_EMPTY_JSON = PROJECT_ROOT / "data" / "interim" / "new_weeks" / "exported_empty_slugs.json"
-if NEW_WEEKS_EMPTY_JSON.exists():
-    EMPTY_EVENT_SLUGS = EMPTY_EVENT_SLUGS + json.loads(NEW_WEEKS_EMPTY_JSON.read_text(encoding="utf-8"))
+# The new-week events whose cut-off kept no candidate.
+EMPTY_EVENT_SLUGS = EMPTY_EVENT_SLUGS + NEW_WEEKS["empty"]
 
 # Columns kept from each event dataset CSV, with the type each is read as. The types are
 # fixed because a CSV whose column is empty throughout (no forward counts in the preview

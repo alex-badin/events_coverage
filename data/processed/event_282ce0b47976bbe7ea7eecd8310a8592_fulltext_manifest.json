@@ -20,17 +20,18 @@
   "retriever": "qwen3_fulltext",
   "embed_model": "qwen/qwen3-embedding-8b",
   "rerank_model": "gpt-6-luna /v1/decisions (choice yes/no, 400 chars)",
-  "cut_reader": "gpt-6-luna, OpenAI API, effort low",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
   "brief": "gpt-6.1-sol via Codex"
  },
  "params": {
   "top_k": 3000,
-  "rerank_threshold": 0.0,
+  "rerank_threshold": 0.36,
   "show_chars": 400
  },
  "counts": {
   "candidates": 3000,
-  "kept": 3000,
+  "scored": 3000,
+  "kept": 2475,
   "embedded_pool": 41424,
   "window_posts": 41428
  }
