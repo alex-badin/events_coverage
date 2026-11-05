@@ -1135,7 +1135,7 @@ function renderEventCard(r) {
       <span>Mentioned by <b>${share(r.attention_percentage)}</b> of FOM survey respondents</span>
       ${t ? `<a class="tag" href="#/theme/${encodeURIComponent(t.theme_id)}">${esc(themeName(t))}</a>` : ''}
       ${o ? `<span>Posts searched ${dayLabel(o.match_start)} – ${longDay(new Date(utc(o.match_end_exclusive).getTime() - DAY))}</span>
-             <span>${plural(o.matched_posts, 'post', 'posts')} from ${o.sources_covering} of ${o.sources_active} publishing sources · ${o.groups_covering} of ${o.groups_active} groups</span>` : ''}
+             <span>${plural(o.matched_posts, 'post', 'posts')} from ${o.sources_covering} of the ${o.sources_active} sources that published in this event's window · ${o.groups_covering} of ${o.groups_active} groups</span>` : ''}
     </div>
     ${quotes.length ? `<p class="line"><b>How FOM respondents described this event</b></p>
       <ul class="quotes" id="quotes" aria-label="Examples of answers from FOM survey respondents">${quotes.slice(0, 3).map(q => `<li>“${esc(q)}”</li>`).join('')}</ul>
@@ -1200,13 +1200,21 @@ function renderGroupDetails(r) {
       <td>${fmt(g.views_per_matched_post)}</td></tr>`).join('')}</tbody></table>` +
     '<p class="line">First matched post is the earliest publication found for this group within the search window. It is not a measured delay from the start of the event.</p>';
   el('wk-build').innerHTML = [
-    ['Search', o.retriever === 'qwen3' ? 'Qwen3 embeddings over the whole corpus' : 'older Cohere embeddings, part of the corpus'],
+    ['Search', o.retriever === 'qwen3_fulltext' ? 'Qwen3 embeddings of the cleaned full text'
+      : o.retriever === 'qwen3' ? 'Qwen3 embeddings over the whole corpus' : 'older Cohere embeddings, part of the corpus'],
     ['Relevance gate', `${o.rerank_model} score ≥ ${o.rerank_threshold}`],
     ['Candidates scored', fmt(o.candidates_reranked)],
     ['Window searchable', pct(o.searchable_share_of_window)],
     ['Relevance kept', `median ${fmt2(o.median_relevance_score)}, lowest ${fmt2(o.min_relevance_score)}`],
-    ['Built', String(o.built_at).slice(0, 10)]
+    ['Built', String(o.built_at).slice(0, 10)],
+    ...(isCapped(o) ? [['Note', `every one of the ${fmt(o.candidates_reranked)} candidates was kept, so the count is probably held down by the search limit and is too low`]] : [])
   ].map(([k, v]) => `<span><b>${esc(k)}:</b> ${esc(v)}</span>`).join('');
+}
+
+// The search returns a fixed number of nearest posts. When the relevance gate kept all of them,
+// the event has more matching posts than the search could return.
+function isCapped(o) {
+  return o.candidates_reranked > 0 && o.matched_posts >= o.candidates_reranked && !(o.rerank_threshold > 0);
 }
 
 const DAY_BINS = [{max: 3, c: 'var(--att-1)'}, {max: 10, c: 'var(--att-2)'}, {max: 25, c: 'var(--att-3)'}, {max: 50, c: 'var(--att-4)'}, {max: Infinity, c: 'var(--att-5)'}];
@@ -1299,6 +1307,8 @@ function renderAbout() {
   const allPosts = DATA.events.reduce((s, e) => s + (e.matched_posts || 0), 0);
   const distinctPosts = DATA.scope_coverage.filter(s => s.scope_type === 'all').reduce((s, r) => s + r.distinct_matched_posts, 0);
   const flagged = DATA.events.filter(e => warningsFor(e).length).length;
+  const cappedCount = DATA.events.filter(isCapped).length;
+  const aboutActiveSources = DATA.scope_coverage.filter(r => r.scope_type === 'all').reduce((n, r) => n + r.sources_active, 0);
   const gaps = WEEKS.length - SURVEYED.length;
   el('about').innerHTML = `
     <h2 id="about-title">About the data <button class="close" type="button" id="about-close" aria-label="Close">×</button></h2>
@@ -1339,16 +1349,18 @@ function renderAbout() {
     <p>An event of the first method is marked ⚠ if it kept posts below the standard 0.35 relevance score (its total is too high); any event is marked if its
       search could not reach the whole window (too low). ${flagged ? `${flagged} event${flagged > 1 ? 's carry' : ' carries'} the mark.` :
       'No loaded event carries the mark; the check stays so that an event built on other settings cannot slip in unmarked.'}
-      Comparisons between groups inside one event are unaffected either way.</p>
+      Comparisons between groups inside one event are unaffected either way.
+      ${cappedCount ? `Separately, ${cappedCount} of the ${MEASURED.length} events kept every one of the posts the search returned;
+      their counts are probably too low, and the event's "How the posts were matched" says so.` : ''}</p>
     <h3>The media groups</h3>
-    <p>${GROUPS.length} groups, 56 sources. The grouping is a working analytical one, not a settled set of political labels.
+    <p>${GROUPS.length} groups, 56 sources in the group map; ${aboutActiveSources} of them published during the measured weeks. The grouping is a working analytical one, not a settled set of political labels.
       Another 28 channels — regional outlets and channels that are not news media — are left out of every number,
       denominators included. The group map is today's; no source is known to have changed group.</p>
     <h3>Word lists are counting, not interpretation</h3>
     <p>A word is listed for a group only if at least two of its channels used it, no single channel accounts for more
       than 70% of the posts carrying it, and the group used it more on this event than on the other events. Clicking it
-      shows exactly the posts it was counted in. It says nothing about tone or intent. Word lists exist only for the five
-      events of January–March 2025 so far.</p>
+      shows exactly the posts it was counted in. It says nothing about tone or intent. ${fmt(new Set(DATA.terms.map(t => t.event_id)).size)} of the
+      ${MEASURED.length} events with coverage have word lists.</p>
     <h3>Dates</h3>
     <p>The news corpus ends on ${longDay(DATA.meta.snapshot_end)}. Nothing here describes anything after that date.
       View counters were read once, when the posts were collected. Posts after 2 April 2025 come from public channel
