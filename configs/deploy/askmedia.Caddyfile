@@ -1,0 +1,12 @@
+askmedia.news {
+    root * /var/www/coverage/current
+    @bootstrap file .bootstrap-pending
+    handle @bootstrap {
+        respond "Awaiting the first dashboard release." 503
+    }
+    handle {
+        file_server {
+            precompressed gzip
+        }
+    }
+}

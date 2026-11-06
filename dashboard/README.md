@@ -16,6 +16,23 @@ Nothing here queries the warehouse directly. The page reads a snapshot exported 
 dashboard would read. When Metabase takes over, both the export script and the template
 can go; the dbt marts underneath them are the part that stays.
 
+## Public website
+
+The dashboard is published at **https://askmedia.news**, without a login or password.
+It uses the existing `m4-pilot` server and Caddy; calculations remain local.
+
+Publish an already checked `outputs/dashboard_exports/coverage_dashboard.html` from the repository root:
+
+```sh
+DEPLOY_HOST=m4-pilot zsh scripts/deploy_dashboard.sh
+```
+
+`DEPLOY_HOST` can also be set in the local `.env`. The script sends only `index.html` and
+`index.html.gz`, checks their contents, then selects the new release. It restores the previous
+release and site configuration if the activation checks fail. It does not rebuild the warehouse.
+The server setup, public data fields and later improvements are described in
+[docs/hetzner_deploy_plan.md](../docs/hetzner_deploy_plan.md).
+
 ## Rebuilding it
 
 Four steps, in order, from the repository root:
