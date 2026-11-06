@@ -21,6 +21,11 @@ can go; the dbt marts underneath them are the part that stays.
 The dashboard is published at **https://askmedia.news**, without a login or password.
 It uses the existing `m4-pilot` server and Caddy; calculations remain local.
 
+The published design includes Claude's [PR #5](https://github.com/alex-badin/events_coverage/pull/5)
+and the label corrections in [PR #6](https://github.com/alex-badin/events_coverage/pull/6), revision `3d1b180`.
+Both are included in the tracked template. Before publishing a design update, check that this
+template contains the intended revision, including work that has not yet reached `main`.
+
 Publish an already checked `outputs/dashboard_exports/coverage_dashboard.html` from the repository root:
 
 ```sh
