@@ -595,7 +595,7 @@ function renderStatus() {
       ? `<b>Coverage measured for ${plural(MEASURED.length, 'event', 'events')}</b> (${span}): ${fmt(posts)} posts from
          ${covering} of the ${active} sources publishing in those weeks, ${GROUPS.length} media groups. `
       : '<b>Coverage measured for 0 events so far.</b> ') +
-    `<b>Two methods:</b> up to 2025-W11 summaries + Cohere, from 2025-W12 full text + Decisions API; do not compare counts across that line. ` +
+    `<b>Three methods:</b> up to 2025-W11 summaries + Cohere, 2025-W12 to 2026-W20 full text + Decisions API, from 2026-W21 full text + a language-model score; do not compare counts across those lines. ` +
     (NOT_YET.length ? `<b>Weeks after 2026-W20 are not calculated</b> (${plural(NOT_YET.length, 'event', 'events')}). ` : '') +
     `<b>News data ends ${longDay(DATA.meta.snapshot_end)}.</b>`;
 }
@@ -1326,12 +1326,13 @@ function renderAbout() {
       separate models; how, and what that check found, is in dbt/seeds/README.md. Click any theme to see every FOM wording
       it groups.</p>
     <h3>What counts as coverage</h3>
-    <p>Two methods, and their counts should not be compared with each other. <b>The five events of January–March
+    <p>Three methods, and their counts should not be compared with each other. <b>The five events of January–March
       2025:</b> an embedding search over post summaries finds candidates, and the Cohere rerank-v3.5 relevance model must
-      score a post 0.35 or higher. <b>Events from 2025-W12 on:</b> an embedding search over the cleaned full text finds the
+      score a post 0.35 or higher. <b>Events of 2025-W12 to 2026-W20:</b> an embedding search over the cleaned full text finds the
       3,000 closest posts of the window, the OpenAI Decisions API gives each a probability that it reports on the event,
-      and the cut-off is set per event from 100 posts read by a language model. The score is on every post, so weak
-      matches can be read and judged. ${MEASURED.length} of ${fmt(specific.length)} events have a matched set.
+      and the cut-off is set per event from 100 posts read by a language model. <b>Events from 2026-W21 on:</b> the same search
+      and the same kind of cut-off, but the score is a 0–100 rating given to each post by a language model (gpt-6-luna)
+      reading up to 1,000 characters. The score is on every post, so weak matches can be read and judged. ${MEASURED.length} of ${fmt(specific.length)} events have a matched set.
       ${NOT_YET.length ? `Every event of 2025-W12 to 2026-W20 is calculated. The ${plural(NOT_YET.length, 'event', 'events')} of the weeks after 2026-W20 ${NOT_YET.length === 1 ? 'is' : 'are'} not: the run stopped there.` : ''}</p>
     <p><b>Coverage calculated</b> means matching posts have been selected and media-group figures are available.
       <b>Not calculated yet</b> means that matching posts have not been added to this dashboard for this event. The FOM survey result

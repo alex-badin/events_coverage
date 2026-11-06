@@ -14,6 +14,6 @@ events_coverage:
       # Word lists split about 69 million words. These caps keep a build from taking over a
       # 16 GB laptop: DuckDB spills to disk past the first and fails cleanly past the second.
       settings:
-        memory_limit: 6GB
+        memory_limit: "{{ env_var('DUCKDB_MEMORY_LIMIT', '6GB') }}"
         max_temp_directory_size: 30GB
         preserve_insertion_order: false

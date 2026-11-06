@@ -83,14 +83,20 @@ paths alongside the output.
   2026-08-03; the versions without the suffix could search only part of each window and
   under-count. `_cohere_archived` ones are incomplete for the same kind of reason.
   `scripts/load_warehouse.py` holds the list actually loaded — trust it over the folder.
-- **Two matching methods are loaded; never compare them.** The 5 events before 2025-W12 are summary +
+- **Three matching methods are loaded; never compare them.** The 5 events before 2025-W12 are summary +
   Cohere at 0.35 (`scripts/build_event_dataset.py`, do not build new sets on it). 2025-W12..2026-W20 (644
   events) are full text + OpenAI Decisions API with a per-event cut-off
-  (`exploration/2026-11-03_new_weeks/`). The 2020–2025 history has not been re-run; the decision is that every
-  specific FOM event ends up on one method.
-- **Weeks after 2026-W20 are unmeasured on purpose.** FOM events run to 2026-W43, but the run stopped there:
-  13 of those events are scored and held back (`LAST_COMPLETE_WEEK`), 213 are not scored. One event in a
-  week must not be shown as that week.
+  (`exploration/2026-11-03_new_weeks/`). 2026-W21..W43 (226 events) are the same candidates + a Luna 0-100
+  score through Codex (`exploration/2026-11-06_luna_direct/`). The 2020–2025 history has not been re-run; the
+  decision is that every specific FOM event ends up on one method.
+- **Do not rerun `new_weeks.py export`:** it rewrites `configs/new_weeks_events.json` and drops W21–W43. After it,
+  `luna_finish.py export` adds them back.
+- **Luna through Codex gives no probabilities and its yes/no labels are unstable on broad events** (F1 0.727, then
+  0.638 on the same input); ask for a 0-100 score and set the cut-off from a sample. Use `--ignore-user-config`:
+  otherwise every `codex exec` on the main account starts all its MCP servers and tens of parallel calls overload
+  the Mac (load average 971).
+- **`dbt build` needs more memory for `event_group_terms` now:** `DUCKDB_MEMORY_LIMIT=10GB`; the default 6 GB runs
+  out.
 - **OpenAI billed $13.62 of Decisions attempts that never returned a response**, nearly all while the run sat at
   the 10M tokens-per-minute limit, with the SDK set to retry. A ledger built from responses under-counts:
   use `max_retries=0`, stay below the limit, and compare with the Usage API (`OPENAI_API_ADMIN_KEY` in

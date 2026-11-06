@@ -58,9 +58,9 @@ wording has no theme yet (see `dbt/seeds/README.md` for how to label them).
 
 The page is built for many survey weeks, of which only some will ever have measured coverage:
 the survey exists for 326 weeks (2020–2026), while a matched post set costs money. Today 5 events
-of January–March 2025 have one (summary + Cohere) and so do the events of 2025-W12..2026-W20 (full text +
-Decisions API). The two methods do not compare, the page says so, and the weeks after 2026-W20 are not
-calculated. The file carries the 5 most relevant posts per group per event, text cut at 500 characters.
+of January–March 2025 have one (summary + Cohere), so do the events of 2025-W12..2026-W20 (full text +
+Decisions API) and of 2026-W21..W43 (full text + Luna score through Codex). The three methods do not compare,
+and the page says so. The file carries the 5 most relevant posts per group per event, text cut at 500 characters.
 
 Two views, switched in the top bar, and one panel. Every state is in the address
 (`#/`, `#/umbrella/<id>`, `#/theme/<id>`, `#/week/2025-W10/<event_id>/<group_key>`), so the
