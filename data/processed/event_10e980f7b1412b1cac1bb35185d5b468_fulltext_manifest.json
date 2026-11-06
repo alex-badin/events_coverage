@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-07T02:46:56",
+ "event": {
+  "name": "Визит В. Путина в Китай",
+  "year": 2026,
+  "week": 21,
+  "fom_percentage": 6.0,
+  "quotes": [
+   "«В Китай ездил Путин»",
+   "«встреча лидеров РФ и Китая»",
+   "«встреча Путина с Си Цзиньпином»",
+   "«поездка в Китай президента»",
+   "«поездка Путина в Китай, реакция зарубежных стран на эту поездку»",
+   "«Путин Китай посетил»",
+   "«Путин прилетал в Китай: запланированный визит с делегацией – решали вопросы»",
+   "«Путина очень хорошо встретили в Китае, чем Трампа»"
+  ],
+  "event_id": "10e980f7b1412b1cac1bb35185d5b468"
+ },
+ "window": {
+  "match_start": "2026-05-15",
+  "match_end_exclusive": "2026-06-04"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.55,
+  "show_chars": 2500
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 1061,
+  "embedded_pool": 39063,
+  "window_posts": 39064
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-07T02:47:08",
+ "event": {
+  "name": "Встреча В. Путина и С. Уиткоффа, обсуждение путей к миру на Украине",
+  "year": 2026,
+  "week": 43,
+  "fom_percentage": 7.0,
+  "quotes": [
+   "«Встреча Путина с Уиткоффом»",
+   "«переговоры представителя Трампа с Путиным»",
+   "«приезд Уиткоффа насчёт урегулирования конфликта на Украине»",
+   "«Путин встречался в Питере с представителями США»"
+  ],
+  "event_id": "97aa74f468242d3ed6e48b2a97f18a38"
+ },
+ "window": {
+  "match_start": "2026-10-16",
+  "match_end_exclusive": "2026-11-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.4,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 777,
+  "embedded_pool": 36954,
+  "window_posts": 36954
+ }
+}

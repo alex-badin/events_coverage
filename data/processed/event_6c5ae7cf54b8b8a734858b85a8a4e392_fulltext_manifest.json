@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-07T02:46:56",
+ "event": {
+  "name": "Блокировка интернета",
+  "year": 2026,
+  "week": 21,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Блокировки интернета»",
+   "«действия Роскомнадзора: блокирование всего и вся»",
+   "«запреты и блокировки»",
+   "«интернет отрубают»",
+   "«ограничение интернета»",
+   "«пропажа интернета»"
+  ],
+  "event_id": "6c5ae7cf54b8b8a734858b85a8a4e392"
+ },
+ "window": {
+  "match_start": "2026-05-15",
+  "match_end_exclusive": "2026-06-04"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.2,
+  "show_chars": 2500
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2995,
+  "kept": 345,
+  "embedded_pool": 39063,
+  "window_posts": 39064
+ }
+}

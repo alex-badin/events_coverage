@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-07T02:47:02",
+ "event": {
+  "name": "Инфляция, рост цен",
+  "year": 2026,
+  "week": 32,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Инфляция повышается»",
+   "«выросли цены на продукты»",
+   "«цены ужасные»",
+   "«цены растут не по дням, а по часам»"
+  ],
+  "event_id": "31348bfda2451d3a86251fdb6ed8bdc1"
+ },
+ "window": {
+  "match_start": "2026-07-31",
+  "match_end_exclusive": "2026-08-20"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.2,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 164,
+  "embedded_pool": 38426,
+  "window_posts": 38426
+ }
+}

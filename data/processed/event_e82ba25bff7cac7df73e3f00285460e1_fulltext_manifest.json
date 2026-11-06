@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-07T02:47:02",
+ "event": {
+  "name": "Погода, природные катаклизмы в России",
+  "year": 2026,
+  "week": 31,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Дожди»",
+   "«затопление Тюмени, Краснодарского края»",
+   "«катаклизмы природные в Ростовской области»",
+   "«затоплено много: урожая не будет, дороги размывает»",
+   "«нас топит везде по стране, погода преподносит сюрпризы»",
+   "«ураган здесь проходил в субботу»",
+   "«чрезвычайная ситуация с природными пожарами»"
+  ],
+  "event_id": "e82ba25bff7cac7df73e3f00285460e1"
+ },
+ "window": {
+  "match_start": "2026-07-24",
+  "match_end_exclusive": "2026-08-13"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.1,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2997,
+  "kept": 474,
+  "embedded_pool": 38810,
+  "window_posts": 38810
+ }
+}

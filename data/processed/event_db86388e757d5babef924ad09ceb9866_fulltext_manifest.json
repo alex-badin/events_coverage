@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-07T02:46:56",
+ "event": {
+  "name": "Погода, природные катаклизмы в России",
+  "year": 2026,
+  "week": 22,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Грозы»",
+   "«дожди заливают»",
+   "«наводнение»",
+   "«плохая погода»",
+   "«природные явления»",
+   "«ураган в Балезино»"
+  ],
+  "event_id": "db86388e757d5babef924ad09ceb9866"
+ },
+ "window": {
+  "match_start": "2026-05-22",
+  "match_end_exclusive": "2026-06-11"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.05,
+  "show_chars": 2500
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 403,
+  "embedded_pool": 40833,
+  "window_posts": 40834
+ }
+}

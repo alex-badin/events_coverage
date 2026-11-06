@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-07T02:47:07",
+ "event": {
+  "name": "Обстрелы различных российских территорий",
+  "year": 2026,
+  "week": 40,
+  "fom_percentage": 7.0,
+  "quotes": [
+   "«Атаки беспилотников»",
+   "«беспилотники в Сибири»",
+   "«бомбёжки»",
+   "«дроны бомбят каждый день»",
+   "«Ульяновск бомбили»"
+  ],
+  "event_id": "1acd7f36bf74defc0019f78c511cab96"
+ },
+ "window": {
+  "match_start": "2026-09-25",
+  "match_end_exclusive": "2026-10-15"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.1,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2999,
+  "kept": 1453,
+  "embedded_pool": 39930,
+  "window_posts": 39931
+ }
+}

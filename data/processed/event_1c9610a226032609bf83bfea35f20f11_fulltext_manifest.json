@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-07T02:47:02",
+ "event": {
+  "name": "События вокруг Ирана",
+  "year": 2026,
+  "week": 29,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Американцы спровоцировали нападение на корабль, а затем нанесли удар по столице Ирана»",
+   "«война Америки с Ираном»",
+   "«война на Ближнем Востоке»",
+   "«США возобновили бомбёжки Ирана»"
+  ],
+  "event_id": "1c9610a226032609bf83bfea35f20f11"
+ },
+ "window": {
+  "match_start": "2026-07-10",
+  "match_end_exclusive": "2026-07-30"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.5,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 2205,
+  "embedded_pool": 38886,
+  "window_posts": 38886
+ }
+}

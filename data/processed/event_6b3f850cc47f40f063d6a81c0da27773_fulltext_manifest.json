@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-07T02:47:08",
+ "event": {
+  "name": "Вспышка чумы в Иркутской области",
+  "year": 2026,
+  "week": 42,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Чума»",
+   "«чума в Иркутске»"
+  ],
+  "event_id": "6b3f850cc47f40f063d6a81c0da27773"
+ },
+ "window": {
+  "match_start": "2026-10-09",
+  "match_end_exclusive": "2026-10-29"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.3,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2997,
+  "kept": 17,
+  "embedded_pool": 40420,
+  "window_posts": 40421
+ }
+}

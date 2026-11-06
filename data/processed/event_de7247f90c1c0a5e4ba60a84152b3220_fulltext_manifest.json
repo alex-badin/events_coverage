@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-07T02:47:08",
+ "event": {
+  "name": "Удары по дата-центрам, их последствия",
+  "year": 2026,
+  "week": 42,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Атаки БПЛА на дата-центры»",
+   "«атаковали беспилотники “Яндекс” – проблемы в его работе»",
+   "«коллапс приложений всяких, когда попали в Яндекс-центры»",
+   "«приостановки работы: “Яндекс” и Сбербанк»",
+   "«Сбербанк и “Яндекс” бомбили»",
+   "«“Яндекс”: дата-центры умерли»"
+  ],
+  "event_id": "de7247f90c1c0a5e4ba60a84152b3220"
+ },
+ "window": {
+  "match_start": "2026-10-09",
+  "match_end_exclusive": "2026-10-29"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.25,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 825,
+  "embedded_pool": 40420,
+  "window_posts": 40421
+ }
+}

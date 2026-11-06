@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-07T02:47:06",
+ "event": {
+  "name": "Инфляция, рост цен, тарифов",
+  "year": 2026,
+  "week": 39,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«ЖКХ: подорожание»",
+   "«повышение цен на всё»",
+   "«повышение цен продуктов»",
+   "«рост цен»",
+   "«цены растут»"
+  ],
+  "event_id": "ba1e27b2e5c316aa728269b53d05dad0"
+ },
+ "window": {
+  "match_start": "2026-09-18",
+  "match_end_exclusive": "2026-10-08"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.2,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2993,
+  "kept": 329,
+  "embedded_pool": 40378,
+  "window_posts": 40378
+ }
+}

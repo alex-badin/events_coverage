@@ -1,0 +1,44 @@
+{
+ "generated_at": "2026-11-07T02:46:55",
+ "event": {
+  "name": "Удар ВСУ по общежитию в Старобельске, гибель детей",
+  "year": 2026,
+  "week": 21,
+  "fom_percentage": 9.0,
+  "quotes": [
+   "«Бомбёжка студенческого общежития»",
+   "«в ЛНР атаковали общежитие педколледжа – дроны»",
+   "«ВСУ атаковали общежитие в Луганске, погибли 12 человек»",
+   "«вчерашний теракт: погибли дети – это ужас»",
+   "«в ЛНР расстреляли детей»",
+   "«в Луганске теракт, где дети погибли»",
+   "«в Старобельске в колледже много детей погибло»",
+   "«гибель детей в Луганской области»",
+   "«Украина бомбит детей»"
+  ],
+  "event_id": "7998a2f9b9d3c731df55610a8b90acfc"
+ },
+ "window": {
+  "match_start": "2026-05-15",
+  "match_end_exclusive": "2026-06-04"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.55,
+  "show_chars": 2500
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2997,
+  "kept": 1685,
+  "embedded_pool": 39063,
+  "window_posts": 39064
+ }
+}

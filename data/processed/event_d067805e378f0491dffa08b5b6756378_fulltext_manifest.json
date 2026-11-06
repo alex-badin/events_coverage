@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-07T02:47:07",
+ "event": {
+  "name": "Деятельность В. Путина",
+  "year": 2026,
+  "week": 41,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Визит Путина в Туркменистан»",
+   "«Выступление Путина»",
+   "«На “Валдае” речь Путина»"
+  ],
+  "event_id": "d067805e378f0491dffa08b5b6756378"
+ },
+ "window": {
+  "match_start": "2026-10-02",
+  "match_end_exclusive": "2026-10-22"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.2,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2999,
+  "kept": 156,
+  "embedded_pool": 39610,
+  "window_posts": 39611
+ }
+}
