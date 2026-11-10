@@ -1,0 +1,116 @@
+# Marks each PR's head commit with a "Codex review" status. It is green only when the ChatGPT
+# Codex app has reviewed the head commit and every Codex finding is resolved or answered in its
+# thread. Branch protection is not available on this plan, so the status does not block a merge:
+# it is a signal to check before merging.
+#
+# Codex reports through PR comments, and GitHub runs issue_comment workflows only from the
+# default branch: the status follows Codex's comments only once this file is there.
+# Resolving a thread triggers no workflow: after resolving, re-run this check on the PR or run
+# `gh workflow run "Codex review status" -f pr=<number>`.
+name: Codex review status
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  issue_comment:
+    types: [created, edited]
+  pull_request_review:
+    types: [submitted]
+  pull_request_review_comment:
+    types: [created, deleted]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: PR number
+        required: true
+        type: number
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+  statuses: write
+
+jobs:
+  status:
+    # Skipped jobs use no runner minutes: run only on events that can change the result.
+    if: >-
+      github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
+        github.event.comment.user.login == 'chatgpt-codex-connector[bot]') ||
+      (github.event_name == 'pull_request_review' &&
+        github.event.review.user.login == 'chatgpt-codex-connector[bot]') ||
+      (github.event_name == 'pull_request_review_comment' &&
+        github.event.comment.user.login != 'chatgpt-codex-connector[bot]')
+    # At job level, so that runs skipped by the condition above cannot cancel a running update.
+    concurrency:
+      group: codex-review-status-${{ github.event.pull_request.number || github.event.issue.number || inputs.pr }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            // Only the Codex app itself counts: a GitHub user cannot be a Bot with this login.
+            const isCodex = (node) => node?.author?.__typename === 'Bot' && node.author.login === 'chatgpt-codex-connector';
+            const number = Number(context.payload.pull_request?.number ?? context.payload.issue?.number ?? context.payload.inputs?.pr);
+            const { owner, repo } = context.repo;
+            const { repository: { pullRequest: pr } } = await github.graphql(`
+              query($owner: String!, $repo: String!, $number: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  pullRequest(number: $number) {
+                    url state headRefOid
+                    comments(last: 100) { nodes { author { __typename login } body } }
+                    reviews(last: 100) { nodes { author { __typename login } body } }
+                    reviewThreads(first: 100) {
+                      pageInfo { hasNextPage }
+                      nodes { isResolved comments(first: 20) { nodes { author { __typename login } } } }
+                    }
+                  }
+                }
+              }`, { owner, repo, number });
+            if (pr.state !== 'OPEN') return;
+
+            const head = pr.headRefOid;
+            const short = head.slice(0, 7);
+            const isHead = (sha) => typeof sha === 'string' && sha.length >= 7 && head.startsWith(sha);
+
+            // Codex names the commit it reviewed as "Reviewed commit: `<sha>`" in its review
+            // receipts, and keeps a machine-readable state in its "Codex Review Summary" comment.
+            const bodies = [...pr.comments.nodes, ...pr.reviews.nodes].filter(isCodex).map((n) => n.body ?? '');
+            const reviewedShas = bodies.flatMap((body) =>
+              [...body.matchAll(/Reviewed commit:\*\*\s*`([0-9a-f]{7,40})`/g)].map((m) => m[1]));
+            let summary = null;
+            for (const body of bodies) {
+              const m = body.match(/codex-review-state:v1 (\{.*?\}) -->/s);
+              if (!m) continue;
+              try { summary = JSON.parse(m[1]).code_review ?? summary; } catch { /* keep the previous state */ }
+            }
+            const reviewed = reviewedShas.some(isHead) || (summary?.status === 'completed' && isHead(summary.commit_sha));
+            const running = summary?.status === 'running' && isHead(summary.commit_sha);
+
+            // A finding is handled once its thread is resolved or someone other than Codex replied in it.
+            const open = pr.reviewThreads.nodes.filter((thread) => {
+              const [first, ...replies] = thread.comments.nodes;
+              return !thread.isResolved && isCodex(first) && !replies.some((c) => !isCodex(c));
+            }).length;
+
+            let state = 'success';
+            let description = `Codex reviewed ${short}, no open findings`;
+            if (!reviewed) {
+              state = 'failure';
+              description = running
+                ? `Codex review of ${short} is still running`
+                : `Codex has not reviewed ${short}: comment "@codex review"`;
+            } else if (pr.reviewThreads.pageInfo.hasNextPage) {
+              state = 'failure';
+              description = 'Over 100 review threads: check the Codex findings by hand';
+            } else if (open > 0) {
+              state = 'failure';
+              description = `${open} open Codex finding(s): fix or reply; re-run this check after resolving`;
+            }
+            await github.rest.repos.createCommitStatus({
+              owner, repo, sha: head, state, context: 'Codex review', description, target_url: pr.url,
+            });
+            core.info(`${short}: ${state}: ${description}`);
