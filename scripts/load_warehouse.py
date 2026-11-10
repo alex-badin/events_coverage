@@ -88,10 +88,10 @@ EVENT_SLUGS = [
     "event_us_russia_contacts_2025w09_qwen3",
 ]
 
-# The FOM events of 2025-W12..2026-W20, matched on full text with the method of
-# exploration/2026-10-26_ten_events_readers/ (Qwen3 full-text candidates, OpenAI Decisions API,
-# a per-event cut-off) by exploration/2026-11-03_new_weeks/new_weeks.py, whose `export` step writes
-# this list. A different method from EVENT_SLUGS above: do not compare the two sets with each other.
+# The FOM events of 2025-W12..2026-W43 matched on full text. 2025-W12..2026-W20: Qwen3 candidates, OpenAI
+# Decisions API, per-event cut-off (exploration/2026-11-03_new_weeks/). 2026-W21..W43: the same candidates, Luna
+# 0-100 score through Codex (exploration/2026-11-06_luna_direct/luna_finish.py, whose `export` step adds to this
+# list). Three methods with EVENT_SLUGS above: do not compare the sets with each other.
 NEW_WEEKS_EVENTS_JSON = PROJECT_ROOT / "configs" / "new_weeks_events.json"
 NEW_WEEKS = json.loads(NEW_WEEKS_EVENTS_JSON.read_text(encoding="utf-8"))
 EVENT_SLUGS = EVENT_SLUGS + NEW_WEEKS["with_posts"]

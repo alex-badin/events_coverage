@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-07T02:47:08",
+ "event": {
+  "name": "Акции протеста в странах Европы",
+  "year": 2026,
+  "week": 43,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«В Европе забастовки»",
+   "«во Франции митинги»",
+   "«волнения: Париж, Италия, Франция»",
+   "«протесты во Франции»"
+  ],
+  "event_id": "60736b9fd69ca7fbe4ad33d7f8334b0c"
+ },
+ "window": {
+  "match_start": "2026-10-16",
+  "match_end_exclusive": "2026-11-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.1,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2993,
+  "kept": 1131,
+  "embedded_pool": 36954,
+  "window_posts": 36954
+ }
+}

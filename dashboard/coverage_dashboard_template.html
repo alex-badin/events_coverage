@@ -28,8 +28,11 @@
 
   --empty: #efeee9;
   --att-1: #e4e0f6; --att-2: #c3baea; --att-3: #9384d6; --att-4: #6352bd; --att-5: #33267f;
-  --cov-1: #efeee9; --cov-2: #dddbd2; --cov-3: #b9b6aa; --cov-4: #85827a;
-  --cov-ink-4: #ffffff;
+  /* Measured-week marks: a neutral ink, so they never read as one more survey-attention value. */
+  --measured: #3a3935;
+  /* Coverage table: a group's value against the median of the groups for the same event. */
+  --rel-lo2: #2a5f9e; --rel-lo1: #c6dcf3; --rel-mid: #efeee9; --rel-hi1: #f6c9ae; --rel-hi2: #c2410c;
+  --rel-ink-strong: #ffffff;
 
   --warning: #fab219;
 }
@@ -42,8 +45,9 @@
     --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300;
     --empty: #1f1f1e;
     --att-1: #2a2640; --att-2: #3f3870; --att-3: #5d51a8; --att-4: #8a7fe0; --att-5: #cfc9f7;
-    --cov-1: #232322; --cov-2: #34342f; --cov-3: #55544d; --cov-4: #8d8b82;
-    --cov-ink-4: #0d0d0d;
+    --measured: #e3e1d9;
+    --rel-lo2: #5b9be0; --rel-lo1: #1f3550; --rel-mid: #262624; --rel-hi1: #5a3020; --rel-hi2: #e0703a;
+    --rel-ink-strong: #0d0d0d;
   }
 }
 :root[data-theme="dark"] {
@@ -54,8 +58,9 @@
   --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300;
   --empty: #1f1f1e;
   --att-1: #2a2640; --att-2: #3f3870; --att-3: #5d51a8; --att-4: #8a7fe0; --att-5: #cfc9f7;
-  --cov-1: #232322; --cov-2: #34342f; --cov-3: #55544d; --cov-4: #8d8b82;
-  --cov-ink-4: #0d0d0d;
+  --measured: #e3e1d9;
+  --rel-lo2: #5b9be0; --rel-lo1: #1f3550; --rel-mid: #262624; --rel-hi1: #5a3020; --rel-hi2: #e0703a;
+  --rel-ink-strong: #0d0d0d;
 }
 
 * { box-sizing: border-box; }
@@ -183,11 +188,44 @@ tr.name-row:hover td { background: var(--raised); }
 .cov .cell { border-radius: 6px; padding: 6px 4px; cursor: pointer; }
 .cov .cell b { display: block; font-size: 14px; font-weight: 600; color: var(--ink); }
 .cov .cell small { display: block; font-size: 11px; color: var(--ink-2); }
-.cov .cell.b4 b, .cov .cell.b4 small { color: var(--cov-ink-4); }
+.cov .cell.strong b, .cov .cell.strong small { color: var(--rel-ink-strong); }
+.cov td.fom { min-width: 96px; padding: 6px 8px; font-variant-numeric: tabular-nums; }
+.cov td.fom b { display: block; font-size: 14px; font-weight: 600; }
+.cov .fom-track { display: block; height: 7px; border-radius: 2px; background: var(--att-1); margin-top: 4px; }
+.cov .fom-track span { display: block; height: 100%; border-radius: 2px; background: var(--att-4); }
+.cov th.fom-h { text-align: left; font-weight: 600; font-size: 11px; white-space: normal; line-height: 1.25; }
+.rel-scale { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 11.5px; color: var(--ink-muted); margin-top: 10px; }
+.rel-scale span { display: inline-flex; align-items: center; gap: 5px; }
+.rel-scale i { width: 18px; height: 11px; border-radius: 2px; display: inline-block; border: 1px solid var(--hairline); }
+
+/* Overview: period picker for the heatmap ---------------------------------- */
+.range { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-bottom: 12px; }
+.range .chips { gap: 5px; }
+.range .chip { min-height: 26px; padding: 2px 10px; }
+.range label { font-size: 12.5px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; }
+.range select { font: inherit; font-size: 12.5px; color: var(--ink); background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 6px; padding: 3px 6px; }
 .cov .cell.zero b { color: var(--ink-muted); }
 .cov .cell.thin { opacity: .5; outline: 1px dashed var(--axis); outline-offset: -2px; }
 .cov .cell.off { cursor: default; color: var(--ink-muted); font-size: 11.5px; }
 .cov tr.ev { cursor: pointer; }
+.cov tr.ev.sel td { background: var(--raised); }
+.cov tr.ev.sel td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+.cov td.c.sel .cell { outline: 2px solid var(--ink); outline-offset: 1px; }
+.cov .ev-title { display: block; margin-bottom: 3px; }
+.cov tr.wk-sep td { background: var(--page); border-top: 2px solid var(--axis); border-bottom: 1px solid var(--grid);
+  padding: 9px 8px 7px; text-align: left; font-size: 13px; color: var(--ink-2); }
+.cov tr.wk-sep td b { color: var(--ink); font-size: 14px; margin-right: 6px; }
+.cov tr.wk-sep a { margin-left: 10px; white-space: nowrap; }
+.cov tr.wk-sep.flash td { animation: wk-flash 1.6s ease-out; }
+@keyframes wk-flash { from { background: var(--att-1); } to { background: var(--page); } }
+@media (prefers-reduced-motion: reduce) { .cov tr.wk-sep.flash td { animation: none; } }
+/* The overview table is long: its header stays under the top bar while the page scrolls. Sticky
+   needs the table's box not to be a scroll container, so this one does not scroll sideways; below
+   900px it turns into cards and has no header row. */
+#cov { overflow: visible; }
+#cov .cov thead th { position: sticky; top: 52px; z-index: 5; background: var(--surface-1);
+  box-shadow: inset 0 -1px 0 var(--axis); }
+.cov td.c-status { color: var(--ink-muted); font-size: 12.5px; text-align: left; padding: 6px 10px; }
 .cov tr.ev:hover td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
 .cov tr.total td { border-top: 2px solid var(--axis); border-bottom: 0; }
 .ev-title { font-weight: 600; }
@@ -215,22 +253,6 @@ select {
 .nearest { font-size: 12.5px; color: var(--ink-muted); }
 .nearest a { margin: 0 2px; }
 
-.ev-list { display: grid; gap: 4px; }
-.ev-row {
-  display: grid; grid-template-columns: minmax(120px, 30%) 1fr; gap: 14px; align-items: center;
-  width: 100%; text-align: left; background: none; border: 0; border-radius: 8px;
-  padding: 7px 8px; cursor: pointer;
-}
-.ev-row:hover { background: var(--raised); }
-.ev-row[aria-pressed="true"] { background: var(--raised); box-shadow: inset 3px 0 0 var(--accent); }
-.bar-track { display: flex; align-items: center; gap: 8px; }
-.bar { height: 14px; border-radius: 0 4px 4px 0; background: var(--att-2); min-width: 2px; }
-.ev-row.is-measured .bar { background: var(--accent); }
-.bar-val { font-size: 12.5px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.ev-name { font-size: 13.5px; color: var(--ink); line-height: 1.35; }
-.ev-name .en { font-weight: 600; display: block; }
-.ev-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-
 .quotes { margin: 10px 0 0; padding: 0; list-style: none; font-size: 13.5px; color: var(--ink-2); }
 .quotes li { margin-bottom: 3px; }
 .facts { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12.5px; color: var(--ink-2); margin-top: 10px; }
@@ -240,19 +262,6 @@ select {
 }
 .empty-note { font-size: 13.5px; color: var(--ink-2); padding: 4px 0; }
 
-.gbars { display: grid; gap: 6px; }
-.gbar {
-  display: grid; grid-template-columns: minmax(150px, 28%) 1fr; gap: 12px; align-items: center;
-  width: 100%; background: none; border: 0; border-radius: 7px; padding: 6px 6px; cursor: pointer; text-align: left;
-}
-.gbar:hover { background: var(--raised); }
-.gbar[aria-pressed="true"] { background: var(--raised); box-shadow: inset 3px 0 0 var(--ink); }
-.gname { font-size: 13px; color: var(--ink); display: flex; align-items: center; gap: 7px; }
-.gname i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
-.gtrack { display: flex; align-items: center; gap: 9px; min-width: 0; }
-.gfill { height: 16px; border-radius: 0 4px 4px 0; flex: none; }
-.gval { font-size: 12.5px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.gval b { color: var(--ink); font-weight: 600; }
 
 details.more { margin-top: 16px; border-top: 1px solid var(--grid); padding-top: 12px; }
 details.more summary { cursor: pointer; font-size: 13px; color: var(--ink-2); }
@@ -297,9 +306,7 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
   .topbar .wrap { gap: 10px; }
   .brand { display: none; }
   h1 { font-size: 21px; }
-  .ev-row, .gbar { grid-template-columns: 1fr; gap: 4px; }
   .tag { white-space: normal; }
-  .ev-row .bar-track { order: 2; }
   .week-head { position: static; }
 }
 /* Below about 900px the six group columns stop fitting: the coverage table turns into one
@@ -309,8 +316,11 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
   .cov, .cov tbody, .cov tr, .cov td { display: block; width: 100%; }
   .cov tr { border: 1px solid var(--hairline); border-radius: 9px; padding: 8px; margin-bottom: 10px; }
   .cov td { border: 0; padding: 3px 2px; text-align: left; }
+  .cov tr.wk-sep { border: 0; border-radius: 0; padding: 0; margin: 18px 0 6px; }
+  .cov tr.wk-sep td { border-top: 2px solid var(--axis); padding: 8px 2px 4px; }
   .cov td.c { display: grid; grid-template-columns: minmax(130px, 1fr) 1.4fr; align-items: center; gap: 8px; text-align: left; }
-  .cov td.c::before { content: attr(data-label); font-size: 12px; color: var(--ink-2); }
+  .cov td.c::before, .cov td.fom::before { content: attr(data-label); font-size: 12px; color: var(--ink-2); }
+  .cov td.fom { display: grid; grid-template-columns: minmax(130px, 1fr) 1.4fr; align-items: center; gap: 8px; }
   .cov .cell { text-align: left; padding: 4px 8px; }
   .cov .cell b, .cov .cell small { display: inline; margin-right: 6px; }
 }
@@ -345,6 +355,7 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
         that week's list.</p>
     </div>
     <div class="card">
+      <div class="range" id="heat-range"></div>
       <div id="heat"></div>
       <div class="info" id="heat-info"></div>
       <div class="scale" id="heat-scale"></div>
@@ -362,9 +373,12 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
         The respondent percentage comes from the FOM survey, not from media posts.</p>
     </div>
     <div class="card"><div class="scroll-x" id="cov"></div>
+      <div class="rel-scale" id="rel-scale"></div>
       <p class="line">Per 1,000 = matched posts per 1,000 posts the group published in the event's
-        search window (3 days before the survey week to 10 days after). Faded and outlined: fewer than 5
-        posts, too few to compare.</p>
+        search window (3 days before the survey week to 10 days after). The colour compares each group with
+        the median of the groups for the same event, so it shows which groups gave the event more or less room
+        than the others; it does not compare one event with another. Faded and outlined: fewer than 5
+        posts, too few to compare, and left out of the median.</p>
     </div>
   </section>
 </main>
@@ -376,21 +390,22 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
     <section id="wk-none" hidden><div class="card empty-note" id="wk-none-text"></div></section>
     <div id="wk-body">
       <section>
-        <div class="head"><h2>What people named this week</h2>
-          <p class="sub">Percentages show the share of FOM survey respondents who named each event.</p>
+        <div class="head"><h2>What people named this week, and how the media covered it</h2>
+          <p class="sub">The same table as on the overview: the share of FOM respondents who named each event, and how much
+            of its own output each media group gave it. Click an event for its details, or a group's cell to read its posts.</p>
         </div>
         <div class="card">
-          <p class="line">Media coverage status: <b>Coverage calculated</b> means matching posts and media-group figures are available.
-            <b>Not calculated yet</b> means matching posts and media-group figures are not available in this dashboard yet; it does not mean the media were silent.</p>
-          <div class="ev-list" id="wk-events"></div>
+          <div class="scroll-x" id="wk-events"></div>
+          <div class="rel-scale" id="wk-rel-scale"></div>
           <p class="line" id="wk-events-note"></p>
         </div>
       </section>
       <section>
         <div class="card" id="wk-event"></div>
+        <div id="wk-detail-state" hidden></div>
       </section>
       <section id="wk-groups-section">
-        <div class="head"><h2>How each media group covered it</h2></div>
+        <div class="head"><h2>This event day by day</h2></div>
         <div class="card" id="wk-groups"></div>
       </section>
       <section id="wk-posts-section">
@@ -408,6 +423,7 @@ details.more h3 { font-size: 13px; color: var(--ink-2); margin: 16px 0 8px; }
 
 <script>
 const DATA = __DATA__;
+const WEB = DATA.web;
 
 /* =========================================================================
    Shared helpers and lookups
@@ -448,27 +464,68 @@ WEEKS.forEach((w, i) => { w.key = weekKey(w); w.i = i; });
 const WEEK_BY_KEY = new Map(WEEKS.map(w => [w.key, w]));
 const WEEK_BY_START = new Map(WEEKS.map(w => [w.week_start, w]));
 const SURVEYED = WEEKS.filter(w => w.has_survey);
-const ROWS = DATA.week_events;
-const ROWS_BY_WEEK = new Map();
-ROWS.forEach(r => {
-  if (!ROWS_BY_WEEK.has(r.week_start)) ROWS_BY_WEEK.set(r.week_start, []);
-  ROWS_BY_WEEK.get(r.week_start).push(r);
-});
-const ROW_BY_ID = new Map(ROWS.map(r => [r.event_id, r]));
 const isMeasured = r => r.coverage_status === 'measured';
-const MEASURED = ROWS.filter(isMeasured).sort((a, b) => b.week_start < a.week_start ? -1 : 1);
-const MEASURED_WEEKS = [...new Set(MEASURED.map(r => r.week_start))].sort();
+const isUnmeasuredAfterW20 = r => r.event_kind === 'specific event' &&
+  r.fom_year * 100 + r.fom_week > 202620 && !isMeasured(r);
+const MEASURED_WEEKS = WEEKS.filter(w => w.n_measured_events > 0).map(w => w.week_start);
+let ROWS, MEASURED, ROWS_BY_WEEK, ROW_BY_ID, OVERVIEW, GROUP_ROWS, groupKeyOf, groupByKey;
+let indexReady = false, indexRequest, indexError = false;
 
-// Measured-event detail, keyed by event_id.
-const OVERVIEW = new Map(DATA.events.map(e => [e.event_id, e]));
-const GROUP_ROWS = new Map();
-DATA.groups.forEach(g => {
-  if (!GROUP_ROWS.has(g.event_id)) GROUP_ROWS.set(g.event_id, []);
-  GROUP_ROWS.get(g.event_id).push(g);
-});
-GROUP_ROWS.forEach(list => list.sort((a, b) => GROUPS.indexOf(a.media_group) - GROUPS.indexOf(b.media_group)));
-const groupKeyOf = new Map(DATA.groups.map(g => [g.media_group, g.media_group_key]));
-const groupByKey = new Map(DATA.groups.map(g => [g.media_group_key, g.media_group]));
+function installIndex(index) {
+  ROWS = index.week_events;
+  ROWS_BY_WEEK = new Map();
+  ROWS.forEach(r => {
+    if (!ROWS_BY_WEEK.has(r.week_start)) ROWS_BY_WEEK.set(r.week_start, []);
+    ROWS_BY_WEEK.get(r.week_start).push(r);
+  });
+  ROW_BY_ID = new Map(ROWS.map(r => [r.event_id, r]));
+  MEASURED = ROWS.filter(isMeasured).sort((a, b) =>
+    (a.week_start < b.week_start ? 1 : a.week_start > b.week_start ? -1 : 0) || (a.rank_in_week ?? 999) - (b.rank_in_week ?? 999));
+  OVERVIEW = new Map(index.events.map(e => [e.event_id, e]));
+  GROUP_ROWS = new Map();
+  index.groups.forEach(g => {
+    if (!GROUP_ROWS.has(g.event_id)) GROUP_ROWS.set(g.event_id, []);
+    GROUP_ROWS.get(g.event_id).push(g);
+  });
+  GROUP_ROWS.forEach(list => list.sort((a, b) => GROUPS.indexOf(a.media_group) - GROUPS.indexOf(b.media_group)));
+  groupKeyOf = new Map(index.groups.map(g => [g.media_group, g.media_group_key]));
+  groupByKey = new Map(index.groups.map(g => [g.media_group_key, g.media_group]));
+  if (WEB) {
+    index.themes.forEach(t => Object.assign(THEME_BY_ID.get(t.theme_id), t));
+    DATA.scope_coverage = index.scope_coverage;
+    installAttention(index.theme_weeks);
+  }
+  indexReady = true;
+}
+
+async function readVersionFile(path) {
+  const response = await fetch(WEB.base + path);
+  if (!response.ok) throw new Error(`Dashboard data request failed: ${response.status}`);
+  return response.json();
+}
+
+function showPending(id, label, failed, retry) {
+  const box = el(id);
+  box.innerHTML = failed
+    ? `<p class="empty-note" role="status">Could not load ${label}. <button class="more-btn" type="button">Try again</button> or reload the page.</p>`
+    : `<p class="empty-note" role="status">Loading ${label}…</p>`;
+  if (failed) box.querySelector('button').addEventListener('click', retry);
+}
+
+function indexPanel(id, label) {
+  showPending(id, label, indexError, () => { indexError = false; renderAbout(); route(); });
+}
+
+function loadIndex() {
+  if (indexReady || indexRequest || indexError) return;
+  indexRequest = readVersionFile('index.json').then(installIndex);
+  indexRequest.then(() => { route(); renderAbout(); }, () => {
+    indexRequest = null;
+    indexError = true;
+    renderAbout();
+    route();
+  });
+}
 
 // Themes. Each area's "Other" theme holds subjects that do not form a theme of their own; it
 // is listed last in its area.
@@ -495,7 +552,11 @@ function addAtt(scope, r) {
   else if (r.top_event_share === cur.topShare) cur.nTop += r.n_top_events;
   ATT.set(k, cur);
 }
-DATA.theme_weeks.forEach(r => { addAtt('t:' + r.theme_id, r); addAtt('u:' + r.umbrella_id, r); });
+function installAttention(rows) {
+  ATT.clear();
+  rows.forEach(r => { addAtt('t:' + r.theme_id, r); addAtt('u:' + r.umbrella_id, r); });
+}
+installAttention(DATA.theme_weeks);
 
 /* Two separate things can make an event's counts untrustworthy, and they pull in
    opposite directions, so they are never merged into one vague "quality" flag. */
@@ -528,8 +589,9 @@ function parseHash() {
 const go = hash => { location.hash = hash; };
 const weekHash = (wk, ev, grp) => '#/week/' + [wk, ev, grp].filter(Boolean).map(encodeURIComponent).join('/');
 
-let shown = {};
+let shown = {}, navigation = 0;
 function route() {
+  navigation++;
   const st = parseHash();
   if (st.view === 'week' && !st.week) {
     const fallback = lastWeekKey || (MEASURED_WEEKS.length ? WEEK_BY_START.get(MEASURED_WEEKS.at(-1)).key : SURVEYED.at(-1).key);
@@ -543,45 +605,49 @@ function route() {
   el('tab-week').toggleAttribute('aria-current', st.view === 'week');
   if (st.view === 'week') el('tab-week').setAttribute('aria-current', 'page');
 
-  const sameScreen = shown.view === st.view && shown.week === st.week && shown.event === st.event;
+  const sameScreen = indexReady && shown.ready && shown.view === st.view && shown.week === st.week && shown.event === st.event;
   if (st.view === 'overview') {
     el('tab-overview').setAttribute('href', location.hash || '#/');
     renderOverview(st.sel);
     // Arriving from the week view on a theme: show the theme, not the top of the page.
-    if (shown.view === 'week' && selNow) { el('sel-section').scrollIntoView({block: 'start'}); el('scroll').scrollTop -= 64; shown = st; return; }
-    if (shown.view !== 'overview') el('scroll').scrollTop = 0;
+    if (shown.view === 'week' && selNow && indexReady) {
+      el('sel-section').scrollIntoView({block: 'start'});
+      el('scroll').scrollTop -= 64;
+    } else if (shown.view !== 'overview') el('scroll').scrollTop = 0;
   } else {
     if (WEEK_BY_KEY.has(st.week)) lastWeekKey = st.week;
     if (sameScreen) renderGroupAndPosts(st);    // only the group filter changed
     else renderWeek(st);
     if (shown.view !== 'week' || shown.week !== st.week) el('scroll').scrollTop = 0;
   }
-  shown = st;
+  shown = {...st, ready: indexReady};
+  if (!indexReady) loadIndex();
 }
 addEventListener('hashchange', route);
 
 /* =========================================================================
    OVERVIEW
    ========================================================================= */
-const NOT_YET = ROWS.filter(r => r.event_kind === 'specific event' && r.fom_year * 100 + r.fom_week > 202620 && !isMeasured(r));
 function renderStatus() {
-  const specific = ROWS.filter(r => r.event_kind === 'specific event');
+  const specificCount = WEB?.specific_count ?? ROWS.filter(r => r.event_kind === 'specific event').length;
+  const measuredCount = WEB?.measured_count ?? MEASURED.length;
+  const notYetCount = WEB?.unmeasured_after_w20 ?? ROWS.filter(isUnmeasuredAfterW20).length;
   const years = SURVEYED.map(w => w.fom_year);
   const all = DATA.scope_coverage.filter(r => r.scope_type === 'all');
   const posts = all.reduce((s, r) => s + r.distinct_matched_posts, 0);
   const covering = all.reduce((s, r) => s + r.sources_covering, 0);
   const active = all.reduce((s, r) => s + r.sources_active, 0);
-  const span = MEASURED.length
+  const span = measuredCount
     ? `${d(utc(MEASURED_WEEKS[0]), {month: 'short', year: 'numeric'})} – ${d(utc(MEASURED_WEEKS.at(-1)), {month: 'short', year: 'numeric'})}`
     : '';
   el('status').innerHTML =
-    `<b>Survey:</b> ${SURVEYED.length} weeks, ${Math.min(...years)}–${Math.max(...years)}, ${fmt(specific.length)} named events. ` +
-    (MEASURED.length
-      ? `<b>Coverage measured for ${plural(MEASURED.length, 'event', 'events')}</b> (${span}): ${fmt(posts)} posts from
+    `<b>Survey:</b> ${SURVEYED.length} weeks, ${Math.min(...years)}–${Math.max(...years)}, ${fmt(specificCount)} named events. ` +
+    (measuredCount
+      ? `<b>Coverage measured for ${plural(measuredCount, 'event', 'events')}</b> (${span}): ${fmt(posts)} posts from
          ${covering} of the ${active} sources publishing in those weeks, ${GROUPS.length} media groups. `
       : '<b>Coverage measured for 0 events so far.</b> ') +
-    `<b>Two methods:</b> up to 2025-W11 summaries + Cohere, from 2025-W12 full text + Decisions API; do not compare counts across that line. ` +
-    (NOT_YET.length ? `<b>Weeks after 2026-W20 are not calculated</b> (${plural(NOT_YET.length, 'event', 'events')}). ` : '') +
+    `<b>Three methods:</b> up to 2025-W11 summaries + Cohere, 2025-W12 to 2026-W20 full text + Decisions API, from 2026-W21 full text + a language-model score; do not compare counts across those lines. ` +
+    (notYetCount ? `<b>Weeks after 2026-W20 are not calculated</b> (${plural(notYetCount, 'event', 'events')}). ` : '') +
     `<b>News data ends ${longDay(DATA.meta.snapshot_end)}.</b>`;
 }
 
@@ -595,6 +661,43 @@ const BINS = [
 ];
 const binColor = v => BINS.find(b => v < b.max).color;
 let heatRows = [], heatGeom = null, selNow = null;
+
+/* Period shown in the heatmap: indexes into WEEKS, both ends included. All of it by default. */
+let heatSpan = {a: 0, b: WEEKS.length - 1};
+let VIEW = WEEKS;
+const YEARS = [...new Set(WEEKS.map(w => w.fom_year))];
+const monthOf = w => w.week_start.slice(0, 7);
+const MONTHS = [...new Set(WEEKS.map(monthOf))];
+const monthName = m => new Date(m + '-15T00:00:00Z').toLocaleDateString('en-GB', {month: 'short', year: 'numeric', timeZone: 'UTC'});
+function setSpan(a, b) {
+  a = Math.max(0, Math.min(a, WEEKS.length - 1)); b = Math.max(a, Math.min(b, WEEKS.length - 1));
+  heatSpan = {a, b};
+  renderRange(); renderHeat(selNow); resetInfo();
+}
+function renderRange() {
+  const {a, b} = heatSpan, all = a === 0 && b === WEEKS.length - 1;
+  const yearOn = y => WEEKS[a].fom_year === y && WEEKS[b].fom_year === y &&
+    (a === 0 || WEEKS[a - 1].fom_year !== y) && (b === WEEKS.length - 1 || WEEKS[b + 1].fom_year !== y);
+  const mFrom = monthOf(WEEKS[a]), mTo = monthOf(WEEKS[b]);
+  el('heat-range').innerHTML = `<div class="chips" role="group" aria-label="Period">
+      <button type="button" class="chip" data-span="all" aria-pressed="${all}">All years</button>
+      ${YEARS.map(y => `<button type="button" class="chip" data-year="${y}" aria-pressed="${yearOn(y)}">${y}</button>`).join('')}
+    </div>
+    <label>From <select id="range-from">${MONTHS.map(m => `<option value="${m}"${m === mFrom ? ' selected' : ''}>${monthName(m)}</option>`).join('')}</select></label>
+    <label>to <select id="range-to">${MONTHS.map(m => `<option value="${m}"${m === mTo ? ' selected' : ''}>${monthName(m)}</option>`).join('')}</select></label>`;
+  el('heat-range').querySelectorAll('[data-span]').forEach(bt => bt.addEventListener('click', () => setSpan(0, WEEKS.length - 1)));
+  el('heat-range').querySelectorAll('[data-year]').forEach(bt => bt.addEventListener('click', () => {
+    const y = Number(bt.dataset.year);
+    setSpan(WEEKS.findIndex(w => w.fom_year === y), WEEKS.findLastIndex(w => w.fom_year === y));
+  }));
+  const onMonths = () => {
+    let f = el('range-from').value, t = el('range-to').value;
+    if (t < f) [f, t] = [t, f];
+    setSpan(WEEKS.findIndex(w => monthOf(w) >= f), WEEKS.findLastIndex(w => monthOf(w) <= t));
+  };
+  el('range-from').addEventListener('change', onMonths);
+  el('range-to').addEventListener('change', onMonths);
+}
 
 function heatRowList(sel) {
   const openUmbrella = sel ? (sel.type === 'umbrella' ? sel.id : THEME_BY_ID.get(sel.id)?.umbrella_id) : null;
@@ -619,7 +722,8 @@ function renderHeat(sel) {
   const narrow = W < 560;
   const labelW = narrow ? 0 : Math.min(250, Math.round(W * 0.24));
   const rowH = 20, gap = 3, labelH = narrow ? 15 : 0, topH = 18, axisH = 22;
-  const n = WEEKS.length, colW = (W - labelW) / n;
+  VIEW = WEEKS.slice(heatSpan.a, heatSpan.b + 1);
+  const n = VIEW.length, colW = (W - labelW) / n;
   const stride = rowH + gap + labelH;
   const H = topH + gap + heatRows.length * stride + axisH;
   heatGeom = {labelW, rowH, gap, labelH, topH, stride, colW, W, H};
@@ -632,9 +736,11 @@ function renderHeat(sel) {
   // Weeks with a measured event: a tick on the top strip.
   s += `<text x="${narrow ? 0 : labelW - 10}" y="${topH - 5}" text-anchor="${narrow ? 'start' : 'end'}" class="yr">${narrow ? '' : 'Coverage measured'}</text>`;
   const measuredIdx = new Set(MEASURED_WEEKS.map(ws => WEEK_BY_START.get(ws)?.i));
-  measuredIdx.forEach(i => {
-    if (i == null) return;
-    s += `<rect x="${labelW + i * colW}" y="2" width="${Math.max(2, colW)}" height="${topH - 4}" fill="var(--accent)" rx="1"/>`;
+  measuredIdx.forEach(gi => {
+    if (gi == null || gi < heatSpan.a || gi > heatSpan.b) return;
+    const i = gi - heatSpan.a;
+    // A dot in neutral ink, not a purple bar: the purple scale below is survey attention.
+    s += `<circle cx="${labelW + (i + 0.5) * colW}" cy="${topH / 2}" r="${Math.max(1.5, Math.min(3, colW / 2))}" fill="var(--measured)"/>`;
   });
 
   heatRows.forEach((row, r) => {
@@ -649,7 +755,7 @@ function renderHeat(sel) {
       <text x="${narrow ? indent : lx - 0}" y="${ly}" text-anchor="${narrow ? 'start' : 'end'}"${weight}>${esc(prefix + row.label)}</text></g>`;
     // Cells
     s += `<g${dim}>`;
-    WEEKS.forEach((w, i) => {
+    VIEW.forEach((w, i) => {
       const x = labelW + i * colW;
       let fill;
       if (!w.has_survey) fill = 'url(#hatch)';
@@ -664,14 +770,25 @@ function renderHeat(sel) {
       s += `<line x1="${labelW - 4}" x2="${labelW - 4}" y1="${y0}" y2="${y0 + rowH}" stroke="var(--axis)"/>`;
   });
 
-  // Year boundaries.
+  // Year boundaries; on a span of about two years or less, month boundaries too.
   const yBottom = topH + gap + heatRows.length * stride;
-  WEEKS.forEach((w, i) => {
-    const prev = WEEKS[i - 1];
-    if (i === 0 || (prev && prev.fom_year !== w.fom_year)) {
-      const x = labelW + i * colW;
+  const showMonths = n <= 110;
+  const monthEvery = n <= 30 ? 1 : n <= 60 ? 2 : 3;
+  let monthCount = 0;
+  VIEW.forEach((w, i) => {
+    const prev = VIEW[i - 1];
+    const x = labelW + i * colW;
+    const newYear = i === 0 || (prev && prev.fom_year !== w.fom_year);
+    const newMonth = prev && monthOf(prev) !== monthOf(w);
+    if (newYear) {
       s += `<line x1="${x}" x2="${x}" y1="${topH}" y2="${yBottom + 4}" stroke="var(--axis)" stroke-width="1"/>`;
-      s += `<text x="${x + 3}" y="${yBottom + 16}" class="yr">${w.fom_year}</text>`;
+      s += `<text x="${x + 3}" y="${yBottom + 16}" class="yr">${showMonths ? monthName(monthOf(w)) : w.fom_year}</text>`;
+      monthCount = 0;
+    } else if (showMonths && newMonth) {
+      monthCount++;
+      s += `<line x1="${x}" x2="${x}" y1="${yBottom}" y2="${yBottom + 4}" stroke="var(--axis)" stroke-width="1"/>`;
+      if (monthCount % monthEvery === 0 && x < W - 30)
+        s += `<text x="${x + 3}" y="${yBottom + 16}" class="yr">${new Date(monthOf(w) + '-15T00:00:00Z').toLocaleDateString('en-GB', {month: 'short', timeZone: 'UTC'})}</text>`;
     }
   });
   s += `<rect id="heat-cursor" x="0" y="${topH}" width="${Math.max(2, colW)}" height="${yBottom - topH}" fill="none" stroke="var(--ink)" stroke-width="1" visibility="hidden"/>`;
@@ -711,14 +828,28 @@ function renderHeat(sel) {
     if (lbl) { selectRow(heatRows[Number(lbl.dataset.r)]); return; }
     const p = locate(evt);
     if (p.col < 0 || p.col >= n) return;
-    const w = WEEKS[p.col];
+    const w = VIEW[p.col];
     if (coarse) { showWeekInfo(p.col, heatRows[p.r], true); return; }
-    if (w.has_survey) go(weekHash(w.key));
+    if (!w.has_survey) return;
+    if (!jumpToWeekInTable(w)) go(weekHash(w.key));
   });
+}
+// Scroll the overview table to a week's separator row, below the top bar and the table's own
+// sticky header. False when the table (as filtered now) has no row for that week.
+const tableWeekRow = w => el('cov').querySelector(`tr.wk-sep[data-wk="${w.key}"]`);
+function jumpToWeekInTable(w) {
+  const tr = tableWeekRow(w);
+  if (!tr) return false;
+  const box = el('scroll'), head = el('cov').querySelector('thead');
+  const offset = 52 + (head && getComputedStyle(head).display !== 'none' ? head.getBoundingClientRect().height : 0) + 6;
+  box.scrollTo({top: box.scrollTop + tr.getBoundingClientRect().top - box.getBoundingClientRect().top - offset,
+    behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  tr.classList.remove('flash'); void tr.offsetWidth; tr.classList.add('flash');
+  return true;
 }
 function hideCursor() { const c = el('heat-cursor'); if (c) c.setAttribute('visibility', 'hidden'); }
 function showWeekInfo(col, row, withLink) {
-  const w = WEEKS[col], g = heatGeom, c = el('heat-cursor');
+  const w = VIEW[col], g = heatGeom, c = el('heat-cursor');
   c.setAttribute('x', g.labelW + col * g.colW); c.setAttribute('visibility', 'visible');
   if (!w.has_survey) {
     el('heat-info').innerHTML = `<b>${weekTitle(w)}</b> · ${rangeLabel(w.week_start)} · no FOM survey this week`;
@@ -728,7 +859,9 @@ function showWeekInfo(col, row, withLink) {
   if (row) {
     const a = ATT.get(row.scope + '|' + w.week_start);
     html += ` · ${esc(row.label)}: ` + (a && a.sum > 0
-      ? `<b>${fmt(a.sum)}</b> mentions per 100 respondents · ${a.nTop > 1 ? `joint top (${a.nTop} events at ${share(a.topShare)}), e.g.` : 'top:'} «${esc(a.top)}»${a.nTop > 1 ? '' : ' ' + share(a.topShare)}`
+      ? `<b>${fmt(a.sum)}</b> mentions per 100 respondents` + (a.top
+        ? ` · ${a.nTop > 1 ? `joint top (${a.nTop} events at ${share(a.topShare)}), e.g.` : 'top:'} «${esc(a.top)}»${a.nTop > 1 ? '' : ' ' + share(a.topShare)}`
+        : '')
       : 'nothing named');
   }
   const rowMeasured = row ? ATT.get(row.scope + '|' + w.week_start)?.measured : w.n_measured_events;
@@ -737,11 +870,12 @@ function showWeekInfo(col, row, withLink) {
     const sameArea = row && row.kind === 'theme' && ATT.get('u:' + THEME_BY_ID.get(row.id)?.umbrella_id + '|' + w.week_start)?.measured;
     html += ` · <span class="muted">coverage measured for ${sameArea ? 'another theme in this area' : 'another area'} this week</span>`;
   }
-  html += withLink ? ` · <a href="${weekHash(w.key)}">Open this week ›</a>` : ' · click to open the week';
+  html += withLink ? ` · <a href="${weekHash(w.key)}">Open this week ›</a>`
+    : tableWeekRow(w) ? ' · click to jump to this week in the table below' : ' · click to open the week';
   el('heat-info').innerHTML = html;
 }
 function resetInfo() {
-  el('heat-info').innerHTML = '<span class="muted">Point at a week to see what people named; click to open it. ' +
+  el('heat-info').innerHTML = '<span class="muted">Point at a week to see what people named. Click a week with measured coverage to jump to it in the table below; click any other week to open it. ' +
     'Hatched weeks had no FOM survey.</span>';
 }
 function selectRow(row) {
@@ -757,7 +891,7 @@ function renderHeatScale() {
     BINS.map(b => `<span><i style="background:${b.color}"></i>${b.label}</span>`).join('') +
     `<span><i style="background:var(--empty); border:1px solid var(--grid)"></i>none named</span>` +
     `<span><i class="hatch-swatch"></i>no survey</span>` +
-    `<span><i style="background:var(--accent); width:4px"></i>coverage measured</span>` +
+    `<span><i style="background:var(--measured); width:6px; height:6px; border-radius:50%"></i>coverage measured (top strip)</span>` +
     `<span style="flex-basis:100%">People can name several events, so a row that holds two events in a week can count one person twice; these are mentions, not a share of people.</span>`;
 }
 
@@ -834,14 +968,63 @@ function renderSelection(sel) {
 }
 
 /* --- Coverage measured so far ---------------------------------------------- */
-const COV_BINS = [{max: 5, cls: 'b1'}, {max: 15, cls: 'b2'}, {max: 30, cls: 'b3'}, {max: Infinity, cls: 'b4'}];
-const covBg = {b1: 'var(--cov-1)', b2: 'var(--cov-2)', b3: 'var(--cov-3)', b4: 'var(--cov-4)'};
-function covCell(v, posts, published, label, thin) {
+// A group's value against the median of the groups for the same event (or the same totals row).
+// Cells with fewer than 5 posts are too few to compare and stay out of the median.
+const REL_BINS = [
+  {min: 2,       bg: 'var(--rel-hi2)', strong: true,  label: 'twice the median or more'},
+  {min: 1.4,     bg: 'var(--rel-hi1)', strong: false, label: 'well above the median'},
+  {min: 1 / 1.4, bg: 'var(--rel-mid)', strong: false, label: 'close to the median'},
+  {min: 0.5,     bg: 'var(--rel-lo1)', strong: false, label: 'well below the median'},
+  {min: 0,       bg: 'var(--rel-lo2)', strong: true,  label: 'half the median or less'}
+];
+const median = a => { if (!a.length) return null; const s = [...a].sort((x, y) => x - y), m = s.length >> 1;
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+// Median of the comparable cells in one row: [{v, posts}] -> number or null.
+const rowMedian = cells => { const ok = cells.filter(c => c.v != null && c.posts >= 5).map(c => c.v);
+  return ok.length >= 2 ? median(ok) : null; };
+function covCell(v, posts, published, label, thin, med) {
   if (published == null) return `<div class="cell off">not publishing in this window</div>`;
   if (!posts) return `<div class="cell zero" style="background:var(--empty)"><b>0</b><small>of ${fmt(published)} posts</small></div>`;
-  const bin = COV_BINS.find(b => v < b.max).cls;
-  return `<div class="cell ${bin}${thin ? ' thin' : ''}" style="background:${covBg[bin]}"
-            title="${thin ? 'Fewer than 5 posts: too few to compare' : ''}"><b>${fmt1(v)}</b><small>${plural(posts, 'post', 'posts')}</small></div>`;
+  // Too few posts to compare: no colour, so the cell cannot look like a finding.
+  const bin = med && !thin ? REL_BINS.find(b => v / med >= b.min) : REL_BINS[2];
+  const title = thin ? 'Fewer than 5 posts: too few to compare' : med ? `${bin.label[0].toUpperCase() + bin.label.slice(1)} of the groups for this event (median ${fmt1(med)} per 1,000)` : '';
+  return `<div class="cell${bin.strong ? ' strong' : ''}${thin ? ' thin' : ''}" style="background:${bin.bg}"
+            title="${title}"><b>${fmt1(v)}</b><small>${plural(posts, 'post', 'posts')}</small></div>`;
+}
+function renderRelScale() {
+  el('rel-scale').innerHTML = '<span>Against the median of the groups for the same event:</span>' +
+    [...REL_BINS].reverse().map(b => `<span><i style="background:${b.bg}"></i>${b.label}</span>`).join('');
+}
+// The FOM bar is scaled to the most-named measured event, so it reads as "how much interest, compared
+// with the other measured events".
+const FOM_MAX = () => Math.max(1, ...MEASURED.map(r => r.attention_percentage || 0));
+const fomCell = (pct, max = FOM_MAX()) => `<td class="fom" data-label="FOM respondents"><b>${share(pct)}</b>
+  <span class="fom-track"><span style="width:${Math.min(100, (pct || 0) / max * 100).toFixed(1)}%"></span></span></td>`;
+
+/* One event as a row of the coverage table, shared by the overview and the week view, so both
+   show an event and its coverage the same way. Events without measured coverage keep the row and
+   say so across the six group columns. */
+const covHead = () => `<thead><tr><th>Event</th><th class="fom-h">FOM respondents who named it</th>` +
+  GROUPS.map(g => `<th class="g"><i style="background:${colorOf(g)}"></i>${esc(g)}</th>`).join('') + '</tr></thead>';
+function covEventRow(r, {fomMax, showWeek = true, selected = false, selGroup = null} = {}) {
+  const t = THEME_BY_ID.get(r.theme_id);
+  const head = `<tr class="ev${selected ? ' sel' : ''}${isMeasured(r) ? '' : ' unmeasured'}" data-ev="${esc(r.event_id)}" data-wk="${weekKey(r)}"${selected ? ' aria-selected="true"' : ''}>
+      <td class="ev-cell"><span class="ev-title">${warnMark(r.event_id)}${esc(eventTitle(r))}</span>
+          ${r.event_label_en ? `<span class="ev-ru">${esc(r.event_name)}</span>` : ''}
+          ${showWeek ? `<span class="ev-meta">${weekKey(r)}</span>` : ''}
+          ${t ? `<a class="tag" href="#/theme/${encodeURIComponent(t.theme_id)}">${esc(themeName(t))}</a>` : ''}</td>
+      ${fomCell(r.attention_percentage, fomMax)}`;
+  if (!isMeasured(r)) return head + `<td class="c-status" colspan="${GROUPS.length}">${r.coverage_status === 'no post passed the cut-off'
+      ? 'Searched: no post passed the relevance cut-off'
+      : 'Coverage not calculated yet. This does not mean the media were silent.'}</td></tr>`;
+  const groups = new Map((GROUP_ROWS.get(r.event_id) || []).map(g => [g.media_group, g]));
+  const med = rowMedian(GROUPS.map(g => groups.get(g)).filter(x => x && x.posts_published_in_window != null && x.matched_posts > 0)
+    .map(x => ({v: x.matched_posts_per_1000_published, posts: x.matched_posts})));
+  return head + GROUPS.map(g => {
+    const row = groups.get(g), key = groupKeyOf.get(g) || '';
+    return `<td class="c${selected && selGroup && selGroup === key ? ' sel' : ''}" data-label="${esc(g)}" data-g="${esc(key)}">${covCell(row?.matched_posts_per_1000_published, row?.matched_posts,
+      row?.posts_published_in_window, g, row && row.matched_posts > 0 && row.matched_posts < 5, med)}</td>`;
+  }).join('') + '</tr>';
 }
 function renderCoverage(sel) {
   const theme = sel && sel.type === 'theme' ? THEME_BY_ID.get(sel.id) : null;
@@ -855,23 +1038,20 @@ function renderCoverage(sel) {
       : 'No event has measured coverage yet.'}</p>`;
     return;
   }
-  const head = `<thead><tr><th>Event</th>` +
-    GROUPS.map(g => `<th class="g"><i style="background:${colorOf(g)}"></i>${esc(g)}</th>`).join('') + '</tr></thead>';
-  const body = list.map(r => {
-    const groups = new Map((GROUP_ROWS.get(r.event_id) || []).map(g => [g.media_group, g]));
-    const t = THEME_BY_ID.get(r.theme_id);
-    return `<tr class="ev" data-ev="${esc(r.event_id)}" data-wk="${weekKey(r)}">
-      <td class="ev-cell"><span class="ev-title">${warnMark(r.event_id)}${esc(eventTitle(r))}</span>
-          <span class="ev-ru">${esc(r.event_name)}</span>
-          <span class="ev-meta">${weekKey(r)} · mentioned by ${share(r.attention_percentage)} of FOM survey respondents</span>
-          ${t ? `<a class="tag" href="#/theme/${encodeURIComponent(t.theme_id)}">${esc(themeName(t))}</a>` : ''}</td>
-      ${GROUPS.map(g => {
-        const row = groups.get(g);
-        return `<td class="c" data-label="${esc(g)}" data-g="${esc(groupKeyOf.get(g) || '')}">${covCell(row?.matched_posts_per_1000_published, row?.matched_posts,
-          row?.posts_published_in_window, g, row && row.matched_posts > 0 && row.matched_posts < 5)}</td>`;
-      }).join('')}
-    </tr>`;
-  }).join('');
+  const head = covHead();
+  const fomMax = FOM_MAX();
+  // Events come newest week first and in the survey's order inside a week; each week opens with its
+  // own row, so it is clear where one week's ranking ends and the next begins.
+  let body = '', lastWeek = null;
+  list.forEach(r => {
+    if (r.week_start !== lastWeek) {
+      lastWeek = r.week_start;
+      const w = WEEK_BY_START.get(r.week_start), n = list.filter(x => x.week_start === r.week_start).length;
+      body += `<tr class="wk-sep" data-wk="${w.key}"><td colspan="${2 + GROUPS.length}"><b>${weekTitle(w)}</b>${rangeLabel(w.week_start)}
+        · ${plural(n, 'measured event', 'measured events')}<a href="${weekHash(w.key)}">Open this week ›</a></td></tr>`;
+    }
+    body += covEventRow(r, {showWeek: false, fomMax});
+  });
 
   // The totals row comes from the warehouse, which counts a post matched to two events once.
   const scopeType = theme ? 'theme' : umb ? 'umbrella' : 'all';
@@ -883,11 +1063,16 @@ function renderCoverage(sel) {
       <td><span class="ev-title">${label ? `All ${list.length} measured here, together` : `All ${list.length} measured events, together`}</span>
         <span class="ev-ru">posts about any of them per 1,000 posts the group published over the ${any.union_window_days} days their
           windows cover; a post about two events counts once${label ? ` · ${any.n_events} events in this ${theme ? 'theme' : 'area'} in all` : ''}</span></td>
-      ${GROUPS.map(g => {
-        const s = scope.get(g);
-        return `<td class="c" data-label="${esc(g)}">${covCell(s?.matched_posts_per_1000_published, s?.distinct_matched_posts,
-          s?.posts_published_in_union_window, g, s && s.distinct_matched_posts > 0 && s.distinct_matched_posts < 5)}</td>`;
-      }).join('')}</tr>` : '';
+      <td class="fom"></td>
+      ${(() => {
+        const med = rowMedian([...scope.values()].filter(x => x.posts_published_in_union_window != null && x.distinct_matched_posts > 0)
+          .map(x => ({v: x.matched_posts_per_1000_published, posts: x.distinct_matched_posts})));
+        return GROUPS.map(g => {
+          const s = scope.get(g);
+          return `<td class="c" data-label="${esc(g)}">${covCell(s?.matched_posts_per_1000_published, s?.distinct_matched_posts,
+            s?.posts_published_in_union_window, g, s && s.distinct_matched_posts > 0 && s.distinct_matched_posts < 5, med)}</td>`;
+        }).join('');
+      })()}</tr>` : '';
 
   el('cov').innerHTML = `<table class="cov">${head}<tbody>${body}${total}</tbody></table>`;
   el('cov').querySelectorAll('tr.ev').forEach(tr => tr.addEventListener('click', evt => {
@@ -904,6 +1089,11 @@ function renderOverview(sel) {
   selNow = known;
   renderHeat(known);
   resetInfo();
+  if (!indexReady) {
+    el('sel-section').hidden = true;
+    indexPanel('cov', 'the coverage table');
+    return;
+  }
   renderSelection(sel);
   renderCoverage(known);
 }
@@ -912,6 +1102,17 @@ function renderOverview(sel) {
    WEEK
    ========================================================================= */
 let postGroup = null, postWord = null, postLimit = 10;
+const eventDetails = new Map(), eventRequests = new Map();
+
+function requestEvent(eventId) {
+  if (!eventRequests.has(eventId)) {
+    const request = readVersionFile(`events/${encodeURIComponent(eventId)}.json`)
+      .then(detail => { eventDetails.set(eventId, detail); return detail; })
+      .finally(() => eventRequests.delete(eventId));
+    eventRequests.set(eventId, request);
+  }
+  return eventRequests.get(eventId);
+}
 
 function nearestMeasured(ws) {
   const before = MEASURED_WEEKS.filter(m => m < ws).at(-1);
@@ -961,6 +1162,11 @@ function renderWeek(st) {
     el('wk-none-text').textContent = `No FOM survey was published for ${weekTitle(w)} (${rangeLabel(w.week_start)}). Use the arrows to move to the nearest survey week.`;
     return;
   }
+  if (!indexReady) {
+    el('wk-none').hidden = false; el('wk-body').hidden = true;
+    indexPanel('wk-none-text', 'this survey week');
+    return;
+  }
   el('wk-none').hidden = true; el('wk-body').hidden = false;
 
   const rows = ROWS_BY_WEEK.get(w.week_start) || [];
@@ -969,22 +1175,16 @@ function renderWeek(st) {
   if (!ev || ev.week_start !== w.week_start) ev = specific.find(isMeasured) || specific[0];
   const maxShare = Math.max(...specific.map(r => r.attention_percentage || 0), 1);
 
-  el('wk-events').innerHTML = specific.map(r => {
-    const t = THEME_BY_ID.get(r.theme_id);
-    const m = isMeasured(r);
-    return `<button type="button" class="ev-row${m ? ' is-measured' : ''}" data-ev="${esc(r.event_id)}" aria-pressed="${r === ev}">
-      <span class="bar-track"><span class="bar" style="width:${(100 * (r.attention_percentage || 0) / maxShare).toFixed(1)}%"></span>
-        <span class="bar-val">${share(r.attention_percentage)}</span></span>
-      <span class="ev-name">${m && r.event_label_en ? `<span class="en">${warnMark(r.event_id)}${esc(r.event_label_en)}</span>` : ''}${esc(r.event_name)}
-        <span class="ev-tags">${t ? `<a class="tag" href="#/theme/${encodeURIComponent(t.theme_id)}">${esc(themeName(t))}</a>` : ''}
-          ${m ? '<span class="tag measured">Coverage calculated</span>'
-              : r.coverage_status === 'no post passed the cut-off' ? '<span class="tag">Search completed: no posts selected</span>'
-              : '<span class="tag muted">Not calculated yet</span>'}</span></span>
-    </button>`;
-  }).join('');
-  el('wk-events').querySelectorAll('.ev-row').forEach(b => b.addEventListener('click', evt => {
+  el('wk-events').innerHTML = `<table class="cov">${covHead()}<tbody>${specific.map(r =>
+    covEventRow(r, {fomMax: maxShare, showWeek: false, selected: r === ev, selGroup: r === ev ? st.group : null})).join('')}</tbody></table>`;
+  el('wk-rel-scale').innerHTML = el('rel-scale').innerHTML;
+  el('wk-events').querySelectorAll('tr.ev').forEach(tr => tr.addEventListener('click', evt => {
     if (evt.target.closest('a')) return;
-    go(weekHash(w.key, b.dataset.ev));
+    const cell = evt.target.closest('td.c');
+    const g = cell && cell.dataset.g && isMeasured(ROW_BY_ID.get(tr.dataset.ev)) ? cell.dataset.g : null;
+    // Clicking the open group again closes it.
+    const now = parseHash();
+    go(weekHash(w.key, tr.dataset.ev, g && !(now.event === tr.dataset.ev && now.group === g) ? g : null));
   }));
   const others = rows.filter(r => r.event_kind === 'catch-all category');
   const nonResp = rows.find(r => r.event_kind === 'survey non-response');
@@ -994,14 +1194,14 @@ function renderWeek(st) {
     'People could name several events, so the shares need not add up to 100.';
 
   postGroup = null; postWord = null; postLimit = 10;
-  renderEventCard(ev);
+  renderEventCard(ev, eventDetails.get(ev.event_id)?.quotes ?? ev.quotes);
   renderGroupAndPosts({...st, event: ev.event_id});
 }
 
-function renderEventCard(r) {
+function renderEventCard(r, quotes = []) {
   const o = OVERVIEW.get(r.event_id);
   const t = THEME_BY_ID.get(r.theme_id);
-  const quotes = r.quotes || [];
+  quotes = quotes || [];
   const warnings = warningsFor(o);
   el('wk-event').innerHTML = `
     <h2>${warnMark(r.event_id)}${esc(eventTitle(r))}</h2>
@@ -1010,7 +1210,7 @@ function renderEventCard(r) {
       <span>Mentioned by <b>${share(r.attention_percentage)}</b> of FOM survey respondents</span>
       ${t ? `<a class="tag" href="#/theme/${encodeURIComponent(t.theme_id)}">${esc(themeName(t))}</a>` : ''}
       ${o ? `<span>Posts searched ${dayLabel(o.match_start)} – ${longDay(new Date(utc(o.match_end_exclusive).getTime() - DAY))}</span>
-             <span>${plural(o.matched_posts, 'post', 'posts')} from ${o.sources_covering} of ${o.sources_active} publishing sources · ${o.groups_covering} of ${o.groups_active} groups</span>` : ''}
+             <span>${plural(o.matched_posts, 'post', 'posts')} from ${o.sources_covering} of the ${o.sources_active} sources that published in this event's window · ${o.groups_covering} of ${o.groups_active} groups</span>` : ''}
     </div>
     ${quotes.length ? `<p class="line"><b>How FOM respondents described this event</b></p>
       <ul class="quotes" id="quotes" aria-label="Examples of answers from FOM survey respondents">${quotes.slice(0, 3).map(q => `<li>“${esc(q)}”</li>`).join('')}</ul>
@@ -1027,6 +1227,25 @@ function renderEventCard(r) {
 function renderGroupAndPosts(st) {
   const r = ROW_BY_ID.get(st.event) || null;
   const measured = r && isMeasured(r);
+  el('wk-detail-state').hidden = true;
+  // Highlight the current group even when its posts are still loading.
+  el('wk-events').querySelectorAll('tr.ev').forEach(tr => tr.querySelectorAll('td.c').forEach(td =>
+    td.classList.toggle('sel', tr.dataset.ev === r?.event_id && !!st.group && td.dataset.g === st.group)));
+  if (WEB && r?.has_details && !eventDetails.has(r.event_id)) {
+    const active = navigation;
+    el('wk-groups-section').hidden = true;
+    el('wk-posts-section').hidden = true;
+    el('wk-detail-state').hidden = false;
+    showPending('wk-detail-state', 'event details', false);
+    requestEvent(r.event_id).then(detail => {
+      if (active !== navigation) return;
+      renderEventCard(r, detail.quotes);
+      renderGroupAndPosts(st);
+    }, () => {
+      if (active === navigation) showPending('wk-detail-state', 'event details', true, () => renderGroupAndPosts(st));
+    });
+    return;
+  }
   el('wk-groups-section').hidden = false;
   el('wk-posts-section').hidden = !measured;
   if (!measured) {
@@ -1046,46 +1265,30 @@ function renderGroupAndPosts(st) {
   const newGroup = st.group ? groupByKey.get(st.group) || null : null;
   if (newGroup !== postGroup) { postWord = null; postLimit = 10; }
   postGroup = newGroup;
-  renderGroupBars(r);
-  renderPosts(r);
+  const detail = WEB ? eventDetails.get(r.event_id) : {
+    groups: GROUP_ROWS.get(r.event_id),
+    daily: DATA.daily.filter(row => row.event_id === r.event_id),
+    posts: DATA.posts.filter(row => row.event_id === r.event_id),
+    terms: DATA.terms.filter(row => row.event_id === r.event_id),
+  };
+  renderGroupDetails(r, detail);
+  renderPosts(r, detail);
 }
 
-function renderGroupBars(r) {
+function renderGroupDetails(r, detail) {
   const o = OVERVIEW.get(r.event_id);
-  const rows = GROUP_ROWS.get(r.event_id) || [];
-  const max = Math.max(...rows.map(g => g.matched_posts_per_1000_published || 0), 1);
-  const present = new Set(rows.map(g => g.media_group));
-  const wk = weekKey(r);
-  el('wk-groups').innerHTML = `<div class="gbars">${rows.map(g => {
-    const v = g.matched_posts_per_1000_published || 0;
-    const thin = g.matched_posts > 0 && g.matched_posts < 5;
-    return `<button type="button" class="gbar" data-g="${esc(g.media_group_key)}" aria-pressed="${postGroup === g.media_group}">
-      <span class="gname"><i style="background:${colorOf(g.media_group)}"></i>${esc(g.media_group)}</span>
-      <span class="gtrack">${g.matched_posts
-        ? `<span class="gfill" style="width:${Math.max(0.6, 62 * v / max).toFixed(1)}%; background:${colorOf(g.media_group)}${thin ? '; opacity:.45' : ''}"></span>
-           <span class="gval"><b>${fmt1(v)}</b> per 1,000 · ${plural(g.matched_posts, 'post', 'posts')} · ${g.sources_covering} of ${g.sources_active} sources${thin ? ' · too few to compare' : ''}</span>`
-        : `<span class="gval"><b>0</b> · published ${fmt(g.posts_published_in_window)} posts, none on this event</span>`}</span>
-    </button>`;
-  }).join('')}
-  ${GROUPS.filter(g => !present.has(g)).map(g => `<div class="gbar" style="cursor:default"><span class="gname"><i style="background:${colorOf(g)}"></i>${esc(g)}</span>
-    <span class="gval muted">not publishing in this window</span></div>`).join('')}
-  </div>
-  <p class="line">Bar length: matched posts per 1,000 posts the group published in the window, on any topic.
-    Click a group to read its posts.</p>
-  <details class="more" id="wk-more"><summary>Day by day and every number</summary>
+  const rows = [...(detail.groups || [])].sort((a, b) => GROUPS.indexOf(a.media_group) - GROUPS.indexOf(b.media_group));
+  el('wk-groups').innerHTML = `
     <h3>Matched posts per day · ○ = the group's first matched post · shaded dates = the survey week</h3>
     <p class="line">Each column is one calendar day, in UTC. Posts searched: ${longDay(o.match_start)} – ${longDay(new Date(utc(o.match_end_exclusive).getTime() - DAY))}.</p>
     <div class="scroll-x" id="wk-days"></div>
+    <details class="more" id="wk-more"><summary>Every number and how the posts were matched</summary>
     <h3>Every number</h3>
     <div class="scroll-x" id="wk-table"></div>
     <h3>How the posts were matched</h3>
     <div class="facts" id="wk-build"></div>
   </details>`;
-  el('wk-groups').querySelectorAll('button.gbar').forEach(b => b.addEventListener('click', () => {
-    const k = b.dataset.g;
-    go(weekHash(wk, r.event_id, postGroup === groupByKey.get(k) ? null : k));
-  }));
-  renderDays(r, rows);
+  renderDays(r, rows, detail.daily || []);
   el('wk-table').innerHTML = `<table><thead><tr><th>Media group</th><th>Matched posts</th><th>Per 1,000 own posts</th>
       <th>Share of the event's posts</th><th>Sources covering</th><th>First matched post (UTC)</th><th>Views per post</th></tr></thead>
     <tbody>${rows.map(g => `<tr><td>${esc(g.media_group)}</td><td>${fmt(g.matched_posts)}</td>
@@ -1094,18 +1297,25 @@ function renderGroupBars(r) {
       <td>${fmt(g.views_per_matched_post)}</td></tr>`).join('')}</tbody></table>` +
     '<p class="line">First matched post is the earliest publication found for this group within the search window. It is not a measured delay from the start of the event.</p>';
   el('wk-build').innerHTML = [
-    ['Search', o.retriever === 'qwen3' ? 'Qwen3 embeddings over the whole corpus' : 'older Cohere embeddings, part of the corpus'],
+    ['Search', o.retriever === 'qwen3_fulltext' ? 'Qwen3 embeddings of the cleaned full text'
+      : o.retriever === 'qwen3' ? 'Qwen3 embeddings over the whole corpus' : 'older Cohere embeddings, part of the corpus'],
     ['Relevance gate', `${o.rerank_model} score ≥ ${o.rerank_threshold}`],
     ['Candidates scored', fmt(o.candidates_reranked)],
     ['Window searchable', pct(o.searchable_share_of_window)],
     ['Relevance kept', `median ${fmt2(o.median_relevance_score)}, lowest ${fmt2(o.min_relevance_score)}`],
-    ['Built', String(o.built_at).slice(0, 10)]
+    ['Built', String(o.built_at).slice(0, 10)],
+    ...(isCapped(o) ? [['Note', `every one of the ${fmt(o.candidates_reranked)} candidates was kept, so the count is probably held down by the search limit and is too low`]] : [])
   ].map(([k, v]) => `<span><b>${esc(k)}:</b> ${esc(v)}</span>`).join('');
 }
 
+// The search returns a fixed number of nearest posts. When the relevance gate kept all of them,
+// the event has more matching posts than the search could return.
+function isCapped(o) {
+  return o.candidates_reranked > 0 && o.matched_posts >= o.candidates_reranked && !(o.rerank_threshold > 0);
+}
+
 const DAY_BINS = [{max: 3, c: 'var(--att-1)'}, {max: 10, c: 'var(--att-2)'}, {max: 25, c: 'var(--att-3)'}, {max: 50, c: 'var(--att-4)'}, {max: Infinity, c: 'var(--att-5)'}];
-function renderDays(r, groupRows) {
-  const daily = DATA.daily.filter(x => x.event_id === r.event_id);
+function renderDays(r, groupRows, daily) {
   const days = [...new Set(daily.map(x => x.coverage_date))].sort();
   const byKey = new Map(daily.map(x => [x.media_group + '|' + x.coverage_date, x.matched_posts]));
   const wkStart = r.week_start, wkEnd = new Date(utc(wkStart).getTime() + 6 * DAY).toISOString().slice(0, 10);
@@ -1129,14 +1339,14 @@ function renderDays(r, groupRows) {
     ['1–2', '3–9', '10–24', '25–49', '50+'].map((l, i) => `<span><i style="background:${DAY_BINS[i].c}"></i>${l}</span>`).join('') + '</div>';
 }
 
-function renderPosts(r) {
-  const all = DATA.posts.filter(p => p.event_id === r.event_id);
+function renderPosts(r, detail) {
+  const all = detail.posts || [];
   // Counts come from the coverage table: the file carries only the most relevant posts of each group.
   const counts = new Map();
-  DATA.groups.filter(g => g.event_id === r.event_id && g.matched_posts).forEach(g => counts.set(g.media_group, g.matched_posts));
+  (GROUP_ROWS.get(r.event_id) || []).filter(g => g.matched_posts).forEach(g => counts.set(g.media_group, g.matched_posts));
   const total = [...counts.values()].reduce((a, b) => a + b, 0);
   let rows = postGroup ? all.filter(p => p.media_group === postGroup) : all;
-  const words = postGroup ? DATA.terms.filter(t => t.event_id === r.event_id && t.media_group === postGroup) : [];
+  const words = postGroup ? (detail.terms || []).filter(t => t.media_group === postGroup) : [];
   if (postWord) {
     // The exact posts the word count was computed from, carried out of the warehouse
     // rather than re-matched here, so the list is exactly what the number counts.
@@ -1173,14 +1383,14 @@ function renderPosts(r) {
     const t = words[Number(b.dataset.w)];
     postWord = postWord && postWord.term_label === t.term_label ? null : t;
     postLimit = 10;
-    renderPosts(r);
+    renderPosts(r, detail);
   }));
   el('wk-posts').querySelectorAll('button.toggle').forEach(b => b.addEventListener('click', () => {
     const body = el('pb' + b.dataset.i);
     b.textContent = body.classList.toggle('clamped') ? 'Show full post' : 'Show less';
   }));
   const more = el('posts-more');
-  if (more) more.addEventListener('click', () => { postLimit += 10; renderPosts(r); });
+  if (more) more.addEventListener('click', () => { postLimit += 10; renderPosts(r, detail); });
 }
 
 /* =========================================================================
@@ -1188,11 +1398,21 @@ function renderPosts(r) {
    leave this text claiming a number that is no longer true.
    ========================================================================= */
 function renderAbout() {
+  if (!indexReady) {
+    el('about').innerHTML = '<h2 id="about-title">About the data <button class="close" type="button" id="about-close" aria-label="Close">×</button></h2><div id="about-loading"></div>';
+    el('about-close').addEventListener('click', closeAbout);
+    indexPanel('about-loading', 'the data notes');
+    return;
+  }
   const specific = ROWS.filter(r => r.event_kind === 'specific event');
+  const notYetCount = specific.filter(isUnmeasuredAfterW20).length;
   const labelled = specific.filter(r => r.theme_id).length;
-  const allPosts = DATA.events.reduce((s, e) => s + (e.matched_posts || 0), 0);
+  const events = [...OVERVIEW.values()];
+  const allPosts = events.reduce((s, e) => s + (e.matched_posts || 0), 0);
   const distinctPosts = DATA.scope_coverage.filter(s => s.scope_type === 'all').reduce((s, r) => s + r.distinct_matched_posts, 0);
-  const flagged = DATA.events.filter(e => warningsFor(e).length).length;
+  const flagged = events.filter(e => warningsFor(e).length).length;
+  const cappedCount = events.filter(isCapped).length;
+  const aboutActiveSources = DATA.scope_coverage.filter(r => r.scope_type === 'all').reduce((n, r) => n + r.sources_active, 0);
   const gaps = WEEKS.length - SURVEYED.length;
   el('about').innerHTML = `
     <h2 id="about-title">About the data <button class="close" type="button" id="about-close" aria-label="Close">×</button></h2>
@@ -1210,13 +1430,14 @@ function renderAbout() {
       separate models; how, and what that check found, is in dbt/seeds/README.md. Click any theme to see every FOM wording
       it groups.</p>
     <h3>What counts as coverage</h3>
-    <p>Two methods, and their counts should not be compared with each other. <b>The five events of January–March
+    <p>Three methods, and their counts should not be compared with each other. <b>The five events of January–March
       2025:</b> an embedding search over post summaries finds candidates, and the Cohere rerank-v3.5 relevance model must
-      score a post 0.35 or higher. <b>Events from 2025-W12 on:</b> an embedding search over the cleaned full text finds the
+      score a post 0.35 or higher. <b>Events of 2025-W12 to 2026-W20:</b> an embedding search over the cleaned full text finds the
       3,000 closest posts of the window, the OpenAI Decisions API gives each a probability that it reports on the event,
-      and the cut-off is set per event from 100 posts read by a language model. The score is on every post, so weak
-      matches can be read and judged. ${MEASURED.length} of ${fmt(specific.length)} events have a matched set.
-      ${NOT_YET.length ? `Every event of 2025-W12 to 2026-W20 is calculated. The ${plural(NOT_YET.length, 'event', 'events')} of the weeks after 2026-W20 ${NOT_YET.length === 1 ? 'is' : 'are'} not: the run stopped there.` : ''}</p>
+      and the cut-off is set per event from 100 posts read by a language model. <b>Events from 2026-W21 on:</b> the same search
+      and the same kind of cut-off, but the score is a 0–100 rating given to each post by a language model (gpt-6-luna)
+      reading up to 1,000 characters. The score is on every post, so weak matches can be read and judged. ${MEASURED.length} of ${fmt(specific.length)} events have a matched set.
+      ${notYetCount ? `Every event of 2025-W12 to 2026-W20 is calculated. The ${plural(notYetCount, 'event', 'events')} of the weeks after 2026-W20 ${notYetCount === 1 ? 'is' : 'are'} not: the run stopped there.` : ''}</p>
     <p><b>Coverage calculated</b> means matching posts have been selected and media-group figures are available.
       <b>Not calculated yet</b> means that matching posts have not been added to this dashboard for this event. The FOM survey result
       is still shown; the status says nothing about whether the media covered it.</p>
@@ -1233,21 +1454,24 @@ function renderAbout() {
     <p>An event of the first method is marked ⚠ if it kept posts below the standard 0.35 relevance score (its total is too high); any event is marked if its
       search could not reach the whole window (too low). ${flagged ? `${flagged} event${flagged > 1 ? 's carry' : ' carries'} the mark.` :
       'No loaded event carries the mark; the check stays so that an event built on other settings cannot slip in unmarked.'}
-      Comparisons between groups inside one event are unaffected either way.</p>
+      Comparisons between groups inside one event are unaffected either way.
+      ${cappedCount ? `Separately, ${cappedCount} of the ${MEASURED.length} events kept every one of the posts the search returned;
+      their counts are probably too low, and the event's "How the posts were matched" says so.` : ''}</p>
     <h3>The media groups</h3>
-    <p>${GROUPS.length} groups, 56 sources. The grouping is a working analytical one, not a settled set of political labels.
+    <p>${GROUPS.length} groups, 56 sources in the group map; ${aboutActiveSources} of them published during the measured weeks. The grouping is a working analytical one, not a settled set of political labels.
       Another 28 channels — regional outlets and channels that are not news media — are left out of every number,
       denominators included. The group map is today's; no source is known to have changed group.</p>
     <h3>Word lists are counting, not interpretation</h3>
     <p>A word is listed for a group only if at least two of its channels used it, no single channel accounts for more
       than 70% of the posts carrying it, and the group used it more on this event than on the other events. Clicking it
-      shows exactly the posts it was counted in. It says nothing about tone or intent. Word lists exist only for the five
-      events of January–March 2025 so far.</p>
+      shows exactly the posts it was counted in. It says nothing about tone or intent. ${fmt(WEB?.word_event_count ?? new Set(DATA.terms.map(t => t.event_id)).size)} of the
+      ${MEASURED.length} events with coverage have word lists.</p>
     <h3>Dates</h3>
     <p>The news corpus ends on ${longDay(DATA.meta.snapshot_end)}. Nothing here describes anything after that date.
       View counters were read once, when the posts were collected. Posts after 2 April 2025 come from public channel
       pages, which show views rounded and no forward counts.</p>`;
   el('about-close').addEventListener('click', closeAbout);
+  if (!el('about').hidden) el('about-close').focus();
 }
 function openAbout() { el('about').hidden = false; el('backdrop').hidden = false; el('about-close').focus(); }
 function closeAbout() { el('about').hidden = true; el('backdrop').hidden = true; el('about-open').focus(); }
@@ -1258,8 +1482,11 @@ addEventListener('keydown', e => { if (e.key === 'Escape' && !el('about').hidden
 /* =========================================================================
    Boot
    ========================================================================= */
+if (!WEB) installIndex(DATA);
 renderStatus();
 renderHeatScale();
+renderRelScale();
+renderRange();
 renderAbout();
 route();
 

@@ -1,0 +1,43 @@
+{
+ "generated_at": "2026-11-07T02:47:03",
+ "event": {
+  "name": "Обстрелы различных российских территорий",
+  "year": 2026,
+  "week": 34,
+  "fom_percentage": 14.0,
+  "quotes": [
+   "«Атаки беспилотников и ракет по всей России»",
+   "«атаки БПЛА и ракетные»",
+   "«беспилотники»",
+   "«бомбануло в Стерлитамаке»",
+   "«бомбардировка дронами»",
+   "«бомбёжки»",
+   "«гибель людей от дронов»",
+   "«удары дронов по городам»"
+  ],
+  "event_id": "d5ec8a973a2f88237a4fa8d1766782da"
+ },
+ "window": {
+  "match_start": "2026-08-14",
+  "match_end_exclusive": "2026-09-03"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.35,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 2148,
+  "embedded_pool": 38892,
+  "window_posts": 38893
+ }
+}

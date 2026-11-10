@@ -1,0 +1,45 @@
+{
+ "generated_at": "2026-11-07T02:47:01",
+ "event": {
+  "name": "Обстрелы различных российских территорий",
+  "year": 2026,
+  "week": 28,
+  "fom_percentage": 14.0,
+  "quotes": [
+   "«Казань, Нижний Новгород, Старый Оскол, Волгоград – беспокоят атаки»",
+   "«Москву и Краснодар бомбят»",
+   "«НПЗ бомбят, а наши молчат»",
+   "«НПЗ разбомбили в Саратове»",
+   "«объявление ракетной опасности, прилёт ракет в другие регионы»",
+   "«Омск уже бомбят, скоро и Кемерово»",
+   "«последний взрыв в порту Таганрога, обстрелы»",
+   "«бомбят, сирена»",
+   "«воздушные атаки»",
+   "«дроны, которые попадают в жилые массивы»"
+  ],
+  "event_id": "b9899b0c6529edad7c568f2885130afc"
+ },
+ "window": {
+  "match_start": "2026-07-03",
+  "match_end_exclusive": "2026-07-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.15,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 1752,
+  "embedded_pool": 39567,
+  "window_posts": 39567
+ }
+}

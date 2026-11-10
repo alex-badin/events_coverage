@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-07T02:47:08",
+ "event": {
+  "name": "Дизельная сделка",
+  "year": 2026,
+  "week": 43,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Как Россия будет перевозить дизель в Америку»",
+   "«посылка дизтоплива в Америку»",
+   "«Путин подписал с Трампом дизельную сделку»",
+   "«Трамп дизель будет покупать у России»"
+  ],
+  "event_id": "671f94c94947123561cd50ebf8006f8b"
+ },
+ "window": {
+  "match_start": "2026-10-16",
+  "match_end_exclusive": "2026-11-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.6,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2992,
+  "kept": 577,
+  "embedded_pool": 36954,
+  "window_posts": 36954
+ }
+}

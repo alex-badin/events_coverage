@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-07T02:47:03",
+ "event": {
+  "name": "Погода, природные катаклизмы в России",
+  "year": 2026,
+  "week": 33,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Высокий уровень воды топит нам Благовещенск»",
+   "«наводнение в Екатеринбурге и области»",
+   "«паводки в Хабаровском крае»"
+  ],
+  "event_id": "bc1a81fedb7d0ce76a1c65071c67cdfd"
+ },
+ "window": {
+  "match_start": "2026-08-07",
+  "match_end_exclusive": "2026-08-27"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.25,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2998,
+  "kept": 68,
+  "embedded_pool": 38131,
+  "window_posts": 38131
+ }
+}

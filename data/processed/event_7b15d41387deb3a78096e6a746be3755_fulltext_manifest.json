@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-07T02:47:01",
+ "event": {
+  "name": "События вокруг Ирана",
+  "year": 2026,
+  "week": 27,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«В Иране похороны президента»",
+   "«война в Иране»",
+   "«Иран»",
+   "«война на Ближнем Востоке»",
+   "«с Ираном и США»"
+  ],
+  "event_id": "7b15d41387deb3a78096e6a746be3755"
+ },
+ "window": {
+  "match_start": "2026-06-26",
+  "match_end_exclusive": "2026-07-16"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.55,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2998,
+  "kept": 2279,
+  "embedded_pool": 39678,
+  "window_posts": 39678
+ }
+}

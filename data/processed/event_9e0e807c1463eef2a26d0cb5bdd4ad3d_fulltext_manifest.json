@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-07T02:46:57",
+ "event": {
+  "name": "Петербургский международный экономический форум",
+  "year": 2026,
+  "week": 24,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Форум в Питере»",
+   "«питерский форум и события вокруг него»",
+   "«ПМЭФ в Петербурге»",
+   "«проведение экономического форума в Питере»",
+   "«слушала форум в Петербурге, и он мне понравился»",
+   "«форум в Питере»",
+   "«форум экономический»"
+  ],
+  "event_id": "9e0e807c1463eef2a26d0cb5bdd4ad3d"
+ },
+ "window": {
+  "match_start": "2026-06-05",
+  "match_end_exclusive": "2026-06-25"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.45,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 960,
+  "embedded_pool": 39914,
+  "window_posts": 39914
+ }
+}

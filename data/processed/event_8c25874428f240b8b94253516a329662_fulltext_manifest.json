@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-07T02:47:04",
+ "event": {
+  "name": "Дефицит бензина, его подорожание",
+  "year": 2026,
+  "week": 37,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Бензин: дефицит»",
+   "«большие очереди на заправках, нет бензина»",
+   "«нет бензина в городе»",
+   "«очереди за бензином на заправках»"
+  ],
+  "event_id": "8c25874428f240b8b94253516a329662"
+ },
+ "window": {
+  "match_start": "2026-09-04",
+  "match_end_exclusive": "2026-09-24"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.15,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2995,
+  "kept": 428,
+  "embedded_pool": 39545,
+  "window_posts": 39545
+ }
+}

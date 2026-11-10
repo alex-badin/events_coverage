@@ -1,0 +1,163 @@
+#cloud-config
+# First-boot setup for a new Ubuntu 24.04 LTS Hetzner Cloud server only.
+# This file contains a public SSH key, not the private key. The site is public.
+# Root SSH remains available with a key during the first deployment; passwords are disabled.
+# After setup: connect as deploy, then run sudo cloud-init status --wait --long.
+# DNS for askmedia.news must point to the new server before public HTTPS can work.
+
+hostname: events-coverage
+manage_etc_hosts: true
+timezone: UTC
+disable_root: false
+ssh_pwauth: false
+
+users:
+  - default
+  - name: root
+    lock_passwd: true
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDp58eYDn2GITlnpGT3NgUUnBwy4mTrN+e+EGd0ut3iH m4-pilot-mac-2026-10-13
+  - name: deploy
+    gecos: Events Coverage administrator
+    groups: [sudo]
+    shell: /bin/bash
+    lock_passwd: true
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDp58eYDn2GITlnpGT3NgUUnBwy4mTrN+e+EGd0ut3iH m4-pilot-mac-2026-10-13
+
+# Swap provides headroom for package updates on the 1 GB instance.
+swap:
+  filename: /swapfile
+  size: 1G
+  maxsize: 1G
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: false
+packages:
+  - ca-certificates
+  - curl
+  - gnupg
+  - debian-keyring
+  - debian-archive-keyring
+  - apt-transport-https
+  - openssl
+  - rsync
+  - ufw
+  - unattended-upgrades
+
+write_files:
+  - path: /etc/ssh/sshd_config.d/00-events-coverage.conf
+    owner: root:root
+    permissions: '0644'
+    content: |
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
+      PubkeyAuthentication yes
+      PermitRootLogin prohibit-password
+
+  - path: /etc/apt/apt.conf.d/20auto-upgrades
+    owner: root:root
+    permissions: '0644'
+    content: |
+      APT::Periodic::Update-Package-Lists "1";
+      APT::Periodic::Unattended-Upgrade "1";
+
+  - path: /usr/local/sbin/events-coverage-bootstrap
+    owner: root:root
+    permissions: '0700'
+    content: |
+      #!/bin/bash
+      set -euo pipefail
+      umask 077
+      export DEBIAN_FRONTEND=noninteractive
+
+      # The package starts Caddy automatically; mask it before installation.
+      # A retry must also keep the default package welcome page offline.
+      systemctl mask caddy.service
+      if systemctl is-active --quiet caddy.service; then
+        systemctl stop caddy.service
+      fi
+      bootstrap_dir="$(mktemp -d /run/events-coverage.XXXXXX)"
+      trap 'rm -rf -- "$bootstrap_dir"' EXIT
+
+      # Install the supported stable package from the official signed repository.
+      # Source: https://caddyserver.com/docs/install#debian-ubuntu-raspbian
+      curl --fail --silent --show-error --location --retry 3 \
+        https://dl.cloudsmith.io/public/caddy/stable/gpg.key \
+        --output "$bootstrap_dir/caddy.key"
+      gpg --batch --yes --dearmor \
+        --output /usr/share/keyrings/caddy-stable-archive-keyring.gpg \
+        "$bootstrap_dir/caddy.key"
+      chmod 0644 /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+      curl --fail --silent --show-error --location --retry 3 \
+        https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt \
+        --output "$bootstrap_dir/caddy.list"
+      install -m 0644 "$bootstrap_dir/caddy.list" /etc/apt/sources.list.d/caddy-stable.list
+      apt-get update
+      apt-get install --yes caddy
+
+      install -d -o deploy -g caddy -m 2755 /var/www/coverage /var/www/coverage/releases
+      install -d -o deploy -g caddy -m 2755 /var/www/coverage/releases/bootstrap
+      printf '%s\n' '<!doctype html><meta charset="utf-8"><title>Events Coverage</title><p>Awaiting the first dashboard release.</p>' \
+        > "$bootstrap_dir/index.html"
+      install -o deploy -g caddy -m 0644 "$bootstrap_dir/index.html" \
+        /var/www/coverage/releases/bootstrap/index.html
+      gzip -n -9 -c "$bootstrap_dir/index.html" > "$bootstrap_dir/index.html.gz"
+      install -o deploy -g caddy -m 0644 "$bootstrap_dir/index.html.gz" \
+        /var/www/coverage/releases/bootstrap/index.html.gz
+      install -o deploy -g caddy -m 0644 /dev/null \
+        /var/www/coverage/releases/bootstrap/.bootstrap-pending
+      if [[ ! -e /var/www/coverage/current && ! -L /var/www/coverage/current ]]; then
+        ln -s releases/bootstrap /var/www/coverage/current
+      fi
+
+      cat > "$bootstrap_dir/Caddyfile" <<CADDY
+      askmedia.news {
+          root * /var/www/coverage/current
+          @bootstrap file .bootstrap-pending
+          handle @bootstrap {
+              respond "Awaiting the first dashboard release." 503
+          }
+          handle {
+              file_server {
+                  precompressed gzip
+              }
+          }
+      }
+      CADDY
+      install -o root -g caddy -m 0640 "$bootstrap_dir/Caddyfile" /etc/caddy/Caddyfile
+      caddy fmt --overwrite /etc/caddy/Caddyfile
+      caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+      runuser -u caddy -- test -r /var/www/coverage/current/index.html
+
+      # Keep key-only root access as a first-boot fallback. Do not change SSH port 22.
+      test -s /home/deploy/.ssh/authorized_keys
+      ssh-keygen -l -f /home/deploy/.ssh/authorized_keys > /dev/null
+      install -d -o root -g root -m 0755 /run/sshd
+      /usr/sbin/sshd -t
+      systemctl reload-or-restart ssh.service
+
+      # This is the host firewall. A separate Hetzner firewall may restrict the same ports.
+      sed -i 's/^IPV6=.*/IPV6=yes/' /etc/default/ufw
+      ufw default deny incoming
+      ufw default allow outgoing
+      ufw allow 22/tcp
+      ufw allow 80/tcp
+      ufw allow 443/tcp
+      ufw --force enable
+      systemctl enable ufw
+
+      systemctl unmask caddy.service
+      systemctl enable --now caddy.service
+      systemctl is-active --quiet caddy.service
+      touch /var/lib/events-coverage-bootstrap.ready
+
+runcmd:
+  - [/usr/local/sbin/events-coverage-bootstrap]
+
+final_message: >-
+  Events Coverage first-boot commands finished. Check cloud-init status for errors.
+  The dashboard has not been uploaded. DNS and public HTTPS still need verification.
+  The site is public and does not require a login or password.

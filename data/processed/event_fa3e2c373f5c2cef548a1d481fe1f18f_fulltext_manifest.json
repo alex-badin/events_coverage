@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-07T02:46:57",
+ "event": {
+  "name": "События в Армении",
+  "year": 2026,
+  "week": 23,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Армения метается, может подвести Россию»",
+   "«Никол Пашинян решил пойти против России и добиваться вступления в ЕС»",
+   "«выборы в Армении»",
+   "«подготовка выборов в Армении»"
+  ],
+  "event_id": "fa3e2c373f5c2cef548a1d481fe1f18f"
+ },
+ "window": {
+  "match_start": "2026-05-29",
+  "match_end_exclusive": "2026-06-18"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.1,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2993,
+  "kept": 1516,
+  "embedded_pool": 40365,
+  "window_posts": 40366
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-07T02:46:59",
+ "event": {
+  "name": "События вокруг Ирана",
+  "year": 2026,
+  "week": 25,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«Америка напала на Иран»",
+   "«война в Иране»",
+   "«открытие Ормузского пролива»",
+   "«подписание соглашения с Ираном»",
+   "«война на Ближнем Востоке на нервы действует – вообще несправедливо»"
+  ],
+  "event_id": "e91db697f27e41d698d7135409b3f7b6"
+ },
+ "window": {
+  "match_start": "2026-06-12",
+  "match_end_exclusive": "2026-07-02"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.35,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2999,
+  "kept": 2663,
+  "embedded_pool": 39096,
+  "window_posts": 39096
+ }
+}

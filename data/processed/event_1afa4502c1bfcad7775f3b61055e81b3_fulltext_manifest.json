@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-07T02:47:05",
+ "event": {
+  "name": "Обстрелы различных российских территорий",
+  "year": 2026,
+  "week": 39,
+  "fom_percentage": 8.0,
+  "quotes": [
+   "«Атаки БПЛА»",
+   "«всю Россию беспилотники разбомбили»",
+   "«летали беспилотники над городом»",
+   "«Россию БПЛА бомбят»",
+   "«постоянные атаки беспилотников»",
+   "«увеличение количества беспилотников»"
+  ],
+  "event_id": "1afa4502c1bfcad7775f3b61055e81b3"
+ },
+ "window": {
+  "match_start": "2026-09-18",
+  "match_end_exclusive": "2026-10-08"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.35,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2999,
+  "kept": 1770,
+  "embedded_pool": 40378,
+  "window_posts": 40378
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-11-07T02:47:01",
+ "event": {
+  "name": "Чемпионат мира по футболу",
+  "year": 2026,
+  "week": 28,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«На чемпионате мира по футболу Трамп отменил красную карточку»",
+   "«футбол: чемпионат мира»",
+   "«чемпионат мира по футболу»"
+  ],
+  "event_id": "9e85c6b4abc3c8551be75354b6a5b84e"
+ },
+ "window": {
+  "match_start": "2026-07-03",
+  "match_end_exclusive": "2026-07-23"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.3,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2995,
+  "kept": 979,
+  "embedded_pool": 39567,
+  "window_posts": 39567
+ }
+}

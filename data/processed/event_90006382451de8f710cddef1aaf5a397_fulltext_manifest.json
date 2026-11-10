@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-07T02:47:07",
+ "event": {
+  "name": "День рождения В. Путина",
+  "year": 2026,
+  "week": 41,
+  "fom_percentage": 1.0,
+  "quotes": [
+   "«День рождения президента»",
+   "«День рождения у Владимира Путина»"
+  ],
+  "event_id": "90006382451de8f710cddef1aaf5a397"
+ },
+ "window": {
+  "match_start": "2026-10-02",
+  "match_end_exclusive": "2026-10-22"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.65,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2992,
+  "kept": 275,
+  "embedded_pool": 39610,
+  "window_posts": 39611
+ }
+}

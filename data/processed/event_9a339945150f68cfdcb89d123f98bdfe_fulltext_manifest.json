@@ -1,0 +1,37 @@
+{
+ "generated_at": "2026-11-07T02:46:59",
+ "event": {
+  "name": "Атака БПЛА на автобус с белорусскими детьми в Брянской области",
+  "year": 2026,
+  "week": 26,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Белорусских школьников в автобусе атаковали украинские беспилотники»",
+   "«когда был взорван автобус с детьми из Белоруссии»"
+  ],
+  "event_id": "9a339945150f68cfdcb89d123f98bdfe"
+ },
+ "window": {
+  "match_start": "2026-06-19",
+  "match_end_exclusive": "2026-07-09"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.8,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2996,
+  "kept": 215,
+  "embedded_pool": 40230,
+  "window_posts": 40230
+ }
+}

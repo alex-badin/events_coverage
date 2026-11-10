@@ -1,0 +1,40 @@
+{
+ "generated_at": "2026-11-07T02:47:03",
+ "event": {
+  "name": "Поездки В. Путина по России",
+  "year": 2026,
+  "week": 33,
+  "fom_percentage": 3.0,
+  "quotes": [
+   "«Визит Путина в Новосибирск»",
+   "«визит Путина на Курильские острова»",
+   "«визит Путина на Сахалин»",
+   "«приезд Путина в Красноярск»",
+   "«поездка Путина на Итуруп»"
+  ],
+  "event_id": "415d685612bd2a457aa1b2f5c0da2b98"
+ },
+ "window": {
+  "match_start": "2026-08-07",
+  "match_end_exclusive": "2026-08-27"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.15,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2994,
+  "kept": 557,
+  "embedded_pool": 38131,
+  "window_posts": 38131
+ }
+}

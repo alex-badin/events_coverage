@@ -1,0 +1,42 @@
+{
+ "generated_at": "2026-11-07T02:46:59",
+ "event": {
+  "name": "Дефицит бензина, его подорожание",
+  "year": 2026,
+  "week": 26,
+  "fom_percentage": 14.0,
+  "quotes": [
+   "«Цены на солярку и бензин повысились – и больше 40 литров не дают»",
+   "«рост цен бензина»",
+   "«бензин: цены очень большие по всей России»",
+   "«бензин: его или нет, или за ним большие очереди – он подорожал»",
+   "«бензина трудно найти»",
+   "«заканчивается бензин»",
+   "«топливная проблема: кризис снабжения»"
+  ],
+  "event_id": "a1655871dc7903a966932881864db539"
+ },
+ "window": {
+  "match_start": "2026-06-19",
+  "match_end_exclusive": "2026-07-09"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.05,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2994,
+  "kept": 2492,
+  "embedded_pool": 40230,
+  "window_posts": 40230
+ }
+}

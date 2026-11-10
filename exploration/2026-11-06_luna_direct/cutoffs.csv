@@ -1,0 +1,227 @@
+event_id,week,event,fom_percentage,cut_reader,cut,scored_candidates,kept_posts,sample_labelled,sample_yes,sample_missing
+8311aae3c95d0aded4f0b343acbe9160,2026-W21,СВО в целом,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,3000,100,97,0
+1f94b66db6233293dda8e481d311d6bc,2026-W21,Обстрелы российских территорий,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,2999,1959,100,57,0
+7998a2f9b9d3c731df55610a8b90acfc,2026-W21,"Удар ВСУ по общежитию в Старобельске, гибель детей",9.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,2997,1685,86,43,0
+10e980f7b1412b1cac1bb35185d5b468,2026-W21,Визит В. Путина в Китай,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,3000,1061,100,47,0
+af6c2d57f1f14bececcd8575f1edbc8d,2026-W21,"События вокруг Ирана, эскалация конфликта",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,3000,2129,100,58,0
+361e82ea05042963478996681ae0f78b,2026-W21,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.75,3000,290,49,13,0
+6c5ae7cf54b8b8a734858b85a8a4e392,2026-W21,Блокировка интернета,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2995,345,100,75,0
+830794b6bdbc33cda9acf3866eeed553,2026-W21,Визит Д. Трампа в Китай,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2999,367,90,44,0
+82b0432e343fb9489a88f3aadd1711b3,2026-W21,"Действия США, Д. Трампа",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,86,0
+cca678a30e0524f7bfc6f9586ba431f3,2026-W21,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,2999,68,90,14,0
+f1e69051de8f3530dbff84ebb72cf8bf,2026-W21,Экологическая катастрофа в Туапсе,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.95,3000,46,75,17,0
+a1c05f3826a4f7208754c412465334bd,2026-W22,СВО в целом,17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,100,0
+4243e7d82520c9294f5a63ae7007e937,2026-W22,"Удар ВСУ по общежитию в Старобельске, гибель детей",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2998,1781,90,54,0
+8d9c38544acaef61347d2ee618b78fba,2026-W22,Обстрелы российских территорий,9.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,3000,2236,100,78,0
+5635e20839eeb7d8dfecdf52779eb30d,2026-W22,Визит В. Путина в Казахстан,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2999,654,100,65,0
+db86388e757d5babef924ad09ceb9866,2026-W22,"Погода, природные катаклизмы в России",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,3000,403,100,67,0
+204cc4a859edd6771b8b71f17d58d73a,2026-W22,"События вокруг Ирана, эскалация конфликта",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2999,2431,100,59,0
+dc38d094b6038cb7a4d9adabfd6ee371,2026-W22,Стремление Армении в ЕС,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.7,2998,796,100,41,0
+2c34852515aab05f5653c0f60e8c86d7,2026-W22,Блокировка интернета,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,3000,278,100,71,0
+e98fbc4da8bbb019ff77cd3fbdb59641,2026-W22,Визит В. Путина в Китай,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.75,3000,32,56,13,0
+ada1fe8bfa5c8a374d5aa484aecb2fa5,2026-W22,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.9,2999,117,60,1,0
+959d0b26f6ce9486856e527873bea04c,2026-W22,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.5,2998,178,95,47,0
+c1d4474657a360a6c0e6101ebcef3d47,2026-W23,СВО в целом,17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,3000,2904,100,82,0
+c820eba51e781f36f7ef6d308e87afb9,2026-W23,Обстрелы российских территорий,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,3000,2166,100,79,0
+8663a17108c409b9544a23fd31c07841,2026-W23,"Удар ВСУ по общежитию в Старобельске, гибель детей",7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.7,2999,326,79,34,0
+bb64f35333174c9445a8dd281bcf2504,2026-W23,Петербургский международный экономический форум,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.65,3000,1625,100,38,0
+006963aefdddb75bb076701d4d95a88e,2026-W23,Открытое письмо Зеленского Владимиру Путину и реакция России,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.38,3000,405,99,53,0
+ddf2e6de5f9ca3ea0f0f2c810cd64b6d,2026-W23,"Дефицит бензина, его подорожание",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.7,2997,631,100,50,0
+6fb93091b9889deb17dd58bc0aed3808,2026-W23,"Встречи, переговоры, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2999,1186,100,54,0
+72bf264b62adc08d7be52912f54f93cc,2026-W23,"События вокруг Ирана, эскалация конфликта",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,3000,2677,100,58,0
+fa3e2c373f5c2cef548a1d481fe1f18f,2026-W23,События в Армении,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2993,1516,100,84,0
+5478906d9216836e9ae7d794f68c6e14,2026-W23,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2999,429,100,83,0
+249076714a5bf5397b9958a9406ce949,2026-W24,СВО в целом,16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,3000,2633,100,80,0
+6f256b32acee34c0a1411c2091eb71fd,2026-W24,Обстрелы российских территорий,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2998,2413,100,73,0
+9e0e807c1463eef2a26d0cb5bdd4ad3d,2026-W24,Петербургский международный экономический форум,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,3000,960,85,36,0
+2786808633709d9cf220e42424902507,2026-W24,"События вокруг Ирана, эскалация конфликта",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,3000,100,89,0
+da48fbfd562e839b2e87a6f648221157,2026-W24,"Удар ВСУ по общежитию в Старобельске, гибель детей",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.6,2999,80,48,18,0
+eb3ff40f0976ea4e286f15b18e14c132,2026-W24,Удар ВСУ по панораме «Оборона Севастополя»,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2999,301,50,22,0
+269146d2a7dac06ad343ea59bb50c5c4,2026-W24,"Дефицит бензина, его подорожание",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2996,1135,100,68,0
+a540cf11f260192c63acee2c54e265ee,2026-W24,"Встречи, переговоры, выступления В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,3000,100,51,0
+aeaa57fdcd32aee5ba3af49d87e1cdc4,2026-W24,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,3000,329,91,75,0
+ed81d8aa84c46dbd35780bd535e01b3d,2026-W24,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2999,340,97,54,0
+df0589afd430771d207acdfab766ce41,2026-W24,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,3000,346,93,58,0
+fee387b5e540b564fe4d5401842b6741,2026-W24,"Аварии, несчастные случаи",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2994,141,40,15,0
+c66e77d612c1d99b3e2c25c0f8f02d9e,2026-W24,События в Армении,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,3000,994,100,74,0
+e3ec9701b35b603402f62d2305db4a4f,2026-W24,Действия В. Зеленского,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2999,542,98,67,0
+808b03d1b91ac3ddcfa48890ea72ea6a,2026-W24,Чемпионат мира по футболу,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,3000,487,69,37,0
+c7ade5582e5d1af68cc1022ac4c65b50,2026-W25,"СВО в целом, успехи российской армии",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2998,2998,100,98,0
+43dacb17c18e2abc964dd4d5c037419d,2026-W25,Обстрелы различных российских территорий,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.4,3000,2149,99,64,0
+6ff1f79400ff4bcc506cc0c551fd508c,2026-W25,"Атака беспилотников на Москву, пожар на НПЗ в Капотне",11.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,2999,1489,100,74,0
+c9f696bfee64331845a02dd9dfc198f9,2026-W25,Атака БПЛА на автобус с белорусскими детьми в Брянской области,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2995,502,74,42,0
+42f699c50724b5b0689f0a22eac3b754,2026-W25,"Дефицит бензина, его подорожание",5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.4,2998,1793,100,56,0
+e91db697f27e41d698d7135409b3f7b6,2026-W25,События вокруг Ирана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2999,2663,100,69,0
+f25283673a7d1735a7d6261f79acbe15,2026-W25,Саммит Россия — АСЕАН в Казани,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2998,258,72,50,0
+1760d3eed865a7613b98a3bc494eef55,2026-W25,Чемпионат мира по футболу,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2997,545,74,46,0
+2067c06acc59f1e8a5f13cbc757c3344,2026-W25,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,3000,98,68,0
+5e7ba552266e46db4390e10b2a3b521c,2026-W26,Обстрелы различных российских территорий,19.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,3000,2197,100,68,0
+ef1fd437b18617466a074c268220a265,2026-W26,"СВО в целом, успехи российской армии",15.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2997,2997,100,96,0
+a1655871dc7903a966932881864db539,2026-W26,"Дефицит бензина, его подорожание",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,2994,2492,100,67,0
+6a32b0a3f098937a952970721411f70b,2026-W26,"Атака беспилотников на Москву, пожар на НПЗ в Капотне",5.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,2999,177,100,12,0
+9a339945150f68cfdcb89d123f98bdfe,2026-W26,Атака БПЛА на автобус с белорусскими детьми в Брянской области,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.8,2996,215,43,10,0
+475bdd948d7798bb01f773202052fa92,2026-W26,Землетрясение в Венесуэле,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2996,643,50,36,0
+76dd2367defa52485dacb31fc5b035f8,2026-W26,"Погода, природные катаклизмы в России",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2994,285,91,73,0
+3d3dec3965ea93fff3142cd9950478af,2026-W26,События вокруг Ирана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2999,2129,100,64,0
+7f9fdbce643c173fe736ec97b010f265,2026-W26,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2997,2997,100,75,0
+52d3d263039455423374cf2c945b6f75,2026-W26,Чемпионат мира по футболу,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2998,731,72,44,0
+8d7313452a33dbbe6ad9333ad199347d,2026-W26,Праздники,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2997,204,84,49,0
+7bb04595a3052a56e51ad455cbf6d627,2026-W27,"Дефицит бензина, его подорожание",20.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2999,2255,100,69,0
+111c9d0869751f266b0f95a2a8eec9b5,2026-W27,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,96,0
+d5ef6b112672635342a0442a1d18ac07,2026-W27,Обстрелы различных российских территорий,12.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,3000,1930,97,53,0
+b3213c85f334c5506dcef0b4d29cbda9,2026-W27,"Атака беспилотников на Москву, пожар на НПЗ в Капотне",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,3000,720,100,90,0
+3432460b7e5f5ac915b55a19fa0f8f46,2026-W27,"Инфляция, рост цен",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2996,2996,98,69,0
+3706f80107ee2cdca4520adfec4f3e38,2026-W27,"Погода, природные катаклизмы в России",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2997,2997,100,90,0
+e178f90a67c15cd126936502e1fa61cc,2026-W27,Атака БПЛА на автобус с белорусскими детьми в Брянской области,1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,2999,127,60,10,0
+7a2fca6fd405a606d245d82471a74d75,2026-W27,Чемпионат мира по футболу,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.18,2991,767,76,56,0
+7b15d41387deb3a78096e6a746be3755,2026-W27,События вокруг Ирана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,2998,2279,93,52,0
+d17bc72549901b3932c996c861992ca6,2026-W27,"Агрессивная политика Евросоюза, поставка оружия Украине, поддержка ударов по России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,2996,1347,100,60,0
+fc18110528bd08468fe6be58f530ecd0,2026-W27,"Встречи, переговоры В. Путина",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2993,501,100,39,0
+2efb2b6b71746e17c55b30f570e01527,2026-W27,Землетрясение в Венесуэле,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2998,378,45,29,0
+236423b82b0a07833c04746c65cfda18,2026-W28,"Дефицит бензина, его подорожание",19.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2997,1927,99,67,1
+cd2fd509bc71a283cf5d2e7897bced0b,2026-W28,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2998,2998,100,93,0
+b9899b0c6529edad7c568f2885130afc,2026-W28,Обстрелы различных российских территорий,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,3000,1752,100,76,0
+ba83ae6d91b0068904e68d46a44f979e,2026-W28,События вокруг Ирана,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2997,2428,100,69,0
+f368218d5bab9896c44906030fda6492,2026-W28,"Погода, природные катаклизмы в России",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,3000,709,100,78,0
+551ad97023d328f2c08a0b384ec730a6,2026-W28,Саммит НАТО в Анкаре,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,3000,705,100,66,0
+3b5137aec3dfceaf2a6289da52e1610a,2026-W28,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,2995,578,98,76,0
+9e85c6b4abc3c8551be75354b6a5b84e,2026-W28,Чемпионат мира по футболу,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2995,979,88,60,0
+43af72eb5f852c05e06a831ff47c7142,2026-W29,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,96,0
+e5cb6a24aacf5c9a69bc301966c1ca88,2026-W29,"Дефицит бензина, его подорожание",15.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2999,1236,100,65,0
+acdb5cde26c130c9e583aa351a33578b,2026-W29,Обстрелы различных российских территорий,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2998,2032,100,89,0
+cb40e6d379a1ad7f0a8b576a4b8325e2,2026-W29,"Погода, природные катаклизмы в России",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2998,665,100,87,0
+9b6089b8b004d9d7b81b1d39b5f5f9b8,2026-W29,Чемпионат мира по футболу,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,3000,671,91,62,0
+1c9610a226032609bf83bfea35f20f11,2026-W29,События вокруг Ирана,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.5,3000,2205,100,52,0
+4deda4d7f411b7f93e28380135193478,2026-W29,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2996,464,100,65,0
+967ae72160f6a48899033c636a849c9e,2026-W31,"СВО в целом, успехи российской армии",18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2998,2998,99,97,1
+8b909ff67144ff582b73b1fd4045c95b,2026-W31,Обстрелы различных российских территорий,17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2998,2229,95,66,0
+5aa022318054c47ec4c38fe8b48132bf,2026-W31,Атака на склады Wildberries,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2995,1408,100,69,0
+480f63a3c28025be31bd778c212be1f1,2026-W31,"Дефицит бензина, его подорожание",5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2994,715,100,71,0
+82ab92d359a4393a7e125ba06194f5ae,2026-W31,События вокруг Ирана,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2999,1407,100,54,0
+e82ba25bff7cac7df73e3f00285460e1,2026-W31,"Погода, природные катаклизмы в России",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2997,474,96,74,0
+3c799f9820583d182538bd48001d5ad9,2026-W31,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2996,325,93,65,0
+2f04a1d028de556cb0b83c89ea6ed2a7,2026-W31,"Аварии, ЧП, пожары в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.6,2991,326,54,19,0
+31e6679d77722b8deae8361a91121486,2026-W32,"СВО в целом, успехи российской армии",17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,3000,100,95,0
+417c74f53f8c12bee5a854faf81af553,2026-W32,Обстрелы различных российских территорий,17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2999,2543,92,70,0
+84fc6ca3a95d2568a03c4f0304f167a8,2026-W32,Атака на склады Wildberries,6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,3000,1138,100,69,0
+3aa939286bc0138f8d132fbd89ddf923,2026-W32,Гибель людей на пляже в Архипо-Осиповке,5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,2992,344,73,33,0
+02957fc5edce9ce1577dcfe4d57edeec,2026-W32,"Дефицит бензина, его подорожание",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2998,648,100,73,0
+88bf7dbadc808586eea8bd1c8b25ac61,2026-W32,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,3000,202,71,59,0
+78ee36916044bc369e05a586d5ccc649,2026-W32,Теракты на территории России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.5,2996,408,56,26,0
+6a49409caa331ae0456e288bf5e42b21,2026-W32,Возможная мобилизация,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.6,3000,56,68,23,0
+31348bfda2451d3a86251fdb6ed8bdc1,2026-W32,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,3000,164,95,55,0
+e3510eb9a535adc66c8b1d5b1731144c,2026-W32,События вокруг Ирана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2995,1439,100,57,0
+151092474f9ce92bc8a0aa40ecc8fcf3,2026-W32,Спортивные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2995,2995,99,68,0
+734a538f37a0dcf41fc74f4f324aff22,2026-W33,Обстрелы различных российских территорий,18.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,3000,100,91,0
+6c08871a76ca4d1ad12a75ddb06ef94b,2026-W33,"СВО в целом, успехи российской армии",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,3000,100,96,0
+38fdd329d490d0e5856055d2c97516b5,2026-W33,"Дефицит бензина, его подорожание",4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2994,623,100,67,0
+415d685612bd2a457aa1b2f5c0da2b98,2026-W33,Поездки В. Путина по России,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2994,557,85,62,0
+18aa0d32d9777c31efff7f45dbe44daa,2026-W33,Атака на склады Wildberries,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2998,640,98,69,0
+cadf692da0c80b1c0c1818b6cefd9344,2026-W33,Гибель людей на пляже в Архипо-Осиповке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,2996,24,43,12,0
+557476ab0fcda0060e5c1dcb4053d485,2026-W33,Снятие партии «Яблоко» с выборов в Госдуму,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,2989,945,95,55,0
+bc1a81fedb7d0ce76a1c65071c67cdfd,2026-W33,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2998,68,72,32,0
+24db5b33aab9f4635a19476cfbac641b,2026-W33,Возможная мобилизация,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2999,139,79,39,0
+9956b3ef310f68c5d85494e6b6c76bfd,2026-W33,События вокруг Ирана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2994,1232,100,62,0
+ffe1b70674c67b0f2d04b00b2c630564,2026-W34,"СВО в целом, успехи российской армии",17.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,97,0
+d5ec8a973a2f88237a4fa8d1766782da,2026-W34,Обстрелы различных российских территорий,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,3000,2148,92,57,0
+dc9d747f858894989e4d5da59b08a192,2026-W34,"Дефицит бензина, его подорожание",6.0,"gpt-6.1-sol, Codex subscription, effort medium",0.4,2998,555,100,62,0
+45681268a45e35d38d1b6990e61eaa8d,2026-W34,Атака на склады Wildberries,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2998,591,100,69,0
+6779864a377cdd5cb6725915396952d5,2026-W34,Атака на склады OZON,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,2998,380,95,48,0
+e1602258602d981f16e535a4c16f92c0,2026-W34,Поездки В. Путина по России,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2993,284,67,43,0
+1351bfcb90a9a77dd131cee923c705d8,2026-W34,Снятие партии «Яблоко» с выборов в Госдуму,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.5,2990,449,95,45,0
+c71cac085593bc558f0a8985ba800b24,2026-W34,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2989,84,66,35,0
+9cfd7d0ac04c8eeda8886fbbfb8ed39b,2026-W34,"Инфляция, рост цен",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,3000,453,98,50,0
+ed0eadfbf49a3b206fbe19f2f18b136a,2026-W34,Нападение медведя на туристку на Алтае,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.75,2998,96,61,21,0
+9af4cb1414fc89fbe29ddcab22301318,2026-W34,Возможная мобилизация,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2993,249,100,69,0
+982aa742aaf9dc7c081e6da95f55d82f,2026-W34,События вокруг Ирана,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2997,1360,100,69,0
+4d6e1155fa27a40430bc349e62183062,2026-W34,Спортивные события,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.95,2996,26,39,10,0
+6c5a4638bc5657c4ea472f15bcff3379,2026-W35,"СВО в целом, успехи российской армии",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,95,0
+408c2ff3c8f86fdc50d6ef91d2e43b89,2026-W35,Обстрелы различных российских территорий,12.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2999,1680,100,86,0
+518b072f35b81ba57224a9c163576dd4,2026-W35,"Дефицит бензина, его подорожание",5.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2997,607,100,64,0
+15cee2f73ef89af5492be86bdd914f9a,2026-W35,Атака на склады Wildberries и OZON,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2999,863,100,76,0
+49a94cda419d7c815ea93787f50e0175,2026-W35,Наводнение и сход селя в Непале,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2992,666,58,44,0
+44261772180e8d9a57bdde40a6991de2,2026-W35,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,3000,72,55,27,0
+74429081c335e1f7df3c354f2fc640d1,2026-W35,Визит главы ЦРУ Дж. Рэтклиффа в Россию,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2997,585,90,57,0
+321ce78c38ef0151f106385b94c84b1a,2026-W35,Возможная мобилизация,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2997,291,100,55,0
+e72122751ff591019fa98503783d7959,2026-W36,"СВО в целом, успехи российской армии",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2995,2995,100,96,0
+f58e0ab6d27f211a14b7c0d5c754cef3,2026-W36,Обстрелы различных российских территорий,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,3000,1923,98,66,0
+35f355b2c3c251a6dffad3411dfb79e8,2026-W36,"Дефицит бензина, его подорожание",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.4,2996,544,100,49,0
+03f23d49a9de5255ee8f060eefe0af43,2026-W36,XI Восточный экономический форум во Владивостоке,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2996,774,89,55,0
+4e8de2b8a099140a103d92a39a695b40,2026-W36,Предвыборная кампания,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2998,980,100,68,0
+4e66a237c2ef67ff52c65152c7713fce,2026-W36,Приезд С. Уиткоффа и Дж. Кушнера в Россию,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.4,2996,1092,100,47,0
+759b36ceb651290f220c56bbdd78159d,2026-W36,Деятельность В. Путина,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,3000,513,100,71,0
+22e8be4da5f90702c4aa035291de2f5f,2026-W36,Атака на склады Wildberries и OZON,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2996,361,91,56,0
+19e12bb20935cfa755ed4f5c564468eb,2026-W36,Нападения медведей,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2988,320,98,77,0
+a0c3f833ae240464aea601ba23b709fd,2026-W36,Угрозы В. Зеленского в адрес российской гражданской авиации,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,2996,358,79,36,0
+ec9c5144f2bc916d6aec479458c1e6c3,2026-W36,Наводнение и сход селя в Непале,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2992,432,64,49,0
+9c05c472056ff1097bfb4e0b114abc5e,2026-W36,"Первое сентября, начало учебного года",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2995,300,100,63,0
+8cbbdb816fac991ef18634e4b6323e5b,2026-W36,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.9,2993,48,71,12,0
+e6fed7ec3cc1923bcbfea4d19ebcb597,2026-W36,Возможная мобилизация,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2997,258,82,47,0
+edeb18b915b91a3f99df402c11a8e3d2,2026-W36,Саммит ШОС в Бишкеке,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2998,488,100,63,0
+ed5d3ecb0a7c9e300b39374e35c9664b,2026-W37,"СВО в целом, успехи российской армии",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,92,0
+152c5c7c1c358089a7251e1837a7c4f3,2026-W37,Обстрелы различных российских территорий,12.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2998,1632,84,65,0
+c0d98c5fcc4264e2ed3aadabbfc1e64c,2026-W37,Саммит БРИКС,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2996,545,83,50,0
+8c25874428f240b8b94253516a329662,2026-W37,"Дефицит бензина, его подорожание",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2995,428,100,65,0
+14b455d764cf198564e025735d2218a2,2026-W37,Приезд С. Уиткоффа и Дж. Кушнера в Россию,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2997,1168,100,58,0
+14959f23d6b33dc0ae6901119d374e03,2026-W37,Предвыборная кампания,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2996,1718,100,89,0
+5d0f3ec6afff26fd979bec511510639f,2026-W37,Атака на склады Wildberries и OZON,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2999,191,85,48,0
+ff9744f4ee8fe808c9f703c5c4bfa97f,2026-W37,Нападения медведей,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2992,469,99,79,0
+d15e7cfc35c8b4ea9cba9bdc49f8f383,2026-W37,Деятельность В. Путина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2995,2995,100,78,0
+a63c8d4132c79fd07e0f6badbadecf90,2026-W37,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2999,74,74,34,0
+e8164cbea96ff0cd93acbed6b67839c4,2026-W37,Возможная мобилизация,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.22,2998,146,89,51,0
+1f349893c86eee5043bda382d4e90782,2026-W37,"Аварии, ДТП",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.8,2997,96,26,14,0
+95892c510b8cbe0439e5be0189010cde,2026-W37,"Инфляция, рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.12,2995,465,100,60,0
+dbc8419271779fffb95ad8d8bb4aab39,2026-W39,Выборы,14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2998,2577,97,82,0
+699ef534b559f29236b40b139c26b301,2026-W39,"СВО в целом, успехи российской армии",12.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2998,2998,100,93,0
+1afa4502c1bfcad7775f3b61055e81b3,2026-W39,Обстрелы различных российских территорий,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2999,1770,94,58,0
+3fbeffcd5da3805b9313e62824ad11a6,2026-W39,Нападения медведей,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2997,558,98,74,0
+7c9cac8f5add8c06edc3b350a5d9ef03,2026-W39,"Дефицит бензина, его подорожание",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.55,2995,125,96,41,0
+ba1e27b2e5c316aa728269b53d05dad0,2026-W39,"Инфляция, рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2993,329,100,63,0
+8d06f6311e87d1f6274351908304985a,2026-W39,Генеральная ассамблея ООН,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2998,910,100,54,0
+ceb2f37b9aff06ab38434c12813713a4,2026-W39,Международная политика США,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,80,0
+c738cee413f40d127b1ff72ec88e8129,2026-W39,Смерть С. Соседова,1.0,"gpt-6.1-sol, Codex subscription, effort medium",1.0,2996,101,21,10,0
+8706ad82cdeb229c1e9a6869e6e33ec9,2026-W39,Деятельность В. Путина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,3000,3000,74,59,0
+d31819c567d186c86f578b5a7c21fdd3,2026-W39,Гибель военнослужащих на учениях в Казахстане,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.75,2997,144,37,14,0
+96b775d737651605ac1fe4a83d25cb1a,2026-W40,"СВО в целом, успехи российской армии",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,97,0
+1acd7f36bf74defc0019f78c511cab96,2026-W40,Обстрелы различных российских территорий,7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2999,1453,100,78,0
+d0b7f37c32bfaaade59ef668221a9d95,2026-W40,Выборы,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2993,951,100,72,0
+7b5a77e7463f688251b92164c7d32b58,2026-W40,"Заседание дискуссионного клуба «Валдай», выступление на нём В. Путина",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2997,360,54,38,0
+0b951d9ba65d3ed7a6bcee74f0823dbb,2026-W40,"Инфляция, рост цен, тарифов",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2991,735,100,71,0
+364ca8b28fbfdbcbd68e48875ec20ff9,2026-W40,Попытка захвата самолёта Дубай – Тель-Авив,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2997,868,57,35,0
+088c97ee6a2449839b527711ee0528db,2026-W40,Нападения медведей,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2986,427,100,68,0
+bab09f04d8cae3f8f82e112650336582,2026-W40,Вспышка чумы в Иркутской области,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2993,322,90,70,0
+1a2d9b5246c686d5eab084921ccbfba3,2026-W40,"Дефицит бензина, его подорожание",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.5,2998,111,93,37,0
+212fd376fb139bd8caf22d9c39f20bc7,2026-W40,Пожар в историческом особняке Миллера в Санкт-Петербурге,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2995,199,26,14,0
+7734e135eb8c14223323d709f76436bc,2026-W41,"СВО в целом, успехи российской армии",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2999,2999,100,98,0
+60d794707ce7111889c769818b12aeb2,2026-W41,Обстрелы различных российских территорий,8.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2997,2076,100,79,0
+1132036689da7bd7986c077890eea0e8,2026-W41,Вспышка чумы в Иркутской области,3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2989,321,90,67,0
+54b9217cd55a5aaf28aa7eb0d0b3b37b,2026-W41,"Телефонный разговор В. Путина и Д. Трампа, дизельная сделка",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2998,1364,100,53,0
+55c27cc222a8e59ca3e5577959c86e30,2026-W41,Удары по дата-центрам «Яндекса»,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2999,784,99,63,1
+45f00104179f2a40dc305b02bc1ce321,2026-W41,Нападения медведей,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2999,278,97,83,0
+d9b2f2600bc251a2be299d947da5bb48,2026-W41,Атака на танкер у Черноморского побережья,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.65,2997,191,72,36,0
+28469466e1ab4d0117242b544a2f5c30,2026-W41,"Инфляция, рост цен, тарифов",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2998,409,100,50,0
+d067805e378f0491dffa08b5b6756378,2026-W41,Деятельность В. Путина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2999,156,58,35,0
+0ee9a12499371f93f1bf54662faf090a,2026-W41,"Дефицит бензина, его подорожание",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2995,183,100,43,0
+90006382451de8f710cddef1aaf5a397,2026-W41,День рождения В. Путина,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.65,2992,275,75,32,0
+cad27686eec67831e410a2bc3e304a3a,2026-W41,Акции протеста во Франции,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2992,911,100,67,0
+320dbe268059e191f400f7225019c15e,2026-W42,"СВО в целом, успехи российской армии",16.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2996,2996,100,97,0
+e36b6d62dad210729b4e1d9ae66fc560,2026-W42,Обстрелы различных российских территорий,9.0,"gpt-6.1-sol, Codex subscription, effort medium",0.35,2999,2326,98,62,0
+1c5debf046387c94c57a0f136e2502b8,2026-W42,Дизельная сделка,4.0,"gpt-6.1-sol, Codex subscription, effort medium",0.45,2998,1462,100,49,0
+de7247f90c1c0a5e4ba60a84152b3220,2026-W42,"Удары по дата-центрам, их последствия",3.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,3000,825,100,72,0
+e11b62a690b646d80e26b83297ce6554,2026-W42,"Инфляция, рост цен, тарифов",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.25,2995,326,100,47,0
+6b3f850cc47f40f063d6a81c0da27773,2026-W42,Вспышка чумы в Иркутской области,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.3,2997,17,32,14,0
+6170ae86f5dc6cc0e426da13df774bdf,2026-W42,Нападения медведей,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2995,202,94,65,0
+73392b8e8109021bafd9e1c84b534b31,2026-W42,"Дефицит бензина, его подорожание",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2998,313,97,71,0
+6cdb50d51236456e6f4f3919e626b47e,2026-W42,Деятельность И. Маска,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.7,2995,68,62,17,0
+e38c5bfe31dcad7aaf03e4add3fcaeaf,2026-W42,Деятельность Д. Трампа,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.0,2994,2994,100,68,0
+d04fb4c9f3a4f39193cd324cc6f46021,2026-W42,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2996,221,67,49,0
+006ff1db57ac6c967c8fd54d2d1ebd7f,2026-W43,"СВО в целом, успехи российской армии",14.0,"gpt-6.1-sol, Codex subscription, effort medium",0.05,2997,2791,100,88,0
+f75ff050f27c3a81cf72e564fcf2ea2d,2026-W43,Обстрелы различных российских территорий,12.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,3000,1748,100,87,0
+97aa74f468242d3ed6e48b2a97f18a38,2026-W43,"Встреча В. Путина и С. Уиткоффа, обсуждение путей к миру на Украине",7.0,"gpt-6.1-sol, Codex subscription, effort medium",0.4,3000,777,100,63,0
+29e9c252a1c92d727b6a81161068a618,2026-W43,"Удары по дата-центрам, их последствия",2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.15,2999,404,99,58,0
+671f94c94947123561cd50ebf8006f8b,2026-W43,Дизельная сделка,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.6,2992,577,100,47,0
+60736b9fd69ca7fbe4ad33d7f8334b0c,2026-W43,Акции протеста в странах Европы,2.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2993,1131,99,79,0
+7aa4b3d2cd39690c65c4e223fe5b9d0e,2026-W43,Нападения медведей,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2998,163,93,71,0
+969b8f166ac2fbf16bf396380f9bd0bf,2026-W43,"Погода, природные катаклизмы в России",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.2,2997,155,70,42,0
+04c508e026a6c6a1020d62547d36b007,2026-W43,Деятельность Д. Трампа,1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.1,2998,1175,100,56,0
+5e62ab2e8693a422a385ae1b2968e762,2026-W43,"Дефицит бензина, его подорожание",1.0,"gpt-6.1-sol, Codex subscription, effort medium",0.6,2991,120,95,47,0

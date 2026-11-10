@@ -1,0 +1,41 @@
+{
+ "generated_at": "2026-11-07T02:46:58",
+ "event": {
+  "name": "Удар ВСУ по панораме «Оборона Севастополя»",
+  "year": 2026,
+  "week": 24,
+  "fom_percentage": 2.0,
+  "quotes": [
+   "«Бомбили панораму в Севастополе»",
+   "«в Севастополе панораму повредили»",
+   "«разбомбили панораму Севастополя»",
+   "«раздолбали в Севастополе музей»",
+   "«разрушена панорама в Севастополе»",
+   "«Севастополь: сожгли панораму Севастополя дронами»"
+  ],
+  "event_id": "eb3ff40f0976ea4e286f15b18e14c132"
+ },
+ "window": {
+  "match_start": "2026-06-05",
+  "match_end_exclusive": "2026-06-25"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.35,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2999,
+  "kept": 301,
+  "embedded_pool": 39914,
+  "window_posts": 39914
+ }
+}

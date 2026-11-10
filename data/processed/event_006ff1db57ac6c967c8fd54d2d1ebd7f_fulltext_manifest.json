@@ -1,0 +1,39 @@
+{
+ "generated_at": "2026-11-07T02:47:08",
+ "event": {
+  "name": "СВО в целом, успехи российской армии",
+  "year": 2026,
+  "week": 43,
+  "fom_percentage": 14.0,
+  "quotes": [
+   "«Про Украину, про войну»",
+   "«СВО: боевые действия»",
+   "«спецоперация»",
+   "«успехи на фронте»"
+  ],
+  "event_id": "006ff1db57ac6c967c8fd54d2d1ebd7f"
+ },
+ "window": {
+  "match_start": "2026-10-16",
+  "match_end_exclusive": "2026-11-05"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.05,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 2997,
+  "kept": 2791,
+  "embedded_pool": 36954,
+  "window_posts": 36954
+ }
+}

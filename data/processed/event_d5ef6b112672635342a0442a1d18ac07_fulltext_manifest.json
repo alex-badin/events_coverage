@@ -1,0 +1,46 @@
+{
+ "generated_at": "2026-11-07T02:47:00",
+ "event": {
+  "name": "Обстрелы различных российских территорий",
+  "year": 2026,
+  "week": 27,
+  "fom_percentage": 12.0,
+  "quotes": [
+   "«Атаки ракетные на нашу область»",
+   "«беспилотники в Омске»",
+   "«бомбят Крым»",
+   "«бомбят Краснодар, Гуково, Белгород»",
+   "«БПЛА, которые летают везде»",
+   "«взрыв на заводе “Баррикады”»",
+   "«взрывают дроны, портят людям всё имущество»",
+   "«гибель людей при нападении дронов»",
+   "«обстрелы территории России Украиной»",
+   "«ракетные атаки»",
+   "«Украина нас бомбит»"
+  ],
+  "event_id": "d5ef6b112672635342a0442a1d18ac07"
+ },
+ "window": {
+  "match_start": "2026-06-26",
+  "match_end_exclusive": "2026-07-16"
+ },
+ "models": {
+  "retriever": "qwen3_fulltext",
+  "embed_model": "qwen/qwen3-embedding-8b",
+  "rerank_model": "gpt-6-luna via Codex, score 0-100 divided by 100, effort low, no brief",
+  "cut_reader": "gpt-6.1-sol, Codex subscription, effort medium",
+  "brief": "not used"
+ },
+ "params": {
+  "top_k": 3000,
+  "rerank_threshold": 0.25,
+  "show_chars": 1000
+ },
+ "counts": {
+  "candidates": 3000,
+  "scored": 3000,
+  "kept": 1930,
+  "embedded_pool": 39678,
+  "window_posts": 39678
+ }
+}
