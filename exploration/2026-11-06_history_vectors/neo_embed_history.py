@@ -71,13 +71,22 @@ def month(path):
     if base > CAP:
         raise SystemExit("budget")
     t = time.time()
-    with concurrent.futures.ThreadPoolExecutor(WORKERS) as pool:
-        list(pool.map(one, range(0, len(rows), SIZE)))
+    try:
+        with concurrent.futures.ThreadPoolExecutor(WORKERS) as pool:
+            list(pool.map(one, range(0, len(rows), SIZE)))
+        complete = True
+    except Exception:
+        complete = False
+        raise
+    finally:
+        # Book what was paid even when the month fails, so the budget guard sees it. A failed month is
+        # embedded again from the start on the next run (its partial vectors are not kept).
+        with open(LEDGER, "a") as f:
+            f.write(json.dumps({"month": name if complete else name + " (failed, redone)", "fragments": len(rows) if complete else 0,
+                                "usd": round(paid["usd"], 5), "tokens": paid["tokens"], "requests": paid["requests"],
+                                "seconds": round(time.time() - t)}) + "\n")
     X.flush()
     del X
-    with open(LEDGER, "a") as f:
-        f.write(json.dumps({"month": name, "fragments": len(rows), "usd": round(paid["usd"], 5), "tokens": paid["tokens"],
-                            "requests": paid["requests"], "seconds": round(time.time() - t)}) + "\n")
     np.save(os.path.join(OUT, name + ".owners.npy"), np.array(owners, np.int32))
     os.replace(tmp, target)
     print(name, len(rows), f"${paid['usd']:.4f} total ${spent():.3f} {time.time() - t:.0f}s", flush=True)
