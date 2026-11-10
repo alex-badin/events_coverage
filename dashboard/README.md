@@ -26,15 +26,26 @@ and the label corrections in [PR #6](https://github.com/alex-badin/events_covera
 Both are included in the tracked template. Before publishing a design update, check that this
 template contains the intended revision, including work that has not yet reached `main`.
 
-Publish an already checked `outputs/dashboard_exports/coverage_dashboard.html` from the repository root:
+Publish an already checked `outputs/dashboard_exports/dashboard_data.json` from the repository root:
 
 ```sh
 DEPLOY_HOST=m4-pilot zsh scripts/deploy_dashboard.sh
 ```
 
-`DEPLOY_HOST` can also be set in the local `.env`. The script sends only `index.html` and
-`index.html.gz`, checks their contents, then selects the new release. It restores the previous
-release and site configuration if the activation checks fail. It does not rebuild the warehouse.
+`DEPLOY_HOST` can also be set in the local `.env`. Set `DEPLOY_DATA` to the path of a checked
+export to publish a specific snapshot. The script builds and checks a new web release from
+that export, then switches the site to it. The warehouse rebuild is a separate step.
+
+The first response contains the summary and an interactive heatmap. It is about 52 KB with gzip
+for the November 2026 snapshot, down from 5.56 MB. The coverage table and full heatmap tooltips
+load in the background (about 373 KB with gzip). Posts, respondent quotes and daily counts load
+when a reader opens an event (up to about 14 KB compressed per event in that snapshot).
+All background requests use the release ID from the page. Keep the corresponding files on the
+server so an open tab can still use its snapshot after the next release.
+
+The default `build_dashboard.py` command below still creates a file for use offline. To build
+a web release locally, pass `--web-dir` with a new directory and `--release-id` with a release ID
+such as `20261110T210000Z-12345678`. The deployment script sets these options automatically.
 The server setup, public data fields and later improvements are described in
 [docs/hetzner_deploy_plan.md](../docs/hetzner_deploy_plan.md).
 
