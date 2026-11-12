@@ -5,7 +5,9 @@ cd ${0:A:h}
 H=../../data/interim/history
 while true; do
   find $H/scores -name "*.claim" -delete 2>/dev/null
-  CODEX_CLI=$1 ../../.venv/bin/python history_scores.py run --workers ${2:-12} && break
+  CODEX_CLI=$1 ../../.venv/bin/python history_scores.py run --workers ${2:-12}; rc=$?
+  (( rc == 0 )) && break
+  (( rc == 4 )) && { echo "$(date -u +%H:%M) $1 at its weekly cap; stopping"; exit 0; }
   ../../.venv/bin/python history_scores.py status
   echo "$(date -u +%H:%M) $1 stopped; waiting 10 minutes"
   sleep 600

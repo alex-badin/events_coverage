@@ -39,7 +39,7 @@ TAIL = """
 Используй всю шкалу: 0 — точно о другом, 100 — точно об этом событии, средние значения для пограничных и косвенных постов."""
 CLI = os.environ.get("CODEX_CLI", "codex-secondary")
 HOME = {"codex-secondary": "~/.codex-secondary", "codex": "~/.codex"}[CLI]
-WEEK_CAP = {"codex-secondary": 95.0, "codex": 98.0}[CLI]
+WEEK_CAP = float(os.environ.get("LUNA_WEEK_CAP") or {"codex-secondary": 95.0, "codex": 98.0}[CLI])   # % of the weekly limit used
 LIMIT_WORDS = ("usage limit", "rate limit", "rate_limit", "quota", "too many requests")
 stop = threading.Event()
 lock = threading.Lock()
@@ -161,6 +161,10 @@ def run(workers):
     jobs = [(e, k, ids) for e in queue() for k, ids in enumerate(slices(e)) if not (OUT / e["id"] / f"slice_{k:03d}.json").exists()]
     print(f"{time.strftime('%H:%M')} {len(jobs)} calls to go, {workers} at a time, {CLI}", flush=True)
     done = [0]
+    used = limits_used()
+    if used and used[1] >= WEEK_CAP:
+        print(f"{time.strftime('%H:%M')} weekly limit at {used[1]}%, cap {WEEK_CAP}%; not starting", flush=True)
+        sys.exit(4)
 
     def wrapped(job):
         one(job)
