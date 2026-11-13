@@ -226,8 +226,9 @@ models:
                 values: ['word', 'phrase']
       - name: term_label
         description: >
-          The spelling used in most posts. Counting is done on the shortened form in
-          term_key, but a real word is what gets displayed.
+          A single word in its dictionary form, the one it was counted under. A phrase as
+          spelled by the channel with the most posts carrying it, since two dictionary forms
+          side by side are not Russian.
         data_tests: [not_null]
       - name: posts_with_term
         description: >

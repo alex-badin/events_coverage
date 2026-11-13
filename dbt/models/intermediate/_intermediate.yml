@@ -42,8 +42,8 @@ models:
       One word of one distinct post text, in the order it appears. The raw material for comparing
       the vocabulary of different media groups. Splitting the texts into words happens here
       once, so single words and two-word phrases are built from the same word stream and
-      cannot disagree with each other. A table: a view would split and stem every text again on
-      each read.
+      cannot disagree with each other. A table: a view would split every text again on each
+      read.
     columns:
       - name: post_text_id
         description: A hash of the post text, the same in every event that matched the post.
@@ -56,11 +56,6 @@ models:
       - name: word
         description: The word as written, lowercased.
         data_tests: [not_null]
-      - name: word_stem
-        description: >
-          The word with its grammatical ending cut off, so that "Суджа", "Суджи" and "Судже"
-          count as one word. A rough cut, not a dictionary — see macros/russian_stem.sql.
-        data_tests: [not_null]
       - name: is_stopword
         description: >
           Flagged rather than removed. Single-word counting drops these; phrase building
@@ -69,6 +64,23 @@ models:
       - name: is_source_name
         description: The word is the name of a source. Channels sign their posts, so it is not counted.
         data_tests: [not_null]
+
+  - name: int_word_lemmas
+    description: >
+      One distinct word of the matched posts with the dictionary form it is counted under, from the
+      pymorphy3 dictionary, so that «войны» and «войну» count as «война». Frequent misreadings are
+      corrected by seeds/word_lemma_overrides.csv.
+    columns:
+      - name: word
+        data_tests: [not_null, unique]
+      - name: lemma
+        data_tests: [not_null]
+      - name: lemma_source
+        description: "'dictionary', or 'override' when seeds/word_lemma_overrides.csv set it."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['dictionary', 'override']
 
   - name: int_post_term_forms
     description: One spelling of one word or two-word phrase in one distinct post text. The labels come from here.
@@ -81,7 +93,7 @@ models:
       - name: term_type
         description: Whether the row is a single word or two words that stood next to each other.
       - name: term_key
-        description: The stem, or the two stems of a phrase.
+        description: The dictionary form, or the two dictionary forms of a phrase.
         data_tests: [not_null]
       - name: term_form
         description: The spelling as written.
@@ -128,6 +140,9 @@ models:
     columns:
       - name: message_id
         data_tests: [not_null]
+
+  - name: int_event_group_term_lists
+    description: The exact posts each surviving term of each media group in each event was counted in.
 
   - name: int_event_group_term_labels
     description: The spelling shown for each surviving term of each media group in each event.
