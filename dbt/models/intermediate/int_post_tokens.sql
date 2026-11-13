@@ -62,9 +62,6 @@ select
     numbered.word_position,
     numbered.word,
 
-    -- The word with its grammatical ending cut off, so different forms count together.
-    {{ russian_stem('numbered.word') }}  as word_stem,
-
     -- Flagged rather than filtered out. Single-word counting drops these, but phrase
     -- building needs to know where they were: "в центре суджи" is only recognisable as a
     -- phrase if the stream still knows "в" sat there.

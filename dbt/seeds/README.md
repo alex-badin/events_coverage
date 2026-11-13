@@ -5,6 +5,7 @@ Small reference tables kept in git and loaded with `dbt seed` (or as part of `db
 | File | What | Written by |
 |---|---|---|
 | `russian_stopwords.csv` | Words the vocabulary marts ignore | hand |
+| `word_lemma_overrides.csv` | Dictionary forms that pymorphy3 gets wrong in news text (surnames read as common nouns, acronyms) | model check, then hand; see below |
 | `event_labels_en.csv` | Short English names for the events with a measured post set | hand |
 | `fom_themes.csv` | The cross-week themes: 7 areas of news, 46 themes | `scripts/fom_themes.py seeds`, from `configs/fom_theme_taxonomy.json` |
 | `fom_event_themes.csv` | The theme of every FOM event wording, one row per exact spelling, with the date and model that labelled it | `scripts/fom_themes.py seeds`, from model labels |
@@ -57,3 +58,14 @@ zsh scripts/run_theme_labelling.sh
 
 Until that is done, an unlabelled event shows without a theme, and dbt warns
 (`every_specific_event_has_a_theme`).
+
+## Dictionary-form overrides
+
+`int_word_lemmas` counts each word under its dictionary form from pymorphy3, which reads a word
+without its sentence. To catch its frequent misreadings, the 300 most used words that pymorphy3
+gives more than one possible dictionary form were checked by Claude Haiku 5.5 subagents in six
+slices of 50 (2026-11-13), with this rule: change the form only when it names a different word,
+person or place than the one most likely meant in Russian news; keep acronyms as written; leave
+participles and words with two equally likely meanings («газа») alone. Every proposed change was
+then read by hand before it went into `word_lemma_overrides.csv`. «Зарубин» was added by hand after it showed up
+as «зарубина» in the word lists.

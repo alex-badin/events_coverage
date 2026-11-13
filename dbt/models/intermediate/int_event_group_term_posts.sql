@@ -18,7 +18,9 @@ select
 from {{ ref('int_event_posts_with_words') }} as posts
 inner join {{ ref('int_post_terms') }} as terms
     on posts.post_text_id = terms.post_text_id
+-- One combined key, so that posts must be joined to terms before this join can run. Joining the
+-- three keys separately let DuckDB pair each kept term with every text carrying it, in all events,
+-- first, which took about 45 s in a full build instead of 4 s.
 inner join {{ ref('int_event_group_term_scores') }} as kept
-    on  posts.event_hash = kept.event_hash
-    and posts.group_hash = kept.group_hash
-    and terms.term_hash  = kept.term_hash
+    on hash(posts.event_hash, posts.group_hash, terms.term_hash)
+       = hash(kept.event_hash, kept.group_hash, kept.term_hash)

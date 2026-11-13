@@ -7,8 +7,16 @@
 
 with usable_tokens as (
 
-    select * from {{ ref('int_post_tokens') }}
-    where not is_source_name
+    select
+        tokens.*,
+        -- The dictionary form, so «войны» and «войну» count as «война». A word the dictionary
+        -- step skipped (shorter than three letters) keeps its spelling.
+        coalesce(lemmas.lemma, tokens.word)  as word_lemma
+
+    from {{ ref('int_post_tokens') }} as tokens
+    left join {{ ref('int_word_lemmas') }} as lemmas
+        on tokens.word = lemmas.word
+    where not tokens.is_source_name
 
 ),
 
@@ -17,7 +25,7 @@ words as (
     select
         post_text_id,
         'word'        as term_type,
-        word_stem     as term_key,
+        word_lemma    as term_key,
         word          as term_form,
         count(*)      as term_uses
 
@@ -34,7 +42,7 @@ words as (
 -- may be a stopword, which keeps "курской области" and drops "в центре".
 phrase_tokens as (
 
-    select post_text_id, word_position, word, word_stem
+    select post_text_id, word_position, word, word_lemma
     from usable_tokens
     where not is_stopword
       and not is_number
@@ -47,7 +55,7 @@ phrases as (
     select
         first_word.post_text_id,
         'phrase'  as term_type,
-        first_word.word_stem || ' ' || second_word.word_stem  as term_key,
+        first_word.word_lemma || ' ' || second_word.word_lemma  as term_key,
         first_word.word || ' ' || second_word.word            as term_form,
         count(*)  as term_uses
 

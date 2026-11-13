@@ -64,3 +64,14 @@ seeds:
               arguments:
                 to: ref('stg_event_datasets')
                 field: event_slug
+
+  - name: word_lemma_overrides
+    description: >
+      Words whose dictionary form pymorphy3 gets wrong in news text, because it reads each word
+      without its sentence («песков» as the plural of «песок»). Built from a check of the most used
+      words that have more than one possible dictionary form; see dbt/seeds/README.md.
+    columns:
+      - name: word
+        data_tests: [unique, not_null]
+      - name: lemma
+        data_tests: [not_null]

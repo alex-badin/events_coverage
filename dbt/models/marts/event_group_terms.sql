@@ -39,8 +39,8 @@
 -- makes no claim about tone or intent. Every term keeps the post counts behind it, and the
 -- posts stay one click away in the dashboard so any word can be read back in context.
 --
--- The counting and the filters are in int_event_group_term_scores; this model adds the words and
--- the lists of posts to what survives.
+-- The counting and the filters are in int_event_group_term_scores; this model joins the words and
+-- the lists of posts, built in their own tables, to what survives.
 
 with kept as (
 
@@ -61,24 +61,9 @@ event_groups as (
 
 ),
 
-kept_term_posts as (
-
-    select * from {{ ref('int_event_group_term_posts') }}
-
-),
-
 post_lists as (
 
-    select
-        event_hash,
-        group_hash,
-        term_hash,
-        -- The exact posts this term was counted in, so the dashboard's "read the posts
-        -- behind this word" cannot disagree with the count beside it.
-        list(source_name || ':' || message_id)  as post_keys
-
-    from kept_term_posts
-    group by 1, 2, 3
+    select * from {{ ref('int_event_group_term_lists') }}
 
 )
 

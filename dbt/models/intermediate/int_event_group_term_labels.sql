@@ -2,7 +2,10 @@
 
 -- Grain: one word or two-word phrase, per media group, per event, for the surviving terms.
 --
--- The spelling shown for each term. Its own table for the same reason as
+-- The word shown for each term. A single word is shown in its dictionary form, the one it was
+-- counted under. A phrase is shown as spelled by the channel with the most posts carrying it,
+-- because two dictionary forms side by side are not Russian («курский область»).
+-- Its own table for the same reason as
 -- int_event_group_term_posts: together with the lists of posts it does not fit in 6 GB.
 
 with kept_term_posts as (
@@ -34,6 +37,8 @@ term_form_counts as (
     inner join {{ ref('int_post_term_forms') }} as forms
         on  kept_term_posts.post_text_id = forms.post_text_id
         and kept_term_posts.term_hash    = forms.term_hash
+    -- Only phrases need their spellings counted; a word's label is its dictionary form.
+    where forms.term_type = 'phrase'
     group by 1, 2, 3, 4, 5, 6, 7
 
 ),
@@ -56,8 +61,7 @@ source_labels as (
 
 ),
 
--- The spelling used by the channel with the most posts carrying the term, so the dashboard
--- shows a real word and not the shortened form the counting is done on.
+-- The spelling used by the channel with the most posts carrying the phrase.
 term_labels as (
 
     select
@@ -79,6 +83,33 @@ term_labels as (
         and source_labels.term_hash   = source_terms.term_hash
     group by 1, 2, 3, 4, 5
 
+),
+
+-- Each single word's dictionary form, once.
+word_keys as (
+
+    select distinct term_hash, term_key
+    from {{ ref('int_post_term_forms') }}
+    where term_type = 'word'
+
+),
+
+word_labels as (
+
+    select
+        kept.event_hash,
+        kept.group_hash,
+        kept.term_hash,
+        'word'              as term_type,
+        word_keys.term_key,
+        word_keys.term_key  as term_label
+
+    from {{ ref('int_event_group_term_scores') }} as kept
+    inner join word_keys
+        on kept.term_hash = word_keys.term_hash
+
 )
 
 select * from term_labels
+union all
+select * from word_labels
